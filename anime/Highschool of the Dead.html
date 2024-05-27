@@ -1,50 +1,69 @@
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="./Resources/css/style.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #960019; 
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #7C0A02; 
+            transform: scale(2);
+        }
+
+        button:active {
+            background-color: #003f7f; 
+        }
+    </style>
 </head>
-<body style="background-color:black;">
+<body>
+    <p><strong>Highschool of the Dead</strong></p>
 
-<p style="color:white;"><strong>Highschool of the Dead</strong></p>
-
-<button onclick="window.location.href='./hotd/Ep1.html'">
-      EP 1
-</button>
-<button onclick="window.location.href='./hotd/Ep2.html'">
-      EP 2
-</button>
-<button onclick="window.location.href='./hotd/Ep3.html'">
-      EP 3
-</button>
-<button onclick="window.location.href='./hotd/Ep4.html'">
-      EP 4
-</button>
-<button onclick="window.location.href='./hotd/Ep5.html'">
-      EP 5
-</button>
-<button onclick="window.location.href='./hotd/Ep6.html'">
-      EP 6
-</button>
-<button onclick="window.location.href='./hotd/Ep7.html'">
-      EP 7
-</button>
-<button onclick="window.location.href='./hotd/Ep8.html'">
-      EP 8
-</button>
-<button onclick="window.location.href='./hotd/Ep9.html'">
-      EP 9
-</button>
-<button onclick="window.location.href='./hotd/Ep10.html'">
-      EP 10
-</button>
-<button onclick="window.location.href='./hotd/Ep11.html'">
-      EP 11
-</button>
-<button onclick="window.location.href='./hotd/Ep12.html'">
-      EP 12
-</button>
-<button onclick="window.location.href='./hotd/OVA.html'">
-      OVA
-</button>
+    <div class="button-container">
+        <button onclick="window.location.href='./hotd/Ep1.html'">Ep 1</button>
+        <button onclick="window.location.href='./hotd/Ep2.html'">Ep 2</button>
+        <button onclick="window.location.href='./hotd/Ep3.html'">Ep 3</button>
+        <button onclick="window.location.href='./hotd/Ep4.html'">Ep 4</button>
+        <button onclick="window.location.href='./hotd/Ep5.html'">Ep 5</button>
+        <button onclick="window.location.href='./hotd/Ep6.html'">Ep 6</button>
+        <button onclick="window.location.href='./hotd/Ep7.html'">Ep 7</button>
+        <button onclick="window.location.href='./hotd/Ep8.html'">Ep 8</button>
+        <button onclick="window.location.href='./hotd/Ep9.html'">Ep 9</button>
+        <button onclick="window.location.href='./hotd/Ep10.html'">Ep 10</button>
+        <button onclick="window.location.href='./hotd/Ep11.html'">Ep 11</button>
+        <button onclick="window.location.href='./hotd/Ep12.html'">Ep 12</button>
+        <button onclick="window.location.href='./hotd/OVA.html'">OVA</button>
+    </div>
 
 </body>
 </html>
