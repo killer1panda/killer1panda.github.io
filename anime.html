@@ -1,20 +1,31 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href= "./Resources/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anime Collection</title>
+  <link rel="stylesheet" href="./Resources/css/style.css">
 </head>
-<body style="background-color:black;">
 <body>
-<a class="nav-link" href="./anime/Fate-Grand Order Absolute Demonic Front Babylonia.html"><p style><strong>Fate-Grand Order Absolute Demonic Front Babylonia</strong></p></a>
-<a class="nav-link" href="./anime/To Your Eternity.html"><p style><strong>To Your Eternity</strong></p></a>
-<a class="nav-link" href="./anime/World's End Harem.html"><p style><strong>World's End Harem</strong></p></a>
-<a class="nav-link" href="./anime/Highschool of the Dead.html"><p style><strong>Highschool of the Dead</strong></p></a>
-<a class="nav-link" href="./anime/Jujutsu Kaisen.html"><p style><strong>Jujutsu Kaisen</strong></p></a>
-<a class="nav-link" href="./anime/Devilman Crybaby.html"><p style><strong>Devilman Crybaby</strong></p></a>
-<a class="nav-link" href="./anime/My Dress-Up Darling.html"><p style><strong>My Dress-Up Darling</strong></p></a>
-<a class="nav-link" href="./anime/hot.html"><p style><strong>hot</strong></p></a>
-<a class="nav-link" href=".html"><p style><strong></strong></p></a>
 
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 
+  <main class="anime-list">
+    <a class="card" href="./anime/Fate-Grand Order Absolute Demonic Front Babylonia.html">Fate-Grand Order Absolute Demonic Front Babylonia</a>
+    <a class="card" href="./anime/To Your Eternity.html">To Your Eternity</a>
+    <a class="card" href="./anime/World's End Harem.html">World's End Harem</a>
+    <a class="card" href="./anime/Highschool of the Dead.html">Highschool of the Dead</a>
+    <a class="card" href="./anime/Jujutsu Kaisen.html">Jujutsu Kaisen</a>
+    <a class="card" href="./anime/Devilman Crybaby.html">Devilman Crybaby</a>
+    <a class="card" href="./anime/My Dress-Up Darling.html">My Dress-Up Darling</a>
+    <a class="card" href="./anime/hot.html">Hot</a>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+    }
+  </script>
 
 </body>
 </html>
