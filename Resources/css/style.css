@@ -1,23 +1,67 @@
-p {
-  margin-top: 0px;
-  margin-bottom: 50px;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 3rem;
-  letter-spacing: 0.15rem;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: -4px 4px #ef3550,
-               -8px 8px #f48fb1,
-               -12px 12px #7e57c2,
-               -16px 16px #2196f3,
-               -20px 20px #26c6da,
-               -24px 24px #43a047,
-               -28px 28px #eeff41,
-               -32px 32px #f9a825,
-               -36px 36px #ff5722;
+:root {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: linear-gradient(135deg, #ef3550, #f9a825);
+  --shadow: rgba(255, 255, 255, 0.2);
+}
+
+.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #121212;
+  --card-bg: linear-gradient(135deg, #42a5f5, #66bb6a);
+  --shadow: rgba(0, 0, 0, 0.2);
 }
 
 body {
-  background-color: black;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hero-gif {
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.card {
+  text-decoration: none;
+  color: var(--text-color);
+  background: var(--card-bg);
+  padding: 20px 40px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.theme-toggle {
+  margin: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: bold;
 }
