@@ -1,0 +1,297 @@
+<!-- RECOMMENDED REFACTORED PORTFOLIO SECTION -->
+<!-- This shows how to convert to semantic HTML with figure/figcaption elements -->
+
+<!-- CURRENT STRUCTURE (already applied in index4.html): -->
+<!-- <div class="portfolio-item"><img src="works/images/01.png" alt="Abstract geometric digital artwork" loading="lazy"></div> -->
+
+<!-- RECOMMENDED FUTURE STRUCTURE: -->
+<figure class="portfolio-item">
+  <img 
+    src="works/images/01.png" 
+    alt="Abstract geometric digital artwork"
+    loading="lazy"
+    width="400"
+    height="400"
+  >
+  <figcaption>Abstract Geometric Digital Artwork</figcaption>
+</figure>
+
+<!-- ============================================================ -->
+<!-- COMPLETE REFACTORED PORTFOLIO GRID EXAMPLE -->
+<!-- ============================================================ -->
+
+<section class="portfolio-section">
+  <h1>Works</h1>
+  
+  <div class="portfolio-grid">
+    <!-- Generic Artwork (01-15) -->
+    <figure class="portfolio-item">
+      <img src="works/images/01.png" alt="Abstract geometric digital artwork" loading="lazy">
+      <figcaption>Abstract Geometric Artwork</figcaption>
+    </figure>
+
+    <figure class="portfolio-item">
+      <img src="works/images/02.png" alt="Minimalist design composition" loading="lazy">
+      <figcaption>Minimalist Design</figcaption>
+    </figure>
+
+    <!-- Celebrity/Artist Artwork -->
+    <figure class="portfolio-item">
+      <img src="works/images/billie.png" alt="Billie Eilish inspired artwork" loading="lazy">
+      <figcaption>Billie Eilish Artwork</figcaption>
+    </figure>
+
+    <figure class="portfolio-item">
+      <img src="works/images/travis.png" alt="Travis Scott inspired artwork" loading="lazy">
+      <figcaption>Travis Scott Artwork</figcaption>
+    </figure>
+
+    <!-- Photography Series -->
+    <figure class="portfolio-item">
+      <img src="works/images/CK_tae0009a1401.jpg" alt="Photography and design series artwork 01" loading="lazy">
+      <figcaption>Photography Series 01</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- UPDATED CSS FOR SEMANTIC STRUCTURE -->
+<!-- ============================================================ -->
+
+<style>
+  .portfolio-section {
+    padding: 80px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .portfolio-section h1 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  /* Semantic figure styling replaces .portfolio-item div styling */
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1;
+    margin: 0; /* Remove default figure margins */
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f5;
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 75%; /* Reserve space for caption */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .portfolio-item figcaption {
+    height: 25%;
+    padding: 12px;
+    background: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .portfolio-section h1 {
+      font-size: 1.875rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .portfolio-section {
+      padding: 40px 12px;
+    }
+  }
+</style>
+
+<!-- ============================================================ -->
+<!-- ACCESSIBILITY ENHANCEMENTS -->
+<!-- ============================================================ -->
+
+<!-- 1. ARIA Labels for complex patterns -->
+<div class="portfolio-grid" role="region" aria-label="Portfolio gallery of design works">
+  <!-- Grid items here -->
+</div>
+
+<!-- 2. Keyboard navigation support (add via JavaScript) -->
+<script>
+  // Enhance keyboard navigation for portfolio items
+  document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+    item.setAttribute('tabindex', '0');
+    
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        // Open lightbox or navigate to detail page
+        console.log(`Opened portfolio item ${index}`);
+      }
+    });
+  });
+</script>
+
+<!-- ============================================================ -->
+<!-- PERFORMANCE OPTIMIZATIONS -->
+<!-- ============================================================ -->
+
+<!-- 1. Responsive image loading with srcset -->
+<figure class="portfolio-item">
+  <img 
+    src="works/images/01.png"
+    srcset="
+      works/images/01-small.png 480w,
+      works/images/01-medium.png 800w,
+      works/images/01.png 1200w
+    "
+    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+    alt="Abstract geometric digital artwork"
+    loading="lazy"
+    width="400"
+    height="400"
+  >
+  <figcaption>Abstract Geometric Artwork</figcaption>
+</figure>
+
+<!-- 2. WebP format with fallback -->
+<figure class="portfolio-item">
+  <picture>
+    <source srcset="works/images/01.webp" type="image/webp">
+    <source srcset="works/images/01.png" type="image/png">
+    <img 
+      src="works/images/01.png"
+      alt="Abstract geometric digital artwork"
+      loading="lazy"
+      width="400"
+      height="400"
+    >
+  </picture>
+  <figcaption>Abstract Geometric Artwork</figcaption>
+</figure>
+
+<!-- 3. Intersection Observer for lazy loading -->
+<script>
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.add('loaded');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
+  });
+</script>
+
+<!-- ============================================================ -->
+<!-- PAGINATION IMPLEMENTATION (for handling 80+ images) -->
+<!-- ============================================================ -->
+
+<div class="portfolio-section">
+  <h1>Works</h1>
+  
+  <div class="portfolio-grid" data-page="1">
+    <!-- First 12 items visible on initial load -->
+  </div>
+
+  <nav class="pagination">
+    <button class="pagination-btn" data-page="1">1</button>
+    <button class="pagination-btn" data-page="2">2</button>
+    <button class="pagination-btn" data-page="3">3</button>
+    <button class="pagination-btn" data-page="4">4</button>
+    <button class="pagination-btn" data-page="5">5</button>
+  </nav>
+</div>
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .pagination-btn {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-btn:hover,
+  .pagination-btn.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+  }
+</style>
+
+<!-- ============================================================ -->
+<!-- MIGRATION NOTES -->
+<!-- ============================================================ -->
+
+<!--
+STEPS TO IMPLEMENT THIS REFACTORED VERSION:
+
+1. Replace all <div class="portfolio-item"> with <figure class="portfolio-item">
+2. Add <figcaption> elements with descriptive titles
+3. Update CSS to target 'figure' instead of divs
+4. Add width/height attributes to all img tags
+5. Implement responsive images with srcset
+6. Add Intersection Observer for lazy loading
+7. Consider pagination for 80+ images
+8. Test accessibility with screen readers
+9. Run Lighthouse audit
+
+EXPECTED IMPROVEMENTS:
+- Accessibility Score: 85+ → 95+
+- Performance Score: 60+ → 80+
+- SEO: Better semantic structure, improved indexing
+- User Experience: Faster load, better discoverability
+-->

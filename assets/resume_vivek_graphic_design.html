@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivek Yadav — Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f0e8;
+    --accent: #e8390e;
+    --muted: #7a7570;
+    --rule: #d4cfc6;
+    --highlight: #f7d44c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #c8c2b8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.35), 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  /* ── Decorative top bar ── */
+  .top-bar {
+    height: 8px;
+    background: var(--accent);
+    width: 100%;
+  }
+
+  /* ── Big rotated label ── */
+  .side-label {
+    position: absolute;
+    right: -62px;
+    top: 160px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--muted);
+    transform: rotate(90deg);
+    transform-origin: left center;
+    white-space: nowrap;
+    opacity: 0.5;
+  }
+
+  /* ── Layout ── */
+  .grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: calc(100% - 8px);
+  }
+
+  /* ── LEFT COLUMN ── */
+  .col-left {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 28px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .col-left::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 40px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+    bottom: -60px;
+    left: -60px;
+  }
+
+  .col-left::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 30px solid rgba(232,57,14,0.15);
+    border-radius: 50%;
+    top: 220px;
+    right: -40px;
+  }
+
+  /* Name block */
+  .name-block {
+    margin-bottom: 40px;
+  }
+
+  .name-first {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 0.9;
+    color: var(--paper);
+    letter-spacing: 0.02em;
+  }
+
+  .name-last {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 0.9;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    display: block;
+  }
+
+  .title-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 4px 8px;
+  }
+
+  /* Section headers left */
+  .left-section {
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .left-section-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(232,57,14,0.3);
+  }
+
+  /* Contact */
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .contact-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .contact-value {
+    font-size: 10.5px;
+    color: var(--paper);
+    font-weight: 300;
+    word-break: break-all;
+  }
+
+  /* Skills */
+  .skill-group {
+    margin-bottom: 14px;
+  }
+
+  .skill-group-name {
+    font-size: 8.5px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .skill-tag {
+    display: inline-block;
+    font-size: 9px;
+    color: var(--paper);
+    font-weight: 300;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    padding: 2px 7px;
+    margin: 2px 2px 2px 0;
+    line-height: 1.6;
+  }
+
+  .skill-tag.hot {
+    background: rgba(232,57,14,0.2);
+    border-color: rgba(232,57,14,0.4);
+    color: #f5a090;
+  }
+
+  /* Tools big list */
+  .tool-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .tool-bar-wrap {
+    flex: 1;
+  }
+
+  .tool-name {
+    font-size: 9px;
+    color: var(--paper);
+    letter-spacing: 0.05em;
+    margin-bottom: 3px;
+    font-weight: 400;
+  }
+
+  .tool-bar-bg {
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .tool-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #f7a030);
+    border-radius: 2px;
+  }
+
+  /* ── RIGHT COLUMN ── */
+  .col-right {
+    padding: 48px 40px 48px 44px;
+    position: relative;
+  }
+
+  /* Accent dot decoration */
+  .dot-grid {
+    position: absolute;
+    top: 32px;
+    right: 36px;
+    display: grid;
+    grid-template-columns: repeat(5, 6px);
+    gap: 5px;
+    opacity: 0.15;
+  }
+
+  .dot-grid span {
+    width: 3px;
+    height: 3px;
+    background: var(--ink);
+    border-radius: 50%;
+    display: block;
+  }
+
+  /* Section title right */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-title .num {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    margin-right: -6px;
+  }
+
+  .section {
+    margin-bottom: 30px;
+  }
+
+  /* Summary */
+  .summary-text {
+    font-size: 11.5px;
+    line-height: 1.75;
+    color: #3a3630;
+    font-weight: 300;
+    max-width: 440px;
+    position: relative;
+    padding-left: 16px;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* Experience */
+  .exp-item {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .exp-item:last-child {
+    border-bottom: none;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2px;
+  }
+
+  .exp-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  .exp-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    padding: 2px 6px;
+    background: rgba(232,57,14,0.08);
+    border-radius: 2px;
+  }
+
+  .exp-company {
+    font-size: 9.5px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 10.5px;
+    color: #4a4540;
+    line-height: 1.6;
+    margin-bottom: 3px;
+    padding-left: 14px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 8px;
+    top: 2px;
+  }
+
+  /* Education */
+  .edu-item {
+    margin-bottom: 14px;
+  }
+
+  .edu-degree {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+
+  .edu-school {
+    font-size: 9.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+    font-weight: 400;
+  }
+
+  .edu-detail {
+    font-size: 10px;
+    color: #5a5550;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Highlight tag */
+  .highlight-tag {
+    display: inline-block;
+    background: var(--highlight);
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  /* Bottom strip */
+  .bottom-strip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--accent) 0px,
+      var(--accent) 20px,
+      var(--ink) 20px,
+      var(--ink) 40px,
+      var(--paper) 40px,
+      var(--paper) 50px
+    );
+    opacity: 0.6;
+  }
+
+  /* Software row */
+  .software-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .software-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    border-radius: 2px;
+    font-weight: 700;
+  }
+
+  .software-pill.primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* Print tweaks */
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top-bar"></div>
+
+  <!-- Rotated side label -->
+  <div class="side-label">CURRICULUM VITAE · 2026 · GRAPHIC DESIGN</div>
+
+  <!-- Dot decoration -->
+  <div class="dot-grid" style="position:absolute;top:40px;right:42px;z-index:2;">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="grid">
+
+    <!-- ═══════════ LEFT ═══════════ -->
+    <div class="col-left">
+
+      <div class="name-block">
+        <div class="name-first">Vivek</div>
+        <span class="name-last">Yadav</span>
+        <div class="title-tag">Graphic Designer</div>
+      </div>
+
+      <!-- Contact -->
+      <div class="left-section">
+        <div class="left-section-title">Contact</div>
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">9599241801</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">yadavivek50@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">Vivek Yadav</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">India</span>
+        </div>
+      </div>
+
+      <!-- Design Software -->
+      <div class="left-section">
+        <div class="left-section-title">Design Software</div>
+
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">Adobe Photoshop</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:85%"></div></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">Adobe Illustrator</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:82%"></div></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">Adobe After Effects</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:75%"></div></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">Adobe Premiere Pro</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:72%"></div></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">Adobe XD</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:78%"></div></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">CorelDRAW</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-bar-wrap">
+            <div class="tool-name">Canva</div>
+            <div class="tool-bar-bg"><div class="tool-bar-fill" style="width:90%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Skills -->
+      <div class="left-section">
+        <div class="left-section-title">Design Skills</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Visual Design</div>
+          <span class="skill-tag hot">Brand Identity</span>
+          <span class="skill-tag hot">Logo Design</span>
+          <span class="skill-tag">Typography</span>
+          <span class="skill-tag">Color Theory</span>
+          <span class="skill-tag">Layout & Composition</span>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Digital & Motion</div>
+          <span class="skill-tag hot">UI/UX Design</span>
+          <span class="skill-tag">Motion Graphics</span>
+          <span class="skill-tag">Video Editing</span>
+          <span class="skill-tag">Social Media Graphics</span>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Print & Production</div>
+          <span class="skill-tag">Poster Design</span>
+          <span class="skill-tag">Brochures</span>
+          <span class="skill-tag">Infographics</span>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="left-section">
+        <div class="left-section-title">Languages</div>
+        <span class="skill-tag">Hindi (Native)</span>
+        <span class="skill-tag">English (Fluent)</span>
+        <span class="skill-tag">French (Basic)</span>
+      </div>
+
+    </div>
+    <!-- ═══════════ END LEFT ═══════════ -->
+
+    <!-- ═══════════ RIGHT ═══════════ -->
+    <div class="col-right">
+
+      <!-- Summary -->
+      <div class="section">
+        <div class="section-title"><span class="num">01</span> Profile</div>
+        <p class="summary-text">
+          Creative and technically fluent Graphic Designer with hands-on experience across the Adobe Creative Suite, CorelDRAW, and Canva. Combines a sharp eye for visual storytelling with a data-driven mindset to produce designs that are both aesthetically compelling and purposeful. Eager to contribute to branding, digital media, and motion projects across creative industries.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <div class="section-title"><span class="num">02</span> Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-role">Graphic Design Contributor & Visual Content Creator</div>
+            <span class="exp-date">2024 – PRESENT</span>
+          </div>
+          <div class="exp-company">Freelance / Independent · Remote</div>
+          <ul class="exp-bullets">
+            <li>Designed promotional graphics, social media assets, and UI mockups for personal and client projects using Photoshop, Illustrator, and Canva.</li>
+            <li>Created data visualisation dashboards and infographic layouts translating complex datasets into clean, readable visuals.</li>
+            <li>Produced motion graphics and short video edits using After Effects and Premiere Pro for digital presentations.</li>
+            <li>Developed wireframes and prototype flows in Adobe XD for web applications.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-role">Communications & Documentation Associate</div>
+            <span class="exp-date">JUN – AUG 2024</span>
+          </div>
+          <div class="exp-company">Lotus Petal Foundation · Sohna</div>
+          <ul class="exp-bullets">
+            <li>Assisted in preparing visual reports, formatted documents, and presentation materials for CSR stakeholder communications.</li>
+            <li>Collaborated with cross-functional teams on event coordination and community outreach materials.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-role">Visual & Digital Media Support</div>
+            <span class="exp-date">JUN – OCT 2025</span>
+          </div>
+          <div class="exp-company">OriginCore Consulting LLP · Gurugram</div>
+          <ul class="exp-bullets">
+            <li>Supported SEO content proofing and digital presence work, ensuring visual consistency across online platforms.</li>
+            <li>Created automation workflow diagrams and process documentation with a visual-first approach.</li>
+            <li>Contributed to analytical reporting with chart-based data visualisations.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="section-title"><span class="num">03</span> Education</div>
+        <div class="edu-item">
+          <div class="edu-degree">Bachelor of Technology — Computer Science</div>
+          <div class="edu-school">UPES, Dehradun · Expected May 2027</div>
+          <div class="edu-detail">
+            Relevant coursework in Data Visualisation & Interpretation, AI/ML, and Algorithm Design — directly applied to generative and data-driven design workflows.
+          </div>
+          <div style="margin-top:6px;">
+            <span class="highlight-tag">Hackathon Finalist</span>
+            <span class="highlight-tag">National Qualifier</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="section">
+        <div class="section-title"><span class="num">04</span> Interests</div>
+        <div class="software-grid">
+          <span class="software-pill primary">Visual Branding</span>
+          <span class="software-pill primary">Motion Design</span>
+          <span class="software-pill">Editorial Layout</span>
+          <span class="software-pill">Creative Coding</span>
+          <span class="software-pill">Competitive Hacking</span>
+          <span class="software-pill">AI + Design</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- ═══════════ END RIGHT ═══════════ -->
+
+  </div><!-- end grid -->
+
+  <div class="bottom-strip"></div>
+</div>
+</body>
+</html>
