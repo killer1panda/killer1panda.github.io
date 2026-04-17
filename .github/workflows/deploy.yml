@@ -16,6 +16,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Clean submodule cache
+        run: |
+          rm -rf .git/modules
+          git config --global --unset-all core.submodules
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
