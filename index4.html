@@ -20,11 +20,35 @@
     z-index: 999999;
   }
   
-    /* Prevent first-paint flash:
-     hide dock targets until JS marks dock system ready */
-  html:not([data-dock-ready]) [data-dock-target] {
-    display: none !important;
-  }
+   /* Prevent first-paint flash:
+      hide dock targets until JS marks dock system ready */
+   html:not([data-dock-ready]) [data-dock-target] {
+     display: none !important;
+   }
+
+   /* Respect reduced motion preferences */
+   @media (prefers-reduced-motion: reduce) {
+     *, *::before, *::after {
+       animation-duration: 0.01ms !important;
+       animation-iteration-count: 1 !important;
+       transition-duration: 0.01ms !important;
+     }
+   }
+
+   /* Skip link */
+   .skip-link {
+     position: absolute;
+     top: -40px;
+     left: 6px;
+     background: #000;
+     color: #fff;
+     padding: 8px;
+     text-decoration: none;
+     z-index: 100;
+   }
+   .skip-link:focus {
+     top: 6px;
+   }
 </style>
 
 <!-- Lenis Smooth Scroll: CSS -->
@@ -129,7 +153,7 @@
   }
 </style>
 </head>
-<body color-mode="" data-barba="wrapper" data-menu-locked="false" data-nav-status="closed" data-dock-hidden="false"><div class="page-wrapper"><div class="global-styles"><div data-barba-namespace="works" data-barba="container" class="main-wrapper"><style>
+<body color-mode="" data-barba="wrapper" data-menu-locked="false" data-nav-status="closed" data-dock-hidden="false"><a href="#main-content" class="skip-link">Skip to main content</a><div class="page-wrapper"><div class="global-styles"><div id="main-content" data-barba-namespace="works" data-barba="container" class="main-wrapper"><style>
   .portfolio-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
