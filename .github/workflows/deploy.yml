@@ -21,8 +21,10 @@ jobs:
 
       - name: Clean submodule cache
         run: |
-          rm -rf .git/modules
-          git config --global --unset-all core.submodules
+          rm -rf .git/modules || true
+          rm -f .gitmodules || true
+          git config --global --unset-all core.submodules || true
+          git config --local --unset-all core.submodules || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -35,3 +37,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
