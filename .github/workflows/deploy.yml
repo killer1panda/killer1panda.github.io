@@ -29,6 +29,30 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Optimize Images
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick webp
+          mkdir -p optimized_assets
+          for img in assets/*.png assets/*.jpg assets/*.jpeg; do
+            if [ -f "$img" ]; then
+              filename=$(basename "$img")
+              name="${filename%.*}"
+              ext="${filename##*.}"
+              # Convert to WebP
+              cwebp -q 80 "$img" -o "optimized_assets/${name}.webp"
+              # Also keep optimized JPEG/PNG
+              convert "$img" -quality 80 "optimized_assets/${name}.${ext}"
+            fi
+          done
+          echo "Backing up and replacing assets..."
+          # Rename the original folder instead of deleting it
+          mv assets assets_backup
+          # Move the optimized folder to the original name
+          mv optimized_assets assets
+
+          echo "Image optimization complete. Original files are in assets_backup."
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -38,3 +62,18 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         continue-on-error: true
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: https://killer1panda.github.io/
+          configPath: .lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
