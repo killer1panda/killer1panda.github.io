@@ -1,16 +1,6 @@
-# 🎨 Ravi Klaassens Portfolio - Quick Reference Guide
+# 🎨 billz Portfolio - Quick Reference Guide
 
 ## 🚀 OPEN YOUR WEBSITE
-
-Copy and paste into your browser address bar:
-```
-file:///Users/ajay/Downloads/RaviKlaassens_Offline/index.html
-```
-
-Or directly from the folder:
-1. Open Finder
-2. Go to: `/Users/ajay/Downloads/RaviKlaassens_Offline/`
-3. Double-click `index.html`
 
 ---
 
@@ -98,7 +88,7 @@ Or directly from the folder:
 
 ## ✅ FINAL CHECKLIST BEFORE INTERVIEW
 
-- [ ] Test from `file:///Users/ajay/Downloads/RaviKlaassens_Offline/index.html`
+- [ ] Test from 
 - [ ] Verify all 6 pages load
 - [ ] Check portfolio images on works page
 - [ ] Test navigation between pages
