@@ -140,6 +140,22 @@ class CardRenderer {
       .ratio-16-9 .birthday-quote::before, .ratio-16-9 .birthday-quote::after {
         display: none !important;
       }
+      .resize-handle {
+        position: absolute !important;
+        width: 12px !important;
+        height: 12px !important;
+        background: #3b82f6 !important;
+        border: 2px solid #ffffff !important;
+        border-radius: 50% !important;
+        bottom: -6px !important;
+        right: -6px !important;
+        cursor: se-resize !important;
+        z-index: 10000 !important;
+        display: none !important;
+      }
+      .draggable:hover .resize-handle, .draggable.active .resize-handle {
+        display: block !important;
+      }
     `;
     doc.head.appendChild(ratioStyle);
 
@@ -254,8 +270,8 @@ class CardRenderer {
       '.name', '.member-name',
       '.title', '.member-title',
       '.profile-photo-frame', '.profile-frame', '#avatar-frame',
-      '.main-wishing-header',
-      '.logo-header'
+      '.main-wishing-header', '.club-wishes-header',
+      '.logo-header', '#chapterLogo', '.chapter-logo', '#logo-chapter'
     ];
     const draggableElements = [];
     dragSelectors.forEach(selector => {
@@ -270,6 +286,17 @@ class CardRenderer {
       el.style.cursor = 'grab';
       const tid = getTid(el);
       el.setAttribute('data-tid', tid);
+
+      // Ensure static elements are relative to bound absolute handles
+      const computedPos = this.iframe.contentWindow.getComputedStyle(el).position;
+      if (computedPos === 'static') {
+        el.style.position = 'relative';
+      }
+
+      // Create and append resize handle
+      const handle = iframeDoc.createElement('div');
+      handle.className = 'resize-handle';
+      el.appendChild(handle);
 
       let isDragging = false;
       let startX, startY;
@@ -288,9 +315,9 @@ class CardRenderer {
         if (!appState.transforms) {
           appState.transforms = {};
         }
-        const existing = appState.transforms[tid] || { x: 0, y: 0 };
-        originalTx = existing.x;
-        originalTy = existing.y;
+        const existing = appState.transforms[tid] || { x: 0, y: 0, scale: 1 };
+        originalTx = existing.x || 0;
+        originalTy = existing.y || 0;
 
         const onMouseMove = (ev) => {
           if (!isDragging) return;
@@ -312,9 +339,10 @@ class CardRenderer {
 
           const newTx = originalTx + dx;
           const newTy = originalTy + dy;
+          const currentScale = existing.scale !== undefined ? existing.scale : 1;
 
-          appState.transforms[tid] = { x: newTx, y: newTy };
-          el.style.transform = `translate(${newTx}px, ${newTy}px)`;
+          appState.transforms[tid] = { x: newTx, y: newTy, scale: currentScale };
+          el.style.transform = `translate(${newTx}px, ${newTy}px) scale(${currentScale})`;
         };
 
         const onMouseUp = () => {
@@ -335,6 +363,58 @@ class CardRenderer {
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
       });
+
+      // Resizing handler
+      handle.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        let isResizing = true;
+        const rect = el.getBoundingClientRect();
+
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const d0 = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+
+        if (!appState.transforms) {
+          appState.transforms = {};
+        }
+        const existing = appState.transforms[tid] || { x: 0, y: 0, scale: 1 };
+        const s0 = existing.scale || 1;
+        const currentX = existing.x || 0;
+        const currentY = existing.y || 0;
+
+        const onResizeMove = (ev) => {
+          if (!isResizing) return;
+          ev.preventDefault();
+
+          const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
+          let newScale = s0 * (d1 / d0);
+
+          if (newScale < 0.2) newScale = 0.2;
+          if (newScale > 5) newScale = 5;
+
+          appState.transforms[tid] = { x: currentX, y: currentY, scale: newScale };
+          el.style.transform = `translate(${currentX}px, ${currentY}px) scale(${newScale})`;
+        };
+
+        const onResizeUp = () => {
+          isResizing = false;
+          iframeDoc.removeEventListener('mousemove', onResizeMove);
+          iframeDoc.removeEventListener('mouseup', onResizeUp);
+          document.removeEventListener('mousemove', onResizeMove);
+          document.removeEventListener('mouseup', onResizeUp);
+
+          if (typeof window.saveState === 'function') {
+            window.saveState();
+          }
+        };
+
+        iframeDoc.addEventListener('mousemove', onResizeMove);
+        iframeDoc.addEventListener('mouseup', onResizeUp);
+        document.addEventListener('mousemove', onResizeMove);
+        document.addEventListener('mouseup', onResizeUp);
+      });
     });
 
     // 4. Bind a click listener on the .profile-photo-frame element inside the iframe to trigger file upload
@@ -353,7 +433,8 @@ class CardRenderer {
       for (const [tid, pos] of Object.entries(appState.transforms)) {
         const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
         if (el) {
-          el.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+          const scaleVal = pos.scale !== undefined ? pos.scale : 1;
+          el.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scaleVal})`;
         }
       }
     }
@@ -366,27 +447,32 @@ class CardRenderer {
     const iframeDoc = this.iframe.contentDocument || this.iframe.contentWindow.document;
     if (!iframeDoc) return;
 
+    const safeSetText = (el, newText) => {
+      let textNode = null;
+      for (let node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          textNode = node;
+          break;
+        }
+      }
+      if (textNode) {
+        if (textNode.nodeValue !== newText) {
+          textNode.nodeValue = newText;
+        }
+      } else {
+        el.insertBefore(iframeDoc.createTextNode(newText), el.firstChild);
+      }
+    };
+
     // Update Text Elements if they differ
     const nameEls = iframeDoc.querySelectorAll('.name, .member-name');
-    nameEls.forEach(el => {
-      if (el.innerText !== newData.name) {
-        el.innerText = newData.name || '';
-      }
-    });
+    nameEls.forEach(el => safeSetText(el, newData.name || ''));
 
     const titleEls = iframeDoc.querySelectorAll('.title, .member-title');
-    titleEls.forEach(el => {
-      if (el.innerText !== newData.title) {
-        el.innerText = newData.title || '';
-      }
-    });
+    titleEls.forEach(el => safeSetText(el, newData.title || ''));
 
     const quoteEls = iframeDoc.querySelectorAll('.quote-text, .birthday-quote');
-    quoteEls.forEach(el => {
-      if (el.innerText !== newData.quote) {
-        el.innerText = newData.quote || '';
-      }
-    });
+    quoteEls.forEach(el => safeSetText(el, newData.quote || ''));
 
     // Update chapter logo
     const logoImg = iframeDoc.querySelector('#chapterLogo') || iframeDoc.querySelector('.chapter-logo') || iframeDoc.querySelector('#logo-chapter') || iframeDoc.querySelector('.logo-header img:nth-child(2)');
@@ -483,6 +569,10 @@ class CardRenderer {
       el.style.outline = 'none';
     });
 
+    // Temporarily hide resize handles
+    const handles = iframeDoc.querySelectorAll('.resize-handle');
+    handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
+
     try {
       const html2canvas = window.html2canvas;
       
@@ -508,10 +598,11 @@ class CardRenderer {
       console.error('Image export failed:', err);
       alert('Export failed: ' + err.message);
     } finally {
-      // Restore outlines
+      // Restore outlines and handles
       originalOutlines.forEach(item => {
         item.el.style.outline = item.outline;
       });
+      handles.forEach(h => h.style.removeProperty('display'));
     }
   }
 
@@ -533,6 +624,10 @@ class CardRenderer {
       originalOutlines.push({ el, outline: el.style.outline });
       el.style.outline = 'none';
     });
+
+    // Temporarily hide resize handles
+    const handles = iframeDoc.querySelectorAll('.resize-handle');
+    handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
 
     try {
       // Request display stream (screen capture)
@@ -620,6 +715,8 @@ class CardRenderer {
           originalOutlines.forEach(item => {
             item.el.style.outline = item.outline;
           });
+          // Restore handles
+          handles.forEach(h => h.style.removeProperty('display'));
         }
       };
 
@@ -653,6 +750,8 @@ class CardRenderer {
       originalOutlines.forEach(item => {
         item.el.style.outline = item.outline;
       });
+      // Restore handles
+      handles.forEach(h => h.style.removeProperty('display'));
     }
   }
 }

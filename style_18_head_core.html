@@ -195,6 +195,22 @@
     .draggable:active { cursor: grabbing; }
     .profile-photo-frame { cursor: pointer; transition: transform 0.2s; }
     .profile-photo-frame:hover { transform: scale(1.02); box-shadow: 0 0 0 4px rgba(59,130,246,0.5); }
+    .resize-handle {
+      position: absolute !important;
+      width: 12px !important;
+      height: 12px !important;
+      background: #3b82f6 !important;
+      border: 2px solid #ffffff !important;
+      border-radius: 50% !important;
+      bottom: -6px !important;
+      right: -6px !important;
+      cursor: se-resize !important;
+      z-index: 10000 !important;
+      display: none !important;
+    }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle {
+      display: block !important;
+    }
     
     /* Double-declaration aspect ratio test-suite bypass workaround */
     .card-canvas {
@@ -400,40 +416,96 @@
 
       canvas.querySelectorAll('.member-name, .member-title, .birthday-quote, .profile-photo-frame, .main-wishing-header, .logo-header').forEach((el, i) => {
         el.classList.add('draggable');
-        el.setAttribute('data-tid', 'item_'+i);
+        const tid = 'item_'+i;
+        el.setAttribute('data-tid', tid);
+        
+        // Ensure static elements are relative to bound absolute handles
+        const style = window.getComputedStyle(el);
+        if (style.position === 'static') {
+          el.style.position = 'relative';
+        }
+        
+        // Create and append resize handle
+        const handle = document.createElement('div');
+        handle.className = 'resize-handle';
+        el.appendChild(handle);
+        
         let isDragging = false, startX, startY, origX=0, origY=0;
         
         el.onmousedown = (e) => {
           if (e.target.hasAttribute('contenteditable') && e.target === document.activeElement) return;
           isDragging = true; startX = e.clientX; startY = e.clientY;
-          const tid = el.getAttribute('data-tid');
-          const existing = transforms[tid] || {x:0,y:0};
-          origX = existing.x; origY = existing.y;
+          const existing = transforms[tid] || {x:0, y:0, scale:1};
+          origX = existing.x || 0; origY = existing.y || 0;
           document.addEventListener('mousemove', onMove);
           document.addEventListener('mouseup', onUp);
         };
+        
         function onMove(e) {
           if (!isDragging) return;
           e.preventDefault();
           const dx = e.clientX - startX;
           const dy = e.clientY - startY;
           const nx = origX+dx; const ny = origY+dy;
-          transforms[el.getAttribute('data-tid')] = {x:nx, y:ny};
-          el.style.transform = `translate(${nx}px, ${ny}px)`;
+          const existing = transforms[tid] || {scale: 1};
+          const currentScale = existing.scale !== undefined ? existing.scale : 1;
+          transforms[tid] = {x:nx, y:ny, scale:currentScale};
+          el.style.transform = `translate(${nx}px, ${ny}px) scale(${currentScale})`;
         }
+        
         function onUp() {
           isDragging = false;
           document.removeEventListener('mousemove', onMove);
           document.removeEventListener('mouseup', onUp);
         }
+        
+        // Resizing handler
+        handle.onmousedown = (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          
+          let isResizing = true;
+          const rect = el.getBoundingClientRect();
+          
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const d0 = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+          
+          const existing = transforms[tid] || {x:0, y:0, scale:1};
+          const s0 = existing.scale || 1;
+          const currentX = existing.x || 0;
+          const currentY = existing.y || 0;
+          
+          const onResizeMove = (ev) => {
+            if (!isResizing) return;
+            ev.preventDefault();
+            const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
+            let newScale = s0 * (d1 / d0);
+            if (newScale < 0.2) newScale = 0.2;
+            if (newScale > 5) newScale = 5;
+            transforms[tid] = {x:currentX, y:currentY, scale:newScale};
+            el.style.transform = `translate(${currentX}px, ${currentY}px) scale(${newScale})`;
+          };
+          
+          const onResizeUp = () => {
+            isResizing = false;
+            document.removeEventListener('mousemove', onResizeMove);
+            document.removeEventListener('mouseup', onResizeUp);
+          };
+          
+          document.addEventListener('mousemove', onResizeMove);
+          document.addEventListener('mouseup', onResizeUp);
+        };
       });
       autoFitText();
     }, 200);
 
     // Export Image
     async function exportImage(format) {
+      const handles = document.querySelectorAll('.resize-handle');
       try {
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = 'none');
+        handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
         
         const fmt = FORMATS[currentFormat];
         const targetWidth = fmt.w;
@@ -447,6 +519,7 @@
         });
         
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
+        handles.forEach(h => h.style.removeProperty('display'));
         const link = document.createElement('a');
         link.download = `sota_legacy_wishes_${currentFormat.replace(':', 'x')}.${format === 'jpg' ? 'jpeg' : 'png'}`;
         link.href = c.toDataURL(`image/${format === 'jpg' ? 'jpeg' : 'png'}`, 0.95);
@@ -456,6 +529,8 @@
       } catch (e) {
         console.error(e);
         alert('Export failed: ' + e.message);
+        document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
+        handles.forEach(h => h.style.removeProperty('display'));
       }
     }
     document.getElementById('btn-dl-png').onclick = () => exportImage('png');
@@ -467,6 +542,8 @@
       document.getElementById('overlay').style.display = 'flex';
       document.getElementById('overlay-text').innerText = 'Capturing Screen...';
       document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = 'none');
+      const handles = document.querySelectorAll('.resize-handle');
+      handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
       
       try {
         const stream = await navigator.mediaDevices.getDisplayMedia({ video: { displaySurface: "browser" }, audio: false, preferCurrentTab: true });
@@ -533,6 +610,7 @@
           } finally {
             document.getElementById('overlay').style.display = 'none';
             document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
+            handles.forEach(h => h.style.removeProperty('display'));
           }
         };
         
@@ -548,6 +626,7 @@
         alert('Export failed: ' + e.message);
         document.getElementById('overlay').style.display = 'none';
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
+        handles.forEach(h => h.style.removeProperty('display'));
       }
     };
   </script>
