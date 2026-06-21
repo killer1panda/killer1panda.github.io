@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Creator — SOTA Wishes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Single-threaded FFmpeg for GitHub pages -->
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.8/dist/ffmpeg.min.js"></script>
+  <script src="registry.js"></script>
+  <script src="renderer.js"></script>
+  <style>
+    :root {
+      --bg: #09090b; --panel: #18181b; --border: #27272a;
+      --text: #fafafa; --text-muted: #a1a1aa;
+      --accent: #3b82f6; --accent-hover: #2563eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg); color: var(--text);
+      display: flex; height: 100vh; overflow: hidden;
+    }
+    
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 340px; background: var(--panel); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; overflow-y: auto;
+    }
+    .panel-section { padding: 20px; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 12px; }
+    
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 12px; margin-bottom: 6px; color: var(--text-muted); }
+    input[type="text"], textarea, select {
+      width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); font-family: inherit; font-size: 14px;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    
+    .btn {
+      width: 100%; padding: 10px; background: var(--border); color: var(--text);
+      border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-bottom: 8px;
+    }
+    .btn:hover { background: #3f3f46; }
+    .btn-primary { background: var(--accent); }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-danger { background: #e11d48; }
+    
+    .flex-row { display: flex; gap: 8px; }
+    .flex-row .btn { flex: 1; font-size: 12px; }
+    .btn.active { background: var(--accent); }
+
+    /* ─── GALLERY ─── */
+    .style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 300px; overflow-y: auto; }
+    .style-thumb {
+      background: var(--bg); border: 1px solid var(--border); padding: 8px;
+      border-radius: 6px; cursor: pointer; text-align: center; font-size: 11px;
+    }
+    .style-thumb:hover, .style-thumb.active { border-color: var(--accent); }
+    
+    /* ─── WORKSPACE ─── */
+    .workspace {
+      flex: 1; display: flex; flex-direction: column; position: relative;
+    }
+    .topbar {
+      height: 60px; border-bottom: 1px solid var(--border); background: var(--panel);
+      display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+    }
+    .canvas-container {
+      flex: 1; display: flex; justify-content: center; align-items: center;
+      overflow: hidden; padding: 40px; background: #000;
+    }
+    /* The scaling wrapper */
+    #scale-wrapper {
+      transform-origin: center center;
+      transition: transform 0.2s;
+    }
+    
+    /* Loader */
+    #overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999;
+      display: none; justify-content: center; align-items: center; flex-direction: column; color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="panel-section">
+      <h2>1. Style Gallery</h2>
+      <div class="style-grid" id="style-grid"></div>
+    </div>
+    
+    <div class="panel-section">
+      <h2>2. Details</h2>
+      <div class="flex-row" style="margin-bottom: 16px;">
+        <button class="btn active" id="btn-headcore">Team Member</button>
+        <button class="btn" id="btn-exec">Leadership</button>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="input-name" value="Dr. Ajay Kumar">
+      </div>
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="input-title" value="Faculty Advisor">
+      </div>
+      <div class="form-group">
+        <label>Quote</label>
+        <textarea id="input-quote" rows="3">Wishing you a fantastic birthday filled with joy and success!</textarea>
+      </div>
+      <div class="form-group">
+        <label>Chapter</label>
+        <select id="input-chapter">
+          <option value="cis">IEEE CIS UPES</option>
+          <option value="sps">IEEE SPS UPES</option>
+        </select>
+      </div>
+      <button class="btn" id="btn-upload">📷 Add Photo</button>
+      <input type="file" id="file-upload" accept="image/*" style="display:none;">
+    </div>
+    
+    <div class="panel-section">
+      <h2>3. Layout & Export</h2>
+      <div class="form-group">
+        <label>Format</label>
+        <select id="input-format">
+          <option value="9:16">Instagram Story (1080x1920)</option>
+          <option value="1:1">Instagram Post (1080x1080)</option>
+          <option value="4:5">Instagram Portrait (1080x1350)</option>
+          <option value="16:9">Banner (1920x1080)</option>
+        </select>
+      </div>
+      <button class="btn btn-danger" id="btn-reset">↺ Reset Layout</button>
+      <br><br>
+      <button class="btn btn-primary" id="btn-dl-png">Export PNG</button>
+      <button class="btn btn-primary" id="btn-dl-jpg">Export JPG</button>
+      
+      <div class="form-group" style="margin-top:10px;">
+        <label>Video Length (seconds)</label>
+        <input type="number" id="input-duration" value="4" min="1" max="60">
+      </div>
+      <button class="btn btn-primary" style="background:#8b5cf6;" id="btn-dl-mp4">Export MP4 Video</button>
+    </div>
+  </aside>
+
+  <!-- WORKSPACE -->
+  <main class="workspace">
+    <div class="topbar">
+      <div style="font-weight: 600;">Master Creator</div>
+      <div style="color: var(--text-muted); font-size: 12px;">Changes auto-save locally</div>
+    </div>
+    <div class="canvas-container" id="canvas-container">
+      <div id="scale-wrapper">
+        <div id="renderer-target"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="overlay">
+    <h2 id="overlay-text">Generating Video...</h2>
+    <p>Please wait, this may take a few seconds.</p>
+  </div>
+
+  <script>
+    // ─── INITIALIZATION ───
+    const renderer = new CardRenderer('renderer-target');
+    const FORMATS = {
+      "9:16": { w: 1080, h: 1920 },
+      "1:1":  { w: 1080, h: 1080 },
+      "4:5":  { w: 1080, h: 1350 },
+      "16:9": { w: 1920, h: 1080 }
+    };
+    
+    // Load local storage if exists
+    let appState = JSON.parse(localStorage.getItem('sotaState')) || {
+      style: "01",
+      variant: "head_core",
+      name: "Dr. Ajay Kumar",
+      title: "Faculty Advisor",
+      quote: "Wishing you a fantastic birthday filled with joy and success!",
+      chapter: "cis",
+      format: "9:16",
+      photoDataUrl: null,
+      transforms: {} // Store custom drag positions
+    };
+
+    function saveState() {
+      localStorage.setItem('sotaState', JSON.stringify(appState));
+    }
+
+    // Populate Sidebar Gallery
+    const grid = document.getElementById('style-grid');
+    STYLE_REGISTRY.forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'style-thumb' + (s.id === appState.style ? ' active' : '');
+      el.innerText = `${s.id} - ${s.name.split('—')[0].trim()}`;
+      el.onclick = () => {
+        document.querySelectorAll('.style-thumb').forEach(e => e.classList.remove('active'));
+        el.classList.add('active');
+        appState.style = s.id;
+        renderApp();
+      };
+      grid.appendChild(el);
+    });
+
+    // Populate Inputs
+    document.getElementById('input-name').value = appState.name;
+    document.getElementById('input-title').value = appState.title;
+    document.getElementById('input-quote').value = appState.quote;
+    document.getElementById('input-chapter').value = appState.chapter;
+    document.getElementById('input-format').value = appState.format;
+
+    if(appState.variant === 'executive') {
+      document.getElementById('btn-headcore').classList.remove('active');
+      document.getElementById('btn-exec').classList.add('active');
+    }
+
+    // ─── EVENT LISTENERS ───
+    document.getElementById('input-name').oninput = (e) => { appState.name = e.target.value; updateData(); };
+    document.getElementById('input-title').oninput = (e) => { appState.title = e.target.value; updateData(); };
+    document.getElementById('input-quote').oninput = (e) => { appState.quote = e.target.value; updateData(); };
+    document.getElementById('input-chapter').onchange = (e) => { appState.chapter = e.target.value; updateData(); };
+    document.getElementById('input-format').onchange = (e) => { appState.format = e.target.value; renderApp(); };
+    
+    document.getElementById('btn-headcore').onclick = (e) => { 
+      appState.variant = 'head_core'; 
+      e.target.classList.add('active'); 
+      document.getElementById('btn-exec').classList.remove('active'); 
+      renderApp(); 
+    };
+    document.getElementById('btn-exec').onclick = (e) => { 
+      appState.variant = 'executive'; 
+      e.target.classList.add('active'); 
+      document.getElementById('btn-headcore').classList.remove('active'); 
+      renderApp(); 
+    };
+    
+    document.getElementById('btn-upload').onclick = () => document.getElementById('file-upload').click();
+    document.getElementById('file-upload').onchange = (e) => {
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        appState.photoDataUrl = ev.target.result;
+        updateData();
+      };
+      reader.readAsDataURL(file);
+    };
+
+    document.getElementById('btn-reset').onclick = () => {
+      appState.transforms = {};
+      renderApp();
+    };
+
+    // Exports
+    document.getElementById('btn-dl-png').onclick = () => renderer.exportImage('png');
+    document.getElementById('btn-dl-jpg').onclick = () => renderer.exportImage('jpg');
+    document.getElementById('btn-dl-mp4').onclick = () => {
+      const durationSec = parseInt(document.getElementById('input-duration').value) || 4;
+      renderer.exportVideo(durationSec);
+    };
+
+    // ─── CORE RENDERING ───
+    async function renderApp() {
+      await renderer.loadTemplate(appState.style, appState.variant, appState);
+      
+      const dims = FORMATS[appState.format];
+      renderer.setDimensions(dims.w, dims.h);
+      
+      updateData();
+      applyWorkspaceScaling();
+    }
+
+    function updateData() {
+      renderer.updateData(appState);
+      saveState();
+    }
+
+    // ─── WORKSPACE SCALING ───
+    function applyWorkspaceScaling() {
+      const wrapper = document.getElementById('scale-wrapper');
+      const container = document.getElementById('canvas-container');
+      const dims = FORMATS[appState.format];
+      
+      // Calculate scale to fit in container with 40px padding
+      const scaleX = (container.clientWidth - 80) / dims.w;
+      const scaleY = (container.clientHeight - 80) / dims.h;
+      const scale = Math.min(scaleX, scaleY, 1); // Don't scale up beyond 100%
+      
+      wrapper.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', applyWorkspaceScaling);
+
+    // Boot
+    renderApp();
+  </script>
+</body>
+</html>

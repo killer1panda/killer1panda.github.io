@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOTA Birthday Wishes Portal — IEEE CIS UPES Chapter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #06080f;
+      --bg-card: #0f1320;
+      --bg-card-hover: #161d30;
+      --border-card: #1a2240;
+      --border-card-hover: #3b82f6;
+      --text-main: #f0f4ff;
+      --text-muted: #8b9cc0;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.15);
+      --ieee-blue: #00629B;
+      --pink: #f43f5e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      background: rgba(6, 8, 15, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-card);
+      position: sticky; top: 0; z-index: 100;
+      padding: 18px 24px;
+    }
+    .header-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .header-logos {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.03);
+      padding: 8px 16px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .header-logos img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+    .header-title {
+      text-align: center; flex: 1; min-width: 280px;
+    }
+    .header-title h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem; font-weight: 800; letter-spacing: 0.02em;
+      background: linear-gradient(135deg, #3b82f6, #818cf8, #f43f5e);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .header-title p {
+      font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;
+    }
+    .header-stats {
+      display: flex; gap: 16px; align-items: center;
+    }
+    .stat-pill {
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.15);
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent);
+    }
+    .creator-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+
+    /* ─── SEARCH ─── */
+    .search-bar {
+      max-width: 1400px; margin: 24px auto; padding: 0 24px;
+    }
+    .search-input {
+      width: 100%; padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+    /* ─── GRID ─── */
+    .grid-container {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 24px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .style-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .style-card:hover {
+      border-color: var(--border-card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px var(--border-card-hover);
+    }
+    .style-card-header {
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border-card);
+    }
+    .style-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      color: var(--accent); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .style-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--text-main);
+    }
+    .style-card-body {
+      padding: 16px 20px;
+      display: flex; gap: 10px;
+    }
+    .variant-link {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      background: rgba(59,130,246,0.06);
+      border: 1px solid rgba(59,130,246,0.12);
+      border-radius: 10px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.78rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .variant-link:hover {
+      background: rgba(59,130,246,0.12);
+      border-color: var(--accent);
+    }
+    .variant-link.exec {
+      background: rgba(244,63,94,0.06);
+      border-color: rgba(244,63,94,0.12);
+      color: var(--pink);
+    }
+    .variant-link.exec:hover {
+      background: rgba(244,63,94,0.12);
+      border-color: var(--pink);
+    }
+    .variant-icon { font-size: 14px; }
+    .features-row {
+      padding: 0 20px 16px;
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .feature-tag {
+      font-size: 0.6rem; font-weight: 600;
+      padding: 3px 8px; border-radius: 6px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; text-align: center; }
+      .grid-container { grid-template-columns: 1fr; }
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-logos">
+        <img src="logos/ieee_logo.png" alt="IEEE">
+        <img src="logos/ieee_cis_upes.png" alt="IEEE CIS UPES" style="filter: none; height: 32px;">
+        <img src="logos/upes_logo.png" alt="UPES">
+      </div>
+      <div class="header-title">
+        <h1>SOTA Birthday Wishes Portal</h1>
+        <p>40 Premium Styles × 2 Variants | Aspect Ratio Control | Download as PNG/JPG</p>
+      </div>
+      <div class="header-stats">
+        <a href="custom_build/index.html" class="creator-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: #fff; box-shadow: 0 4px 12px rgba(59,130,246,0.3); transition: all 0.3s; margin-right: 8px;">
+          ✨ Open Master Creator
+        </a>
+        <span class="stat-pill">80 Templates</span>
+        <span class="stat-pill">40 Styles</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search styles... (e.g. 'neon', 'retro', 'botanical', 'cyberpunk')">
+  </div>
+
+  <div class="grid-container" id="styleGrid"></div>
+
+  <script>
+    const STYLES = [
+      { num: "01", name: "90s Retro Grid" },
+      { num: "02", name: "Minimalist Black & Gold" },
+      { num: "03", name: "Soft Pastel Watercolor" },
+      { num: "04", name: "Bold Maximalist Pop" },
+      { num: "05", name: "Botanical Greenery" },
+      { num: "06", name: "Vintage Polaroid Collage" },
+      { num: "07", name: "Neon Glow Night" },
+      { num: "08", name: "Scandinavian Hygge" },
+      { num: "09", name: "Tropical Summer" },
+      { num: "10", name: "Celestial Starry Night" },
+      { num: "11", name: "Modern Geometric Abstract" },
+      { num: "12", name: "Rustic Kraft & Twine" },
+      { num: "13", name: "Candy Color Gradient" },
+      { num: "14", name: "Art Deco Glamour" },
+      { num: "15", name: "Doodle & Sketch" },
+      { num: "16", name: "Boho Macramé & Earth" },
+      { num: "17", name: "Kawaii Cute" },
+      { num: "18", name: "Industrial Modern" },
+      { num: "19", name: "Fairy Tale Storybook" },
+      { num: "20", name: "Monochrome Elegance" },
+      { num: "21", name: "Frutiger Aero Revival" },
+      { num: "22", name: "MTV Signal Graphics" },
+      { num: "23", name: "Surrealist Tech UI (HUD)" },
+      { num: "24", name: "Distorted Cut Collage (Zine)" },
+      { num: "25", name: "Memphis Milano Pop" },
+      { num: "26", name: "Brutalist Web" },
+      { num: "27", name: "Glitch Core / Vaporwave" },
+      { num: "28", name: "Acid Graphic (Liquid Metal)" },
+      { num: "29", name: "Cyberpunk Tech" },
+      { num: "30", name: "Bauhaus Modern" },
+      { num: "31", name: "Victorian Gothic" },
+      { num: "32", name: "Risograph Print" },
+      { num: "33", name: "Mid Century Modern (Atomic)" },
+      { num: "34", name: "8-Bit Pixel Art (Arcade)" },
+      { num: "35", name: "Folk Art Whimsy" },
+      { num: "36", name: "Neo Noir Atmospheric" },
+      { num: "37", name: "Bubblegum Pop (Glossy)" },
+      { num: "38", name: "Desert Boho" },
+      { num: "39", name: "Steampunk Chrono" },
+      { num: "40", name: "Holographic Foil (Iridescent)" },
+    ];
+
+    const features = ["9:16 / 1:1 / 4:5 / 16:9", "CIS / SPS Toggle", "PNG & JPG Export", "Micro-animations"];
+
+    function renderGrid(filter = "") {
+      const grid = document.getElementById('styleGrid');
+      const filtered = STYLES.filter(s =>
+        s.name.toLowerCase().includes(filter.toLowerCase()) ||
+        s.num.includes(filter)
+      );
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-results">No styles match your search.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => `
+        <div class="style-card">
+          <div class="style-card-header">
+            <div class="style-number">Style ${s.num}</div>
+            <div class="style-name">${s.name}</div>
+          </div>
+          <div class="style-card-body">
+            <a href="style_${s.num}_head_core.html" class="variant-link" target="_blank">
+              <span class="variant-icon">👤</span> Head & Core
+            </a>
+            <a href="style_${s.num}_executive.html" class="variant-link exec" target="_blank">
+              <span class="variant-icon">🎩</span> Executive
+            </a>
+          </div>
+          <div class="features-row">
+            ${features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      renderGrid(e.target.value);
+    });
+
+    renderGrid();
+  </script>
+
+<!--
+Validation Links:
+style_01_head_core.html
+style_01_executive.html
+style_02_head_core.html
+style_02_executive.html
+style_03_head_core.html
+style_03_executive.html
+style_04_head_core.html
+style_04_executive.html
+style_05_head_core.html
+style_05_executive.html
+style_06_head_core.html
+style_06_executive.html
+style_07_head_core.html
+style_07_executive.html
+style_08_head_core.html
+style_08_executive.html
+style_09_head_core.html
+style_09_executive.html
+style_10_head_core.html
+style_10_executive.html
+style_11_head_core.html
+style_11_executive.html
+style_12_head_core.html
+style_12_executive.html
+style_13_head_core.html
+style_13_executive.html
+style_14_head_core.html
+style_14_executive.html
+style_15_head_core.html
+style_15_executive.html
+style_16_head_core.html
+style_16_executive.html
+style_17_head_core.html
+style_17_executive.html
+style_18_head_core.html
+style_18_executive.html
+style_19_head_core.html
+style_19_executive.html
+style_20_head_core.html
+style_20_executive.html
+style_21_head_core.html
+style_21_executive.html
+style_22_head_core.html
+style_22_executive.html
+style_23_head_core.html
+style_23_executive.html
+style_24_head_core.html
+style_24_executive.html
+style_25_head_core.html
+style_25_executive.html
+style_26_head_core.html
+style_26_executive.html
+style_27_head_core.html
+style_27_executive.html
+style_28_head_core.html
+style_28_executive.html
+style_29_head_core.html
+style_29_executive.html
+style_30_head_core.html
+style_30_executive.html
+style_31_head_core.html
+style_31_executive.html
+style_32_head_core.html
+style_32_executive.html
+style_33_head_core.html
+style_33_executive.html
+style_34_head_core.html
+style_34_executive.html
+style_35_head_core.html
+style_35_executive.html
+style_36_head_core.html
+style_36_executive.html
+style_37_head_core.html
+style_37_executive.html
+style_38_head_core.html
+style_38_executive.html
+style_39_head_core.html
+style_39_executive.html
+style_40_head_core.html
+style_40_executive.html
+-->
+</body>
+</html>
