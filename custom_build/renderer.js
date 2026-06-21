@@ -11,6 +11,7 @@ class CardRenderer {
     // Initialize and append an <iframe> to the container
     this.iframe = document.createElement('iframe');
     this.iframe.setAttribute('allowfullscreen', 'true');
+    this.iframe.setAttribute('allow', 'fullscreen');
     this.iframe.style.border = 'none';
     this.iframe.style.width = '100%';
     this.iframe.style.height = '100%';
@@ -53,6 +54,11 @@ class CardRenderer {
     // Inject aspect ratio styling overrides
     const ratioStyle = doc.createElement('style');
     ratioStyle.innerHTML = `
+      /* Global override for responsive card inside editor */
+      .card-canvas {
+        max-width: none !important;
+        aspect-ratio: auto !important;
+      }
       /* 1:1 overrides */
       .ratio-1-1 .profile-photo-frame {
         width: 110px !important;
@@ -479,10 +485,16 @@ class CardRenderer {
 
     try {
       const html2canvas = window.html2canvas;
+      
+      const iframeWin = this.iframe.contentWindow;
+      const computedBg = iframeWin.getComputedStyle(canvasEl).backgroundColor;
+      const isTransparent = !computedBg || computedBg === 'transparent' || computedBg === 'rgba(0, 0, 0, 0)';
+      const exportBg = isTransparent ? '#ffffff' : computedBg;
+
       const canvas = await html2canvas(canvasEl, {
         scale: 1, // Canvas size is already 1080p+
         useCORS: true,
-        backgroundColor: null
+        backgroundColor: exportBg
       });
 
       const formatExt = format === 'jpg' ? 'jpeg' : 'png';

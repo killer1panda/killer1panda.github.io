@@ -27,6 +27,7 @@
     .sidebar {
       width: 340px; background: var(--panel); border-right: 1px solid var(--border);
       display: flex; flex-direction: column; overflow-y: auto;
+      flex-shrink: 0;
     }
     .panel-section { padding: 20px; border-bottom: 1px solid var(--border); }
     h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 12px; }
@@ -71,11 +72,20 @@
     .canvas-container {
       flex: 1; display: flex; justify-content: center; align-items: center;
       overflow: hidden; padding: 40px; background: #000;
+      position: relative;
     }
     /* The scaling wrapper */
     #scale-wrapper {
+      position: absolute;
+      left: 50%;
+      top: 50%;
       transform-origin: center center;
       transition: transform 0.2s;
+    }
+    #renderer-target, #renderer-target iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
     
     /* Loader */
@@ -284,6 +294,7 @@
     function applyWorkspaceScaling() {
       const wrapper = document.getElementById('scale-wrapper');
       const container = document.getElementById('canvas-container');
+      if (!wrapper || !container) return;
       const dims = FORMATS[appState.format];
       
       // Calculate scale to fit in container with 40px padding
@@ -291,7 +302,9 @@
       const scaleY = (container.clientHeight - 80) / dims.h;
       const scale = Math.min(scaleX, scaleY, 1); // Don't scale up beyond 100%
       
-      wrapper.style.transform = `scale(${scale})`;
+      wrapper.style.width = dims.w + 'px';
+      wrapper.style.height = dims.h + 'px';
+      wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
     }
     window.addEventListener('resize', applyWorkspaceScaling);
 
