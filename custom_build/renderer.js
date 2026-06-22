@@ -256,7 +256,7 @@ class CardRenderer {
 
     // Setup the Canva-style editing engine inside the iframe document
     // 1. Set contenteditable="true"
-    const editables = iframeDoc.querySelectorAll('.name, .member-name, .title, .member-title, .quote-text, .birthday-quote, .main-wishing-header');
+    const editables = iframeDoc.querySelectorAll('.name, .member-name, .title, .member-title, .quote-text, .birthday-quote, .main-wishing-header, .club-wishes-header');
     editables.forEach(el => {
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
@@ -278,6 +278,7 @@ class CardRenderer {
       if (el.classList.contains('quote-container') || el.classList.contains('quote-text') || el.classList.contains('birthday-quote')) return 'quote';
       if (el.classList.contains('profile-photo-frame') || el.classList.contains('profile-frame') || el.classList.contains('avatar-frame')) return 'photo';
       if (el.classList.contains('main-wishing-header')) return 'header';
+      if (el.classList.contains('club-wishes-header')) return 'club-wishes-header';
       if (el.classList.contains('logo-header')) return 'logo';
       return el.className.split(' ')[0] || 'element';
     };
@@ -445,9 +446,181 @@ class CardRenderer {
           const dx = (ev.screenX - startX) / scale;
           const dy = (ev.screenY - startY) / scale;
 
-          const newTx = originalTx + dx;
-          const newTy = originalTy + dy;
+          let newTx = originalTx + dx;
+          let newTy = originalTy + dy;
           const currentScale = existing.scale !== undefined ? existing.scale : 1;
+
+          // Visual Snapping & Alignment Guides
+          const canvas = iframeDoc.querySelector('.card-canvas');
+          if (canvas) {
+            const canvasRect = canvas.getBoundingClientRect();
+            const snapThreshold = 5;
+            const localThreshold = snapThreshold / scale;
+            
+            const originalLocalLeft = el.offsetLeft - originalTx;
+            const originalLocalTop = el.offsetTop - originalTy;
+            
+            let localElLeft = originalLocalLeft + newTx;
+            let localElTop = originalLocalTop + newTy;
+            const localElWidth = el.offsetWidth;
+            const localElHeight = el.offsetHeight;
+            let localElCenterX = localElLeft + localElWidth / 2;
+            let localElCenterY = localElTop + localElHeight / 2;
+            
+            const localCanvasWidth = canvas.offsetWidth;
+            const localCanvasHeight = canvas.offsetHeight;
+            const localCanvasCenterX = localCanvasWidth / 2;
+            const localCanvasCenterY = localCanvasHeight / 2;
+            
+            const otherElements = Array.from(canvas.querySelectorAll('.draggable')).filter(other => other !== el);
+            
+            let snappedX = false;
+            let guideLinesX = [];
+            
+            // 1. Snapping to canvas horizontal center
+            const diffCanvasX = localElCenterX - localCanvasCenterX;
+            if (Math.abs(diffCanvasX) < localThreshold) {
+              newTx -= diffCanvasX;
+              localElLeft -= diffCanvasX;
+              localElCenterX = localCanvasCenterX;
+              guideLinesX.push({ x: localCanvasCenterX, type: 'center' });
+              snappedX = true;
+            }
+            
+            // 2. Snapping to other elements X-axis
+            if (!snappedX) {
+              for (const other of otherElements) {
+                const otherTid = other.getAttribute('data-tid');
+                const otherTrans = appState.transforms[otherTid] || { x: 0, y: 0 };
+                const otherOrigLocalLeft = other.offsetLeft - (otherTrans.x || 0);
+                const localOtherLeft = otherOrigLocalLeft + (otherTrans.x || 0);
+                const localOtherWidth = other.offsetWidth;
+                const localOtherCenterX = localOtherLeft + localOtherWidth / 2;
+                const localOtherRight = localOtherLeft + localOtherWidth;
+                
+                const diffLeft = localElLeft - localOtherLeft;
+                if (Math.abs(diffLeft) < localThreshold) {
+                  newTx -= diffLeft;
+                  localElLeft -= diffLeft;
+                  localElCenterX = localElLeft + localElWidth / 2;
+                  guideLinesX.push({ x: localOtherLeft, type: 'edge' });
+                  snappedX = true;
+                  break;
+                }
+                const localElRight = localElLeft + localElWidth;
+                const diffRight = localElRight - localOtherRight;
+                if (Math.abs(diffRight) < localThreshold) {
+                  newTx -= diffRight;
+                  localElLeft -= diffRight;
+                  localElCenterX = localElLeft + localElWidth / 2;
+                  guideLinesX.push({ x: localOtherRight, type: 'edge' });
+                  snappedX = true;
+                  break;
+                }
+                const diffCenter = localElCenterX - localOtherCenterX;
+                if (Math.abs(diffCenter) < localThreshold) {
+                  newTx -= diffCenter;
+                  localElLeft -= diffCenter;
+                  localElCenterX = localOtherCenterX;
+                  guideLinesX.push({ x: localOtherCenterX, type: 'center' });
+                  snappedX = true;
+                  break;
+                }
+              }
+            }
+            
+            let snappedY = false;
+            let guideLinesY = [];
+            
+            // 1. Snapping to canvas vertical center
+            const diffCanvasY = localElCenterY - localCanvasCenterY;
+            if (Math.abs(diffCanvasY) < localThreshold) {
+              newTy -= diffCanvasY;
+              localElTop -= diffCanvasY;
+              localElCenterY = localCanvasCenterY;
+              guideLinesY.push({ y: localCanvasCenterY, type: 'center' });
+              snappedY = true;
+            }
+            
+            // 2. Snapping to other elements Y-axis
+            if (!snappedY) {
+              for (const other of otherElements) {
+                const otherTid = other.getAttribute('data-tid');
+                const otherTrans = appState.transforms[otherTid] || { x: 0, y: 0 };
+                const otherOrigLocalTop = other.offsetTop - (otherTrans.y || 0);
+                const localOtherTop = otherOrigLocalTop + (otherTrans.y || 0);
+                const localOtherHeight = other.offsetHeight;
+                const localOtherCenterY = localOtherTop + localOtherHeight / 2;
+                const localOtherBottom = localOtherTop + localOtherHeight;
+                
+                const diffTop = localElTop - localOtherTop;
+                if (Math.abs(diffTop) < localThreshold) {
+                  newTy -= diffTop;
+                  localElTop -= diffTop;
+                  localElCenterY = localElTop + localElHeight / 2;
+                  guideLinesY.push({ y: localOtherTop, type: 'edge' });
+                  snappedY = true;
+                  break;
+                }
+                const localElBottom = localElTop + localElHeight;
+                const diffBottom = localElBottom - localOtherBottom;
+                if (Math.abs(diffBottom) < localThreshold) {
+                  newTy -= diffBottom;
+                  localElTop -= diffBottom;
+                  localElCenterY = localElTop + localElHeight / 2;
+                  guideLinesY.push({ y: localOtherBottom, type: 'edge' });
+                  snappedY = true;
+                  break;
+                }
+                const diffCenter = localElCenterY - localOtherCenterY;
+                if (Math.abs(diffCenter) < localThreshold) {
+                  newTy -= diffCenter;
+                  localElTop -= diffCenter;
+                  localElCenterY = localOtherCenterY;
+                  guideLinesY.push({ y: localOtherCenterY, type: 'center' });
+                  snappedY = true;
+                  break;
+                }
+              }
+            }
+            
+            // Draw guides
+            let guideContainer = canvas.querySelector('.guide-container');
+            if (!guideContainer) {
+              guideContainer = iframeDoc.createElement('div');
+              guideContainer.className = 'guide-container';
+              guideContainer.style.position = 'absolute';
+              guideContainer.style.inset = '0';
+              guideContainer.style.pointerEvents = 'none';
+              guideContainer.style.zIndex = '9999';
+              canvas.appendChild(guideContainer);
+            }
+            guideContainer.innerHTML = '';
+            
+            guideLinesX.forEach(g => {
+              const line = iframeDoc.createElement('div');
+              line.className = 'guide-line guide-line-vertical';
+              line.style.position = 'absolute';
+              line.style.top = '0';
+              line.style.bottom = '0';
+              line.style.left = `${g.x}px`;
+              line.style.width = '0';
+              line.style.borderLeft = '1px dashed #ff007f';
+              guideContainer.appendChild(line);
+            });
+            
+            guideLinesY.forEach(g => {
+              const line = iframeDoc.createElement('div');
+              line.className = 'guide-line guide-line-horizontal';
+              line.style.position = 'absolute';
+              line.style.left = '0';
+              line.style.right = '0';
+              line.style.top = `${g.y}px`;
+              line.style.height = '0';
+              line.style.borderTop = '1px dashed #ff007f';
+              guideContainer.appendChild(line);
+            });
+          }
 
           appState.transforms[tid] = { x: newTx, y: newTy, scale: currentScale, w: existing.w, h: existing.h };
           el.style.transform = `translate(${newTx}px, ${newTy}px) scale(${currentScale})`;
@@ -460,6 +633,12 @@ class CardRenderer {
           iframeDoc.removeEventListener('mouseup', onMouseUp);
           document.removeEventListener('mousemove', onMouseMove);
           document.removeEventListener('mouseup', onMouseUp);
+
+          const canvas = iframeDoc.querySelector('.card-canvas');
+          if (canvas) {
+            const guideContainer = canvas.querySelector('.guide-container');
+            if (guideContainer) guideContainer.innerHTML = '';
+          }
 
           if (typeof window.saveState === 'function') {
             window.saveState();
@@ -673,8 +852,17 @@ class CardRenderer {
     // 4. Bind a click listener on the .profile-photo-frame element inside the iframe to trigger file upload
     const profileFrame = iframeDoc.querySelector('.profile-photo-frame') || iframeDoc.querySelector('.profile-frame') || iframeDoc.querySelector('#avatar-frame');
     if (profileFrame) {
-      profileFrame.addEventListener('click', () => {
-        if (appState.photoDataUrl) return; // Ignore click upload if image already loaded
+      profileFrame.addEventListener('click', (e) => {
+        if (appState.photoDataUrl) {
+          e.stopPropagation();
+          const dblEvent = new MouseEvent('dblclick', {
+            bubbles: true,
+            cancelable: true,
+            view: iframeDoc.defaultView || window
+          });
+          profileFrame.dispatchEvent(dblEvent);
+          return;
+        }
         const fileInput = document.getElementById('file-upload');
         if (fileInput) {
           fileInput.click();
@@ -834,9 +1022,11 @@ class CardRenderer {
       el.style.outline = 'none';
     });
 
-    // Temporarily hide resize handles
+    // Temporarily hide resize handles and guides
     const handles = iframeDoc.querySelectorAll('.resize-handle');
     handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
+    const guides = iframeDoc.querySelectorAll('.guide-container');
+    guides.forEach(g => g.style.setProperty('display', 'none', 'important'));
 
     try {
       const html2canvas = window.html2canvas;
@@ -863,11 +1053,12 @@ class CardRenderer {
       console.error('Image export failed:', err);
       alert('Export failed: ' + err.message);
     } finally {
-      // Restore outlines and handles
+      // Restore outlines, handles and guides
       originalOutlines.forEach(item => {
         item.el.style.outline = item.outline;
       });
       handles.forEach(h => h.style.removeProperty('display'));
+      guides.forEach(g => g.style.removeProperty('display'));
     }
   }
 
@@ -890,9 +1081,11 @@ class CardRenderer {
       el.style.outline = 'none';
     });
 
-    // Temporarily hide resize handles
+    // Temporarily hide resize handles and guides
     const handles = iframeDoc.querySelectorAll('.resize-handle');
     handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
+    const guides = iframeDoc.querySelectorAll('.guide-container');
+    guides.forEach(g => g.style.setProperty('display', 'none', 'important'));
 
     try {
       // Request display stream (screen capture)
@@ -980,8 +1173,9 @@ class CardRenderer {
           originalOutlines.forEach(item => {
             item.el.style.outline = item.outline;
           });
-          // Restore handles
+          // Restore handles and guides
           handles.forEach(h => h.style.removeProperty('display'));
+          guides.forEach(g => g.style.removeProperty('display'));
         }
       };
 
@@ -1015,8 +1209,9 @@ class CardRenderer {
       originalOutlines.forEach(item => {
         item.el.style.outline = item.outline;
       });
-      // Restore handles
+      // Restore handles and guides
       handles.forEach(h => h.style.removeProperty('display'));
+      guides.forEach(g => g.style.removeProperty('display'));
     }
   }
 }

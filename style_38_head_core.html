@@ -234,7 +234,10 @@
 <body style="margin:0; padding-top:60px; background:#000; display:flex; justify-content:center; align-items:center; overflow:hidden; height:100vh;">
   
   <div class="topbar" style="position:fixed; top:0; left:0; width:100%; height:60px; background:#18181b; border-bottom:1px solid #27272a; z-index:9999; display:flex; justify-content:space-between; align-items:center; padding:0 20px; color:white;">
-    <div style="font-weight: 600; font-family:'Inter',sans-serif;">Legacy Master Creator Engine</div>
+    <div style="display:flex; align-items:center; gap:15px; font-family:'Inter',sans-serif;">
+      <a href="index.html" class="btn-top" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center; padding:5px 10px; border-radius:4px; font-weight:500; font-size:12px; background:#27272a; border:1px solid #3f3f46; color:white;">← Home</a>
+      <div style="font-weight: 600;">Legacy Master Creator Engine</div>
+    </div>
     <div style="display:flex; gap:10px; align-items:center; font-family:'Inter',sans-serif; font-size:12px;">
       <select id="input-format" style="background:#09090b; border:1px solid #27272a; color:white; padding:6px; border-radius:4px;">
         <option value="9:16">1080x1920 (9:16)</option>
@@ -342,8 +345,17 @@
     document.getElementById('btn-upload').addEventListener('click', () => document.getElementById('file-upload').click());
     
     const pFrame = canvas.querySelector('.profile-photo-frame');
-    if (pFrame) pFrame.addEventListener('click', () => {
-      if (hasPhoto) return;
+    if (pFrame) pFrame.addEventListener('click', (e) => {
+      if (hasPhoto) {
+        e.stopPropagation();
+        const dblEvent = new MouseEvent('dblclick', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        pFrame.dispatchEvent(dblEvent);
+        return;
+      }
       document.getElementById('file-upload').click();
     });
     
@@ -395,7 +407,7 @@
 
     // Set elements as editable & draggable
     setTimeout(() => {
-      ['.member-name', '.member-title', '.birthday-quote', '.main-wishing-header'].forEach(sel => {
+      ['.member-name', '.member-title', '.birthday-quote', '.main-wishing-header', '.club-wishes-header'].forEach(sel => {
         const el = canvas.querySelector(sel);
         if (el) {
           el.setAttribute('contenteditable', 'true');
@@ -404,7 +416,7 @@
         }
       });
 
-      canvas.querySelectorAll('.member-name, .member-title, .birthday-quote, .profile-photo-frame, .main-wishing-header, .logo-header').forEach((el, i) => {
+      canvas.querySelectorAll('.member-name, .member-title, .birthday-quote, .profile-photo-frame, .main-wishing-header, .logo-header, .club-wishes-header').forEach((el, i) => {
         el.classList.add('draggable');
         const tid = 'item_'+i;
         el.setAttribute('data-tid', tid);
@@ -483,11 +495,188 @@
         function onMove(e) {
           if (!isDragging) return;
           e.preventDefault();
-          const dx = e.clientX - startX;
-          const dy = e.clientY - startY;
-          const nx = origX+dx; const ny = origY+dy;
+          
+          const canvasRect = canvas.getBoundingClientRect();
+          const scale = canvasRect.width / canvas.offsetWidth;
+          
+          const dx = (e.clientX - startX) / scale;
+          const dy = (e.clientY - startY) / scale;
+          
+          let nx = origX + dx;
+          let ny = origY + dy;
           const existing = transforms[tid] || {scale: 1};
           const currentScale = existing.scale !== undefined ? existing.scale : 1;
+          
+          // Visual Snapping & Alignment Guides
+          if (canvas) {
+            const snapThreshold = 5;
+            const localThreshold = snapThreshold / scale;
+            
+            const originalLocalLeft = el.offsetLeft - origX;
+            const originalLocalTop = el.offsetTop - origY;
+            
+            let localElLeft = originalLocalLeft + nx;
+            let localElTop = originalLocalTop + ny;
+            const localElWidth = el.offsetWidth;
+            const localElHeight = el.offsetHeight;
+            let localElCenterX = localElLeft + localElWidth / 2;
+            let localElCenterY = localElTop + localElHeight / 2;
+            
+            const localCanvasWidth = canvas.offsetWidth;
+            const localCanvasHeight = canvas.offsetHeight;
+            const localCanvasCenterX = localCanvasWidth / 2;
+            const localCanvasCenterY = localCanvasHeight / 2;
+            
+            const otherElements = Array.from(canvas.querySelectorAll('.draggable')).filter(other => other !== el);
+            
+            let snappedX = false;
+            let guideLinesX = [];
+            
+            // 1. Snapping to canvas horizontal center
+            const diffCanvasX = localElCenterX - localCanvasCenterX;
+            if (Math.abs(diffCanvasX) < localThreshold) {
+              nx -= diffCanvasX;
+              localElLeft -= diffCanvasX;
+              localElCenterX = localCanvasCenterX;
+              guideLinesX.push({ x: localCanvasCenterX, type: 'center' });
+              snappedX = true;
+            }
+            
+            // 2. Snapping to other elements X-axis
+            if (!snappedX) {
+              for (const other of otherElements) {
+                const otherTid = other.getAttribute('data-tid');
+                const otherTrans = transforms[otherTid] || { x: 0, y: 0 };
+                const otherOrigLocalLeft = other.offsetLeft - (otherTrans.x || 0);
+                const localOtherLeft = otherOrigLocalLeft + (otherTrans.x || 0);
+                const localOtherWidth = other.offsetWidth;
+                const localOtherCenterX = localOtherLeft + localOtherWidth / 2;
+                const localOtherRight = localOtherLeft + localOtherWidth;
+                
+                const diffLeft = localElLeft - localOtherLeft;
+                if (Math.abs(diffLeft) < localThreshold) {
+                  nx -= diffLeft;
+                  localElLeft -= diffLeft;
+                  localElCenterX = localElLeft + localElWidth / 2;
+                  guideLinesX.push({ x: localOtherLeft, type: 'edge' });
+                  snappedX = true;
+                  break;
+                }
+                const localElRight = localElLeft + localElWidth;
+                const diffRight = localElRight - localOtherRight;
+                if (Math.abs(diffRight) < localThreshold) {
+                  nx -= diffRight;
+                  localElLeft -= diffRight;
+                  localElCenterX = localElLeft + localElWidth / 2;
+                  guideLinesX.push({ x: localOtherRight, type: 'edge' });
+                  snappedX = true;
+                  break;
+                }
+                const diffCenter = localElCenterX - localOtherCenterX;
+                if (Math.abs(diffCenter) < localThreshold) {
+                  nx -= diffCenter;
+                  localElLeft -= diffCenter;
+                  localElCenterX = localOtherCenterX;
+                  guideLinesX.push({ x: localOtherCenterX, type: 'center' });
+                  snappedX = true;
+                  break;
+                }
+              }
+            }
+            
+            let snappedY = false;
+            let guideLinesY = [];
+            
+            // 1. Snapping to canvas vertical center
+            const diffCanvasY = localElCenterY - localCanvasCenterY;
+            if (Math.abs(diffCanvasY) < localThreshold) {
+              ny -= diffCanvasY;
+              localElTop -= diffCanvasY;
+              localElCenterY = localCanvasCenterY;
+              guideLinesY.push({ y: localCanvasCenterY, type: 'center' });
+              snappedY = true;
+            }
+            
+            // 2. Snapping to other elements Y-axis
+            if (!snappedY) {
+              for (const other of otherElements) {
+                const otherTid = other.getAttribute('data-tid');
+                const otherTrans = transforms[otherTid] || { x: 0, y: 0 };
+                const otherOrigLocalTop = other.offsetTop - (otherTrans.y || 0);
+                const localOtherTop = otherOrigLocalTop + (otherTrans.y || 0);
+                const localOtherHeight = other.offsetHeight;
+                const localOtherCenterY = localOtherTop + localOtherHeight / 2;
+                const localOtherBottom = localOtherTop + localOtherHeight;
+                
+                const diffTop = localElTop - localOtherTop;
+                if (Math.abs(diffTop) < localThreshold) {
+                  ny -= diffTop;
+                  localElTop -= diffTop;
+                  localElCenterY = localElTop + localElHeight / 2;
+                  guideLinesY.push({ y: localOtherTop, type: 'edge' });
+                  snappedY = true;
+                  break;
+                }
+                const localElBottom = localElTop + localElHeight;
+                const diffBottom = localElBottom - localOtherBottom;
+                if (Math.abs(diffBottom) < localThreshold) {
+                  ny -= diffBottom;
+                  localElTop -= diffBottom;
+                  localElCenterY = localElTop + localElHeight / 2;
+                  guideLinesY.push({ y: localOtherBottom, type: 'edge' });
+                  snappedY = true;
+                  break;
+                }
+                const diffCenter = localElCenterY - localOtherCenterY;
+                if (Math.abs(diffCenter) < localThreshold) {
+                  ny -= diffCenter;
+                  localElTop -= diffCenter;
+                  localElCenterY = localOtherCenterY;
+                  guideLinesY.push({ y: localOtherCenterY, type: 'center' });
+                  snappedY = true;
+                  break;
+                }
+              }
+            }
+            
+            // Draw guides
+            let guideContainer = canvas.querySelector('.guide-container');
+            if (!guideContainer) {
+              guideContainer = document.createElement('div');
+              guideContainer.className = 'guide-container';
+              guideContainer.style.position = 'absolute';
+              guideContainer.style.inset = '0';
+              guideContainer.style.pointerEvents = 'none';
+              guideContainer.style.zIndex = '9999';
+              canvas.appendChild(guideContainer);
+            }
+            guideContainer.innerHTML = '';
+            
+            guideLinesX.forEach(g => {
+              const line = document.createElement('div');
+              line.className = 'guide-line guide-line-vertical';
+              line.style.position = 'absolute';
+              line.style.top = '0';
+              line.style.bottom = '0';
+              line.style.left = `${g.x}px`;
+              line.style.width = '0';
+              line.style.borderLeft = '1px dashed #ff007f';
+              guideContainer.appendChild(line);
+            });
+            
+            guideLinesY.forEach(g => {
+              const line = document.createElement('div');
+              line.className = 'guide-line guide-line-horizontal';
+              line.style.position = 'absolute';
+              line.style.left = '0';
+              line.style.right = '0';
+              line.style.top = `${g.y}px`;
+              line.style.height = '0';
+              line.style.borderTop = '1px dashed #ff007f';
+              guideContainer.appendChild(line);
+            });
+          }
+          
           transforms[tid] = {x:nx, y:ny, scale:currentScale, w:existing.w, h:existing.h};
           el.style.transform = `translate(${nx}px, ${ny}px) scale(${currentScale})`;
         }
@@ -496,6 +685,9 @@
           isDragging = false;
           document.removeEventListener('mousemove', onMove);
           document.removeEventListener('mouseup', onUp);
+          
+          const guideContainer = canvas.querySelector('.guide-container');
+          if (guideContainer) guideContainer.innerHTML = '';
         }
         
         // Resizing handlers
@@ -666,6 +858,8 @@
       try {
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = 'none');
         handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
+        const guides = document.querySelectorAll('.guide-container');
+        guides.forEach(g => g.style.setProperty('display', 'none', 'important'));
         
         const fmt = FORMATS[currentFormat];
         const targetWidth = fmt.w;
@@ -680,6 +874,7 @@
         
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
         handles.forEach(h => h.style.removeProperty('display'));
+        guides.forEach(g => g.style.removeProperty('display'));
         const link = document.createElement('a');
         link.download = `sota_legacy_wishes_${currentFormat.replace(':', 'x')}.${format === 'jpg' ? 'jpeg' : 'png'}`;
         link.href = c.toDataURL(`image/${format === 'jpg' ? 'jpeg' : 'png'}`, 0.95);
@@ -691,6 +886,7 @@
         alert('Export failed: ' + e.message);
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
         handles.forEach(h => h.style.removeProperty('display'));
+        guides.forEach(g => g.style.removeProperty('display'));
       }
     }
     document.getElementById('btn-dl-png').onclick = () => exportImage('png');
@@ -704,6 +900,8 @@
       document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = 'none');
       const handles = document.querySelectorAll('.resize-handle');
       handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
+      const guides = document.querySelectorAll('.guide-container');
+      guides.forEach(g => g.style.setProperty('display', 'none', 'important'));
       
       try {
         const stream = await navigator.mediaDevices.getDisplayMedia({ video: { displaySurface: "browser" }, audio: false, preferCurrentTab: true });
@@ -771,6 +969,7 @@
             document.getElementById('overlay').style.display = 'none';
             document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
             handles.forEach(h => h.style.removeProperty('display'));
+            guides.forEach(g => g.style.removeProperty('display'));
           }
         };
         
@@ -787,6 +986,7 @@
         document.getElementById('overlay').style.display = 'none';
         document.querySelectorAll('[contenteditable="true"]').forEach(el => el.style.outline = '');
         handles.forEach(h => h.style.removeProperty('display'));
+        guides.forEach(g => g.style.removeProperty('display'));
       }
     };
   </script>
