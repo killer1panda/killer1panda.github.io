@@ -142,19 +142,63 @@ class CardRenderer {
       }
       .resize-handle {
         position: absolute !important;
-        width: 12px !important;
-        height: 12px !important;
+        width: 10px !important;
+        height: 10px !important;
         background: #3b82f6 !important;
         border: 2px solid #ffffff !important;
         border-radius: 50% !important;
-        bottom: -6px !important;
-        right: -6px !important;
-        cursor: se-resize !important;
         z-index: 10000 !important;
         display: none !important;
       }
+      .resize-handle-n, .resize-handle-s {
+        width: 20px !important;
+        height: 8px !important;
+        border-radius: 4px !important;
+      }
+      .resize-handle-e, .resize-handle-w {
+        width: 8px !important;
+        height: 20px !important;
+        border-radius: 4px !important;
+      }
+      .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+      .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+      .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+      .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+      .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
+      .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
+      .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
+      .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
       .draggable:hover .resize-handle, .draggable.active .resize-handle {
         display: block !important;
+      }
+      .crop-mode {
+        cursor: move !important;
+        outline: 2px dashed #10b981 !important;
+      }
+      .crop-mode img {
+        cursor: move !important;
+      }
+      .photo-crop-bar {
+        position: absolute !important;
+        background: rgba(24, 24, 27, 0.95) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 20px !important;
+        padding: 6px 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+        z-index: 20000 !important;
+        pointer-events: auto !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 11px !important;
+        color: #ffffff !important;
+        width: max-content !important;
+      }
+      .photo-crop-bar input[type="range"] {
+        width: 100px !important;
+        accent-color: #3b82f6 !important;
+        cursor: pointer !important;
       }
     `;
     doc.head.appendChild(ratioStyle);
@@ -293,20 +337,95 @@ class CardRenderer {
         el.style.position = 'relative';
       }
 
-      // Create and append resize handle
-      const handle = iframeDoc.createElement('div');
-      handle.className = 'resize-handle';
-      el.appendChild(handle);
+      // Create and append resize handles
+      if (tid === 'photo') {
+        const directions = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
+        directions.forEach(dir => {
+          const h = iframeDoc.createElement('div');
+          h.className = `resize-handle resize-handle-${dir}`;
+          h.setAttribute('data-dir', dir);
+          el.appendChild(h);
+        });
+      } else {
+        const handle = iframeDoc.createElement('div');
+        handle.className = 'resize-handle resize-handle-se';
+        handle.setAttribute('data-dir', 'se');
+        el.appendChild(handle);
+      }
 
       let isDragging = false;
+      let isPanning = false;
       let startX, startY;
       let originalTx = 0, originalTy = 0;
+      let originalPanX = 0, originalPanY = 0;
 
       el.addEventListener('mousedown', (e) => {
         // If contenteditable element is focused, don't drag
         if (e.target.getAttribute('contenteditable') === 'true' && e.target === iframeDoc.activeElement) {
           return;
         }
+
+        // Calculate scaling factor from parent's #scale-wrapper transform
+        const scaleWrapper = document.getElementById('scale-wrapper');
+        let scale = 1;
+        if (scaleWrapper) {
+          const scaleStr = scaleWrapper.style.transform;
+          const scaleMatch = scaleStr.match(/scale\(([^)]+)\)/);
+          if (scaleMatch) {
+            scale = parseFloat(scaleMatch[1]);
+          }
+        }
+
+        if (el.classList.contains('crop-mode')) {
+          // INNER PHOTO PANNING
+          isPanning = true;
+          startX = e.clientX;
+          startY = e.clientY;
+          if (!appState.photoTransform) {
+            appState.photoTransform = { scale: 1, x: 0, y: 0 };
+          }
+          originalPanX = appState.photoTransform.x || 0;
+          originalPanY = appState.photoTransform.y || 0;
+
+          const onPanMove = (ev) => {
+            if (!isPanning) return;
+            ev.preventDefault();
+            const dx = (ev.clientX - startX) / scale;
+            const dy = (ev.clientY - startY) / scale;
+
+            const newPanX = originalPanX + dx;
+            const newPanY = originalPanY + dy;
+            const photoScale = appState.photoTransform.scale || 1;
+
+            appState.photoTransform.x = newPanX;
+            appState.photoTransform.y = newPanY;
+
+            const img = el.querySelector('img');
+            if (img) {
+              img.style.transform = `translate(${newPanX}px, ${newPanY}px) scale(${photoScale})`;
+            }
+          };
+
+          const onPanUp = () => {
+            isPanning = false;
+            iframeDoc.removeEventListener('mousemove', onPanMove);
+            iframeDoc.removeEventListener('mouseup', onPanUp);
+            document.removeEventListener('mousemove', onPanMove);
+            document.removeEventListener('mouseup', onPanUp);
+
+            if (typeof window.saveState === 'function') {
+              window.saveState();
+            }
+          };
+
+          iframeDoc.addEventListener('mousemove', onPanMove);
+          iframeDoc.addEventListener('mouseup', onPanUp);
+          document.addEventListener('mousemove', onPanMove);
+          document.addEventListener('mouseup', onPanUp);
+          return;
+        }
+
+        // DRAG CONTAINER
         isDragging = true;
         el.style.cursor = 'grabbing';
         startX = e.screenX;
@@ -323,17 +442,6 @@ class CardRenderer {
           if (!isDragging) return;
           ev.preventDefault();
 
-          // Calculate scaling factor from parent's #scale-wrapper transform
-          const scaleWrapper = document.getElementById('scale-wrapper');
-          let scale = 1;
-          if (scaleWrapper) {
-            const scaleStr = scaleWrapper.style.transform;
-            const scaleMatch = scaleStr.match(/scale\(([^)]+)\)/);
-            if (scaleMatch) {
-              scale = parseFloat(scaleMatch[1]);
-            }
-          }
-
           const dx = (ev.screenX - startX) / scale;
           const dy = (ev.screenY - startY) / scale;
 
@@ -341,7 +449,7 @@ class CardRenderer {
           const newTy = originalTy + dy;
           const currentScale = existing.scale !== undefined ? existing.scale : 1;
 
-          appState.transforms[tid] = { x: newTx, y: newTy, scale: currentScale };
+          appState.transforms[tid] = { x: newTx, y: newTy, scale: currentScale, w: existing.w, h: existing.h };
           el.style.transform = `translate(${newTx}px, ${newTy}px) scale(${currentScale})`;
         };
 
@@ -364,63 +472,209 @@ class CardRenderer {
         document.addEventListener('mouseup', onMouseUp);
       });
 
-      // Resizing handler
-      handle.addEventListener('mousedown', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
+      // Resizing handlers
+      const resizeHandles = el.querySelectorAll('.resize-handle');
+      resizeHandles.forEach(h => {
+        h.addEventListener('mousedown', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
 
-        let isResizing = true;
-        const rect = el.getBoundingClientRect();
+          const dir = h.getAttribute('data-dir');
+          let isResizing = true;
+          const rect = el.getBoundingClientRect();
+          const startX = e.clientX;
+          const startY = e.clientY;
+          const startW = el.offsetWidth;
+          const startH = el.offsetHeight;
 
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const d0 = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+          if (!appState.transforms) {
+            appState.transforms = {};
+          }
+          const existing = appState.transforms[tid] || { x: 0, y: 0, scale: 1 };
+          const originalScale = existing.scale || 1;
+          const originalTx = existing.x || 0;
+          const originalTy = existing.y || 0;
+          const originalW = existing.w || startW;
+          const originalH = existing.h || startH;
 
-        if (!appState.transforms) {
-          appState.transforms = {};
-        }
-        const existing = appState.transforms[tid] || { x: 0, y: 0, scale: 1 };
-        const s0 = existing.scale || 1;
-        const currentX = existing.x || 0;
-        const currentY = existing.y || 0;
+          // Calculate scale factor from workspace scaling wrapper
+          const scaleWrapper = document.getElementById('scale-wrapper');
+          let workspaceScale = 1;
+          if (scaleWrapper) {
+            const scaleStr = scaleWrapper.style.transform;
+            const scaleMatch = scaleStr.match(/scale\(([^)]+)\)/);
+            if (scaleMatch) {
+              workspaceScale = parseFloat(scaleMatch[1]);
+            }
+          }
 
-        const onResizeMove = (ev) => {
-          if (!isResizing) return;
-          ev.preventDefault();
+          // For proportional scaling
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const d0 = Math.sqrt(Math.pow(startX - cx, 2) + Math.pow(startY - cy, 2));
 
-          const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
-          let newScale = s0 * (d1 / d0);
+          const onResizeMove = (ev) => {
+            if (!isResizing) return;
+            ev.preventDefault();
 
-          if (newScale < 0.2) newScale = 0.2;
-          if (newScale > 5) newScale = 5;
+            if (tid === 'photo') {
+              const dx = (ev.clientX - startX) / workspaceScale;
+              const dy = (ev.clientY - startY) / workspaceScale;
 
-          appState.transforms[tid] = { x: currentX, y: currentY, scale: newScale };
-          el.style.transform = `translate(${currentX}px, ${currentY}px) scale(${newScale})`;
-        };
+              let newW = originalW;
+              let newH = originalH;
+              let newTx = originalTx;
+              let newTy = originalTy;
 
-        const onResizeUp = () => {
-          isResizing = false;
-          iframeDoc.removeEventListener('mousemove', onResizeMove);
-          iframeDoc.removeEventListener('mouseup', onResizeUp);
-          document.removeEventListener('mousemove', onResizeMove);
-          document.removeEventListener('mouseup', onResizeUp);
+              if (dir.includes('e')) {
+                newW = originalW + dx;
+              } else if (dir.includes('w')) {
+                newW = originalW - dx;
+                newTx = originalTx + dx;
+              }
 
+              if (dir.includes('s')) {
+                newH = originalH + dy;
+              } else if (dir.includes('n')) {
+                newH = originalH - dy;
+                newTy = originalTy + dy;
+              }
+
+              if (newW < 40) {
+                const diff = 40 - newW;
+                newW = 40;
+                if (dir.includes('w')) newTx -= diff;
+              }
+              if (newH < 40) {
+                const diff = 40 - newH;
+                newH = 40;
+                if (dir.includes('n')) newTy -= diff;
+              }
+
+              appState.transforms[tid] = { x: newTx, y: newTy, w: newW, h: newH, scale: 1 };
+              el.style.width = `${newW}px`;
+              el.style.height = `${newH}px`;
+              el.style.transform = `translate(${newTx}px, ${newTy}px) scale(1)`;
+
+              // Update crop controls position if visible
+              const cropBar = iframeDoc.querySelector('.photo-crop-bar');
+              if (cropBar) {
+                cropBar.style.left = `${el.offsetLeft + (el.offsetWidth - cropBar.offsetWidth) / 2}px`;
+                cropBar.style.top = `${el.offsetTop + el.offsetHeight + 10}px`;
+              }
+            } else {
+              const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
+              let newScale = originalScale * (d1 / d0);
+
+              if (newScale < 0.2) newScale = 0.2;
+              if (newScale > 5) newScale = 5;
+
+              appState.transforms[tid] = { x: originalTx, y: originalTy, scale: newScale };
+              el.style.transform = `translate(${originalTx}px, ${originalTy}px) scale(${newScale})`;
+            }
+          };
+
+          const onResizeUp = () => {
+            isResizing = false;
+            iframeDoc.removeEventListener('mousemove', onResizeMove);
+            iframeDoc.removeEventListener('mouseup', onResizeUp);
+            document.removeEventListener('mousemove', onResizeMove);
+            document.removeEventListener('mouseup', onResizeUp);
+
+            if (typeof window.saveState === 'function') {
+              window.saveState();
+            }
+          };
+
+          iframeDoc.addEventListener('mousemove', onResizeMove);
+          iframeDoc.addEventListener('mouseup', onResizeUp);
+          document.addEventListener('mousemove', onResizeMove);
+          document.addEventListener('mouseup', onResizeUp);
+        });
+      });
+
+      // Crop mode toggle on double click (photo frame only)
+      if (tid === 'photo') {
+        el.addEventListener('dblclick', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (el.classList.contains('crop-mode')) return;
+
+          el.classList.add('crop-mode');
+          el.classList.add('active');
+
+          const canvas = iframeDoc.querySelector('.card-canvas');
+          let cropBar = iframeDoc.querySelector('.photo-crop-bar');
+          if (!cropBar && canvas) {
+            cropBar = iframeDoc.createElement('div');
+            cropBar.className = 'photo-crop-bar';
+            cropBar.innerHTML = `
+              <span>Zoom:</span>
+              <input type="range" min="1" max="5" step="0.01" value="${appState.photoTransform?.scale || 1}">
+              <button class="btn-crop-done" style="background:#3b82f6; border:none; color:white; padding:3px 8px; border-radius:10px; cursor:pointer; font-weight:bold; font-size:10px;">Done</button>
+            `;
+            canvas.appendChild(cropBar);
+
+            const updatePosition = () => {
+              cropBar.style.left = `${el.offsetLeft + (el.offsetWidth - cropBar.offsetWidth) / 2}px`;
+              cropBar.style.top = `${el.offsetTop + el.offsetHeight + 10}px`;
+            };
+            updatePosition();
+
+            const slider = cropBar.querySelector('input');
+            slider.addEventListener('input', (ev) => {
+              const val = parseFloat(ev.target.value);
+              if (!appState.photoTransform) {
+                appState.photoTransform = { scale: 1, x: 0, y: 0 };
+              }
+              appState.photoTransform.scale = val;
+              const img = el.querySelector('img');
+              if (img) {
+                img.style.transform = `translate(${appState.photoTransform.x || 0}px, ${appState.photoTransform.y || 0}px) scale(${val})`;
+              }
+              if (typeof window.saveState === 'function') {
+                window.saveState();
+              }
+            });
+
+            const doneBtn = cropBar.querySelector('.btn-crop-done');
+            doneBtn.addEventListener('click', (ev) => {
+              ev.stopPropagation();
+              ev.preventDefault();
+              exitCropMode();
+            });
+          }
+        });
+
+        const exitCropMode = () => {
+          el.classList.remove('crop-mode');
+          const cropBar = iframeDoc.querySelector('.photo-crop-bar');
+          if (cropBar) {
+            cropBar.remove();
+          }
           if (typeof window.saveState === 'function') {
             window.saveState();
           }
         };
 
-        iframeDoc.addEventListener('mousemove', onResizeMove);
-        iframeDoc.addEventListener('mouseup', onResizeUp);
-        document.addEventListener('mousemove', onResizeMove);
-        document.addEventListener('mouseup', onResizeUp);
-      });
+        const onOutsideClick = (ev) => {
+          const isInsideFrame = el.contains(ev.target);
+          const cropBar = iframeDoc.querySelector('.photo-crop-bar');
+          const isInsideBar = cropBar && cropBar.contains(ev.target);
+          if (!isInsideFrame && !isInsideBar) {
+            exitCropMode();
+          }
+        };
+        iframeDoc.addEventListener('mousedown', onOutsideClick);
+        document.addEventListener('mousedown', onOutsideClick);
+      }
     });
 
     // 4. Bind a click listener on the .profile-photo-frame element inside the iframe to trigger file upload
     const profileFrame = iframeDoc.querySelector('.profile-photo-frame') || iframeDoc.querySelector('.profile-frame') || iframeDoc.querySelector('#avatar-frame');
     if (profileFrame) {
       profileFrame.addEventListener('click', () => {
+        if (appState.photoDataUrl) return; // Ignore click upload if image already loaded
         const fileInput = document.getElementById('file-upload');
         if (fileInput) {
           fileInput.click();
@@ -433,6 +687,10 @@ class CardRenderer {
       for (const [tid, pos] of Object.entries(appState.transforms)) {
         const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
         if (el) {
+          if (tid === 'photo' && pos.w && pos.h) {
+            el.style.width = `${pos.w}px`;
+            el.style.height = `${pos.h}px`;
+          }
           const scaleVal = pos.scale !== undefined ? pos.scale : 1;
           el.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scaleVal})`;
         }
@@ -498,6 +756,13 @@ class CardRenderer {
         if (img.src !== newData.photoDataUrl) {
           img.src = newData.photoDataUrl;
         }
+        // Apply zoom/pan transforms
+        const photoScale = newData.photoTransform?.scale || 1;
+        const photoX = newData.photoTransform?.x || 0;
+        const photoY = newData.photoTransform?.y || 0;
+        img.style.transform = `translate(${photoX}px, ${photoY}px) scale(${photoScale})`;
+        img.style.transformOrigin = 'center center';
+        
         profileFrame.style.background = 'transparent';
       } else {
         // If there is no photoDataUrl, we can clear the frame's image to default if there was any image.

@@ -197,19 +197,63 @@
     .profile-photo-frame:hover { transform: scale(1.02); box-shadow: 0 0 0 4px rgba(59,130,246,0.5); }
     .resize-handle {
       position: absolute !important;
-      width: 12px !important;
-      height: 12px !important;
+      width: 10px !important;
+      height: 10px !important;
       background: #3b82f6 !important;
       border: 2px solid #ffffff !important;
       border-radius: 50% !important;
-      bottom: -6px !important;
-      right: -6px !important;
-      cursor: se-resize !important;
       z-index: 10000 !important;
       display: none !important;
     }
+    .resize-handle-n, .resize-handle-s {
+      width: 20px !important;
+      height: 8px !important;
+      border-radius: 4px !important;
+    }
+    .resize-handle-e, .resize-handle-w {
+      width: 8px !important;
+      height: 20px !important;
+      border-radius: 4px !important;
+    }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
     .draggable:hover .resize-handle, .draggable.active .resize-handle {
       display: block !important;
+    }
+    .crop-mode {
+      cursor: move !important;
+      outline: 2px dashed #10b981 !important;
+    }
+    .crop-mode img {
+      cursor: move !important;
+    }
+    .photo-crop-bar {
+      position: absolute !important;
+      background: rgba(24, 24, 27, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 20px !important;
+      padding: 6px 12px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+      z-index: 20000 !important;
+      pointer-events: auto !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 11px !important;
+      color: #ffffff !important;
+      width: max-content !important;
+    }
+    .photo-crop-bar input[type="range"] {
+      width: 100px !important;
+      accent-color: #3b82f6 !important;
+      cursor: pointer !important;
     }
     
     /* Double-declaration aspect ratio test-suite bypass workaround */
@@ -363,10 +407,24 @@
     });
 
     // Photo Upload
+    let photoTransform = { scale: 1, x: 0, y: 0 };
+    let hasPhoto = false;
+
+    function applyPhotoTransform(frame) {
+      const img = frame.querySelector('img');
+      if (img) {
+        img.style.transform = `translate(${photoTransform.x}px, ${photoTransform.y}px) scale(${photoTransform.scale})`;
+        img.style.transformOrigin = 'center center';
+      }
+    }
+
     document.getElementById('btn-upload').addEventListener('click', () => document.getElementById('file-upload').click());
     
     const pFrame = canvas.querySelector('.profile-photo-frame');
-    if (pFrame) pFrame.addEventListener('click', () => document.getElementById('file-upload').click());
+    if (pFrame) pFrame.addEventListener('click', () => {
+      if (hasPhoto) return;
+      document.getElementById('file-upload').click();
+    });
     
     document.getElementById('file-upload').addEventListener('change', (e) => {
       const file = e.target.files[0];
@@ -377,6 +435,8 @@
         if (frame) {
             frame.innerHTML = `<img src="${ev.target.result}" style="width: 100%; height: 100%; object-fit: cover; display: block;" />`;
             frame.style.background = 'transparent';
+            hasPhoto = true;
+            applyPhotoTransform(frame);
         }
       };
       reader.readAsDataURL(file);
@@ -384,8 +444,17 @@
 
     // Reset Layout
     document.getElementById('btn-reset').addEventListener('click', () => {
-      document.querySelectorAll('.draggable').forEach(el => el.style.transform = '');
+      document.querySelectorAll('.draggable').forEach(el => {
+        el.style.transform = '';
+        el.style.width = '';
+        el.style.height = '';
+      });
       for(let key in transforms) delete transforms[key];
+      photoTransform = { scale: 1, x: 0, y: 0 };
+      const frame = canvas.querySelector('.profile-photo-frame');
+      if (frame) {
+        applyPhotoTransform(frame);
+      }
     });
 
     // Text autofit
@@ -425,15 +494,64 @@
           el.style.position = 'relative';
         }
         
-        // Create and append resize handle
-        const handle = document.createElement('div');
-        handle.className = 'resize-handle';
-        el.appendChild(handle);
+        const isPhoto = el.classList.contains('profile-photo-frame');
+
+        // Create and append resize handles
+        if (isPhoto) {
+          const directions = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
+          directions.forEach(dir => {
+            const h = document.createElement('div');
+            h.className = `resize-handle resize-handle-${dir}`;
+            h.setAttribute('data-dir', dir);
+            el.appendChild(h);
+          });
+        } else {
+          const handle = document.createElement('div');
+          handle.className = 'resize-handle resize-handle-se';
+          handle.setAttribute('data-dir', 'se');
+          el.appendChild(handle);
+        }
         
         let isDragging = false, startX, startY, origX=0, origY=0;
+        let isPanning = false, originalPanX = 0, originalPanY = 0;
         
         el.onmousedown = (e) => {
           if (e.target.hasAttribute('contenteditable') && e.target === document.activeElement) return;
+          
+          if (el.classList.contains('crop-mode')) {
+            // INNER PHOTO PANNING
+            isPanning = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            originalPanX = photoTransform.x || 0;
+            originalPanY = photoTransform.y || 0;
+            
+            const onPanMove = (ev) => {
+              if (!isPanning) return;
+              ev.preventDefault();
+              const dx = ev.clientX - startX;
+              const dy = ev.clientY - startY;
+              
+              const newPanX = originalPanX + dx;
+              const newPanY = originalPanY + dy;
+              
+              photoTransform.x = newPanX;
+              photoTransform.y = newPanY;
+              applyPhotoTransform(el);
+            };
+            
+            const onPanUp = () => {
+              isPanning = false;
+              document.removeEventListener('mousemove', onPanMove);
+              document.removeEventListener('mouseup', onPanUp);
+            };
+            
+            document.addEventListener('mousemove', onPanMove);
+            document.addEventListener('mouseup', onPanUp);
+            return;
+          }
+
+          // DRAG CONTAINER
           isDragging = true; startX = e.clientX; startY = e.clientY;
           const existing = transforms[tid] || {x:0, y:0, scale:1};
           origX = existing.x || 0; origY = existing.y || 0;
@@ -449,7 +567,7 @@
           const nx = origX+dx; const ny = origY+dy;
           const existing = transforms[tid] || {scale: 1};
           const currentScale = existing.scale !== undefined ? existing.scale : 1;
-          transforms[tid] = {x:nx, y:ny, scale:currentScale};
+          transforms[tid] = {x:nx, y:ny, scale:currentScale, w:existing.w, h:existing.h};
           el.style.transform = `translate(${nx}px, ${ny}px) scale(${currentScale})`;
         }
         
@@ -459,43 +577,164 @@
           document.removeEventListener('mouseup', onUp);
         }
         
-        // Resizing handler
-        handle.onmousedown = (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          
-          let isResizing = true;
-          const rect = el.getBoundingClientRect();
-          
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const d0 = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
-          
-          const existing = transforms[tid] || {x:0, y:0, scale:1};
-          const s0 = existing.scale || 1;
-          const currentX = existing.x || 0;
-          const currentY = existing.y || 0;
-          
-          const onResizeMove = (ev) => {
-            if (!isResizing) return;
-            ev.preventDefault();
-            const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
-            let newScale = s0 * (d1 / d0);
-            if (newScale < 0.2) newScale = 0.2;
-            if (newScale > 5) newScale = 5;
-            transforms[tid] = {x:currentX, y:currentY, scale:newScale};
-            el.style.transform = `translate(${currentX}px, ${currentY}px) scale(${newScale})`;
+        // Resizing handlers
+        const resizeHandles = el.querySelectorAll('.resize-handle');
+        resizeHandles.forEach(h => {
+          h.onmousedown = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            const dir = h.getAttribute('data-dir');
+            let isResizing = true;
+            const rect = el.getBoundingClientRect();
+            const startX = e.clientX;
+            const startY = e.clientY;
+            const startW = el.offsetWidth;
+            const startH = el.offsetHeight;
+            
+            const existing = transforms[tid] || {x:0, y:0, scale:1};
+            const originalScale = existing.scale || 1;
+            const originalTx = existing.x || 0;
+            const originalTy = existing.y || 0;
+            const originalW = existing.w || startW;
+            const originalH = existing.h || startH;
+            
+            // For proportional scaling
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const d0 = Math.sqrt(Math.pow(startX - cx, 2) + Math.pow(startY - cy, 2));
+            
+            const onResizeMove = (ev) => {
+              if (!isResizing) return;
+              ev.preventDefault();
+              
+              if (isPhoto) {
+                const dx = ev.clientX - startX;
+                const dy = ev.clientY - startY;
+                
+                let newW = originalW;
+                let newH = originalH;
+                let newTx = originalTx;
+                let newTy = originalTy;
+                
+                if (dir.includes('e')) {
+                  newW = originalW + dx;
+                } else if (dir.includes('w')) {
+                  newW = originalW - dx;
+                  newTx = originalTx + dx;
+                }
+                
+                if (dir.includes('s')) {
+                  newH = originalH + dy;
+                } else if (dir.includes('n')) {
+                  newH = originalH - dy;
+                  newTy = originalTy + dy;
+                }
+                
+                if (newW < 40) {
+                  const diff = 40 - newW;
+                  newW = 40;
+                  if (dir.includes('w')) newTx -= diff;
+                }
+                if (newH < 40) {
+                  const diff = 40 - newH;
+                  newH = 40;
+                  if (dir.includes('n')) newTy -= diff;
+                }
+                
+                transforms[tid] = {x:newTx, y:newTy, w:newW, h:newH, scale:1};
+                el.style.width = `${newW}px`;
+                el.style.height = `${newH}px`;
+                el.style.transform = `translate(${newTx}px, ${newTy}px) scale(1)`;
+                
+                // Update crop controls position if visible
+                const cropBar = document.querySelector('.photo-crop-bar');
+                if (cropBar) {
+                  cropBar.style.left = `${el.offsetLeft + (el.offsetWidth - cropBar.offsetWidth) / 2}px`;
+                  cropBar.style.top = `${el.offsetTop + el.offsetHeight + 10}px`;
+                }
+              } else {
+                const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
+                let newScale = originalScale * (d1 / d0);
+                if (newScale < 0.2) newScale = 0.2;
+                if (newScale > 5) newScale = 5;
+                transforms[tid] = {x:originalTx, y:originalTy, scale:newScale};
+                el.style.transform = `translate(${originalTx}px, ${originalTy}px) scale(${newScale})`;
+              }
+            };
+            
+            const onResizeUp = () => {
+              isResizing = false;
+              document.removeEventListener('mousemove', onResizeMove);
+              document.removeEventListener('mouseup', onResizeUp);
+            };
+            
+            document.addEventListener('mousemove', onResizeMove);
+            document.addEventListener('mouseup', onResizeUp);
           };
-          
-          const onResizeUp = () => {
-            isResizing = false;
-            document.removeEventListener('mousemove', onResizeMove);
-            document.removeEventListener('mouseup', onResizeUp);
+        });
+
+        // Crop mode toggle on double click (photo frame only)
+        if (isPhoto) {
+          el.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            if (el.classList.contains('crop-mode')) return;
+
+            el.classList.add('crop-mode');
+            el.classList.add('active');
+
+            let cropBar = document.querySelector('.photo-crop-bar');
+            if (!cropBar) {
+              cropBar = document.createElement('div');
+              cropBar.className = 'photo-crop-bar';
+              cropBar.innerHTML = `
+                <span>Zoom:</span>
+                <input type="range" min="1" max="5" step="0.01" value="${photoTransform.scale}">
+                <button class="btn-crop-done" style="background:#3b82f6; border:none; color:white; padding:3px 8px; border-radius:10px; cursor:pointer; font-weight:bold; font-size:10px;">Done</button>
+              `;
+              canvas.appendChild(cropBar);
+
+              const updatePosition = () => {
+                cropBar.style.left = `${el.offsetLeft + (el.offsetWidth - cropBar.offsetWidth) / 2}px`;
+                cropBar.style.top = `${el.offsetTop + el.offsetHeight + 10}px`;
+              };
+              updatePosition();
+
+              const slider = cropBar.querySelector('input');
+              slider.addEventListener('input', (ev) => {
+                const val = parseFloat(ev.target.value);
+                photoTransform.scale = val;
+                applyPhotoTransform(el);
+              });
+
+              const doneBtn = cropBar.querySelector('.btn-crop-done');
+              doneBtn.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                ev.preventDefault();
+                exitCropMode();
+              });
+            }
+          });
+
+          const exitCropMode = () => {
+            el.classList.remove('crop-mode');
+            const cropBar = document.querySelector('.photo-crop-bar');
+            if (cropBar) {
+              cropBar.remove();
+            }
           };
-          
-          document.addEventListener('mousemove', onResizeMove);
-          document.addEventListener('mouseup', onResizeUp);
-        };
+
+          const onOutsideClick = (ev) => {
+            const isInsideFrame = el.contains(ev.target);
+            const cropBar = document.querySelector('.photo-crop-bar');
+            const isInsideBar = cropBar && cropBar.contains(ev.target);
+            if (!isInsideFrame && !isInsideBar) {
+              exitCropMode();
+            }
+          };
+          document.addEventListener('mousedown', onOutsideClick);
+        }
       });
       autoFitText();
     }, 200);

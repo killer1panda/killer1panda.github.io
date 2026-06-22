@@ -263,6 +263,7 @@
 
     document.getElementById('btn-reset').onclick = () => {
       appState.transforms = {};
+      appState.photoTransform = { scale: 1, x: 0, y: 0 };
       renderApp();
     };
 
