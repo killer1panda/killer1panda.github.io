@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Edge Computing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fffbff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "secondary": "#8127cf",
+                        "on-secondary-fixed": "#2c0051",
+                        "surface-container-highest": "#e2e2e2",
+                        "primary": "#00ffff", // Bright Cyan
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#e2e2e2",
+                        "outline": "#000000",
+                        "on-primary-fixed-variant": "#004d4d",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "secondary-container": "#310062", // Deep Purple
+                        "primary-fixed-dim": "#00e6e6",
+                        "on-primary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#00ffff",
+                        "surface-container": "#eeeeee",
+                        "surface-variant": "#e2e2e2",
+                        "surface": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-low": "#f3f3f4",
+                        "on-surface-variant": "#4d4632",
+                        "on-primary-container": "#000000",
+                        "inverse-primary": "#00ffff",
+                        "on-surface": "#1a1c1c",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-container": "#d1d1d1",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "secondary-fixed": "#f0dbff",
+                        "outline-variant": "#000000",
+                        "on-primary-fixed": "#002020",
+                        "surface-tint": "#00ffff",
+                        "surface-container-high": "#e8e8e8",
+                        "error-container": "#ffdad6",
+                        "background": "#00ffff",
+                        "surface-dim": "#dadada",
+                        "tertiary": "#5e5e5e",
+                        "on-tertiary-container": "#595959",
+                        "primary-fixed": "#b3ffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "shadow-offset": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Sora"],
+                        "label-sm": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Sora"],
+                        "label-bold": ["Sora"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #00ffff;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .neo-shadow {
+            box-shadow: 8px 8px 0px 0px #000000;
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .neo-shadow-active {
+            box-shadow: 0px 0px 0px 0px #000000;
+            transform: translate(4px, 4px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .grid-pattern {
+            background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black text-white">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold">TECH_DRIP</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined text-black">settings</span>
+</button>
+</header>
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center">
+<!-- Animated Background Element -->
+<div class="fixed inset-0 pointer-events-none opacity-10 grid-pattern"></div>
+<!-- Main Content Card (Split Layout) -->
+<div class="relative w-full max-w-sm">
+<div class="bg-white border-4 border-black neo-shadow flex flex-col overflow-hidden">
+<!-- Retro Window Header -->
+<div class="h-10 border-b-4 border-black bg-secondary-container flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-primary border-2 border-black"></div>
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
+<div class="w-3 h-3 rounded-full bg-black border-2 border-black"></div>
+</div>
+<div class="flex-1 text-center">
+<span class="font-label-bold text-[10px] uppercase tracking-widest text-white">PROXIMITY_PROC.SYS</span>
+</div>
+</div>
+<!-- Top/Left Split Section (Technical Visual) -->
+<div class="h-56 bg-primary border-b-4 border-black relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 grid-pattern opacity-20"></div>
+<!-- Technical Icon/Diagram Representation -->
+<div class="relative z-10 p-8 border-4 border-black bg-white neo-shadow-sm rotate-3">
+<span class="material-symbols-outlined text-[80px] text-secondary-container">sensors</span>
+<div class="absolute -top-4 -right-4 bg-black text-primary px-2 py-1 text-[10px] font-bold">EDGE_NODE_01</div>
+</div>
+<div class="absolute bottom-4 left-4 bg-black text-white px-2 py-1 font-label-bold text-[10px] uppercase tracking-tighter">
+                        Signal: Latency_Low
+                    </div>
+</div>
+<!-- Bottom/Right Split Section (Content) -->
+<div class="p-6 flex flex-col gap-4 bg-white">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,255,255,1)]">
+<span class="material-symbols-outlined text-primary text-sm fill-icon">router</span>
+</div>
+<span class="bg-black text-primary font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase">Infrastructure</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter">
+                        Edge <br/>
+<span class="bg-primary px-1 inline-block border-2 border-black">Computing</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface border-l-4 border-secondary-container pl-4 py-1">
+                        Edge computing brings data storage and Proximity Processing closer to the devices where it's being gathered, rather than relying on a central location that can be thousands of miles away.
+                    </p>
+<div class="mt-2 grid grid-cols-2 gap-3">
+<button class="bg-primary py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                            Details
+                        </button>
+<button class="bg-white py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                            Share
+                        </button>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="bg-secondary-container border-t-4 border-black p-3 flex justify-between items-center text-white font-label-sm uppercase">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">update</span> SYNCED 04:20</span>
+<span class="flex items-center gap-1 font-bold">PROTO: EDGE-99</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Info Section -->
+<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4">
+<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2">
+<h3 class="font-label-bold uppercase text-label-sm mb-1 text-secondary-container">Proximity Processing</h3>
+<p class="text-body-md font-body-md italic leading-tight">By processing data at the edge, organizations can reduce latency and bandwidth use, improving real-time response times.</p>
+</div>
+<div class="bg-black border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<span class="font-display-xl text-[40px] text-primary leading-none mb-1">0.1</span>
+<span class="font-label-bold text-[8px] text-white uppercase">ms Latency Goal</span>
+</div>
+<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-black">hub</span>
+<span class="font-label-bold text-[8px] uppercase text-black">Distributed Nodes</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe">
+<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-black border-2 border-black scale-110 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-2">
+<span class="material-symbols-outlined fill-icon">memory</span>
+</button>
+<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
+<span class="material-symbols-outlined">insights</span>
+</button>
+<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</nav>
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                if(btn.classList.contains('neo-shadow-sm')) {
+                    btn.style.transform = 'translate(4px, 4px)';
+                    btn.style.boxShadow = '0px 0px 0px 0px #000000';
+                }
+            });
+            btn.addEventListener('mouseup', () => {
+                if(btn.classList.contains('neo-shadow-sm')) {
+                    btn.style.transform = '';
+                    btn.style.boxShadow = '4px 4px 0px 0px #000000';
+                }
+            });
+            btn.addEventListener('mouseleave', () => {
+                if(btn.classList.contains('neo-shadow-sm')) {
+                    btn.style.transform = '';
+                    btn.style.boxShadow = '4px 4px 0px 0px #000000';
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Zero-Knowledge Proofs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ff00ff",
+                        "on-primary": "#000000",
+                        "secondary": "#000000",
+                        "on-secondary": "#ffffff",
+                        "background": "#ff00ff",
+                        "surface": "#ffffff",
+                        "on-surface": "#000000",
+                        "outline": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "shadow-offset": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Sora"],
+                        "label-sm": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Sora"],
+                        "label-bold": ["Sora"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #ff00ff;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .neo-shadow {
+            box-shadow: 8px 8px 0px 0px #000000;
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .neo-shadow-active {
+            box-shadow: 0px 0px 0px 0px #000000;
+            transform: translate(4px, 4px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .pixel-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2px;
+            width: 160px;
+            height: 160px;
+            background: #000;
+            padding: 2px;
+            border: 4px solid #000;
+        }
+        .pixel-cell {
+            background: #fff;
+        }
+        .pixel-fill {
+            background: #ff00ff;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-black text-headline-md">terminal</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-black">TECH_DRIP</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined text-black">settings</span>
+</button>
+</header>
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center">
+<!-- Pixel Art Icon Grid at top -->
+<div class="mb-8 relative">
+<div class="pixel-grid neo-shadow">
+<!-- 8x8 simplistic key icon in pixel art -->
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+<div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
+</div>
+<div class="absolute -top-4 -left-4 bg-black text-white px-2 py-1 font-label-bold text-[10px] uppercase border-2 border-white">CRYPT_KEY.BMP</div>
+</div>
+<!-- Main Fact Card -->
+<div class="relative w-full max-w-sm">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 flex flex-col">
+<!-- Retro Titlebar -->
+<div class="h-10 border-b-4 border-black bg-black flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
+</div>
+<div class="flex-1 text-center">
+<span class="font-label-bold text-label-sm uppercase tracking-widest text-white">ZKP_FACT.EXE</span>
+</div>
+</div>
+<!-- Content -->
+<div class="p-6 flex flex-col gap-6">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-black fill-icon">vpn_key</span>
+</div>
+<span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase">Cryptography</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter">
+                        Zero-Knowledge <br/>
+<span class="bg-primary px-1 inline-block border-2 border-black">Proofs</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface border-l-4 border-primary pl-4 py-1">
+                        A cryptographic method by which one party can prove to another party that a given statement is true while avoiding conveying any additional information.
+                    </p>
+<div class="flex gap-4">
+<button class="flex-1 bg-primary py-4 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                            Decrypt Info
+                        </button>
+<button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined text-black">favorite</span>
+</button>
+</div>
+</div>
+<div class="bg-black text-white border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">history</span> JAN 12, 1985</span>
+<span class="font-bold">ID: ZK-99x</span>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute -top-6 -right-6 w-12 h-12 bg-black border-4 border-white -z-10 rotate-12"></div>
+<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white border-4 border-black -z-10 -rotate-6"></div>
+</div>
+<!-- Secondary Info -->
+<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4">
+<div class="bg-black text-white border-4 border-black p-4 neo-shadow-sm col-span-2">
+<h3 class="font-label-bold uppercase text-label-sm mb-1 text-primary">History</h3>
+<p class="text-body-md font-body-md italic leading-tight">ZKP was first conceived in 1985 by Shafi Goldwasser, Silvio Micali, and Charles Rackoff.</p>
+</div>
+<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<span class="font-display-xl text-[48px] leading-none mb-1 text-black">100</span>
+<span class="font-label-bold text-[10px] uppercase text-black">Privacy Score</span>
+</div>
+<div class="bg-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-black">lock</span>
+<span class="font-label-bold text-[10px] uppercase text-black">Secure Link</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
+<button class="flex flex-col items-center justify-center p-2">
+<span class="material-symbols-outlined text-black">home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-black border-4 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2">
+<span class="material-symbols-outlined fill-icon">terminal</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2">
+<span class="material-symbols-outlined text-black">shield</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2">
+<span class="material-symbols-outlined text-black">account_circle</span>
+</button>
+</nav>
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                if(btn.classList.contains('neo-shadow-sm')) {
+                    btn.style.transform = 'translate(4px, 4px)';
+                    btn.style.boxShadow = '0px 0px 0px 0px #000000';
+                }
+            });
+            btn.addEventListener('mouseup', () => {
+                if(btn.classList.contains('neo-shadow-sm')) {
+                    btn.style.transform = '';
+                    btn.style.boxShadow = '4px 4px 0px 0px #000000';
+                }
+            });
+            btn.addEventListener('mouseleave', () => {
+                if(btn.classList.contains('neo-shadow-sm')) {
+                    btn.style.transform = '';
+                    btn.style.boxShadow = '4px 4px 0px 0px #000000';
+                }
+            });
+        });
+    </script>
+</body></html>

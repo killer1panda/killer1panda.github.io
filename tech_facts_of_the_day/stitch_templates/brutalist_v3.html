@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | NeRFs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "accent": "#2563eb",
+                        "background": "#ffffff",
+                        "surface": "#ffffff",
+                        "on-surface": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "shadow-offset": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Sora"],
+                        "label-sm": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Sora"],
+                        "label-bold": ["Sora"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #ffffff;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mega-shadow {
+            box-shadow: 12px 12px 0px 0px #000000;
+        }
+        .neo-border-thick {
+            border: 8px solid #000000;
+        }
+        .neo-border-medium {
+            border: 4px solid #000000;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-8 border-black">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-black text-headline-md">terminal</span>
+<span class="font-headline-md text-2xl uppercase tracking-tighter font-extrabold text-black">TECH_DRIP</span>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-white border-4 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
+<span class="material-symbols-outlined text-black">settings</span>
+</button>
+</header>
+<main class="min-h-screen pt-32 pb-32 px-4 flex flex-col items-center">
+<!-- Massive Headline Section -->
+<div class="w-full max-w-sm mb-16 text-center">
+<span class="inline-block bg-accent text-white font-label-bold text-xs px-3 py-1 neo-border-medium mb-6 uppercase tracking-widest">Tech Insight #402</span>
+<h1 class="font-display-xl text-[64px] leading-[0.9] uppercase tracking-tighter text-black break-words mb-8">
+            NEURAL <br/> RADIANCE <br/> FIELDS
+        </h1>
+<div class="neo-border-thick bg-white p-6 text-left">
+<p class="font-body-lg text-xl font-bold leading-tight uppercase mb-4">
+                NeRFs use deep learning to generate complex 3D scenes from a sparse set of 2D images.
+            </p>
+<p class="font-body-md text-on-surface opacity-80">
+                By optimizing a continuous volumetric scene function, AI can synthesize photorealistic novel views with incredible detail and lighting.
+            </p>
+</div>
+</div>
+<!-- Floating Did You Know Card -->
+<div class="relative w-full max-w-sm">
+<div class="bg-white neo-border-thick mega-shadow p-6 relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-accent fill-icon">lightbulb</span>
+<h3 class="font-label-bold uppercase text-lg text-black">Did you know?</h3>
+</div>
+<p class="text-body-lg font-medium italic leading-snug">
+                NVIDIA's "Instant NeRF" can train a 3D scene in seconds, a task that previously took hours or even days.
+            </p>
+<div class="mt-8 flex gap-4">
+<button class="flex-1 bg-black text-white py-4 neo-border-medium font-label-bold uppercase hover:translate-x-1 hover:translate-y-1 transition-all active:translate-x-2 active:translate-y-2">
+                    Share Insight
+                </button>
+<button class="w-16 bg-white neo-border-medium flex items-center justify-center hover:translate-x-1 hover:translate-y-1 transition-all">
+<span class="material-symbols-outlined text-black">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Decorative accents -->
+<div class="absolute -top-4 -right-4 w-20 h-20 bg-accent -z-10 neo-border-medium"></div>
+</div>
+<!-- Secondary Info Grid -->
+<section class="mt-16 w-full max-w-sm grid grid-cols-2 gap-6">
+<div class="bg-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
+<span class="font-display-xl text-4xl font-extrabold mb-1">5s</span>
+<span class="font-label-bold text-[10px] uppercase opacity-60">Training Speed</span>
+</div>
+<div class="bg-black text-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-4xl mb-1 text-accent">view_in_ar</span>
+<span class="font-label-bold text-[10px] uppercase">3D Rendered</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-24 bg-white border-t-8 border-black px-4 pb-safe">
+<button class="flex flex-col items-center justify-center text-black p-2">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-black text-white neo-border-medium w-16 h-16 shadow-[4px_4px_0px_0px_#2563eb]">
+<span class="material-symbols-outlined text-3xl fill-icon">menu_book</span>
+</button>
+<button class="flex flex-col items-center justify-center text-black p-2">
+<span class="material-symbols-outlined text-3xl">emoji_events</span>
+</button>
+<button class="flex flex-col items-center justify-center text-black p-2">
+<span class="material-symbols-outlined text-3xl">person</span>
+</button>
+</nav>
+</body></html>

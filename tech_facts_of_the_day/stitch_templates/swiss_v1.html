@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Serverless Architecture - Tech Fact</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=EB+Garamond:ital,wght@0,600;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Eggshell Paper Texture Effect */
+        .paper-texture {
+            background-color: #F4F1EA;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        /* Strict Grid Rules */
+        .grid-rule-v { border-left: 1px solid #1c1b1b; }
+        .grid-rule-h { border-top: 1px solid #1c1b1b; }
+        
+        /* Typography overrides for the Swiss Style */
+        .font-swiss-display { font-family: 'Sora', sans-serif; font-weight: 800; text-transform: uppercase; line-height: 0.9; }
+        .font-swiss-body { font-family: 'EB Garamond', serif; }
+        .font-swiss-meta { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
+
+        .active-press:active {
+            transform: translate(2px, 2px);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#1c1b1b", /* Deep charcoal */
+                    "background": "#F4F1EA", /* Eggshell */
+                    "on-surface-variant": "#444748",
+                    "surface-container-highest": "#E6E2D8",
+                    "outline-variant": "#1c1b1b"
+            },
+            "spacing": {
+                    "margin-mobile": "24px",
+                    "unit": "8px",
+                    "border-thick": "2px"
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="paper-texture text-primary selection:bg-primary selection:text-white">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 border-b border-primary bg-background flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+<h1 class="font-swiss-meta text-xs uppercase tracking-[0.2em]">Tech Fact No. 042</h1>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+</header>
+<main class="min-h-[calc(100vh-128px)] relative grid grid-cols-3">
+<!-- Vertical Rules (The 3-Column Grid) -->
+<div class="absolute inset-0 grid grid-cols-3 pointer-events-none">
+<div class="border-r border-primary opacity-20"></div>
+<div class="border-r border-primary opacity-20"></div>
+<div></div>
+</div>
+<!-- Layout: Staggered Content Across Grid -->
+<!-- Section 1: Top Header Stagger -->
+<section class="col-span-3 pt-12 px-6 border-b border-primary">
+<div class="grid grid-cols-3 gap-0">
+<div class="col-span-2 pb-8">
+<span class="font-swiss-meta text-[10px] uppercase block mb-4">Architecture / Cloud</span>
+<h2 class="font-swiss-display text-[56px] tracking-tighter">Server<br/>-less</h2>
+</div>
+<div class="col-span-1 border-l border-primary p-4 flex flex-col justify-end">
+<span class="font-swiss-meta text-[10px] uppercase leading-none opacity-60">Vol. 01<br/>Ed. 2024</span>
+</div>
+</div>
+</section>
+<!-- Section 2: Headline Continuation & Body -->
+<section class="col-span-3 grid grid-cols-3 border-b border-primary">
+<!-- Col 1: Icon/Visual -->
+<div class="col-span-1 border-r border-primary p-6 flex items-start justify-center">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'wght' 200;">cloud_off</span>
+</div>
+<!-- Col 2-3: Secondary Headline and Content -->
+<div class="col-span-2 p-8">
+<h3 class="font-swiss-display text-[42px] tracking-tighter mb-12">Architecture</h3>
+<div class="max-w-xs">
+<p class="font-swiss-body text-xl italic leading-tight text-primary mb-6">
+                    "Function as a Service" (FaaS) allows developers to build, run, and manage application packages without maintaining their own infrastructure.
+                </p>
+<p class="font-swiss-body text-base leading-relaxed text-on-surface-variant">
+                    Serverless does not mean servers are not involved. It means the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity.
+                </p>
+</div>
+</div>
+</section>
+<!-- Section 3: The '01' Watermark and Quote -->
+<section class="col-span-3 grid grid-cols-3 min-h-[160px]">
+<div class="col-span-1 border-r border-primary flex items-center justify-center relative overflow-hidden">
+<span class="font-swiss-display text-[120px] opacity-10 absolute -bottom-8">01</span>
+</div>
+<div class="col-span-2 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-swiss-meta text-[10px] uppercase">Distributed Execution</span>
+<button class="active-press p-1 border border-primary hover:bg-primary hover:text-background transition-colors">
+<span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+<div class="mt-8 pt-4 border-t border-primary/20">
+<span class="font-swiss-meta text-[9px] uppercase tracking-widest opacity-50">Reference: Microservices Design Patterns</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Swiss Grid Alignment) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t border-primary">
+<!-- Each nav item takes exactly 25% but adheres to grid feel -->
+<a class="flex flex-col items-center justify-center bg-primary text-background flex-1 active-press" href="#">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1">Facts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press" href="#">
+<span class="material-symbols-outlined text-xl">calendar_today</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press" href="#">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1">Topics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press" href="#">
+<span class="material-symbols-outlined text-xl">bookmark</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1">Saved</span>
+</a>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section, index) => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                section.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }, 100 * (index + 1));
+        });
+    });
+</script>
+</body></html>

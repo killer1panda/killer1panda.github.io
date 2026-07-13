@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact - Modular Data</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=EB+Garamond:ital,wght@0,600;1,600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Swiss Modernist Color Palette & Texture */
+        :root {
+            --sand-bg: #F2EFE9;
+            --forest-green: #1B4332;
+            --accent-green: #2D6A4F;
+        }
+        body {
+            background-color: var(--sand-bg);
+            color: var(--forest-green);
+        }
+        .border-forest { border-color: var(--forest-green); }
+        .text-forest { color: var(--forest-green); }
+        .bg-forest { background-color: var(--forest-green); }
+        
+        .active-press:active {
+            transform: scale(0.98);
+        }
+        .grid-modular {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#1B4332", /* Forest Green */
+                    "background": "#F2EFE9", /* Sand */
+                    "surface": "#F2EFE9",
+                    "on-surface": "#1B4332",
+                    "outline": "#1B4332"
+            },
+            "fontFamily": {
+                    "headline-caps": ["Sora", "sans-serif"],
+                    "body-serif": ["EB Garamond", "serif"],
+                    "metadata": ["Inter", "sans-serif"]
+            },
+            "spacing": {
+                    "margin-mobile": "24px",
+                    "border-thin": "1px"
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="selection:bg-primary selection:text-white">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 border-b border-thin border-forest bg-background flex justify-between items-center px-margin-mobile py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-forest mr-4 cursor-pointer">menu</span>
+<h1 class="font-headline-caps text-xl font-extrabold tracking-tight uppercase">Tech<span class="font-light">Archive</span></h1>
+</div>
+<span class="material-symbols-outlined text-forest cursor-pointer">filter_list</span>
+</header>
+<main class="min-h-[calc(100vh-128px)] flex flex-col items-center justify-start px-margin-mobile py-8">
+<!-- Modular Data Container -->
+<div class="w-full max-w-md flex flex-col">
+<!-- Section Header -->
+<div class="mb-6 flex justify-between items-end border-b border-forest pb-2">
+<span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase">Bulletin No. 042</span>
+<span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase">Series: Infrastructure</span>
+</div>
+<!-- 2x2 Modular Grid -->
+<div class="grid grid-cols-2 border-t border-l border-forest">
+<!-- Block 1: Topic Title -->
+<div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Topic</span>
+<h2 class="font-headline-caps text-2xl font-bold leading-none uppercase break-words">Network<br/>Latency</h2>
+</div>
+<!-- Block 2: Quantitative Data / Icon -->
+<div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square bg-forest text-[#F2EFE9]">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Metric</span>
+<div class="flex flex-col">
+<span class="text-4xl font-headline-caps font-extrabold leading-none">200k</span>
+<span class="font-metadata text-[10px] uppercase mt-1">KM/S (Fiber)</span>
+</div>
+</div>
+<!-- Block 3: The Main Fact (High-readability Serif) -->
+<div class="col-span-2 border-r border-b border-forest p-6 bg-white bg-opacity-50">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 mb-4 block">Definition &amp; Insight</span>
+<p class="font-body-serif text-[22px] leading-[1.3] text-forest">
+                    Edge computing reduces <span class="italic">latency</span> by moving processing closer to the source. Even in fiber optics, data is limited by the speed of light—roughly 200,000 km/s—meaning physical distance remains the ultimate bottleneck.
+                </p>
+</div>
+<!-- Block 4: Context / Detail -->
+<div class="border-r border-b border-forest p-4 flex flex-col justify-between">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Source</span>
+<p class="font-metadata text-[11px] leading-tight font-medium uppercase">Bell Labs / <br/>Photonics Research</p>
+</div>
+<!-- Block 5: Interaction / Share -->
+<div class="border-r border-b border-forest p-4 flex items-center justify-center group cursor-pointer hover:bg-forest transition-colors duration-200">
+<span class="material-symbols-outlined text-forest group-hover:text-white text-3xl">share_reviews</span>
+</div>
+</div>
+<!-- Footer Exhibition Style -->
+<div class="mt-8 flex flex-col gap-2">
+<div class="flex justify-between items-baseline">
+<span class="font-headline-caps text-[40px] font-extrabold leading-none opacity-10">042</span>
+<div class="text-right">
+<span class="font-metadata text-[10px] font-bold block uppercase tracking-tighter">Exhibition: The Digital Physics</span>
+<span class="font-metadata text-[10px] block opacity-60 uppercase">Room 404 — Edge Systems</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-forest">
+<!-- FACTS (Active) -->
+<a class="flex flex-col items-center justify-center bg-forest text-white px-4 py-2 flex-1 active-press" href="#">
+<span class="material-symbols-outlined">dataset</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Data</span>
+</a>
+<!-- ARCHIVE -->
+<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Index</span>
+</a>
+<!-- TOPICS -->
+<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Nodes</span>
+</a>
+<!-- SAVED -->
+<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Logs</span>
+</a>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const gridBlocks = document.querySelectorAll('.grid > div');
+        gridBlocks.forEach((block, index) => {
+            block.style.opacity = '0';
+            block.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                block.style.transition = 'all 0.5s cubic-bezier(0.2, 0, 0, 1)';
+                block.style.opacity = '1';
+                block.style.transform = 'translateY(0)';
+            }, 50 * index);
+        });
+    });
+</script>
+</body></html>

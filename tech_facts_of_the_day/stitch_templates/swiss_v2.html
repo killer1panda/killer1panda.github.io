@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact: Zero-Day Exploits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600;800&amp;family=EB+Garamond:wght@600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Paper Texture Effect */
+        .paper-texture {
+            background-color: #FCF9F2;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        /* Mechanical Press Interaction */
+        .active-press:active {
+            transform: translate(2px, 2px);
+        }
+        .border-thick { border-width: 4px; }
+        .border-thin { border-width: 1px; }
+        
+        /* Swiss Modernist Custom Styles */
+        .font-condensed {
+            font-family: 'Sora', sans-serif;
+            font-stretch: extra-condensed;
+        }
+        .tracking-widest-xl {
+            letter-spacing: 0.25em;
+        }
+        .orange-accent {
+            background-color: #FF4D00; /* Safety Orange */
+        }
+        .ivory-bg {
+            background-color: #FCF9F2;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#000000",
+                    "secondary": "#5d5f5f",
+                    "background": "#FCF9F2",
+                    "accent": "#FF4D00",
+                    "surface": "#FCF9F2",
+                    "on-surface": "#000000",
+                    "outline": "#000000"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "border-thick": "4px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline": ["Sora", "sans-serif"],
+                    "body": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="paper-texture text-on-surface selection:bg-accent selection:text-white">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 border-b-thick border-primary bg-background flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+<h1 class="font-headline font-bold text-xl tracking-tighter uppercase">Fact System</h1>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+</header>
+<main class="min-h-[calc(100vh-128px)] flex items-center justify-center p-margin-mobile">
+<!-- Central Fact Card: The Reductive Block -->
+<article class="relative w-full max-w-sm bg-background border-thick border-primary shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col transition-all duration-300">
+<!-- Header Block: Safety Orange Accent -->
+<div class="orange-accent p-6 border-b-thick border-primary">
+<div class="flex justify-between items-start">
+<span class="font-body font-extrabold text-xs tracking-widest-xl uppercase text-white">Warning: Vulnerability</span>
+<span class="material-symbols-outlined text-white text-3xl">priority_high</span>
+</div>
+</div>
+<!-- Content Block -->
+<div class="p-8 flex flex-col">
+<!-- Category with Wide Tracking -->
+<span class="font-body font-bold text-[10px] tracking-[0.3em] uppercase mb-4 text-primary opacity-60">Security Analysis // 012</span>
+<!-- Condensed Title -->
+<h2 class="font-headline font-extrabold text-5xl leading-[0.9] uppercase mb-8 break-words scale-y-110 origin-left">
+                Zero-Day<br/>Exploits
+            </h2>
+<!-- Separator Line -->
+<div class="w-full h-1 bg-primary mb-8"></div>
+<!-- Description Body -->
+<p class="font-body text-base font-medium leading-tight mb-8">
+                A "Zero-Day" vulnerability is a software security flaw known only to the attacker. It is called "Zero-Day" because the developer has had zero days to fix the vulnerability before it is exploited in the wild.
+            </p>
+<!-- Bottom Data Grid -->
+<div class="grid grid-cols-2 border-t-thick border-primary pt-6 gap-4">
+<div class="flex flex-col">
+<span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50">Log ID</span>
+<span class="font-headline font-bold text-lg">X-7742</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50">Status</span>
+<span class="font-headline font-bold text-lg text-accent">CRITICAL</span>
+</div>
+</div>
+</div>
+<!-- Footer Action Block: High Contrast Solid Fill -->
+<div class="bg-primary text-white p-4 flex justify-between items-center">
+<span class="font-body font-bold text-xs tracking-widest uppercase">Archive Record 2024</span>
+<button class="active-press bg-white text-primary px-4 py-2 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                Share <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</article>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t-thick border-primary">
+<!-- FACTS (Active) -->
+<a class="flex flex-col items-center justify-center orange-accent text-white flex-1 border-r-thick border-primary active-press" href="#">
+<span class="material-symbols-outlined">dataset</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Facts</span>
+</a>
+<!-- ARCHIVE -->
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-r-thick border-primary hover:bg-black hover:text-white transition-colors active-press" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Archive</span>
+</a>
+<!-- TOPICS -->
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-r-thick border-primary hover:bg-black hover:text-white transition-colors active-press" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Index</span>
+</a>
+<!-- SAVED -->
+<a class="flex flex-col items-center justify-center text-primary flex-1 hover:bg-black hover:text-white transition-colors active-press" href="#">
+<span class="material-symbols-outlined">stars</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Saved</span>
+</a>
+</nav>
+<script>
+    // Entry animation: Snappy and mechanical
+    document.addEventListener('DOMContentLoaded', () => {
+        const card = document.querySelector('article');
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.95) translateY(10px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.4s cubic-bezier(0.19, 1, 0.22, 1)';
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1) translateY(0)';
+        }, 50);
+    });
+</script>
+</body></html>

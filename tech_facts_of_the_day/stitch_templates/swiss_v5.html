@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - Architecture Scalability</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=EB+Garamond:ital,wght@0,600;1,600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Overlapping Planes Styles */
+        .limestone-bg {
+            background-color: #E8E8E8;
+        }
+        .burgundy-accent {
+            color: #800020;
+        }
+        .burgundy-bg {
+            background-color: #800020;
+        }
+        .border-burgundy {
+            border-color: #800020;
+        }
+        .active-press:active {
+            transform: translate(2px, 2px);
+        }
+        .border-thick { border-width: 3px; }
+        .border-thin { border-width: 1px; }
+        
+        /* Layering Utility */
+        .layer-shadow {
+            box-shadow: 10px 10px 0px rgba(128, 0, 32, 0.1);
+        }
+
+        .text-overlap {
+            mix-blend-mode: multiply;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#000000",
+                    "secondary": "#5d5f5f",
+                    "background": "#E8E8E8",
+                    "surface": "#E8E8E8",
+                    "on-surface": "#1c1b1b",
+                    "on-surface-variant": "#444748",
+                    "outline-variant": "#c4c7c7",
+                    "surface-container-highest": "#dcdcdc"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Sora"],
+                    "body-md": ["Inter"],
+                    "watermark": ["Sora"],
+                    "metadata-sm": ["Inter"],
+                    "category-label": ["EB Garamond"],
+                    "display-xl": ["Sora"],
+                    "headline-lg": ["Sora"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["36px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "watermark": ["220px", {"lineHeight": "200px", "fontWeight": "800"}],
+                    "metadata-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "category-label": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-xl": ["80px", {"lineHeight": "84px", "letterSpacing": "-0.04em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="limestone-bg text-on-surface selection:bg-burgundy-bg selection:text-white">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-6 py-4">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary mr-4 cursor-pointer">menu</span>
+<h1 class="font-headline-lg-mobile text-[24px] font-bold tracking-tight text-primary">TECH FACT</h1>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+</header>
+<main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-6 py-12 relative overflow-hidden">
+<!-- Background Large Numeral '05' -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-watermark text-watermark text-white/40 pointer-events-none z-0 select-none tracking-tighter opacity-80">
+        05
+    </div>
+<!-- Geometric Plane 1: Burgundy Bar -->
+<div class="absolute top-[20%] left-0 w-3/4 h-16 burgundy-bg opacity-10 -rotate-2"></div>
+<!-- Central Fact Card - Multi-layered -->
+<article class="relative w-full max-w-sm bg-white border-thick border-primary z-10 flex flex-col layer-shadow transition-all duration-300">
+<!-- Decorative Red Square Plane -->
+<div class="absolute -top-3 -left-3 w-12 h-12 burgundy-bg z-20"></div>
+<!-- Card Content Cluster -->
+<div class="relative z-30 p-8 flex flex-col items-start h-full bg-white">
+<!-- Category Label & Icon Overlap -->
+<div class="relative w-full mb-8 flex items-baseline gap-2">
+<span class="material-symbols-outlined text-[32px] burgundy-accent" style="font-variation-settings: 'wght' 600;">layers</span>
+<span class="font-category-label text-category-label burgundy-accent italic tracking-tight">ARCHITECTURE</span>
+</div>
+<!-- Main Title - Overlapping and Mixed Typography -->
+<div class="relative mb-8">
+<h2 class="font-headline-lg-mobile text-[40px] font-extrabold uppercase leading-[0.9] tracking-tighter text-primary">
+                    Horizontal<br/>
+<span class="burgundy-accent">vs</span><br/>
+                    Vertical
+                </h2>
+<span class="absolute -bottom-4 right-0 font-category-label text-[32px] text-primary/20 italic select-none">Scaling</span>
+</div>
+<!-- Description Body -->
+<p class="font-body-md text-body-md text-on-surface-variant leading-snug mb-12 border-l-2 border-burgundy pl-4">
+                Vertical scaling means adding more power (CPU, RAM) to an existing machine, whereas horizontal scaling means adding more machines to your network, distributing the load across multiple nodes.
+            </p>
+<!-- Footer Metadata Block -->
+<div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-metadata-sm text-[10px] uppercase text-primary font-bold">FACT #005</span>
+<span class="font-metadata-sm text-[10px] uppercase text-secondary">SYSTEM DESIGN</span>
+</div>
+<button class="active-press p-3 burgundy-bg text-white hover:opacity-90 transition-all duration-150">
+<span class="material-symbols-outlined text-[20px]">north_east</span>
+</button>
+</div>
+</div>
+<!-- Secondary Plane: Overlapping Bottom Shape -->
+<div class="absolute -bottom-4 -right-4 w-24 h-8 border-thick border-burgundy z-0"></div>
+</article>
+<!-- Aesthetic Floating Elements -->
+<div class="absolute top-[10%] right-10 w-2 h-32 bg-primary"></div>
+<div class="absolute bottom-[15%] left-10 w-16 h-[2px] bg-burgundy-bg"></div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary">
+<!-- FACTS (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary text-white px-4 py-2 flex-1 active-press" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1">FACTS</span>
+</a>
+<!-- ARCHIVE -->
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1">ARCHIVE</span>
+</a>
+<!-- TOPICS -->
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1">TOPICS</span>
+</a>
+<!-- SAVED -->
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1">SAVED</span>
+</a>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const card = document.querySelector('article');
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.95) translateY(30px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.8s cubic-bezier(0.19, 1, 0.22, 1)';
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1) translateY(0)';
+        }, 200);
+    });
+</script>
+</body></html>
