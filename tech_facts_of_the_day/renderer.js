@@ -109,6 +109,7 @@ class TechFactRenderer {
     
     .draggable {
       cursor: grab;
+      position: relative;
     }
     .draggable:active {
       cursor: grabbing;
@@ -137,7 +138,7 @@ class TechFactRenderer {
     .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
     .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
     .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
-    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
     .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
     .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
     .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
@@ -163,25 +164,25 @@ class TechFactRenderer {
     
     <div class="card-content">
       <div class="logo-header">
-        <img class="chapter-logo" src="${logoB64}" style="${logoB64 ? '' : 'display:none;'}" alt="Logo">
-        <span class="club-title">${appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES'}</span>
+        <img class="chapter-logo draggable" src="${logoB64}" style="${logoB64 ? '' : 'display:none;'}" alt="Logo" data-tid="logo">
+        <span class="club-title draggable" data-tid="club-title">${appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES'}</span>
       </div>
       
-      <div class="fact-icon-container">
+      <div class="fact-icon-container draggable" data-tid="icon">
         <div class="fact-icon-wrapper" style="width:100%; height:100%;">
           ${selectedIconSvg}
         </div>
       </div>
       
       <div>
-        <div class="fact-category">${appState.category}</div>
-        <div class="fact-title">${appState.title}</div>
-        <div class="fact-body">${appState.body}</div>
+        <div class="fact-category draggable" data-tid="category">${appState.category}</div>
+        <div class="fact-title draggable" data-tid="title">${appState.title}</div>
+        <div class="fact-body draggable" data-tid="body">${appState.body}</div>
       </div>
       
       <div class="card-footer">
-        <span class="society-handle">${appState.handle}</span>
-        <span class="interactive-prompt">Did you know?</span>
+        <span class="society-handle draggable" data-tid="handle">${appState.handle}</span>
+        <span class="interactive-prompt draggable" data-tid="prompt">${appState.prompt || 'Did you know?'}</span>
       </div>
     </div>
   </div>
@@ -201,28 +202,31 @@ class TechFactRenderer {
     const iframeDoc = this.iframe.contentDocument || this.iframe.contentWindow.document;
     if (!iframeDoc) return;
 
-    const clubTitle = iframeDoc.querySelector('.club-title');
+    const clubTitle = iframeDoc.querySelector('[data-tid="club-title"]');
     if (clubTitle) {
       clubTitle.innerText = appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES';
     }
 
-    const category = iframeDoc.querySelector('.fact-category');
+    const category = iframeDoc.querySelector('[data-tid="category"]');
     if (category) {
       const template = TECH_FACTS_REGISTRY.find(t => t.id === this.styleId);
       const isTerminal = template && template.id === '01';
       category.innerText = (isTerminal ? '> ' : '') + appState.category;
     }
 
-    const title = iframeDoc.querySelector('.fact-title');
+    const title = iframeDoc.querySelector('[data-tid="title"]');
     if (title) title.innerText = appState.title;
 
-    const body = iframeDoc.querySelector('.fact-body');
+    const body = iframeDoc.querySelector('[data-tid="body"]');
     if (body) body.innerText = appState.body;
 
-    const handle = iframeDoc.querySelector('.society-handle');
+    const handle = iframeDoc.querySelector('[data-tid="handle"]');
     if (handle) handle.innerText = appState.handle;
 
-    const logo = iframeDoc.querySelector('.chapter-logo');
+    const prompt = iframeDoc.querySelector('[data-tid="prompt"]');
+    if (prompt) prompt.innerText = appState.prompt || 'Did you know?';
+
+    const logo = iframeDoc.querySelector('[data-tid="logo"]');
     if (logo) {
       if (appState.logoDataUrl) {
         logo.src = appState.logoDataUrl;
@@ -278,17 +282,11 @@ class TechFactRenderer {
     }
 
     const getTid = (el) => {
-      if (el.classList.contains('logo-header')) return 'logo';
-      if (el.classList.contains('fact-icon-container')) return 'icon';
-      if (el.classList.contains('fact-category')) return 'category';
-      if (el.classList.contains('fact-title')) return 'title';
-      if (el.classList.contains('fact-body')) return 'body';
-      if (el.classList.contains('card-footer')) return 'footer';
-      return el.className.split(' ')[0] || 'element';
+      return el.getAttribute('data-tid');
     };
 
     // Make elements editable
-    const editables = iframeDoc.querySelectorAll('.fact-category, .fact-title, .fact-body, .society-handle, .club-title');
+    const editables = iframeDoc.querySelectorAll('.fact-category, .fact-title, .fact-body, .society-handle, .club-title, .interactive-prompt');
     editables.forEach(el => {
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
@@ -297,10 +295,14 @@ class TechFactRenderer {
         if (tid === 'category') appState.category = el.innerText;
         if (tid === 'title') appState.title = el.innerText;
         if (tid === 'body') appState.body = el.innerText;
-        if (el.classList.contains('society-handle')) appState.handle = el.innerText;
+        if (tid === 'handle') appState.handle = el.innerText;
+        if (tid === 'prompt') appState.prompt = el.innerText;
         
         // Sync text field to parent input
-        const inputId = tid === 'category' ? 'input-category' : (tid === 'title' ? 'input-title' : (tid === 'body' ? 'input-body' : null));
+        const inputId = tid === 'category' ? 'input-category' : 
+                        (tid === 'title' ? 'input-title' : 
+                        (tid === 'body' ? 'input-body' : 
+                        (tid === 'prompt' ? 'input-prompt' : null)));
         if (inputId) {
           const input = document.getElementById(inputId);
           if (input) input.value = el.innerText;
@@ -310,25 +312,18 @@ class TechFactRenderer {
       el.addEventListener('mousedown', (e) => e.stopPropagation());
     });
 
-    const dragSelectors = ['.logo-header', '.fact-icon-container', '.fact-category', '.fact-title', '.fact-body', '.card-footer'];
-    const draggables = [];
-    dragSelectors.forEach(sel => {
-      const el = iframeDoc.querySelector(sel);
-      if (el) draggables.push(el);
-    });
+    const draggables = Array.from(iframeDoc.querySelectorAll('.draggable'));
 
     draggables.forEach(el => {
-      el.classList.add('draggable');
       const tid = getTid(el);
-      el.setAttribute('data-tid', tid);
 
       const style = window.getComputedStyle(el);
       if (style.position === 'static') {
         el.style.position = 'relative';
       }
 
-      // Add 8-way resize handles to the icon container
-      if (tid === 'icon') {
+      // Add 8-way resize handles to the icon and logo containers, single handle to text
+      if (tid === 'icon' || tid === 'logo') {
         const directions = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
         directions.forEach(dir => {
           const h = iframeDoc.createElement('div');
@@ -351,6 +346,15 @@ class TechFactRenderer {
         if (e.target.getAttribute('contenteditable') === 'true' && e.target === iframeDoc.activeElement) {
           return;
         }
+
+        // Selection hook to open details panel
+        if (typeof window.selectElement === 'function') {
+          window.selectElement(tid);
+        }
+
+        // Highlight active element border
+        draggables.forEach(d => d.classList.remove('active'));
+        el.classList.add('active');
 
         // Compute scaling from parent wrapper
         const scaleWrapper = document.getElementById('scale-wrapper');
@@ -409,7 +413,7 @@ class TechFactRenderer {
             let snappedX = false;
             let guideLinesX = [];
             
-            // 1. Center of canvas snapping
+            // Center of canvas snap
             const diffCanvasX = localElCenterX - localCanvasCenterX;
             if (Math.abs(diffCanvasX) < localThreshold) {
               newTx -= diffCanvasX;
@@ -419,10 +423,10 @@ class TechFactRenderer {
               snappedX = true;
             }
             
-            // 2. Align to other elements snap bounds
+            // Align other elements snap X
             if (!snappedX) {
               for (const other of otherElements) {
-                const otherTid = other.getAttribute('data-tid');
+                const otherTid = getTid(other);
                 const otherTrans = appState.transforms[otherTid] || { x: 0, y: 0 };
                 const otherOrigLocalLeft = other.offsetLeft - (otherTrans.x || 0);
                 const localOtherLeft = otherOrigLocalLeft + (otherTrans.x || 0);
@@ -464,7 +468,7 @@ class TechFactRenderer {
             let snappedY = false;
             let guideLinesY = [];
             
-            // 1. Center of canvas Y-axis snapping
+            // Center of canvas snap Y
             const diffCanvasY = localElCenterY - localCanvasCenterY;
             if (Math.abs(diffCanvasY) < localThreshold) {
               newTy -= diffCanvasY;
@@ -474,10 +478,10 @@ class TechFactRenderer {
               snappedY = true;
             }
             
-            // 2. Align other elements Y-axis bounds
+            // Align other elements snap Y
             if (!snappedY) {
               for (const other of otherElements) {
-                const otherTid = other.getAttribute('data-tid');
+                const otherTid = getTid(other);
                 const otherTrans = appState.transforms[otherTid] || { x: 0, y: 0 };
                 const otherOrigLocalTop = other.offsetTop - (otherTrans.y || 0);
                 const localOtherTop = otherOrigLocalTop + (otherTrans.y || 0);
@@ -578,7 +582,7 @@ class TechFactRenderer {
         document.addEventListener('mouseup', onMouseUp);
       });
 
-      // Handle Resizing Math
+      // Handle Resizing
       const handles = el.querySelectorAll('.resize-handle');
       handles.forEach(h => {
         h.addEventListener('mousedown', (e) => {
@@ -609,8 +613,8 @@ class TechFactRenderer {
             if (!isResizing) return;
             ev.preventDefault();
 
-            if (tid === 'icon') {
-              // 8-way bounding box stretching for icons
+            if (tid === 'icon' || tid === 'logo') {
+              // 8-way box stretching
               const dx = ev.clientX - startX;
               const dy = ev.clientY - startY;
 
@@ -649,7 +653,7 @@ class TechFactRenderer {
               el.style.height = `${newH}px`;
               el.style.transform = `translate(${newTx}px, ${newTy}px) scale(1)`;
             } else {
-              // Standard proportional scaling for other blocks
+              // Proportional scaling for text
               const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
               let newScale = originalScale * (d1 / d0);
               if (newScale < 0.2) newScale = 0.2;
@@ -678,17 +682,32 @@ class TechFactRenderer {
       });
     });
 
-    // Restore positions from transformations
+    // Restore positions
     if (appState.transforms) {
       for (const [tid, pos] of Object.entries(appState.transforms)) {
         const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
         if (el) {
-          if (tid === 'icon' && pos.w && pos.h) {
+          if ((tid === 'icon' || tid === 'logo') && pos.w && pos.h) {
             el.style.width = `${pos.w}px`;
             el.style.height = `${pos.h}px`;
           }
           const scaleVal = pos.scale !== undefined ? pos.scale : 1;
           el.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scaleVal})`;
+        }
+      }
+    }
+
+    // Restore custom text styles from appState
+    if (appState.textStyles) {
+      for (const [tid, styles] of Object.entries(appState.textStyles)) {
+        const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
+        if (el) {
+          if (styles.fontSize) el.style.fontSize = styles.fontSize + 'px';
+          if (styles.fontWeight) el.style.fontWeight = styles.fontWeight;
+          if (styles.color) el.style.color = styles.color;
+          if (styles.textAlign) el.style.textAlign = styles.textAlign;
+          if (styles.letterSpacing) el.style.letterSpacing = styles.letterSpacing + 'px';
+          if (styles.lineHeight) el.style.lineHeight = styles.lineHeight;
         }
       }
     }
@@ -700,7 +719,7 @@ class TechFactRenderer {
     const canvasEl = iframeDoc.querySelector('.card-canvas');
     if (!canvasEl) return;
 
-    // Temporarily hide elements
+    // Temporarily hide edit guides & boundaries
     const editables = iframeDoc.querySelectorAll('[contenteditable="true"]');
     const originalOutlines = [];
     editables.forEach(el => {
@@ -713,6 +732,10 @@ class TechFactRenderer {
     const guides = iframeDoc.querySelectorAll('.guide-container');
     guides.forEach(g => g.style.setProperty('display', 'none', 'important'));
 
+    // Remove active outlines
+    const draggables = iframeDoc.querySelectorAll('.draggable');
+    draggables.forEach(d => d.classList.remove('active'));
+
     try {
       const html2canvas = window.html2canvas;
       const iframeWin = this.iframe.contentWindow;
@@ -721,7 +744,7 @@ class TechFactRenderer {
       const exportBg = isTransparent ? '#000000' : computedBg;
 
       const canvas = await html2canvas(canvasEl, {
-        scale: 1.5, // High resolution output
+        scale: 1.5,
         useCORS: true,
         backgroundColor: exportBg
       });
@@ -767,6 +790,9 @@ class TechFactRenderer {
     handles.forEach(h => h.style.setProperty('display', 'none', 'important'));
     const guides = iframeDoc.querySelectorAll('.guide-container');
     guides.forEach(g => g.style.setProperty('display', 'none', 'important'));
+
+    const draggables = iframeDoc.querySelectorAll('.draggable');
+    draggables.forEach(d => d.classList.remove('active'));
 
     try {
       const stream = await navigator.mediaDevices.getDisplayMedia({

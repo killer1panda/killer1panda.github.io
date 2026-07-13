@@ -24,7 +24,7 @@
     
     /* ─── SIDEBAR ─── */
     .sidebar {
-      width: 340px; background: var(--panel); border-right: 1px solid var(--border);
+      width: 360px; background: var(--panel); border-right: 1px solid var(--border);
       display: flex; flex-direction: column; overflow-y: auto;
       flex-shrink: 0;
     }
@@ -33,7 +33,7 @@
     
     .form-group { margin-bottom: 16px; }
     label { display: block; font-size: 11px; margin-bottom: 6px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    input[type="text"], textarea, select, input[type="color"] {
+    input[type="text"], input[type="number"], textarea, select, input[type="color"] {
       width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--border);
       border-radius: 6px; color: var(--text); font-family: inherit; font-size: 14px;
     }
@@ -53,6 +53,7 @@
     .btn-danger { background: #e11d48; }
     
     .flex-row { display: flex; gap: 8px; }
+    .flex-row > div { flex: 1; }
     .flex-row .btn { flex: 1; }
     
     /* ─── GALLERY ─── */
@@ -108,9 +109,26 @@
     
     <div class="panel-section">
       <h2>2. Fact Content</h2>
-      <div class="form-group">
-        <label>Category</label>
-        <input type="text" id="input-category" value="CYBERSECURITY">
+      <div class="form-group flex-row">
+        <div>
+          <label>Category</label>
+          <input type="text" id="input-category" value="CYBERSECURITY">
+        </div>
+        <div>
+          <label>Icon Theme</label>
+          <select id="input-icon">
+            <option value="ai">Artificial Intelligence</option>
+            <option value="cybersecurity" selected>Cybersecurity / Shield</option>
+            <option value="code">Code / Development</option>
+            <option value="hardware">Hardware / Chip</option>
+            <option value="cloud">Cloud Storage</option>
+            <option value="database">Database / Storage</option>
+            <option value="mobile">Mobile / Smartphone</option>
+            <option value="network">Network / Nodes</option>
+            <option value="history">History / Clock</option>
+            <option value="gaming">Console / Gaming</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
         <label>Fact Title</label>
@@ -118,40 +136,79 @@
       </div>
       <div class="form-group">
         <label>Fact Description</label>
-        <textarea id="input-body" rows="4">Your ISP, school, or employer can still see your active web traffic. Incognito only prevents your browser from saving history locally.</textarea>
+        <textarea id="input-body" rows="3">Your ISP, school, or employer can still see your active web traffic. Incognito only prevents your browser from saving history locally.</textarea>
       </div>
       <div class="form-group">
-        <label>Icon Theme</label>
-        <select id="input-icon">
-          <option value="ai">Artificial Intelligence</option>
-          <option value="cybersecurity" selected>Cybersecurity / Shield</option>
-          <option value="code">Code / Development</option>
-          <option value="hardware">Hardware / Chip</option>
-          <option value="cloud">Cloud Storage</option>
-          <option value="database">Database / Storage</option>
-          <option value="mobile">Mobile / Smartphone</option>
-          <option value="network">Network / Nodes</option>
-          <option value="history">History / Clock</option>
-          <option value="gaming">Console / Gaming</option>
-        </select>
+        <label>Footer Prompt</label>
+        <input type="text" id="input-prompt" value="Did you know?">
+      </div>
+    </div>
+
+    <!-- DYNAMIC TEXT PROPERTIES CUSTOMIZER -->
+    <div class="panel-section" id="section-text-properties" style="display: none; background: rgba(59,130,246,0.03);">
+      <h2>3. Text Properties (<span id="active-element-name" style="color:var(--accent);">None</span>)</h2>
+      <div class="form-group flex-row">
+        <div>
+          <label>Size (px)</label>
+          <input type="number" id="text-size" value="16" min="8" max="150" step="1">
+        </div>
+        <div>
+          <label>Weight</label>
+          <select id="text-weight">
+            <option value="300">Light</option>
+            <option value="400">Regular</option>
+            <option value="500">Medium</option>
+            <option value="600">Semi-Bold</option>
+            <option value="700">Bold</option>
+            <option value="800">Extra-Bold</option>
+            <option value="900">Black</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group flex-row">
+        <div>
+          <label>Text Color</label>
+          <input type="color" id="text-color" value="#ffffff">
+        </div>
+        <div>
+          <label>Alignment</label>
+          <select id="text-align">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+            <option value="justify">Justify</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group flex-row">
+        <div>
+          <label>Letter Spacing</label>
+          <input type="number" id="text-spacing" value="0" min="-5" max="25" step="0.5">
+        </div>
+        <div>
+          <label>Line Height</label>
+          <input type="number" id="text-height" value="1.2" min="0.8" max="3" step="0.1">
+        </div>
       </div>
     </div>
 
     <div class="panel-section">
-      <h2>3. Branding & Customization</h2>
-      <div class="form-group">
-        <label>Society Handle</label>
-        <input type="text" id="input-handle" value="@ieee_cis_upes">
+      <h2>4. Branding & Customization</h2>
+      <div class="form-group flex-row">
+        <div>
+          <label>Society Handle</label>
+          <input type="text" id="input-handle" value="@ieee_cis_upes">
+        </div>
+        <div>
+          <label>Chapter Layout</label>
+          <select id="input-chapter">
+            <option value="cis">IEEE CIS UPES</option>
+            <option value="sps">IEEE SPS UPES</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label>Chapter Layout</label>
-        <select id="input-chapter">
-          <option value="cis">IEEE CIS UPES</option>
-          <option value="sps">IEEE SPS UPES</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Accent Color</label>
+        <label>Theme Accent Color</label>
         <input type="color" id="input-color" value="#39ff14">
       </div>
       <button class="btn" id="btn-upload">📷 Upload Custom Logo</button>
@@ -159,7 +216,7 @@
     </div>
     
     <div class="panel-section">
-      <h2>4. Formats & Export</h2>
+      <h2>5. Formats & Export</h2>
       <div class="form-group">
         <label>Format Ratio</label>
         <select id="input-format">
@@ -169,7 +226,7 @@
           <option value="16:9">Landscape Banner (16:9)</option>
         </select>
       </div>
-      <button class="btn btn-danger" id="btn-reset">↺ Reset Transform State</button>
+      <button class="btn btn-danger" id="btn-reset">↺ Reset Transform & Style States</button>
       <br><br>
       <button class="btn btn-primary" id="btn-dl-png">Export PNG</button>
       <button class="btn btn-primary" id="btn-dl-jpg">Export JPG</button>
@@ -219,13 +276,15 @@
       category: "CYBERSECURITY",
       title: "Incognito is not invisible",
       body: "Your ISP, school, or employer can still see your active web traffic. Incognito only prevents your browser from saving history locally.",
+      prompt: "Did you know?",
       iconKey: "cybersecurity",
       handle: "@ieee_cis_upes",
       chapter: "cis",
       accentColor: "#39ff14",
       logoDataUrl: null,
       format: "9:16",
-      transforms: {}
+      transforms: {},
+      textStyles: {}
     };
 
     function saveState() {
@@ -243,7 +302,7 @@
         el.classList.add('active');
         appState.style = s.id;
         
-        // Auto-assign default theme accent color for better design flow
+        // Auto-assign default theme accent color
         const themeAccents = {
           "01": "#39ff14",
           "02": "#6366f1",
@@ -268,6 +327,7 @@
     document.getElementById('input-category').value = appState.category;
     document.getElementById('input-title').value = appState.title;
     document.getElementById('input-body').value = appState.body;
+    document.getElementById('input-prompt').value = appState.prompt || "Did you know?";
     document.getElementById('input-icon').value = appState.iconKey;
     document.getElementById('input-handle').value = appState.handle;
     document.getElementById('input-chapter').value = appState.chapter;
@@ -278,6 +338,7 @@
     document.getElementById('input-category').oninput = (e) => { appState.category = e.target.value; updateData(); };
     document.getElementById('input-title').oninput = (e) => { appState.title = e.target.value; updateData(); };
     document.getElementById('input-body').oninput = (e) => { appState.body = e.target.value; updateData(); };
+    document.getElementById('input-prompt').oninput = (e) => { appState.prompt = e.target.value; updateData(); };
     document.getElementById('input-icon').onchange = (e) => { appState.iconKey = e.target.value; updateData(); };
     document.getElementById('input-handle').oninput = (e) => { appState.handle = e.target.value; updateData(); };
     document.getElementById('input-chapter').onchange = (e) => { appState.chapter = e.target.value; updateData(); };
@@ -297,9 +358,11 @@
       reader.readAsDataURL(file);
     };
 
-    // Reset Layout
+    // Reset Layout and styles
     document.getElementById('btn-reset').onclick = () => {
       appState.transforms = {};
+      appState.textStyles = {};
+      document.getElementById('section-text-properties').style.display = 'none';
       renderApp();
     };
 
@@ -310,6 +373,104 @@
       const durationSec = parseInt(document.getElementById('input-duration').value) || 5;
       renderer.exportVideo(durationSec);
     };
+
+    // Dynamic Text Properties listeners
+    document.getElementById('text-size').oninput = updateActiveElementStyle;
+    document.getElementById('text-weight').onchange = updateActiveElementStyle;
+    document.getElementById('text-color').oninput = updateActiveElementStyle;
+    document.getElementById('text-align').onchange = updateActiveElementStyle;
+    document.getElementById('text-spacing').oninput = updateActiveElementStyle;
+    document.getElementById('text-height').oninput = updateActiveElementStyle;
+
+    // Helper functions for selection panel
+    function rgbToHex(rgb) {
+      if (!rgb) return '#ffffff';
+      const match = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+      if (!match) return '#ffffff';
+      const r = parseInt(match[1]);
+      const g = parseInt(match[2]);
+      const b = parseInt(match[3]);
+      return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toLowerCase();
+    }
+
+    window.selectElement = function(tid) {
+      appState.activeElementTid = tid;
+      const panel = document.getElementById('section-text-properties');
+      const nameSpan = document.getElementById('active-element-name');
+      
+      if (!tid || tid === 'icon' || tid === 'logo') {
+        panel.style.display = 'none';
+        return;
+      }
+      
+      panel.style.display = 'block';
+      nameSpan.innerText = tid.toUpperCase();
+      
+      // Query current style settings of selected element inside iframe
+      const iframeDoc = renderer.iframe.contentDocument || renderer.iframe.contentWindow.document;
+      const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
+      if (el) {
+        const comp = renderer.iframe.contentWindow.getComputedStyle(el);
+        
+        const fontSizePx = Math.round(parseFloat(comp.fontSize)) || 16;
+        const fontWeight = comp.fontWeight || '400';
+        const colorHex = rgbToHex(comp.color) || '#ffffff';
+        const textAlign = comp.textAlign || 'left';
+        
+        let letterSpacing = comp.letterSpacing;
+        if (letterSpacing === 'normal') letterSpacing = 0;
+        else letterSpacing = parseFloat(letterSpacing) || 0;
+        
+        let lineHeight = comp.lineHeight;
+        if (lineHeight === 'normal') lineHeight = 1.2;
+        else {
+          const lhFloat = parseFloat(lineHeight);
+          lineHeight = isNaN(lhFloat) ? 1.2 : (lhFloat / fontSizePx).toFixed(1);
+        }
+        
+        document.getElementById('text-size').value = fontSizePx;
+        document.getElementById('text-weight').value = fontWeight;
+        document.getElementById('text-color').value = colorHex;
+        document.getElementById('text-align').value = textAlign;
+        document.getElementById('text-spacing').value = letterSpacing;
+        document.getElementById('text-height').value = lineHeight;
+      }
+    };
+
+    function updateActiveElementStyle() {
+      const tid = appState.activeElementTid;
+      if (!tid) return;
+      
+      const size = document.getElementById('text-size').value;
+      const weight = document.getElementById('text-weight').value;
+      const color = document.getElementById('text-color').value;
+      const align = document.getElementById('text-align').value;
+      const spacing = document.getElementById('text-spacing').value;
+      const height = document.getElementById('text-height').value;
+      
+      if (!appState.textStyles) appState.textStyles = {};
+      appState.textStyles[tid] = {
+        fontSize: size,
+        fontWeight: weight,
+        color: color,
+        textAlign: align,
+        letterSpacing: spacing,
+        lineHeight: height
+      };
+      
+      const iframeDoc = renderer.iframe.contentDocument || renderer.iframe.contentWindow.document;
+      const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
+      if (el) {
+        el.style.fontSize = size + 'px';
+        el.style.fontWeight = weight;
+        el.style.color = color;
+        el.style.textAlign = align;
+        el.style.letterSpacing = spacing + 'px';
+        el.style.lineHeight = height;
+      }
+      
+      saveState();
+    }
 
     // Core Scaling and Rendering
     async function renderApp() {
