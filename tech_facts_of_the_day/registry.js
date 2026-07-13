@@ -27,7 +27,7 @@ const TECH_FACTS_REGISTRY = [
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.2);
+      box-shadow: inset 0 0 30px rgba(57, 255, 20, 0.2);
     `,
     texture_css: `
       position: absolute;
@@ -44,18 +44,26 @@ const TECH_FACTS_REGISTRY = [
       .particle:nth-child(3) { left: 60%; width: 3px; height: 3px; --dur: 9s; --delay: 3s; --max-opacity: 0.5; }
       .particle:nth-child(4) { left: 80%; width: 5px; height: 5px; --dur: 12s; --delay: 2s; --max-opacity: 0.3; }
     `,
+    decorations: `
+      <div style="position:absolute; top:20px; right:40px; font-size:11px; opacity:0.6; color:#39ff14;">[SYS STATUS: OPERATIONAL]</div>
+      <div style="position:absolute; top:20px; left:40px; font-size:11px; opacity:0.6; color:#39ff14;">[CORE_IP: 192.168.1.109]</div>
+      <div style="position:absolute; bottom:25px; left:40px; font-size:11px; opacity:0.6; color:#39ff14;">[LOG_ID: 0x8F22A]</div>
+      <div style="position:absolute; bottom:25px; right:40px; font-size:11px; opacity:0.7; color:#39ff14;">[████████░░░] 75%</div>
+      <div style="position:absolute; top:120px; left:0; right:0; border-top: 1px dashed rgba(57, 255, 20, 0.3); pointer-events: none;"></div>
+      <div style="position:absolute; bottom:100px; left:0; right:0; border-top: 1px dashed rgba(57, 255, 20, 0.3); pointer-events: none;"></div>
+    `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 10px; opacity: 0.8; }
+      .logo-header { display: flex; align-items: center; gap: 10px; opacity: 0.9; }
       .logo-header img { height: 24px; filter: grayscale(1) invert(1) brightness(2); }
       .logo-header span { font-weight: 600; font-size: 14px; text-transform: uppercase; color: #39ff14; }
-      .fact-icon-container { margin: 40px 0; display: flex; justify-content: flex-start; color: #39ff14; filter: drop-shadow(0 0 8px #39ff14); }
-      .fact-category { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #39ff14; opacity: 0.7; margin-bottom: 10px; }
+      .fact-icon-container { margin: 60px 0; display: flex; justify-content: flex-start; color: #39ff14; filter: drop-shadow(0 0 12px #39ff14); }
+      .fact-category { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #39ff14; opacity: 0.85; margin-bottom: 12px; }
       .fact-category::before { content: '> '; }
-      .fact-title { font-size: 38px; font-weight: 700; color: #ffffff; line-height: 1.2; margin-bottom: 20px; }
-      .fact-body { font-size: 18px; line-height: 1.6; color: #39ff14; opacity: 0.9; }
+      .fact-title { font-size: 38px; font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 10px rgba(57, 255, 20, 0.2); }
+      .fact-body { font-size: 18px; line-height: 1.6; color: #39ff14; opacity: 0.95; }
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(57, 255, 20, 0.3); padding-top: 20px; font-size: 12px; }
       .society-handle { font-weight: 600; color: #39ff14; }
-      .interactive-prompt { opacity: 0.7; }
+      .interactive-prompt { opacity: 0.8; }
     `
   },
   {
@@ -79,14 +87,26 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 45%);
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 45%),
+                  radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
     `,
     particles_css: `
       .particle { background: #ffffff !important; }
       .particle:nth-child(1) { left: 15%; width: 3px; height: 3px; --dur: 10s; --delay: 0s; --max-opacity: 0.4; }
       .particle:nth-child(2) { left: 40%; width: 4px; height: 4px; --dur: 13s; --delay: 1.5s; --max-opacity: 0.3; }
       .particle:nth-child(3) { left: 70%; width: 2px; height: 2px; --dur: 8s; --delay: 2.5s; --max-opacity: 0.5; }
+    `,
+    decorations: `
+      <!-- Glowing Mesh Blob Orbs -->
+      <div style="position:absolute; top:15%; left:10%; width:200px; height:200px; border-radius:50%; background:rgba(99,102,241,0.25); filter:blur(60px); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; bottom:15%; right:10%; width:220px; height:220px; border-radius:50%; background:rgba(236,72,153,0.25); filter:blur(60px); pointer-events:none; z-index:1;"></div>
+      
+      <!-- Tech crosshair anchors -->
+      <div style="position:absolute; top:20px; left:20px; color:rgba(255,255,255,0.2); font-size:18px; pointer-events:none;">+</div>
+      <div style="position:absolute; top:20px; right:20px; color:rgba(255,255,255,0.2); font-size:18px; pointer-events:none;">+</div>
+      <div style="position:absolute; bottom:20px; left:20px; color:rgba(255,255,255,0.2); font-size:18px; pointer-events:none;">+</div>
+      <div style="position:absolute; bottom:20px; right:20px; color:rgba(255,255,255,0.2); font-size:18px; pointer-events:none;">+</div>
     `,
     content_css: `
       .card-content {
@@ -97,22 +117,22 @@ const TECH_FACTS_REGISTRY = [
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
-        padding: 40px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 28px;
+        padding: 45px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
       }
-      .logo-header { display: flex; align-items: center; gap: 10px; }
+      .logo-header { display: flex; align-items: center; gap: 12px; }
       .logo-header img { height: 26px; }
-      .logo-header span { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #a1a1aa; }
-      .fact-icon-container { display: flex; justify-content: flex-start; color: #a5b4fc; margin: 30px 0 10px 0; }
-      .fact-category { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #6366f1; margin-bottom: 8px; }
-      .fact-title { font-size: 34px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 16px; }
-      .fact-body { font-size: 16px; line-height: 1.6; color: #e4e4e7; }
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 20px; font-size: 12px; }
+      .logo-header span { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: #d4d4d8; }
+      .fact-icon-container { display: flex; justify-content: flex-start; color: #a5b4fc; margin: 40px 0 15px 0; filter: drop-shadow(0 0 15px rgba(99,102,241,0.5)); }
+      .fact-category { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #818cf8; margin-bottom: 10px; }
+      .fact-title { font-size: 34px; font-weight: 800; color: #ffffff; line-height: 1.3; margin-bottom: 20px; }
+      .fact-body { font-size: 16px; line-height: 1.65; color: #f4f4f5; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 24px; font-size: 12px; }
       .society-handle { font-weight: 600; color: #ffffff; }
       .interactive-prompt { color: #a1a1aa; }
     `
@@ -129,7 +149,7 @@ const TECH_FACTS_REGISTRY = [
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border: 12px solid #09090b;
+      border: 14px solid #09090b;
       position: relative;
     `,
     texture_css: `
@@ -138,22 +158,35 @@ const TECH_FACTS_REGISTRY = [
       pointer-events: none;
       z-index: 50;
       mix-blend-mode: multiply;
-      opacity: 0.03;
-      background-image: radial-gradient(#000 1px, transparent 0);
-      background-size: 4px 4px;
+      opacity: 0.04;
+      background-image: radial-gradient(#000 1.5px, transparent 0);
+      background-size: 5px 5px;
     `,
     particles_css: `
       .particle { display: none !important; }
     `,
+    decorations: `
+      <!-- Bold structural background graphics -->
+      <div style="position:absolute; bottom:180px; right:40px; font-size:120px; font-weight:900; color:rgba(9,9,11,0.03); font-family:'Space Grotesk',sans-serif; pointer-events:none; z-index:1; letter-spacing:-5px;">INFO</div>
+      <div style="position:absolute; top:120px; left:40px; right:40px; height:2px; background:#09090b; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:110px; left:40px; right:40px; height:2px; background:#09090b; pointer-events:none;"></div>
+      
+      <!-- Metadata layout block -->
+      <div style="position:absolute; bottom:130px; left:60px; display:flex; gap:30px; font-size:10px; font-weight:700; text-transform:uppercase; opacity:0.6; color:#09090b;">
+        <span>TYPE: DAILY_CORE</span>
+        <span>LANG: EN-US</span>
+        <span>VER: 4.1</span>
+      </div>
+    `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #09090b; padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #09090b; padding-bottom: 18px; }
       .logo-header img { height: 28px; filter: grayscale(1) contrast(1.5); }
       .logo-header span { font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: -0.5px; }
-      .fact-icon-container { margin-top: 40px; display: flex; justify-content: flex-start; color: #09090b; }
+      .fact-icon-container { margin-top: 50px; display: flex; justify-content: flex-start; color: #09090b; }
       .fact-icon-container svg { width: 56px; height: 56px; stroke-width: 2.5; }
-      .fact-category { font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 30px 0 10px 0; color: #09090b; }
-      .fact-title { font-size: 40px; font-weight: 700; color: #09090b; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-      .fact-body { font-size: 18px; line-height: 1.5; color: #27272a; font-weight: 400; margin-bottom: 40px; }
+      .fact-category { font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 35px 0 12px 0; color: #09090b; }
+      .fact-title { font-size: 40px; font-weight: 700; color: #09090b; line-height: 1.15; margin-bottom: 22px; letter-spacing: -1.2px; }
+      .fact-body { font-size: 18px; line-height: 1.55; color: #18181b; font-weight: 400; margin-bottom: 60px; }
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #09090b; padding-top: 15px; font-size: 13px; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #09090b; }
       .interactive-prompt { color: #71717a; }
@@ -164,7 +197,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Cyber Grid",
     fonts_url: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap",
     canvas_css: `
-      background-color: #0c0f1d;
+      background-color: #080a13;
       color: #00f0ff;
       font-family: 'Orbitron', sans-serif;
       padding: 50px;
@@ -173,6 +206,7 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       border: 4px solid #00f0ff;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
     `,
     texture_css: `
       position: absolute;
@@ -190,17 +224,33 @@ const TECH_FACTS_REGISTRY = [
       .particle:nth-child(2) { left: 50%; width: 4px; height: 4px; --dur: 12s; --max-opacity: 0.4; }
       .particle:nth-child(3) { left: 85%; width: 3px; height: 3px; --dur: 10s; --max-opacity: 0.5; }
     `,
+    decorations: `
+      <!-- Cyber technical labels and HUD frames -->
+      <div style="position:absolute; top:85px; left:50px; font-size:9px; color:rgba(0,240,255,0.4); letter-spacing:1px;">SEC_DATABASE: LOCAL_SYNC</div>
+      <div style="position:absolute; top:85px; right:50px; font-size:9px; color:rgba(0,240,255,0.4); letter-spacing:1px;">SYSTEM_GRID_ACTIVE</div>
+      <div style="position:absolute; bottom:80px; left:50px; font-size:9px; color:#ff8c00; letter-spacing:1px;">// INTEL LEVEL: HIGH_PRIORITY //</div>
+      
+      <!-- Decorative corner bracket overlays -->
+      <div style="position:absolute; top:25px; left:25px; width:20px; height:20px; border-top:3px solid #00f0ff; border-left:3px solid #00f0ff; pointer-events:none;"></div>
+      <div style="position:absolute; top:25px; right:25px; width:20px; height:20px; border-top:3px solid #00f0ff; border-right:3px solid #00f0ff; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:25px; left:25px; width:20px; height:20px; border-bottom:3px solid #00f0ff; border-left:3px solid #00f0ff; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:25px; right:25px; width:20px; height:20px; border-bottom:3px solid #00f0ff; border-right:3px solid #00f0ff; pointer-events:none;"></div>
+      
+      <!-- Tech Grid Border Lines -->
+      <div style="position:absolute; top:110px; bottom:100px; left:30px; border-left:1px dashed rgba(0, 240, 255, 0.2); pointer-events:none;"></div>
+      <div style="position:absolute; top:110px; bottom:100px; right:30px; border-right:1px dashed rgba(0, 240, 255, 0.2); pointer-events:none;"></div>
+    `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid rgba(0, 240, 255, 0.2); padding-bottom: 12px; }
+      .logo-header { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid rgba(0, 240, 255, 0.3); padding-bottom: 14px; }
       .logo-header img { height: 22px; filter: hue-rotate(180deg) brightness(1.5); }
       .logo-header span { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
-      .fact-icon-container { display: flex; justify-content: center; color: #ff8c00; filter: drop-shadow(0 0 8px #ff8c00); margin: 30px 0; }
-      .fact-category { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #ff8c00; margin-bottom: 8px; }
-      .fact-title { font-size: 32px; font-weight: 900; color: #ffffff; line-height: 1.2; text-shadow: 0 0 10px rgba(0, 240, 255, 0.3); margin-bottom: 16px; text-transform: uppercase; }
+      .fact-icon-container { display: flex; justify-content: center; color: #ff8c00; filter: drop-shadow(0 0 10px rgba(255,140,0,0.5)); margin: 40px 0; }
+      .fact-category { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #ff8c00; margin-bottom: 10px; }
+      .fact-title { font-size: 32px; font-weight: 900; color: #ffffff; line-height: 1.25; text-shadow: 0 0 12px rgba(0, 240, 255, 0.4); margin-bottom: 18px; text-transform: uppercase; }
       .fact-body { font-family: sans-serif; font-size: 15px; line-height: 1.6; color: #a5f3fc; }
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid rgba(0, 240, 255, 0.2); padding-top: 15px; font-size: 11px; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid rgba(0, 240, 255, 0.3); padding-top: 15px; font-size: 11px; }
       .society-handle { font-weight: 700; color: #00f0ff; letter-spacing: 1px; }
-      .interactive-prompt { color: rgba(0, 240, 255, 0.6); }
+      .interactive-prompt { color: rgba(0, 240, 255, 0.7); }
     `
   },
   {
@@ -230,26 +280,38 @@ const TECH_FACTS_REGISTRY = [
     particles_css: `
       .particle { display: none !important; }
     `,
+    decorations: `
+      <!-- Layered block outline shadow cards behind content -->
+      <div style="position:absolute; top:56px; left:56px; right:44px; bottom:44px; background:rgba(28,25,23,0.06); border:2px solid #1c1917; border-radius:20px; pointer-events:none; z-index:1;"></div>
+      
+      <!-- Cute Retro Sticker Badge -->
+      <div style="position:absolute; top:130px; right:20px; background:#f43f5e; color:#ffffff; font-size:10px; font-weight:700; padding:6px 12px; border:2px solid #1c1917; border-radius:10px; box-shadow:3px 3px 0 #1c1917; transform:rotate(8deg); text-transform:uppercase; pointer-events:none; z-index:100;">★ INTEL SHOT</div>
+      
+      <!-- Bottom right arrow graphic -->
+      <svg style="position:absolute; bottom:120px; right:40px; width:44px; height:44px; fill:#1c1917; pointer-events:none; z-index:10;" viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z"/></svg>
+    `,
     content_css: `
       .card-content {
         background: #ffffff;
-        border: 2px solid #1c1917;
+        border: 2.5px solid #1c1917;
         border-radius: 20px;
-        padding: 35px;
+        padding: 40px;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 6px 6px 0px #1c1917;
+        box-shadow: 8px 8px 0px #1c1917;
+        position: relative;
+        z-index: 10;
       }
-      .logo-header { display: flex; align-items: center; gap: 8px; }
+      .logo-header { display: flex; align-items: center; gap: 10px; }
       .logo-header img { height: 24px; filter: grayscale(1) contrast(1.2); }
       .logo-header span { font-weight: 700; font-size: 13px; color: #44403c; text-transform: uppercase; }
-      .fact-icon-container { display: flex; justify-content: flex-start; color: #d97706; margin: 25px 0 10px 0; }
-      .fact-category { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #d97706; margin-bottom: 6px; }
-      .fact-title { font-size: 32px; font-weight: 700; color: #1c1917; line-height: 1.25; margin-bottom: 12px; }
-      .fact-body { font-size: 16px; line-height: 1.55; color: #44403c; }
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px dashed #e7e5e4; padding-top: 15px; font-size: 12px; }
+      .fact-icon-container { display: flex; justify-content: flex-start; color: #d97706; margin: 30px 0 10px 0; }
+      .fact-category { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #d97706; margin-bottom: 8px; }
+      .fact-title { font-size: 32px; font-weight: 700; color: #1c1917; line-height: 1.3; margin-bottom: 16px; }
+      .fact-body { font-size: 16px; line-height: 1.6; color: #44403c; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px dashed #d6d3d1; padding-top: 20px; font-size: 12px; }
       .society-handle { font-weight: 700; color: #1c1917; }
       .interactive-prompt { color: #78716c; }
     `
@@ -272,29 +334,44 @@ const TECH_FACTS_REGISTRY = [
     particles_css: `
       .particle { display: none !important; }
     `,
+    decorations: `
+      <!-- Retro Window Header UI inside the block -->
+      <div style="position:absolute; top:70px; left:70px; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:65px; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      
+      <!-- Brutalist Background Dotted Grid in canvas corners -->
+      <div style="position:absolute; top:140px; right:80px; width:70px; height:70px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:140px; left:80px; width:75px; height:75px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+    `,
     content_css: `
       .card-content {
         background: #ffffff;
         border: 4px solid #000000;
         padding: 40px;
+        padding-top: 60px; /* Spacer for retro window controls */
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 10px 10px 0px #000000;
+        box-shadow: 12px 12px 0px #000000;
         position: relative;
+        z-index: 10;
       }
-      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
       .logo-header img { height: 26px; filter: grayscale(1) contrast(2); }
       .logo-header span { font-weight: 800; font-size: 14px; text-transform: uppercase; }
-      .fact-icon-container { display: inline-flex; background: #a855f7; border: 3px solid #000000; padding: 10px; box-shadow: 3px 3px 0px #000000; color: #ffffff; margin-top: 30px; }
+      .fact-icon-container { display: inline-flex; background: #a855f7; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #000000; color: #ffffff; margin-top: 35px; width: fit-content; }
       .fact-icon-container svg { width: 44px; height: 44px; }
-      .fact-category { font-size: 13px; font-weight: 800; text-transform: uppercase; margin: 25px 0 10px 0; letter-spacing: 1px; }
-      .fact-title { font-size: 34px; font-weight: 800; color: #000000; line-height: 1.15; margin-bottom: 15px; text-transform: uppercase; }
-      .fact-body { font-size: 16px; line-height: 1.5; color: #000000; font-weight: 500; }
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 15px; font-size: 13px; font-weight: 800; }
+      .fact-category { font-size: 13px; font-weight: 800; text-transform: uppercase; margin: 30px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 34px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 16px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 13px; font-weight: 800; }
       .society-handle { text-decoration: underline; }
-      .interactive-prompt { background: #3b82f6; color: #ffffff; padding: 2px 8px; border: 2px solid #000000; box-shadow: 2px 2px 0px #000000; font-size: 10px; text-transform: uppercase; }
+      .interactive-prompt { background: #3b82f6; color: #ffffff; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000; font-size: 11px; text-transform: uppercase; }
     `
   },
   {
@@ -302,7 +379,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Mesh Gradient",
     fonts_url: "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap",
     canvas_css: `
-      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #8b5cf6 100%);
+      background: linear-gradient(135deg, #312e81 0%, #1e1b4b 50%, #4338ca 100%);
       color: #ffffff;
       font-family: 'Outfit', sans-serif;
       padding: 50px;
@@ -317,8 +394,8 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 30%),
-                  radial-gradient(circle at 90% 80%, rgba(0,0,0,0.15) 0%, transparent 40%);
+      background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.12) 0%, transparent 35%),
+                  radial-gradient(circle at 90% 80%, rgba(0,0,0,0.2) 0%, transparent 40%);
     `,
     particles_css: `
       .particle { background: #ffffff !important; --max-opacity: 0.45; }
@@ -326,15 +403,23 @@ const TECH_FACTS_REGISTRY = [
       .particle:nth-child(2) { left: 55%; width: 3px; height: 3px; --dur: 11s; }
       .particle:nth-child(3) { left: 80%; width: 5px; height: 5px; --dur: 7s; }
     `,
+    decorations: `
+      <!-- Tech mesh design rings -->
+      <div style="position:absolute; top:-20px; right:-20px; width:160px; height:160px; border:1px solid rgba(255,255,255,0.08); border-radius:50%; pointer-events:none;"></div>
+      <div style="position:absolute; top:-40px; right:-40px; width:220px; height:220px; border:1px solid rgba(255,255,255,0.04); border-radius:50%; pointer-events:none;"></div>
+      
+      <!-- Elegant card border details -->
+      <div style="position:absolute; top:30px; bottom:30px; left:30px; right:30px; border:1px solid rgba(255,255,255,0.1); border-radius:18px; pointer-events:none;"></div>
+    `,
     content_css: `
       .logo-header { display: flex; align-items: center; gap: 10px; }
       .logo-header img { height: 26px; filter: brightness(2); }
-      .logo-header span { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.8); }
-      .fact-icon-container { display: flex; justify-content: flex-start; color: #ffffff; margin: 40px 0 20px 0; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
-      .fact-category { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #bfdbfe; margin-bottom: 8px; }
-      .fact-title { font-size: 36px; font-weight: 700; color: #ffffff; line-height: 1.2; margin-bottom: 20px; }
-      .fact-body { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 20px; font-size: 12px; }
+      .logo-header span { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.85); }
+      .fact-icon-container { display: flex; justify-content: flex-start; color: #ffffff; margin: 45px 0 25px 0; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3)); }
+      .fact-category { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #a5b4fc; margin-bottom: 8px; }
+      .fact-title { font-size: 36px; font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 17px; line-height: 1.65; color: rgba(255, 255, 255, 0.95); }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 22px; font-size: 12px; }
       .society-handle { font-weight: 600; color: #ffffff; }
       .interactive-prompt { color: rgba(255, 255, 255, 0.7); }
     `
@@ -344,7 +429,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Blue Blueprint",
     fonts_url: "https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap",
     canvas_css: `
-      background-color: #0f2c59;
+      background-color: #0f2a52;
       color: #ffffff;
       font-family: 'Fira Code', monospace;
       padding: 50px;
@@ -367,19 +452,32 @@ const TECH_FACTS_REGISTRY = [
     particles_css: `
       .particle { display: none !important; }
     `,
+    decorations: `
+      <!-- Draft Spec blueprints annotations -->
+      <div style="position:absolute; top:20px; left:50%; transform:translateX(-50%); font-size:10px; color:rgba(255,255,255,0.4);">[ DRAFT SPEC SCALE: 1.5X ]</div>
+      <div style="position:absolute; bottom:18px; left:50%; transform:translateX(-50%); font-size:10px; color:rgba(255,255,255,0.4);">(W: 1080px, H: 1920px)</div>
+      
+      <!-- Ruler markings on left edge -->
+      <div style="position:absolute; left:10px; top:100px; bottom:100px; display:flex; flex-direction:column; justify-content:space-between; font-size:8px; color:rgba(255,255,255,0.25); pointer-events:none;">
+        <span>500</span><span>400</span><span>300</span><span>200</span><span>100</span>
+      </div>
+      
+      <!-- Graph axis marker lines -->
+      <div style="position:absolute; left:35px; top:50px; bottom:50px; border-left:1px solid rgba(255,255,255,0.15); pointer-events:none;"></div>
+    `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.3); padding-bottom: 12px; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.3); padding-bottom: 14px; }
       .logo-header img { height: 22px; filter: brightness(2) contrast(0.5); }
-      .logo-header span { font-weight: 500; font-size: 13px; text-transform: uppercase; color: rgba(255, 255, 255, 0.8); }
-      .fact-icon-container { display: flex; justify-content: flex-start; color: rgba(255, 255, 255, 0.8); margin: 35px 0 15px 0; }
+      .logo-header span { font-weight: 500; font-size: 13px; text-transform: uppercase; color: rgba(255, 255, 255, 0.9); }
+      .fact-icon-container { display: flex; justify-content: flex-start; color: rgba(255, 255, 255, 0.85); margin: 40px 0 15px 0; }
       .fact-icon-container svg { stroke-width: 1.5; }
-      .fact-category { font-size: 13px; font-weight: 500; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px; }
+      .fact-category { font-size: 13px; font-weight: 500; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); margin-bottom: 12px; }
       .fact-category::after { content: ' //'; }
-      .fact-title { font-size: 34px; font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 18px; }
-      .fact-body { font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.85); }
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 15px; font-size: 12px; }
+      .fact-title { font-size: 34px; font-weight: 700; color: #ffffff; line-height: 1.3; margin-bottom: 20px; }
+      .fact-body { font-size: 16px; line-height: 1.65; color: rgba(255, 255, 255, 0.9); }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 18px; font-size: 12px; }
       .society-handle { font-weight: 500; color: #ffffff; }
-      .interactive-prompt { color: rgba(255, 255, 255, 0.6); }
+      .interactive-prompt { color: rgba(255, 255, 255, 0.65); }
     `
   },
   {
@@ -400,18 +498,29 @@ const TECH_FACTS_REGISTRY = [
     particles_css: `
       .particle { display: none !important; }
     `,
+    decorations: `
+      <!-- Bold clean divider layout lines -->
+      <div style="position:absolute; top:35px; bottom:35px; left:35px; right:35px; border:1px solid #000000; pointer-events:none;"></div>
+      
+      <!-- Minimalist geometric circle element -->
+      <svg style="position:absolute; top:120px; right:60px; width:60px; height:60px; fill:none; stroke:#000000; stroke-width:1; pointer-events:none; opacity:0.15;" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45"/>
+        <line x1="0" y1="50" x2="100" y2="50"/>
+        <line x1="50" y1="0" x2="50" y2="100"/>
+      </svg>
+    `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #000000; padding-bottom: 12px; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #000000; padding-bottom: 14px; }
       .logo-header img { height: 24px; filter: grayscale(1) contrast(3); }
       .logo-header span { font-weight: 700; font-size: 14px; text-transform: uppercase; }
       .fact-icon-container { display: flex; justify-content: flex-start; color: #000000; margin: 40px 0 20px 0; }
       .fact-icon-container svg { stroke-width: 1.5; }
-      .fact-category { font-size: 13px; font-weight: 600; text-transform: uppercase; color: #71717a; margin-bottom: 8px; letter-spacing: 1px; }
-      .fact-title { font-size: 38px; font-weight: 700; color: #000000; line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.5px; }
-      .fact-body { font-size: 17px; line-height: 1.6; color: #3f3f46; }
+      .fact-category { font-size: 13px; font-weight: 600; text-transform: uppercase; color: #52525b; margin-bottom: 10px; letter-spacing: 1px; }
+      .fact-title { font-size: 38px; font-weight: 700; color: #000000; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.8px; }
+      .fact-body { font-size: 17px; line-height: 1.6; color: #27272a; }
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #000000; padding-top: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
       .society-handle { color: #000000; }
-      .interactive-prompt { color: #71717a; }
+      .interactive-prompt { color: #52525b; }
     `
   },
   {
@@ -419,7 +528,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Retro 8-Bit",
     fonts_url: "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
     canvas_css: `
-      background-color: #1e1e2e;
+      background-color: #11111b;
       color: #00e5ff;
       font-family: 'Press Start 2P', monospace;
       padding: 40px;
@@ -443,15 +552,27 @@ const TECH_FACTS_REGISTRY = [
       .particle:nth-child(2) { left: 45%; width: 4px; height: 4px; --dur: 11s; }
       .particle:nth-child(3) { left: 75%; width: 8px; height: 8px; --dur: 8s; }
     `,
+    decorations: `
+      <!-- Pixel art health HUD -->
+      <div style="position:absolute; top:18px; left:40px; font-size:8px; color:#ff007f;">HP [█████] 100%</div>
+      <div style="position:absolute; top:18px; right:40px; font-size:8px; color:#00e5ff;">SCORE 08922</div>
+      
+      <!-- Insert Coin Footer Label -->
+      <div style="position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-size:8px; color:rgba(255,255,255,0.4); text-transform:uppercase; animation:blink 1.2s step-end infinite;">- INSERT COIN [1P] -</div>
+      
+      <style>
+        @keyframes blink { 50% { opacity: 0; } }
+      </style>
+    `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 8px; font-size: 8px; border-bottom: 2px solid #00e5ff; padding-bottom: 12px; }
+      .logo-header { display: flex; align-items: center; gap: 8px; font-size: 8px; border-bottom: 2px solid #00e5ff; padding-bottom: 14px; }
       .logo-header img { height: 16px; filter: hue-rotate(90deg) brightness(1.5); image-rendering: pixelated; }
       .logo-header span { text-transform: uppercase; }
-      .fact-icon-container { display: flex; justify-content: flex-start; color: #ff007f; margin: 30px 0 10px 0; }
+      .fact-icon-container { display: flex; justify-content: flex-start; color: #ff007f; margin: 35px 0 10px 0; }
       .fact-icon-container svg { image-rendering: pixelated; }
-      .fact-category { font-size: 8px; text-transform: uppercase; color: #ff007f; margin-bottom: 10px; }
-      .fact-title { font-size: 18px; color: #ffffff; line-height: 1.4; margin-bottom: 20px; text-transform: uppercase; }
-      .fact-body { font-family: sans-serif; font-size: 15px; line-height: 1.5; color: #ddddff; }
+      .fact-category { font-size: 8px; text-transform: uppercase; color: #ff007f; margin-bottom: 12px; }
+      .fact-title { font-size: 18px; color: #ffffff; line-height: 1.45; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-family: sans-serif; font-size: 15px; line-height: 1.6; color: #ddddff; }
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #00e5ff; padding-top: 15px; font-size: 8px; }
       .society-handle { color: #00e5ff; }
       .interactive-prompt { color: #ff007f; }

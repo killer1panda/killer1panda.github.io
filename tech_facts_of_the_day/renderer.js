@@ -153,6 +153,7 @@ class TechFactRenderer {
   <div class="card-canvas">
     <div class="vignette-overlay"></div>
     <div class="texture-overlay"></div>
+    ${template.decorations || ''}
     <div class="particles">
       <div class="particle"></div>
       <div class="particle"></div>
