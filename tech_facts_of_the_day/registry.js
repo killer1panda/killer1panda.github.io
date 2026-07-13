@@ -639,4 +639,979 @@ const TECH_FACTS_REGISTRY = [
       .interactive-prompt { color: #ff007f; }
     `
   }
+,
+  {
+    id: "11",
+    name: "Cyber-Ether Modernist",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    canvas_css: `
+      background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #12121d 100%);
+      color: #e4e1f0;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(at 0% 0%, rgba(0, 251, 251, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 0%, rgba(139, 44, 227, 0.2) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(255, 94, 7, 0.1) 0px, transparent 50%),
+                  radial-gradient(at 0% 100%, rgba(0, 112, 112, 0.2) 0px, transparent 50%);
+    `,
+    decorations: `
+      <div class="scanline" style="width:100%; height:2px; background:linear-gradient(to right, transparent, rgba(0,251,251,0.5), transparent); position:absolute; pointer-events:none; z-index:30; animation: scanline 8s linear infinite;"></div>
+      <style>
+        @keyframes scanline {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(1920px); }
+        }
+      </style>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; z-index: 10; border-bottom: 1.5px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(2); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #ffffff; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(0, 251, 251, 0.35); border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 30px rgba(0, 251, 251, 0.1), 0 0 15px rgba(0, 251, 251, 0.4), inset 0 0 10px rgba(0, 251, 251, 0.2); width: 100%;
+      }
+      .fact-icon-container { width: 180px; height: 180px; color: #ffb59a; filter: drop-shadow(0 0 10px rgba(255,181,154,0.3)); }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #00fbfb; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #b9cac9; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 24px; z-index: 10; }
+      .society-handle { font-weight: 600; color: #ffb59a; }
+      .interactive-prompt { color: #839493; }
+    `
+  },
+  {
+    id: "12",
+    name: "Electric Neo-Brutalist",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    canvas_css: `
+      background-color: #facc15;
+      color: #1a1c1c;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
+      background-size: 40px 40px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-20px; right:-20px; w:80px; h:80px; bg: #8127cf; border: 4px solid #000; rotate: 12deg;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 4px solid #000000; padding: 45px;
+        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      }
+      .fact-main-block::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
+        background: #ffe083; border-bottom: 4px solid #000;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #8127cf; z-index: 10; margin-top: 15px; }
+      
+      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #8127cf; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
+      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
+      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #8127cf; padding-left: 15px; z-index: 10; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
+      .society-handle { color: #8127cf; }
+      .interactive-prompt { color: #7f7660; }
+    `
+  },
+  {
+    id: "13",
+    name: "Swiss Typographic",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@1,600&display=swap",
+    canvas_css: `
+      background-color: #fdf8f8;
+      color: #1c1b1b;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    `,
+    decorations: `
+      <div style="position:absolute; top:-20px; right:-20px; font-family:'Sora',sans-serif; font-size: 140px; font-weight:800; color:#e5e2e1; opacity:0.35; select-none:none; pointer-events:none; z-index:1;">01</div>
+      <div style="position:absolute; left:50px; top:0; bottom:0; width:1px; background:#c4c7c7; opacity:0.3;"></div>
+      <div style="position:absolute; right:50px; top:0; bottom:0; width:1px; background:#c4c7c7; opacity:0.3;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 3px solid #000000; padding: 45px; z-index: 10; width: 100%;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #000000; }
+      
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #000000; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #444748; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .society-handle { color: #000000; }
+      .interactive-prompt { color: #5f5e5e; }
+    `
+  },
+  {
+    id: "14",
+    name: "Neon Synthwave",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap",
+    canvas_css: `
+      background-color: #0d0d17;
+      color: #e4e1f0;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background-image: linear-gradient(rgba(0, 251, 251, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 251, 251, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-2px; left:-2px; w:24px; h:24px; border-t: 2px solid #00fbfb; border-l: 2px solid #00fbfb; box-shadow: 0 0 10px #00fbfb;"></div>
+      <div style="position:absolute; bottom:-2px; right:-2px; w:24px; h:24px; border-b: 2px solid #00fbfb; border-r: 2px solid #00fbfb; box-shadow: 0 0 10px #00fbfb;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,0,255,0.3); padding-bottom: 15px; z-index: 10; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(270deg) brightness(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #ffabf3; drop-shadow: 0 0 8px rgba(255,0,255,0.4); }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(13, 13, 23, 0.8); border: 1.5px solid #ff00ff; border-radius: 8px; padding: 45px;
+        box-shadow: 0 0 25px rgba(255, 0, 255, 0.4), inset 0 0 15px rgba(255, 0, 255, 0.2); width: 100%; z-index: 10;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #ffffff; }
+      
+      .fact-category { font-family: 'Space Mono', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #00fbfb; text-shadow: 0 0 8px rgba(0,251,251,0.8); margin-bottom: 12px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #dcbed4; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,251,251,0.3); padding-top: 20px; font-size: 24px; z-index: 10; font-family: 'Space Mono', monospace; }
+      .society-handle { color: #00fbfb; }
+      .interactive-prompt { color: #a4899d; }
+    `
+  },
+  {
+    id: "15",
+    name: "Cyber-Ether Emerald",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    canvas_css: `
+      background: radial-gradient(circle at 50% 50%, #06261c 0%, #0d0f0d 100%);
+      color: #e3ffe5;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(52, 211, 153, 0.1) 0px, transparent 50%);
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; left:20px; font-size:14px; color:#10b981; opacity:0.6;">[NODE: SECURE]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(16,185,129,0.2); padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(1.5) sepia(1) hue-rotate(100deg); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #10b981; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(16, 185, 129, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), inset 0 0 10px rgba(16, 185, 129, 0.1); width: 100%;
+      }
+      .fact-icon-container { width: 180px; height: 180px; color: #34d399; }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #10b981; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #baccb0; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(16,185,129,0.2); padding-top: 20px; font-size: 24px; }
+      .society-handle { font-weight: 600; color: #34d399; }
+      .interactive-prompt { color: #85967c; }
+    `
+  },
+  {
+    id: "16",
+    name: "Cyber-Ether Orange",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    canvas_css: `
+      background: radial-gradient(circle at 50% 50%, #2e1505 0%, #0f0a05 100%);
+      color: #ffe3d1;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(251, 146, 60, 0.1) 0px, transparent 50%);
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; right:20px; font-size:14px; color:#f97316; opacity:0.6;">[EDGE_GATEWAY]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(249,115,22,0.2); padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(5deg) brightness(1.5); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #f97316; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(249, 115, 22, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(249, 115, 22, 0.4); border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 30px rgba(249, 115, 22, 0.15), inset 0 0 10px rgba(249, 115, 22, 0.1); width: 100%;
+      }
+      .fact-icon-container { width: 180px; height: 180px; color: #fb923c; }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #f97316; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #e3d1c4; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(249,115,22,0.2); padding-top: 20px; font-size: 24px; }
+      .society-handle { font-weight: 600; color: #fb923c; }
+      .interactive-prompt { color: #a49185; }
+    `
+  },
+  {
+    id: "17",
+    name: "Cyber-Ether Violet",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    canvas_css: `
+      background: radial-gradient(circle at 50% 50%, #23083d 0%, #0c0414 100%);
+      color: #eed6ff;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(167, 139, 250, 0.1) 0px, transparent 50%);
+    `,
+    decorations: `
+      <div style="position:absolute; bottom:20px; left:20px; font-size:14px; color:#8b5cf6; opacity:0.6;">[ZK_PROOF]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(139,92,246,0.2); padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(240deg) brightness(1.5); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #8b5cf6; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(139, 92, 246, 0.4); border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.15), inset 0 0 10px rgba(139, 92, 246, 0.1); width: 100%;
+      }
+      .fact-icon-container { width: 180px; height: 180px; color: #a78bfa; }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #8b5cf6; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #dac4eb; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(139,92,246,0.2); padding-top: 20px; font-size: 24px; }
+      .society-handle { font-weight: 600; color: #a78bfa; }
+      .interactive-prompt { color: #9f8ea6; }
+    `
+  },
+  {
+    id: "18",
+    name: "Cyber-Ether Lime",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    canvas_css: `
+      background: radial-gradient(circle at 50% 50%, #172d06 0%, #090e03 100%);
+      color: #e5ffd1;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(at 0% 0%, rgba(132, 204, 22, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(163, 230, 53, 0.1) 0px, transparent 50%);
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; left:20px; font-size:14px; color:#84cc16; opacity:0.6;">[GRID_ONLINE]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(132,204,22,0.2); padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(60deg) brightness(1.5); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #84cc16; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(132, 204, 22, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(132, 204, 22, 0.4); border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 30px rgba(132, 204, 22, 0.15), inset 0 0 10px rgba(132, 204, 22, 0.1); width: 100%;
+      }
+      .fact-icon-container { width: 180px; height: 180px; color: #a3e635; }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #84cc16; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #ccd9c0; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(132,204,22,0.2); padding-top: 20px; font-size: 24px; }
+      .society-handle { font-weight: 600; color: #a3e635; }
+      .interactive-prompt { color: #8d9a80; }
+    `
+  },
+  {
+    id: "19",
+    name: "Cyber-Ether Cyan",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    canvas_css: `
+      background: radial-gradient(circle at 50% 50%, #06313d 0%, #031014 100%);
+      color: #d1f7ff;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.1) 0px, transparent 50%);
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; right:20px; font-size:14px; color:#06b6d4; opacity:0.6;">[TUNNEL: SECURE]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(6,182,212,0.2); padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(150deg) brightness(1.5); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #06b6d4; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(6, 182, 212, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(6, 182, 212, 0.4); border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 30px rgba(6, 182, 212, 0.15), inset 0 0 10px rgba(6, 182, 212, 0.1); width: 100%;
+      }
+      .fact-icon-container { width: 180px; height: 180px; color: #22d3ee; }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #06b6d4; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #c0dae3; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(6,182,212,0.2); padding-top: 20px; font-size: 24px; }
+      .society-handle { font-weight: 600; color: #22d3ee; }
+      .interactive-prompt { color: #8da4ac; }
+    `
+  },
+  {
+    id: "20",
+    name: "Electric Brutalist Lime",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    canvas_css: `
+      background-color: #a3e635;
+      color: #1a1c1c;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
+      background-size: 40px 40px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-20px; left:-20px; w:80px; h:80px; bg: #8127cf; border: 4px solid #000; rotate: -12deg;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 4px solid #000000; padding: 45px;
+        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      }
+      .fact-main-block::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
+        background: #ffe083; border-bottom: 4px solid #000;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #d946ef; z-index: 10; margin-top: 15px; }
+      
+      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #d946ef; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
+      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
+      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #d946ef; padding-left: 15px; z-index: 10; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
+      .society-handle { color: #d946ef; }
+      .interactive-prompt { color: #7f7660; }
+    `
+  },
+  {
+    id: "21",
+    name: "Electric Brutalist Magenta",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    canvas_css: `
+      background-color: #d946ef;
+      color: #1a1c1c;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
+      background-size: 40px 40px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-20px; right:-20px; w:80px; h:80px; bg: #a3e635; border: 4px solid #000; rotate: 12deg;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 4px solid #000000; padding: 45px;
+        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      }
+      .fact-main-block::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
+        background: #ffe083; border-bottom: 4px solid #000;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #000000; z-index: 10; margin-top: 15px; }
+      
+      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #000000; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
+      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
+      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #000000; padding-left: 15px; z-index: 10; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
+      .society-handle { color: #000000; }
+      .interactive-prompt { color: #7f7660; }
+    `
+  },
+  {
+    id: "22",
+    name: "Electric Brutalist Cyan",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    canvas_css: `
+      background-color: #06b6d4;
+      color: #1a1c1c;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
+      background-size: 40px 40px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-20px; right:-20px; w:80px; h:80px; bg: #f97316; border: 4px solid #000; rotate: 12deg;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 4px solid #000000; padding: 45px;
+        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      }
+      .fact-main-block::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
+        background: #ffe083; border-bottom: 4px solid #000;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #f97316; z-index: 10; margin-top: 15px; }
+      
+      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #f97316; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
+      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
+      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #f97316; padding-left: 15px; z-index: 10; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
+      .society-handle { color: #f97316; }
+      .interactive-prompt { color: #7f7660; }
+    `
+  },
+  {
+    id: "23",
+    name: "Electric Brutalist Orange",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    canvas_css: `
+      background-color: #f97316;
+      color: #1a1c1c;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
+      background-size: 40px 40px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-20px; left:-20px; w:80px; h:80px; bg: #06b6d4; border: 4px solid #000; rotate: -12deg;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 4px solid #000000; padding: 45px;
+        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      }
+      .fact-main-block::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
+        background: #ffe083; border-bottom: 4px solid #000;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #06b6d4; z-index: 10; margin-top: 15px; }
+      
+      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #06b6d4; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
+      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
+      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #06b6d4; padding-left: 15px; z-index: 10; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
+      .society-handle { color: #06b6d4; }
+      .interactive-prompt { color: #7f7660; }
+    `
+  },
+  {
+    id: "24",
+    name: "Electric Brutalist White",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    canvas_css: `
+      background-color: #ffffff;
+      color: #1a1c1c;
+      font-family: 'Sora', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 6px solid #000;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.05;
+      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
+      background-size: 30px 30px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; right:20px; font-size:14px; font-weight:800; color:#000;">[SYS_DRIP]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #facc15; border: 4px solid #000000; padding: 45px;
+        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      }
+      .fact-main-block::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
+        background: #000; border-bottom: 4px solid #000;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #000000; z-index: 10; margin-top: 15px; }
+      
+      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #facc15; background: #000000; border: 2px solid #facc15; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
+      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
+      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #000000; padding-left: 15px; z-index: 10; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
+      .society-handle { color: #000000; }
+      .interactive-prompt { color: #4d4632; }
+    `
+  },
+  {
+    id: "25",
+    name: "Swiss Variant Light Gray",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@1,600&display=swap",
+    canvas_css: `
+      background-color: #ebe7e6;
+      color: #1c1b1b;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.06;
+      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    `,
+    decorations: `
+      <div style="position:absolute; bottom:20px; left:50px; font-family:'Sora',sans-serif; font-size: 140px; font-weight:800; color:#dad6d5; opacity:0.3; select-none:none; pointer-events:none; z-index:1;">02</div>
+      <div style="position:absolute; left:50px; top:0; bottom:0; width:1px; background:#444748; opacity:0.2;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #000000; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 3px solid #000000; padding: 45px; z-index: 10; width: 100%;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #000000; }
+      
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #5d5f5f; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #444748; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .society-handle { color: #000000; }
+      .interactive-prompt { color: #5d5f5f; }
+    `
+  },
+  {
+    id: "26",
+    name: "Swiss Monochrome Solid",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@1,600&display=swap",
+    canvas_css: `
+      background-color: #1c1b1b;
+      color: #fdf8f8;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 10px solid #fdf8f8;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.05;
+      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; right:50px; font-family:'Sora',sans-serif; font-size: 20px; font-weight:800; color:#fdf8f8; opacity:0.8; select-none:none; pointer-events:none; z-index:1;">[ARCHIVE_SYS]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #fdf8f8; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #fdf8f8; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #1c1b1b; border: 3px solid #fdf8f8; padding: 45px; z-index: 10; width: 100%;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #fdf8f8; }
+      
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #c4c7c7; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #c4c7c7; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #fdf8f8; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .society-handle { color: #fdf8f8; }
+      .interactive-prompt { color: #c4c7c7; }
+    `
+  },
+  {
+    id: "27",
+    name: "Swiss Warm Cream",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@1,600&display=swap",
+    canvas_css: `
+      background-color: #faf6eb;
+      color: #2b2924;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.08;
+      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    `,
+    decorations: `
+      <div style="position:absolute; top:20px; left:50px; font-size: 14px; font-weight: 800; color: #2b2924; opacity: 0.6;">[TYPE: ARCHIVAL_METRIC]</div>
+      <div style="position:absolute; bottom:20px; right:50px; font-size: 14px; font-weight: 800; color: #2b2924; opacity: 0.6;">[METADATA_LINE]</div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #2b2924; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #2b2924; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 3px solid #2b2924; padding: 45px; z-index: 10; width: 100%;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #2b2924; }
+      
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #6e6b64; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #2b2924; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #4a4740; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #2b2924; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .society-handle { color: #2b2924; }
+      .interactive-prompt { color: #6e6b64; }
+    `
+  },
+  {
+    id: "28",
+    name: "Swiss Minimalist Gray",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@1,600&display=swap",
+    canvas_css: `
+      background-color: #f3f4f6;
+      color: #1f2937;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: ``,
+    decorations: `
+      <div style="position:absolute; top:25px; bottom:25px; left:25px; right:25px; border: 1px solid #d1d5db; pointer-events:none;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 2px solid #1f2937; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #1f2937; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 2px solid #1f2937; padding: 45px; z-index: 10; width: 100%;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #1f2937; }
+      
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #4b5563; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #111827; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #374151; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #1f2937; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .society-handle { color: #1f2937; }
+      .interactive-prompt { color: #4b5563; }
+    `
+  },
+  {
+    id: "29",
+    name: "Swiss Typographic Blue",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@1,600&display=swap",
+    canvas_css: `
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    `,
+    texture_css: ``,
+    decorations: `
+      <div style="position:absolute; top:25px; bottom:25px; left:25px; right:25px; border: 1px solid rgba(248,250,252,0.1); pointer-events:none;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 2px solid #f8fafc; padding-bottom: 15px; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #f8fafc; }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #1e293b; border: 2px solid #f8fafc; padding: 45px; z-index: 10; width: 100%;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #38bdf8; }
+      
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #94a3b8; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #cbd5e1; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f8fafc; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .society-handle { color: #38bdf8; }
+      .interactive-prompt { color: #94a3b8; }
+    `
+  },
+  {
+    id: "30",
+    name: "Phosphor Green Terminal",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap",
+    canvas_css: `
+      background-color: #0d0d17;
+      color: #39ff14;
+      font-family: 'Space Mono', monospace;
+      padding: 60px 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 4px solid #39ff14;
+    `,
+    texture_css: `
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background-image: linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+    `,
+    decorations: `
+      <div style="position:absolute; top:-2px; left:-2px; w:24px; h:24px; border-t: 2px solid #39ff14; border-l: 2px solid #39ff14; box-shadow: 0 0 10px #39ff14;"></div>
+      <div style="position:absolute; bottom:-2px; right:-2px; w:24px; h:24px; border-b: 2px solid #39ff14; border-r: 2px solid #39ff14; box-shadow: 0 0 10px #39ff14;"></div>
+    `,
+    content_css: `
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #39ff14; padding-bottom: 15px; z-index: 10; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(1.5) sepia(1) hue-rotate(100deg); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #39ff14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.6); }
+      
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(13, 13, 23, 0.95); border: 2px solid #39ff14; border-radius: 0px; padding: 45px;
+        box-shadow: 0 0 25px rgba(57, 255, 20, 0.3), inset 0 0 15px rgba(57, 255, 20, 0.15); width: 100%; z-index: 10;
+      }
+      .fact-icon-container { width: 150px; height: 150px; color: #39ff14; }
+      
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #39ff14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.6); margin-bottom: 12px; }
+      .fact-category::before { content: "> "; }
+      .fact-title { font-size: 70px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #baccb0; }
+      
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #39ff14; padding-top: 20px; font-size: 24px; z-index: 10; }
+      .society-handle { color: #39ff14; }
+      .interactive-prompt { color: #85967c; }
+    `
+  }
 ];
