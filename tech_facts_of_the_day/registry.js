@@ -18,23 +18,23 @@ const TECH_FACTS_REGISTRY = [
     name: "Neon Terminal",
     fonts_url: "https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap",
     canvas_css: `
-      background-color: #000000;
+      background-color: #050505;
       color: #39ff14;
       font-family: 'Fira Code', monospace;
-      border: 3px solid #39ff14;
+      border: 4px solid #39ff14;
       padding: 60px 50px;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: inset 0 0 30px rgba(57, 255, 20, 0.2);
+      box-shadow: inset 0 0 40px rgba(57, 255, 20, 0.15);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 50;
-      opacity: 0.15;
+      opacity: 0.18;
       background: repeating-linear-gradient(0deg, #000, #000 2px, transparent 2px, transparent 4px);
     `,
     particles_css: `
@@ -57,7 +57,11 @@ const TECH_FACTS_REGISTRY = [
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(2); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #39ff14; }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(0, 16, 0, 0.75); border: 2px solid #39ff14; border-radius: 12px; padding: 45px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.85), inset 0 0 20px rgba(57,255,20,0.15); width: 100%;
+      }
       .fact-icon-container { width: 180px; height: 180px; color: #39ff14; filter: drop-shadow(0 0 12px #39ff14); }
       
       .fact-category { font-size: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #39ff14; opacity: 0.85; margin-bottom: 12px; }
@@ -91,9 +95,9 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 45%),
-                  radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 50%),
-                  radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.28) 0%, transparent 45%),
+                  radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.28) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.2) 0%, transparent 40%);
     `,
     particles_css: `
       .particle { background: #ffffff !important; }
@@ -121,13 +125,13 @@ const TECH_FACTS_REGISTRY = [
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 28px;
-        padding: 6%;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.035);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        border-radius: 32px;
+        padding: 55px;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2);
       }
       .logo-header { display: flex; align-items: center; gap: 12px; }
       .logo-header img { height: 44px; }
@@ -151,7 +155,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Swiss Editorial",
     fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap",
     canvas_css: `
-      background-color: #f4f4f5;
+      background-color: #e5e5e0;
       color: #09090b;
       font-family: 'Space Grotesk', sans-serif;
       padding: 60px;
@@ -192,12 +196,15 @@ const TECH_FACTS_REGISTRY = [
       .logo-header img { height: 52px; filter: grayscale(1) contrast(1.5); }
       .logo-header span { font-weight: 700; font-size: 26px; text-transform: uppercase; letter-spacing: -0.5px; }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 6px solid #09090b; padding: 50px; box-shadow: 14px 14px 0px #09090b; width: 100%;
+      }
       .fact-icon-container { width: 180px; height: 180px; color: #09090b; }
       
-      .fact-category { font-size: 30px; font-weight: 700; text-transform: uppercase; margin: 35px 0 12px 0; color: #09090b; }
+      .fact-category { font-size: 30px; font-weight: 700; text-transform: uppercase; margin: 0 0 12px 0; color: #09090b; }
       .fact-title { font-size: 80px; font-weight: 700; color: #09090b; line-height: 1.15; margin-bottom: 22px; letter-spacing: -1.2px; }
-      .fact-body { font-size: 38px; line-height: 1.55; color: #18181b; font-weight: 400; margin-bottom: 40px; }
+      .fact-body { font-size: 38px; line-height: 1.55; color: #18181b; font-weight: 400; }
       
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #09090b; padding-top: 15px; font-size: 24px; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #09090b; }
@@ -257,7 +264,11 @@ const TECH_FACTS_REGISTRY = [
       .logo-header img { height: 42px; filter: hue-rotate(180deg) brightness(1.5); }
       .logo-header span { font-weight: 700; font-size: 22px; text-transform: uppercase; letter-spacing: 2px; }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 40px; margin: 30px 0;
+        background: rgba(8, 10, 19, 0.9); border: 2px solid #00f0ff; border-radius: 8px; padding: 45px;
+        box-shadow: 0 0 35px rgba(0,240,255,0.2), inset 0 0 15px rgba(0,240,255,0.1); width: 100%;
+      }
       .fact-icon-container { width: 160px; height: 160px; color: #ff8c00; justify-content: center; filter: drop-shadow(0 0 10px rgba(255,140,0,0.5)); }
       .fact-text-container { display: flex; flex-direction: column; align-items: center; }
       
@@ -299,10 +310,10 @@ const TECH_FACTS_REGISTRY = [
     `,
     decorations: `
       <!-- Layered block outline shadow cards behind content -->
-      <div style="position:absolute; top:56px; left:56px; right:44px; bottom:44px; background:rgba(28,25,23,0.06); border:2px solid #1c1917; border-radius:20px; pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; top:56px; left:56px; right:44px; bottom:44px; background:rgba(28,25,23,0.06); border:2px solid #1c1917; border-radius:24px; pointer-events:none; z-index:1;"></div>
       
       <!-- Cute Retro Sticker Badge -->
-      <div style="position:absolute; top:8%; right:20px; background:#f43f5e; color:#ffffff; font-size:14px; font-weight:700; padding:6px 12px; border:2px solid #1c1917; border-radius:10px; box-shadow:3px 3px 0 #1c1917; transform:rotate(8deg); text-transform:uppercase; pointer-events:none; z-index:100;">★ INTEL SHOT</div>
+      <div style="position:absolute; top:8%; right:20px; background:#f43f5e; color:#ffffff; font-size:14px; font-weight:700; padding:6px 12px; border:3px solid #1c1917; border-radius:10px; box-shadow:3px 3px 0 #1c1917; transform:rotate(8deg); text-transform:uppercase; pointer-events:none; z-index:100;">★ INTEL SHOT</div>
       
       <!-- Bottom right arrow graphic -->
       <svg style="position:absolute; bottom:8%; right:40px; width:54px; height:54px; fill:#1c1917; pointer-events:none; z-index:10;" viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z"/></svg>
@@ -310,14 +321,14 @@ const TECH_FACTS_REGISTRY = [
     content_css: `
       .card-content {
         background: #ffffff;
-        border: 2.5px solid #1c1917;
-        border-radius: 20px;
-        padding: 40px;
+        border: 3px solid #1c1917;
+        border-radius: 24px;
+        padding: 50px;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 8px 8px 0px #1c1917;
+        box-shadow: 12px 12px 0px #1c1917;
         position: relative;
         z-index: 10;
       }
@@ -371,14 +382,13 @@ const TECH_FACTS_REGISTRY = [
     content_css: `
       .card-content {
         background: #ffffff;
-        border: 4px solid #000000;
-        padding: 40px;
-        padding-top: 50px;
+        border: 5px solid #000000;
+        padding: 55px;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 12px 12px 0px #000000;
+        box-shadow: 18px 18px 0px #000000;
         position: relative;
         z-index: 10;
       }
@@ -433,14 +443,19 @@ const TECH_FACTS_REGISTRY = [
       <div style="position:absolute; top:-40px; right:-40px; width:220px; height:220px; border:1px solid rgba(255,255,255,0.04); border-radius:50%; pointer-events:none;"></div>
       
       <!-- Elegant card border details -->
-      <div style="position:absolute; top:4%; bottom:4%; left:30px; right:30px; border:1px solid rgba(255,255,255,0.1); border-radius:18px; pointer-events:none;"></div>
+      <div style="position:absolute; top:4%; bottom:4%; left:30px; right:30px; border:1px solid rgba(255,255,255,0.1); border-radius:24px; pointer-events:none;"></div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; gap: 10px; }
       .logo-header img { height: 48px; filter: brightness(2); }
       .logo-header span { font-weight: 600; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.85); }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+        border: 1.5px solid rgba(255,255,255,0.18); border-radius: 28px; padding: 50px;
+        box-shadow: 0 25px 55px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1); width: 100%;
+      }
       .fact-icon-container { width: 170px; height: 170px; color: #ffffff; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3)); }
       
       .fact-category { font-size: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #a5b4fc; margin-bottom: 8px; }
@@ -457,7 +472,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Blue Blueprint",
     fonts_url: "https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap",
     canvas_css: `
-      background-color: #0f2a52;
+      background-color: #0a1c36;
       color: #ffffff;
       font-family: 'Fira Code', monospace;
       padding: 50px;
@@ -473,9 +488,9 @@ const TECH_FACTS_REGISTRY = [
       pointer-events: none;
       z-index: 2;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 20px 20px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 25px 25px;
     `,
     particles_css: `
       .particle { display: none !important; }
@@ -498,7 +513,10 @@ const TECH_FACTS_REGISTRY = [
       .logo-header img { height: 44px; filter: brightness(2) contrast(0.5); }
       .logo-header span { font-weight: 500; font-size: 22px; text-transform: uppercase; color: rgba(255, 255, 255, 0.9); }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: rgba(10, 28, 54, 0.5); border: 2px dashed rgba(255, 255, 255, 0.45); padding: 45px; width: 100%;
+      }
       .fact-icon-container { width: 160px; height: 160px; color: rgba(255, 255, 255, 0.85); }
       
       .fact-category { font-size: 26px; font-weight: 500; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); margin-bottom: 12px; }
@@ -516,7 +534,7 @@ const TECH_FACTS_REGISTRY = [
     name: "Pure Monochrome",
     fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap",
     canvas_css: `
-      background-color: #ffffff;
+      background-color: #f5f5f5;
       color: #000000;
       font-family: 'Space Grotesk', sans-serif;
       padding: 60px;
@@ -545,7 +563,10 @@ const TECH_FACTS_REGISTRY = [
       .logo-header img { height: 48px; filter: grayscale(1) contrast(3); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
+        background: #ffffff; border: 2px solid #000000; padding: 50px; box-shadow: 0 12px 35px rgba(0,0,0,0.06); width: 100%;
+      }
       .fact-icon-container { width: 180px; height: 180px; color: #000000; }
       
       .fact-category { font-size: 28px; font-weight: 600; text-transform: uppercase; color: #52525b; margin-bottom: 10px; letter-spacing: 1px; }
@@ -603,7 +624,10 @@ const TECH_FACTS_REGISTRY = [
       .logo-header img { height: 40px; filter: hue-rotate(90deg) brightness(1.5); image-rendering: pixelated; }
       .logo-header span { text-transform: uppercase; }
       
-      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-main-block {
+        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0;
+        background: #04040e; border: 5px solid #ff007f; padding: 40px; box-shadow: 10px 10px 0px #00e5ff; width: 100%;
+      }
       .fact-icon-container { width: 150px; height: 150px; color: #ff007f; }
       
       .fact-category { font-size: 24px; text-transform: uppercase; color: #ff007f; margin-bottom: 12px; }

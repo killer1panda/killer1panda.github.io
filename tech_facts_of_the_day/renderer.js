@@ -318,11 +318,13 @@ class TechFactRenderer {
       el.setAttribute('spellcheck', 'false');
       el.addEventListener('input', () => {
         const tid = getTid(el);
-        if (tid === 'category') appState.category = el.innerText;
-        if (tid === 'title') appState.title = el.innerText;
-        if (tid === 'body') appState.body = el.innerText;
-        if (tid === 'handle') appState.handle = el.innerText;
-        if (tid === 'prompt') appState.prompt = el.innerText;
+        let val = el.innerText.replace(/\u00a0/g, ' ');
+
+        if (tid === 'category') appState.category = val;
+        if (tid === 'title') appState.title = val;
+        if (tid === 'body') appState.body = val;
+        if (tid === 'handle') appState.handle = val;
+        if (tid === 'prompt') appState.prompt = val;
         
         // Sync text field to parent input
         const inputId = tid === 'category' ? 'input-category' : 
@@ -331,7 +333,7 @@ class TechFactRenderer {
                         (tid === 'prompt' ? 'input-prompt' : null)));
         if (inputId) {
           const input = document.getElementById(inputId);
-          if (input) input.value = el.innerText;
+          if (input) input.value = val;
         }
         if (typeof window.saveState === 'function') window.saveState();
       });
