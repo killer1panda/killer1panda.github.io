@@ -643,7 +643,7 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "11",
     name: "Cyber-Ether Modernist",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap",
     canvas_css: `
       background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #12121d 100%);
       color: #e4e1f0;
@@ -654,43 +654,53 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 60px rgba(0, 251, 251, 0.08);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(at 0% 0%, rgba(0, 251, 251, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 0%, rgba(139, 44, 227, 0.2) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(255, 94, 7, 0.1) 0px, transparent 50%),
-                  radial-gradient(at 0% 100%, rgba(0, 112, 112, 0.2) 0px, transparent 50%);
+      background: radial-gradient(at 0% 0%, rgba(0, 251, 251, 0.18) 0px, transparent 50%),
+                  radial-gradient(at 100% 0%, rgba(139, 44, 227, 0.22) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(255, 94, 7, 0.12) 0px, transparent 50%),
+                  radial-gradient(at 0% 100%, rgba(0, 112, 112, 0.22) 0px, transparent 50%);
+    `,
+    particles_css: `
+      .particle { background: #00fbfb !important; box-shadow: 0 0 8px #00fbfb; }
+      .particle:nth-child(1) { left: 12%; width: 3px; height: 3px; --dur: 9s; --delay: 0s; --max-opacity: 0.5; }
+      .particle:nth-child(2) { left: 40%; width: 4px; height: 4px; --dur: 12s; --delay: 1.5s; --max-opacity: 0.3; }
+      .particle:nth-child(3) { left: 65%; width: 2px; height: 2px; --dur: 8s; --delay: 3s; --max-opacity: 0.6; }
+      .particle:nth-child(4) { left: 85%; width: 3px; height: 3px; --dur: 11s; --delay: 2s; --max-opacity: 0.4; }
     `,
     decorations: `
-      <div class="scanline" style="width:100%; height:2px; background:linear-gradient(to right, transparent, rgba(0,251,251,0.5), transparent); position:absolute; pointer-events:none; z-index:30; animation: scanline 8s linear infinite;"></div>
-      <style>
-        @keyframes scanline {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(1920px); }
-        }
-      </style>
+      <div style="width:100%; height:2px; background:linear-gradient(to right, transparent, rgba(0,251,251,0.5), transparent); position:absolute; top:0; pointer-events:none; z-index:30; animation: scanline 8s linear infinite;"></div>
+      <style>@keyframes scanline { 0% { transform: translateY(0); } 100% { transform: translateY(1920px); } }</style>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; opacity:0.5; color:#00fbfb; font-family:'JetBrains Mono',monospace;">[MESH_PROTOCOL: ACTIVE]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; opacity:0.5; color:#00fbfb; font-family:'JetBrains Mono',monospace;">[LINK: ENCRYPTED]</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; opacity:0.5; color:#ffb59a; font-family:'JetBrains Mono',monospace;">[PKT_LOSS: 0.02%]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; opacity:0.6; color:#00fbfb; font-family:'JetBrains Mono',monospace;">[████████░░] 82%</div>
+      <div style="position:absolute; top:8%; left:0; right:0; border-top: 1px dashed rgba(0, 251, 251, 0.2); pointer-events: none;"></div>
+      <div style="position:absolute; bottom:7%; left:0; right:0; border-top: 1px dashed rgba(0, 251, 251, 0.2); pointer-events: none;"></div>
+      <div style="position:absolute; top:2%; left:2%; width:20px; height:20px; border-top:2px solid rgba(0,251,251,0.4); border-left:2px solid rgba(0,251,251,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; top:2%; right:2%; width:20px; height:20px; border-top:2px solid rgba(0,251,251,0.4); border-right:2px solid rgba(0,251,251,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:2%; left:2%; width:20px; height:20px; border-bottom:2px solid rgba(0,251,251,0.4); border-left:2px solid rgba(0,251,251,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:2%; right:2%; width:20px; height:20px; border-bottom:2px solid rgba(0,251,251,0.4); border-right:2px solid rgba(0,251,251,0.4); pointer-events:none;"></div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; gap: 12px; z-index: 10; border-bottom: 1.5px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(2); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #ffffff; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border: 1.5px solid rgba(0, 251, 251, 0.35); border-radius: 0px; padding: 45px;
         box-shadow: 0 0 30px rgba(0, 251, 251, 0.1), 0 0 15px rgba(0, 251, 251, 0.4), inset 0 0 10px rgba(0, 251, 251, 0.2); width: 100%;
       }
-      .fact-icon-container { width: 180px; height: 180px; color: #ffb59a; filter: drop-shadow(0 0 10px rgba(255,181,154,0.3)); }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #00fbfb; margin-bottom: 12px; letter-spacing: 2px; }
-      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-icon-container { width: 180px; height: 180px; color: #ffb59a; filter: drop-shadow(0 0 10px rgba(255,181,154,0.4)); }
+      .fact-category { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #00fbfb; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 12px rgba(0, 251, 251, 0.15); }
       .fact-body { font-size: 36px; line-height: 1.6; color: #b9cac9; }
-      
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 24px; z-index: 10; }
       .society-handle { font-weight: 600; color: #ffb59a; }
       .interactive-prompt { color: #839493; }
@@ -699,53 +709,55 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "12",
     name: "Electric Neo-Brutalist",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap",
     canvas_css: `
       background-color: #facc15;
-      color: #1a1c1c;
-      font-family: 'Sora', sans-serif;
-      padding: 60px 50px;
-      position: relative;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
+      position: relative;
     `,
-    texture_css: `
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.08;
-      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
-      background-size: 40px 40px;
+    texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:-20px; right:-20px; w:80px; h:80px; bg: #8127cf; border: 4px solid #000; rotate: 12deg;"></div>
+      <div style="position:absolute; top:4.5%; left:6%; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:4%; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      <div style="position:absolute; top:12%; right:8%; width:70px; height:70px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:12%; left:8%; width:75px; height:75px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
-      .fact-main-block {
-        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 4px solid #000000; padding: 45px;
-        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      .card-content {
+        background: #ffffff;
+        border: 5px solid #000000;
+        padding: 55px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 18px 18px 0px #000000;
+        position: relative;
+        z-index: 10;
       }
-      .fact-main-block::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
-        background: #ffe083; border-bottom: 4px solid #000;
-      }
-      .fact-icon-container { width: 150px; height: 150px; color: #8127cf; z-index: 10; margin-top: 15px; }
-      
-      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #8127cf; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
-      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
-      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #8127cf; padding-left: 15px; z-index: 10; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
-      .society-handle { color: #8127cf; }
-      .interactive-prompt { color: #7f7660; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-icon-container { display: inline-flex; background: #8127cf; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #000000; color: #ffffff; width: 160px; height: 160px; }
+      .fact-category { font-size: 28px; font-weight: 800; text-transform: uppercase; margin: 25px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 24px; font-weight: 800; }
+      .society-handle { text-decoration: underline; }
+      .interactive-prompt { background: #8127cf; color: #ffffff; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000; font-size: 18px; text-transform: uppercase; }
     `
   },
   {
@@ -768,32 +780,41 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.08;
-      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+      opacity: 0.04;
+      mix-blend-mode: multiply;
+      background-image: radial-gradient(#000 1.5px, transparent 0);
+      background-size: 5px 5px;
+    `,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:-20px; right:-20px; font-family:'Sora',sans-serif; font-size: 140px; font-weight:800; color:#e5e2e1; opacity:0.35; select-none:none; pointer-events:none; z-index:1;">01</div>
-      <div style="position:absolute; left:50px; top:0; bottom:0; width:1px; background:#c4c7c7; opacity:0.3;"></div>
-      <div style="position:absolute; right:50px; top:0; bottom:0; width:1px; background:#c4c7c7; opacity:0.3;"></div>
+      <div style="position:absolute; top:-20px; right:-20px; font-family:'Sora',sans-serif; font-size: 180px; font-weight:800; color:rgba(0,0,0,0.04); pointer-events:none; z-index:1; letter-spacing:-5px;">01</div>
+      <div style="position:absolute; left:50px; top:0; bottom:0; width:1px; background:#1c1b1b; opacity:0.15; pointer-events:none;"></div>
+      <div style="position:absolute; right:50px; top:0; bottom:0; width:1px; background:#1c1b1b; opacity:0.15; pointer-events:none;"></div>
+      <div style="position:absolute; top:8%; left:40px; right:40px; height:2px; background:#1c1b1b; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:7%; left:40px; right:40px; height:2px; background:#1c1b1b; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:8.5%; left:60px; display:flex; gap:30px; font-size:14px; font-weight:700; text-transform:uppercase; opacity:0.5; color:#1c1b1b;">
+        <span>TYPE: DAILY_CORE</span>
+        <span>LANG: EN-US</span>
+        <span>VER: 4.1</span>
+      </div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(1.5); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; letter-spacing: -0.5px; }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 3px solid #000000; padding: 45px; z-index: 10; width: 100%;
+        background: #ffffff; border: 4px solid #1c1b1b; padding: 50px; box-shadow: 10px 10px 0px #1c1b1b; z-index: 10; width: 100%;
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #000000; }
-      
-      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #000000; margin-bottom: 12px; }
-      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #444748; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .fact-icon-container { width: 170px; height: 170px; color: #1c1b1b; }
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 30px; font-weight: 600; color: #1c1b1b; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 76px; font-weight: 800; color: #1c1b1b; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; letter-spacing: -1px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #444748; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #000000; }
-      .interactive-prompt { color: #5f5e5e; }
+      .interactive-prompt { color: #71717a; }
     `
   },
   {
@@ -810,6 +831,7 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(255, 0, 255, 0.1);
     `,
     texture_css: `
       position: absolute;
@@ -819,26 +841,39 @@ const TECH_FACTS_REGISTRY = [
       background-image: linear-gradient(rgba(0, 251, 251, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 251, 251, 0.05) 1px, transparent 1px);
       background-size: 32px 32px;
     `,
+    particles_css: `
+      .particle { background: #ff00ff !important; box-shadow: 0 0 10px #ff00ff; }
+      .particle:nth-child(1) { left: 15%; width: 3px; height: 3px; --dur: 8s; --delay: 0s; --max-opacity: 0.5; }
+      .particle:nth-child(2) { left: 45%; width: 4px; height: 4px; --dur: 11s; --delay: 2s; --max-opacity: 0.35; }
+      .particle:nth-child(3) { left: 70%; width: 2px; height: 2px; --dur: 9s; --delay: 1s; --max-opacity: 0.6; }
+      .particle:nth-child(4) { left: 90%; width: 3px; height: 3px; --dur: 13s; --delay: 3s; --max-opacity: 0.3; }
+    `,
     decorations: `
-      <div style="position:absolute; top:-2px; left:-2px; w:24px; h:24px; border-t: 2px solid #00fbfb; border-l: 2px solid #00fbfb; box-shadow: 0 0 10px #00fbfb;"></div>
-      <div style="position:absolute; bottom:-2px; right:-2px; w:24px; h:24px; border-b: 2px solid #00fbfb; border-r: 2px solid #00fbfb; box-shadow: 0 0 10px #00fbfb;"></div>
+      <div style="position:absolute; top:2%; left:2%; width:24px; height:24px; border-top:2px solid #00fbfb; border-left:2px solid #00fbfb; box-shadow: 0 0 8px rgba(0,251,251,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; top:2%; right:2%; width:24px; height:24px; border-top:2px solid #ff00ff; border-right:2px solid #ff00ff; box-shadow: 0 0 8px rgba(255,0,255,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:2%; left:2%; width:24px; height:24px; border-bottom:2px solid #ff00ff; border-left:2px solid #ff00ff; box-shadow: 0 0 8px rgba(255,0,255,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:2%; right:2%; width:24px; height:24px; border-bottom:2px solid #00fbfb; border-right:2px solid #00fbfb; box-shadow: 0 0 8px rgba(0,251,251,0.4); pointer-events:none;"></div>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; color:rgba(255,0,255,0.5); font-family:'Space Mono',monospace;">[RETRO_WAVE_SYS]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; color:rgba(0,251,251,0.5); font-family:'Space Mono',monospace;">FREQ: 80.085MHz</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; color:rgba(0,251,251,0.5); font-family:'Space Mono',monospace;">[TAPE_ID: 0xFF80]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; color:rgba(255,0,255,0.5); font-family:'Space Mono',monospace;">[█████░░░] 62%</div>
+      <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(to right, #ff00ff, #ff8c00, #facc15, #00fbfb); pointer-events:none; z-index:50;"></div>
+      <div style="position:absolute; top:8%; left:0; right:0; border-top: 1px dashed rgba(255,0,255,0.2); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:7%; left:0; right:0; border-top: 1px dashed rgba(0,251,251,0.2); pointer-events:none;"></div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,0,255,0.3); padding-bottom: 15px; z-index: 10; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(270deg) brightness(2); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #ffabf3; drop-shadow: 0 0 8px rgba(255,0,255,0.4); }
-      
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #ffabf3; }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
         background: rgba(13, 13, 23, 0.8); border: 1.5px solid #ff00ff; border-radius: 8px; padding: 45px;
-        box-shadow: 0 0 25px rgba(255, 0, 255, 0.4), inset 0 0 15px rgba(255, 0, 255, 0.2); width: 100%; z-index: 10;
+        box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), inset 0 0 15px rgba(255, 0, 255, 0.15); width: 100%; z-index: 10;
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #ffffff; }
-      
+      .fact-icon-container { width: 160px; height: 160px; color: #00fbfb; filter: drop-shadow(0 0 12px rgba(0,251,251,0.5)); }
       .fact-category { font-family: 'Space Mono', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #00fbfb; text-shadow: 0 0 8px rgba(0,251,251,0.8); margin-bottom: 12px; }
-      .fact-title { font-size: 70px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #ffffff; line-height: 1.15; margin-bottom: 22px; text-transform: uppercase; text-shadow: 0 0 20px rgba(255,0,255,0.2); }
       .fact-body { font-size: 34px; line-height: 1.6; color: #dcbed4; }
-      
       .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,251,251,0.3); padding-top: 20px; font-size: 24px; z-index: 10; font-family: 'Space Mono', monospace; }
       .society-handle { color: #00fbfb; }
       .interactive-prompt { color: #a4899d; }
@@ -847,7 +882,7 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "15",
     name: "Cyber-Ether Emerald",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap",
     canvas_css: `
       background: radial-gradient(circle at 50% 50%, #06261c 0%, #0d0f0d 100%);
       color: #e3ffe5;
@@ -858,36 +893,48 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(16, 185, 129, 0.1);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(52, 211, 153, 0.1) 0px, transparent 50%);
+      background: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.18) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(52, 211, 153, 0.12) 0px, transparent 50%);
+    `,
+    particles_css: `
+      .particle { background: #10b981 !important; box-shadow: 0 0 6px #10b981; }
+      .particle:nth-child(1) { left: 10%; width: 3px; height: 3px; --dur: 10s; --delay: 0s; --max-opacity: 0.5; }
+      .particle:nth-child(2) { left: 35%; width: 2px; height: 2px; --dur: 13s; --delay: 1s; --max-opacity: 0.3; }
+      .particle:nth-child(3) { left: 60%; width: 4px; height: 4px; --dur: 8s; --delay: 2.5s; --max-opacity: 0.45; }
+      .particle:nth-child(4) { left: 85%; width: 2px; height: 2px; --dur: 11s; --delay: 3.5s; --max-opacity: 0.35; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; left:20px; font-size:14px; color:#10b981; opacity:0.6;">[NODE: SECURE]</div>
+      <div style="position:absolute; top:15%; left:12%; width:180px; height:180px; border-radius:50%; background:rgba(16,185,129,0.15); filter:blur(60px); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; bottom:18%; right:10%; width:200px; height:200px; border-radius:50%; background:rgba(52,211,153,0.12); filter:blur(65px); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; color:rgba(16,185,129,0.5); font-family:'Fira Code',monospace;">[BLOCKCHAIN_HASH: 0xE3F1]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; color:rgba(52,211,153,0.5); font-family:'Fira Code',monospace;">NODE_COUNT: 2,847</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; color:rgba(16,185,129,0.5); font-family:'Fira Code',monospace;">[UPTIME: 99.97%]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; color:rgba(251,191,36,0.5); font-family:'Fira Code',monospace;">STAKE: 32 ETH</div>
+      <div style="position:absolute; top:7%; bottom:6.5%; left:30px; border-left:1px dashed rgba(16, 185, 129, 0.2); pointer-events:none;"></div>
+      <div style="position:absolute; top:7%; bottom:6.5%; right:30px; border-right:1px dashed rgba(16, 185, 129, 0.2); pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(16,185,129,0.2); padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(16,185,129,0.25); padding-bottom: 15px; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(1.5) sepia(1) hue-rotate(100deg); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #10b981; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
         background: rgba(16, 185, 129, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 0px; padding: 45px;
-        box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), inset 0 0 10px rgba(16, 185, 129, 0.1); width: 100%;
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), inset 0 0 15px rgba(16, 185, 129, 0.1); width: 100%;
       }
-      .fact-icon-container { width: 180px; height: 180px; color: #34d399; }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #10b981; margin-bottom: 12px; letter-spacing: 2px; }
-      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-icon-container { width: 180px; height: 180px; color: #34d399; filter: drop-shadow(0 0 10px rgba(52,211,153,0.4)); }
+      .fact-category { font-family: 'Fira Code', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #10b981; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 10px rgba(16,185,129,0.15); }
       .fact-body { font-size: 36px; line-height: 1.6; color: #baccb0; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(16,185,129,0.2); padding-top: 20px; font-size: 24px; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(16,185,129,0.25); padding-top: 20px; font-size: 24px; }
       .society-handle { font-weight: 600; color: #34d399; }
       .interactive-prompt { color: #85967c; }
     `
@@ -895,7 +942,7 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "16",
     name: "Cyber-Ether Orange",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Code+Pro:wght@400;500;700&display=swap",
     canvas_css: `
       background: radial-gradient(circle at 50% 50%, #2e1505 0%, #0f0a05 100%);
       color: #ffe3d1;
@@ -906,36 +953,48 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(249, 115, 22, 0.08);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(251, 146, 60, 0.1) 0px, transparent 50%);
+      background: radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.18) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(251, 146, 60, 0.12) 0px, transparent 50%);
+    `,
+    particles_css: `
+      .particle { background: #f97316 !important; box-shadow: 0 0 8px #f97316; }
+      .particle:nth-child(1) { left: 12%; width: 4px; height: 4px; --dur: 9s; --delay: 0s; --max-opacity: 0.5; }
+      .particle:nth-child(2) { left: 40%; width: 3px; height: 3px; --dur: 12s; --delay: 2s; --max-opacity: 0.35; }
+      .particle:nth-child(3) { left: 70%; width: 2px; height: 2px; --dur: 8s; --delay: 1s; --max-opacity: 0.55; }
+      .particle:nth-child(4) { left: 88%; width: 3px; height: 3px; --dur: 11s; --delay: 3s; --max-opacity: 0.3; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; right:20px; font-size:14px; color:#f97316; opacity:0.6;">[EDGE_GATEWAY]</div>
+      <div style="position:absolute; top:10%; right:8%; width:180px; height:180px; border-radius:50%; background:rgba(249,115,22,0.12); filter:blur(60px); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; bottom:15%; left:10%; width:200px; height:200px; border-radius:50%; background:rgba(251,146,60,0.1); filter:blur(65px); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; color:rgba(249,115,22,0.5); font-family:'Source Code Pro',monospace;">[THERMAL_SIG: ELEVATED]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; color:rgba(249,115,22,0.5); font-family:'Source Code Pro',monospace;">CORE_TEMP: 72°C</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; color:rgba(251,146,60,0.5); font-family:'Source Code Pro',monospace;">[POWER_DRAW: 342W]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; color:rgba(249,115,22,0.6); font-family:'Source Code Pro',monospace;">[██████░░] 78%</div>
+      <div style="position:absolute; top:8%; left:0; right:0; border-top: 1px dashed rgba(249, 115, 22, 0.2); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:7%; left:0; right:0; border-top: 1px dashed rgba(249, 115, 22, 0.2); pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(249,115,22,0.2); padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(249,115,22,0.25); padding-bottom: 15px; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(5deg) brightness(1.5); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #f97316; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
         background: rgba(249, 115, 22, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border: 1.5px solid rgba(249, 115, 22, 0.4); border-radius: 0px; padding: 45px;
-        box-shadow: 0 0 30px rgba(249, 115, 22, 0.15), inset 0 0 10px rgba(249, 115, 22, 0.1); width: 100%;
+        box-shadow: 0 0 30px rgba(249, 115, 22, 0.15), inset 0 0 15px rgba(249, 115, 22, 0.1); width: 100%;
       }
-      .fact-icon-container { width: 180px; height: 180px; color: #fb923c; }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #f97316; margin-bottom: 12px; letter-spacing: 2px; }
-      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-icon-container { width: 180px; height: 180px; color: #fb923c; filter: drop-shadow(0 0 10px rgba(251,146,60,0.4)); }
+      .fact-category { font-family: 'Source Code Pro', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #f97316; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 10px rgba(249,115,22,0.15); }
       .fact-body { font-size: 36px; line-height: 1.6; color: #e3d1c4; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(249,115,22,0.2); padding-top: 20px; font-size: 24px; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(249,115,22,0.25); padding-top: 20px; font-size: 24px; }
       .society-handle { font-weight: 600; color: #fb923c; }
       .interactive-prompt { color: #a49185; }
     `
@@ -943,7 +1002,7 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "17",
     name: "Cyber-Ether Violet",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap",
     canvas_css: `
       background: radial-gradient(circle at 50% 50%, #23083d 0%, #0c0414 100%);
       color: #eed6ff;
@@ -954,36 +1013,49 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(139, 92, 246, 0.1);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(167, 139, 250, 0.1) 0px, transparent 50%);
+      background: radial-gradient(at 20% 20%, rgba(139, 92, 246, 0.2) 0px, transparent 50%),
+                  radial-gradient(at 80% 80%, rgba(167, 139, 250, 0.12) 0px, transparent 50%);
+    `,
+    particles_css: `
+      .particle { background: #a78bfa !important; box-shadow: 0 0 8px #8b5cf6; }
+      .particle:nth-child(1) { left: 15%; width: 3px; height: 3px; --dur: 10s; --delay: 0s; --max-opacity: 0.45; }
+      .particle:nth-child(2) { left: 42%; width: 4px; height: 4px; --dur: 13s; --delay: 1.5s; --max-opacity: 0.3; }
+      .particle:nth-child(3) { left: 68%; width: 2px; height: 2px; --dur: 9s; --delay: 3s; --max-opacity: 0.5; }
+      .particle:nth-child(4) { left: 88%; width: 3px; height: 3px; --dur: 11s; --delay: 2s; --max-opacity: 0.35; }
     `,
     decorations: `
-      <div style="position:absolute; bottom:20px; left:20px; font-size:14px; color:#8b5cf6; opacity:0.6;">[ZK_PROOF]</div>
+      <div style="position:absolute; top:12%; left:10%; width:220px; height:220px; border-radius:50%; background:rgba(139,92,246,0.15); filter:blur(70px); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; bottom:15%; right:8%; width:180px; height:180px; border-radius:50%; background:rgba(99,102,241,0.12); filter:blur(60px); pointer-events:none; z-index:1;"></div>
+      <svg style="position:absolute; top:12%; right:8%; width:80px; height:80px; fill:none; stroke:rgba(139,92,246,0.15); stroke-width:1; pointer-events:none;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="15"/></svg>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; color:rgba(139,92,246,0.5); font-family:'Fira Code',monospace;">[QUANTUM_STATE: SUPERPOSED]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; color:rgba(167,139,250,0.5); font-family:'Fira Code',monospace;">ENTANGLE_ID: QBT-7291</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; color:rgba(139,92,246,0.5); font-family:'Fira Code',monospace;">[DECOHERENCE: 0.003ms]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; color:rgba(167,139,250,0.5); font-family:'Fira Code',monospace;">[ZK_PROOF: VERIFIED]</div>
+      <div style="position:absolute; top:2%; left:2%; width:20px; height:20px; border-top:2px solid rgba(139,92,246,0.3); border-left:2px solid rgba(139,92,246,0.3); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:2%; right:2%; width:20px; height:20px; border-bottom:2px solid rgba(139,92,246,0.3); border-right:2px solid rgba(139,92,246,0.3); pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(139,92,246,0.2); padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(139,92,246,0.25); padding-bottom: 15px; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(240deg) brightness(1.5); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #8b5cf6; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
         background: rgba(139, 92, 246, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border: 1.5px solid rgba(139, 92, 246, 0.4); border-radius: 0px; padding: 45px;
-        box-shadow: 0 0 30px rgba(139, 92, 246, 0.15), inset 0 0 10px rgba(139, 92, 246, 0.1); width: 100%;
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.15), inset 0 0 15px rgba(139, 92, 246, 0.1); width: 100%;
       }
-      .fact-icon-container { width: 180px; height: 180px; color: #a78bfa; }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #8b5cf6; margin-bottom: 12px; letter-spacing: 2px; }
-      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-icon-container { width: 180px; height: 180px; color: #a78bfa; filter: drop-shadow(0 0 10px rgba(167,139,250,0.4)); }
+      .fact-category { font-family: 'Fira Code', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #8b5cf6; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 10px rgba(139,92,246,0.15); }
       .fact-body { font-size: 36px; line-height: 1.6; color: #dac4eb; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(139,92,246,0.2); padding-top: 20px; font-size: 24px; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(139,92,246,0.25); padding-top: 20px; font-size: 24px; }
       .society-handle { font-weight: 600; color: #a78bfa; }
       .interactive-prompt { color: #9f8ea6; }
     `
@@ -991,7 +1063,7 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "18",
     name: "Cyber-Ether Lime",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap",
     canvas_css: `
       background: radial-gradient(circle at 50% 50%, #172d06 0%, #090e03 100%);
       color: #e5ffd1;
@@ -1002,36 +1074,48 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(132, 204, 22, 0.08);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(at 0% 0%, rgba(132, 204, 22, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(163, 230, 53, 0.1) 0px, transparent 50%);
+      background: radial-gradient(at 0% 0%, rgba(132, 204, 22, 0.18) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(163, 230, 53, 0.12) 0px, transparent 50%);
+    `,
+    particles_css: `
+      .particle { background: #84cc16 !important; box-shadow: 0 0 6px #84cc16; }
+      .particle:nth-child(1) { left: 8%; width: 3px; height: 3px; --dur: 9s; --delay: 0s; --max-opacity: 0.5; }
+      .particle:nth-child(2) { left: 38%; width: 2px; height: 2px; --dur: 12s; --delay: 1s; --max-opacity: 0.35; }
+      .particle:nth-child(3) { left: 62%; width: 4px; height: 4px; --dur: 8s; --delay: 2.5s; --max-opacity: 0.45; }
+      .particle:nth-child(4) { left: 82%; width: 2px; height: 2px; --dur: 11s; --delay: 3s; --max-opacity: 0.3; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; left:20px; font-size:14px; color:#84cc16; opacity:0.6;">[GRID_ONLINE]</div>
+      <div style="position:absolute; top:8%; left:12%; width:160px; height:160px; border-radius:50%; background:rgba(132,204,22,0.12); filter:blur(55px); pointer-events:none; z-index:1;"></div>
+      <svg style="position:absolute; bottom:10%; right:8%; width:70px; height:70px; fill:none; stroke:rgba(132,204,22,0.2); stroke-width:1.5; pointer-events:none;" viewBox="0 0 100 100"><polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"/></svg>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; color:rgba(132,204,22,0.5); font-family:'JetBrains Mono',monospace;">[BIO_SCAN: ACTIVE]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; color:rgba(163,230,53,0.5); font-family:'JetBrains Mono',monospace;">GENE_SEQ: ATCG-4291</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; color:rgba(132,204,22,0.5); font-family:'JetBrains Mono',monospace;">[GRID_ONLINE: 47 NODES]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; color:rgba(163,230,53,0.5); font-family:'JetBrains Mono',monospace;">[███████░] 89%</div>
+      <div style="position:absolute; top:50%; left:30px; width:1px; height:120px; transform:translateY(-50%); border-left:1px dashed rgba(132,204,22,0.2); pointer-events:none;"></div>
+      <div style="position:absolute; top:50%; right:30px; width:1px; height:120px; transform:translateY(-50%); border-left:1px dashed rgba(132,204,22,0.2); pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(132,204,22,0.2); padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(132,204,22,0.25); padding-bottom: 15px; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(60deg) brightness(1.5); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #84cc16; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
         background: rgba(132, 204, 22, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border: 1.5px solid rgba(132, 204, 22, 0.4); border-radius: 0px; padding: 45px;
-        box-shadow: 0 0 30px rgba(132, 204, 22, 0.15), inset 0 0 10px rgba(132, 204, 22, 0.1); width: 100%;
+        box-shadow: 0 0 30px rgba(132, 204, 22, 0.15), inset 0 0 15px rgba(132, 204, 22, 0.1); width: 100%;
       }
-      .fact-icon-container { width: 180px; height: 180px; color: #a3e635; }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #84cc16; margin-bottom: 12px; letter-spacing: 2px; }
-      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-icon-container { width: 180px; height: 180px; color: #a3e635; filter: drop-shadow(0 0 10px rgba(163,230,53,0.4)); }
+      .fact-category { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #84cc16; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 10px rgba(132,204,22,0.15); }
       .fact-body { font-size: 36px; line-height: 1.6; color: #ccd9c0; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(132,204,22,0.2); padding-top: 20px; font-size: 24px; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(132,204,22,0.25); padding-top: 20px; font-size: 24px; }
       .society-handle { font-weight: 600; color: #a3e635; }
       .interactive-prompt { color: #8d9a80; }
     `
@@ -1039,7 +1123,7 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "19",
     name: "Cyber-Ether Cyan",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap",
     canvas_css: `
       background: radial-gradient(circle at 50% 50%, #06313d 0%, #031014 100%);
       color: #d1f7ff;
@@ -1050,36 +1134,48 @@ const TECH_FACTS_REGISTRY = [
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(6, 182, 212, 0.08);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.1) 0px, transparent 50%);
+      background: radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.18) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.12) 0px, transparent 50%);
+    `,
+    particles_css: `
+      .particle { background: #22d3ee !important; box-shadow: 0 0 6px #06b6d4; }
+      .particle:nth-child(1) { left: 10%; width: 3px; height: 3px; --dur: 10s; --delay: 0s; --max-opacity: 0.45; }
+      .particle:nth-child(2) { left: 35%; width: 2px; height: 2px; --dur: 13s; --delay: 1.5s; --max-opacity: 0.3; }
+      .particle:nth-child(3) { left: 65%; width: 4px; height: 4px; --dur: 8s; --delay: 2s; --max-opacity: 0.5; }
+      .particle:nth-child(4) { left: 85%; width: 2px; height: 2px; --dur: 11s; --delay: 3.5s; --max-opacity: 0.35; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; right:20px; font-size:14px; color:#06b6d4; opacity:0.6;">[TUNNEL: SECURE]</div>
+      <div style="position:absolute; bottom:20%; left:10%; width:200px; height:200px; border-radius:50%; background:rgba(6,182,212,0.12); filter:blur(65px); pointer-events:none; z-index:1;"></div>
+      <svg style="position:absolute; top:10%; right:6%; width:90px; height:90px; fill:none; stroke:rgba(6,182,212,0.15); stroke-width:1; pointer-events:none;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/><circle cx="50" cy="50" r="32"/><circle cx="50" cy="50" r="19"/></svg>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; color:rgba(6,182,212,0.5); font-family:'Space Mono',monospace;">[DEPTH_READING: 4,820m]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; color:rgba(34,211,238,0.5); font-family:'Space Mono',monospace;">SONAR_PING: 12ms</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; color:rgba(6,182,212,0.5); font-family:'Space Mono',monospace;">[PRESSURE_KPA: 48,230]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; color:rgba(34,211,238,0.5); font-family:'Space Mono',monospace;">[TUNNEL: SECURE]</div>
+      <div style="position:absolute; top:8%; left:0; right:0; border-top: 1px dashed rgba(6, 182, 212, 0.2); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:7%; left:0; right:0; border-top: 1px dashed rgba(6, 182, 212, 0.2); pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(6,182,212,0.2); padding-bottom: 15px; }
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 1.5px solid rgba(6,182,212,0.25); padding-bottom: 15px; }
       .logo-header img { height: 44px; filter: grayscale(1) invert(1) sepia(1) hue-rotate(150deg) brightness(1.5); }
       .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #06b6d4; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
         background: rgba(6, 182, 212, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border: 1.5px solid rgba(6, 182, 212, 0.4); border-radius: 0px; padding: 45px;
-        box-shadow: 0 0 30px rgba(6, 182, 212, 0.15), inset 0 0 10px rgba(6, 182, 212, 0.1); width: 100%;
+        box-shadow: 0 0 30px rgba(6, 182, 212, 0.15), inset 0 0 15px rgba(6, 182, 212, 0.1); width: 100%;
       }
-      .fact-icon-container { width: 180px; height: 180px; color: #22d3ee; }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #06b6d4; margin-bottom: 12px; letter-spacing: 2px; }
-      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; }
+      .fact-icon-container { width: 180px; height: 180px; color: #22d3ee; filter: drop-shadow(0 0 10px rgba(34,211,238,0.4)); }
+      .fact-category { font-family: 'Space Mono', monospace; font-size: 26px; font-weight: 700; text-transform: uppercase; color: #06b6d4; margin-bottom: 12px; letter-spacing: 2px; }
+      .fact-title { font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 22px; text-shadow: 0 0 10px rgba(6,182,212,0.15); }
       .fact-body { font-size: 36px; line-height: 1.6; color: #c0dae3; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(6,182,212,0.2); padding-top: 20px; font-size: 24px; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(6,182,212,0.25); padding-top: 20px; font-size: 24px; }
       .society-handle { font-weight: 600; color: #22d3ee; }
       .interactive-prompt { color: #8da4ac; }
     `
@@ -1087,262 +1183,278 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "20",
     name: "Electric Brutalist Lime",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap",
     canvas_css: `
       background-color: #a3e635;
-      color: #1a1c1c;
-      font-family: 'Sora', sans-serif;
-      padding: 60px 50px;
-      position: relative;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
+      position: relative;
     `,
-    texture_css: `
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.08;
-      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
-      background-size: 40px 40px;
+    texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:-20px; left:-20px; w:80px; h:80px; bg: #8127cf; border: 4px solid #000; rotate: -12deg;"></div>
+      <div style="position:absolute; top:4.5%; left:6%; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:4%; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      <div style="position:absolute; bottom:10%; right:6%; width:65px; height:65px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+      <div style="position:absolute; top:14%; left:6%; width:50px; height:50px; background:repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0,0,0,0.1) 4px, rgba(0,0,0,0.1) 8px); pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
-      .fact-main-block {
-        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 4px solid #000000; padding: 45px;
-        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      .card-content {
+        background: #ffffff;
+        border: 5px solid #000000;
+        padding: 55px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 16px 16px 0px #000000;
+        position: relative;
+        z-index: 10;
       }
-      .fact-main-block::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
-        background: #ffe083; border-bottom: 4px solid #000;
-      }
-      .fact-icon-container { width: 150px; height: 150px; color: #d946ef; z-index: 10; margin-top: 15px; }
-      
-      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #d946ef; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
-      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
-      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #d946ef; padding-left: 15px; z-index: 10; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
-      .society-handle { color: #d946ef; }
-      .interactive-prompt { color: #7f7660; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-icon-container { display: inline-flex; background: #d946ef; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #000000; color: #ffffff; width: 160px; height: 160px; }
+      .fact-category { font-size: 28px; font-weight: 800; text-transform: uppercase; margin: 25px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 24px; font-weight: 800; }
+      .society-handle { text-decoration: underline; }
+      .interactive-prompt { background: #d946ef; color: #ffffff; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000; font-size: 18px; text-transform: uppercase; }
     `
   },
   {
     id: "21",
     name: "Electric Brutalist Magenta",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap",
     canvas_css: `
       background-color: #d946ef;
-      color: #1a1c1c;
-      font-family: 'Sora', sans-serif;
-      padding: 60px 50px;
-      position: relative;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
+      position: relative;
     `,
-    texture_css: `
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.08;
-      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
-      background-size: 40px 40px;
+    texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:-20px; right:-20px; w:80px; h:80px; bg: #a3e635; border: 4px solid #000; rotate: 12deg;"></div>
+      <div style="position:absolute; top:4.5%; left:6%; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:4%; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      <svg style="position:absolute; top:13%; right:7%; width:60px; height:60px; fill:none; stroke:#000; stroke-width:3; pointer-events:none; opacity:0.2;" viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg>
+      <div style="position:absolute; bottom:12%; left:8%; width:70px; height:70px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:8%; right:8%; width:55px; height:55px; border:4px solid #000; pointer-events:none; opacity:0.15;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
-      .fact-main-block {
-        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 4px solid #000000; padding: 45px;
-        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      .card-content {
+        background: #ffffff;
+        border: 5px solid #000000;
+        padding: 55px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 18px 18px 0px #000000;
+        position: relative;
+        z-index: 10;
       }
-      .fact-main-block::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
-        background: #ffe083; border-bottom: 4px solid #000;
-      }
-      .fact-icon-container { width: 150px; height: 150px; color: #000000; z-index: 10; margin-top: 15px; }
-      
-      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #000000; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
-      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
-      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #000000; padding-left: 15px; z-index: 10; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
-      .society-handle { color: #000000; }
-      .interactive-prompt { color: #7f7660; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-icon-container { display: inline-flex; background: #000000; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #d946ef; color: #ffffff; width: 160px; height: 160px; }
+      .fact-category { font-size: 28px; font-weight: 800; text-transform: uppercase; margin: 25px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 24px; font-weight: 800; }
+      .society-handle { text-decoration: underline; }
+      .interactive-prompt { background: #000000; color: #d946ef; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #d946ef; font-size: 18px; text-transform: uppercase; }
     `
   },
   {
     id: "22",
     name: "Electric Brutalist Cyan",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap",
     canvas_css: `
       background-color: #06b6d4;
-      color: #1a1c1c;
-      font-family: 'Sora', sans-serif;
-      padding: 60px 50px;
-      position: relative;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
+      position: relative;
     `,
-    texture_css: `
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.08;
-      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
-      background-size: 40px 40px;
+    texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:-20px; right:-20px; w:80px; h:80px; bg: #f97316; border: 4px solid #000; rotate: 12deg;"></div>
+      <div style="position:absolute; top:4.5%; left:6%; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:4%; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      <div style="position:absolute; top:14%; right:8%; width:80px; height:80px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.25; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:14%; left:6%; width:60px; height:3px; background:#000; opacity:0.2; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:16%; left:6%; width:40px; height:3px; background:#000; opacity:0.2; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:18%; left:6%; width:50px; height:3px; background:#000; opacity:0.2; pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
-      .fact-main-block {
-        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 4px solid #000000; padding: 45px;
-        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      .card-content {
+        background: #ffffff;
+        border: 5px solid #000000;
+        padding: 55px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 18px 18px 0px #000000;
+        position: relative;
+        z-index: 10;
       }
-      .fact-main-block::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
-        background: #ffe083; border-bottom: 4px solid #000;
-      }
-      .fact-icon-container { width: 150px; height: 150px; color: #f97316; z-index: 10; margin-top: 15px; }
-      
-      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #f97316; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
-      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
-      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #f97316; padding-left: 15px; z-index: 10; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
-      .society-handle { color: #f97316; }
-      .interactive-prompt { color: #7f7660; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-icon-container { display: inline-flex; background: #f97316; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #000000; color: #ffffff; width: 160px; height: 160px; }
+      .fact-category { font-size: 28px; font-weight: 800; text-transform: uppercase; margin: 25px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 24px; font-weight: 800; }
+      .society-handle { text-decoration: underline; }
+      .interactive-prompt { background: #f97316; color: #ffffff; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000; font-size: 18px; text-transform: uppercase; }
     `
   },
   {
     id: "23",
     name: "Electric Brutalist Orange",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap",
     canvas_css: `
       background-color: #f97316;
-      color: #1a1c1c;
-      font-family: 'Sora', sans-serif;
-      padding: 60px 50px;
-      position: relative;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
+      position: relative;
     `,
-    texture_css: `
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.08;
-      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
-      background-size: 40px 40px;
+    texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:-20px; left:-20px; w:80px; h:80px; bg: #06b6d4; border: 4px solid #000; rotate: -12deg;"></div>
+      <div style="position:absolute; top:4.5%; left:6%; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:4%; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      <div style="position:absolute; top:12%; right:6%; width:65px; height:65px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:10%; left:7%; width:70px; height:70px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.3; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:9%; right:7%; font-size:12px; font-weight:800; color:#000; opacity:0.25; text-transform:uppercase; border:3px solid #000; padding:4px 8px; transform:rotate(-5deg); pointer-events:none;">VERIFIED</div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
-      .fact-main-block {
-        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 4px solid #000000; padding: 45px;
-        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      .card-content {
+        background: #ffffff;
+        border: 5px solid #000000;
+        padding: 55px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 18px 18px 0px #000000;
+        position: relative;
+        z-index: 10;
       }
-      .fact-main-block::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
-        background: #ffe083; border-bottom: 4px solid #000;
-      }
-      .fact-icon-container { width: 150px; height: 150px; color: #06b6d4; z-index: 10; margin-top: 15px; }
-      
-      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #ffffff; background: #06b6d4; border: 2px solid #000; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
-      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
-      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #06b6d4; padding-left: 15px; z-index: 10; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
-      .society-handle { color: #06b6d4; }
-      .interactive-prompt { color: #7f7660; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-icon-container { display: inline-flex; background: #06b6d4; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #000000; color: #ffffff; width: 160px; height: 160px; }
+      .fact-category { font-size: 28px; font-weight: 800; text-transform: uppercase; margin: 25px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 24px; font-weight: 800; }
+      .society-handle { text-decoration: underline; }
+      .interactive-prompt { background: #06b6d4; color: #ffffff; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000; font-size: 18px; text-transform: uppercase; }
     `
   },
   {
     id: "24",
     name: "Electric Brutalist White",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap",
+    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap",
     canvas_css: `
       background-color: #ffffff;
-      color: #1a1c1c;
-      font-family: 'Sora', sans-serif;
-      padding: 60px 50px;
-      position: relative;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
+      position: relative;
       border: 6px solid #000;
     `,
-    texture_css: `
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.05;
-      background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px);
-      background-size: 30px 30px;
+    texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; right:20px; font-size:14px; font-weight:800; color:#000;">[SYS_DRIP]</div>
+      <div style="position:absolute; top:4.5%; left:6%; display:flex; gap:6px; pointer-events:none; z-index:100;">
+        <div style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#eab308; border:1.5px solid #000;"></div>
+        <div style="width:12px; height:12px; border-radius:50%; background:#22c55e; border:1.5px solid #000;"></div>
+      </div>
+      <div style="position:absolute; top:4%; left:50px; right:30px; height:32px; border-bottom:4px solid #000; pointer-events:none; z-index:11;"></div>
+      <div style="position:absolute; top:13%; right:7%; width:75px; height:75px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.25; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:13%; left:7%; width:65px; height:65px; background-image:radial-gradient(#000 20%, transparent 20%); background-size:8px 8px; opacity:0.25; pointer-events:none;"></div>
+      <div style="position:absolute; left:0; top:40%; bottom:40%; width:12px; background:repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 8px); opacity:0.15; pointer-events:none;"></div>
+      <div style="position:absolute; right:0; top:40%; bottom:40%; width:12px; background:repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 8px); opacity:0.15; pointer-events:none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 4px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
-      .fact-main-block {
-        flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #facc15; border: 4px solid #000000; padding: 45px;
-        box-shadow: 8px 8px 0px 0px #000000; width: 100%; position: relative;
+      .card-content {
+        background: #facc15;
+        border: 5px solid #000000;
+        padding: 55px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 18px 18px 0px #000000;
+        position: relative;
+        z-index: 10;
       }
-      .fact-main-block::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 35px;
-        background: #000; border-bottom: 4px solid #000;
-      }
-      .fact-icon-container { width: 150px; height: 150px; color: #000000; z-index: 10; margin-top: 15px; }
-      
-      .fact-category { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #facc15; background: #000000; border: 2px solid #facc15; padding: 6px 14px; margin-bottom: 12px; z-index: 10; }
-      .fact-title { font-size: 68px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; z-index: 10; }
-      .fact-body { font-size: 34px; line-height: 1.5; color: #000000; border-l: 4px solid #000000; padding-left: 15px; z-index: 10; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 800; }
-      .society-handle { color: #000000; }
-      .interactive-prompt { color: #4d4632; }
+      .logo-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000000; padding-bottom: 16px; }
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(2); }
+      .logo-header span { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+      .fact-main-block { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 20px 0; }
+      .fact-icon-container { display: inline-flex; background: #000000; border: 3px solid #000000; padding: 12px; box-shadow: 4px 4px 0px #facc15; color: #facc15; width: 160px; height: 160px; }
+      .fact-category { font-size: 28px; font-weight: 800; text-transform: uppercase; margin: 25px 0 12px 0; letter-spacing: 1px; }
+      .fact-title { font-size: 70px; font-weight: 800; color: #000000; line-height: 1.2; margin-bottom: 18px; text-transform: uppercase; }
+      .fact-body { font-size: 34px; line-height: 1.55; color: #000000; font-weight: 500; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 4px solid #000000; padding-top: 18px; font-size: 24px; font-weight: 800; }
+      .society-handle { text-decoration: underline; }
+      .interactive-prompt { background: #000000; color: #facc15; padding: 4px 10px; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #facc15; font-size: 18px; text-transform: uppercase; }
     `
   },
   {
@@ -1365,31 +1477,36 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.06;
-      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+      opacity: 0.04;
+      mix-blend-mode: multiply;
+      background-image: radial-gradient(#000 1.5px, transparent 0);
+      background-size: 5px 5px;
+    `,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; bottom:20px; left:50px; font-family:'Sora',sans-serif; font-size: 140px; font-weight:800; color:#dad6d5; opacity:0.3; select-none:none; pointer-events:none; z-index:1;">02</div>
-      <div style="position:absolute; left:50px; top:0; bottom:0; width:1px; background:#444748; opacity:0.2;"></div>
+      <div style="position:absolute; bottom:-10px; left:-10px; font-family:'Sora',sans-serif; font-size: 180px; font-weight:800; color:rgba(0,0,0,0.04); pointer-events:none; z-index:1; letter-spacing:-5px;">02</div>
+      <div style="position:absolute; left:50px; top:0; bottom:0; width:1px; background:#1c1b1b; opacity:0.12; pointer-events:none;"></div>
+      <div style="position:absolute; top:8%; left:40px; right:40px; height:2px; background:#1c1b1b; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:7%; left:40px; right:40px; height:2px; background:#1c1b1b; pointer-events:none;"></div>
+      <div style="position:absolute; bottom:8.5%; right:60px; font-size:14px; font-weight:700; text-transform:uppercase; opacity:0.4; color:#1c1b1b;">CLASSIFICATION: PUBLIC</div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #000000; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #000000; }
-      
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(1.5); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; letter-spacing: -0.5px; }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 3px solid #000000; padding: 45px; z-index: 10; width: 100%;
+        background: #ffffff; border: 4px solid #1c1b1b; padding: 50px; box-shadow: 10px 10px 0px #1c1b1b; z-index: 10; width: 100%;
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #000000; }
-      
-      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #5d5f5f; margin-bottom: 12px; }
-      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #444748; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .fact-icon-container { width: 170px; height: 170px; color: #1c1b1b; }
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 30px; font-weight: 600; color: #5d5f5f; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 76px; font-weight: 800; color: #000000; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; letter-spacing: -1px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #444748; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #000000; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #000000; }
-      .interactive-prompt { color: #5d5f5f; }
+      .interactive-prompt { color: #71717a; }
     `
   },
   {
@@ -1413,28 +1530,33 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.05;
-      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+      opacity: 0.03;
+      background-image: radial-gradient(#fff 1px, transparent 0);
+      background-size: 6px 6px;
+    `,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; right:50px; font-family:'Sora',sans-serif; font-size: 20px; font-weight:800; color:#fdf8f8; opacity:0.8; select-none:none; pointer-events:none; z-index:1;">[ARCHIVE_SYS]</div>
+      <div style="position:absolute; top:20px; right:50px; font-family:'Sora',sans-serif; font-size:18px; font-weight:800; color:rgba(253,248,248,0.7); pointer-events:none; z-index:1;">[ARCHIVE_SYS]</div>
+      <svg style="position:absolute; bottom:15%; right:8%; width:60px; height:60px; fill:none; stroke:rgba(253,248,248,0.1); stroke-width:1; pointer-events:none;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/><line x1="0" y1="50" x2="100" y2="50"/><line x1="50" y1="0" x2="50" y2="100"/></svg>
+      <div style="position:absolute; top:5%; bottom:5%; left:30px; right:30px; border:1px solid rgba(253,248,248,0.08); pointer-events:none;"></div>
+      <div style="position:absolute; bottom:3%; left:50px; font-size:14px; font-weight:700; text-transform:uppercase; opacity:0.3; color:#fdf8f8;">REF: MONO_EDITION_03</div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #fdf8f8; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) invert(1); }
+      .logo-header img { height: 48px; filter: grayscale(1) invert(1); }
       .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #fdf8f8; }
-      
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #1c1b1b; border: 3px solid #fdf8f8; padding: 45px; z-index: 10; width: 100%;
+        background: #1c1b1b; border: 3px solid #fdf8f8; padding: 50px; z-index: 10; width: 100%;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.3);
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #fdf8f8; }
-      
-      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #c4c7c7; margin-bottom: 12px; }
-      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #c4c7c7; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #fdf8f8; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .fact-icon-container { width: 170px; height: 170px; color: #fdf8f8; }
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 30px; font-weight: 600; color: #c4c7c7; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 76px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; letter-spacing: -1px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #c4c7c7; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #fdf8f8; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #fdf8f8; }
       .interactive-prompt { color: #c4c7c7; }
     `
@@ -1459,29 +1581,34 @@ const TECH_FACTS_REGISTRY = [
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.08;
-      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+      opacity: 0.04;
+      mix-blend-mode: multiply;
+      background-image: radial-gradient(#2b2924 1.5px, transparent 0);
+      background-size: 5px 5px;
+    `,
+    particles_css: `
+      .particle { display: none !important; }
     `,
     decorations: `
-      <div style="position:absolute; top:20px; left:50px; font-size: 14px; font-weight: 800; color: #2b2924; opacity: 0.6;">[TYPE: ARCHIVAL_METRIC]</div>
-      <div style="position:absolute; bottom:20px; right:50px; font-size: 14px; font-weight: 800; color: #2b2924; opacity: 0.6;">[METADATA_LINE]</div>
+      <div style="position:absolute; top:-15px; left:-15px; font-family:'Sora',sans-serif; font-size: 180px; font-weight:800; color:rgba(0,0,0,0.035); pointer-events:none; z-index:1; letter-spacing:-5px;">03</div>
+      <div style="position:absolute; top:5%; bottom:5%; left:30px; right:30px; border:1px solid rgba(43,41,36,0.1); pointer-events:none;"></div>
+      <svg style="position:absolute; bottom:8%; right:8%; width:50px; height:50px; fill:none; stroke:rgba(43,41,36,0.1); stroke-width:1.5; pointer-events:none;" viewBox="0 0 100 100"><polygon points="50,5 95,95 5,95"/></svg>
+      <div style="position:absolute; top:2%; left:50px; font-size: 14px; font-weight: 800; color: #2b2924; opacity: 0.4; text-transform:uppercase;">[TYPE: ARCHIVAL_METRIC]</div>
+      <div style="position:absolute; bottom:2%; right:50px; font-size: 14px; font-weight: 800; color: #2b2924; opacity: 0.4; text-transform:uppercase;">[METADATA_LINE]</div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 3px solid #2b2924; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #2b2924; }
-      
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(1.5); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #2b2924; letter-spacing: -0.5px; }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 3px solid #2b2924; padding: 45px; z-index: 10; width: 100%;
+        background: #ffffff; border: 4px solid #2b2924; padding: 50px; box-shadow: 10px 10px 0px rgba(43,41,36,0.15); z-index: 10; width: 100%;
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #2b2924; }
-      
-      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #6e6b64; margin-bottom: 12px; }
-      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #2b2924; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #4a4740; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #2b2924; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .fact-icon-container { width: 170px; height: 170px; color: #2b2924; }
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 30px; font-weight: 600; color: #6e6b64; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 76px; font-weight: 800; color: #2b2924; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; letter-spacing: -1px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #4a4740; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid #2b2924; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #2b2924; }
       .interactive-prompt { color: #6e6b64; }
     `
@@ -1502,25 +1629,28 @@ const TECH_FACTS_REGISTRY = [
       overflow: hidden;
     `,
     texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
+    `,
     decorations: `
       <div style="position:absolute; top:25px; bottom:25px; left:25px; right:25px; border: 1px solid #d1d5db; pointer-events:none;"></div>
+      <div style="position:absolute; top:-20px; right:50px; font-family:'Sora',sans-serif; font-size: 160px; font-weight:800; color:rgba(0,0,0,0.03); pointer-events:none; z-index:1;">§4</div>
+      <div style="position:absolute; top:8%; left:40px; right:40px; height:1px; background:#9ca3af; pointer-events:none; opacity:0.4;"></div>
+      <div style="position:absolute; bottom:7%; left:40px; right:40px; height:1px; background:#9ca3af; pointer-events:none; opacity:0.4;"></div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 2px solid #1f2937; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) contrast(3); }
-      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #1f2937; }
-      
+      .logo-header img { height: 48px; filter: grayscale(1) contrast(1.5); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #1f2937; letter-spacing: -0.5px; }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #ffffff; border: 2px solid #1f2937; padding: 45px; z-index: 10; width: 100%;
+        background: #ffffff; border: 2px solid #1f2937; padding: 50px; box-shadow: 0 12px 35px rgba(0,0,0,0.06); z-index: 10; width: 100%;
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #1f2937; }
-      
-      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #4b5563; margin-bottom: 12px; }
-      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #111827; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #374151; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #1f2937; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .fact-icon-container { width: 170px; height: 170px; color: #1f2937; }
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 30px; font-weight: 600; color: #4b5563; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 76px; font-weight: 800; color: #111827; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; letter-spacing: -1px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #374151; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #1f2937; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #1f2937; }
       .interactive-prompt { color: #4b5563; }
     `
@@ -1541,25 +1671,29 @@ const TECH_FACTS_REGISTRY = [
       overflow: hidden;
     `,
     texture_css: ``,
+    particles_css: `
+      .particle { display: none !important; }
+    `,
     decorations: `
       <div style="position:absolute; top:25px; bottom:25px; left:25px; right:25px; border: 1px solid rgba(248,250,252,0.1); pointer-events:none;"></div>
+      <svg style="position:absolute; top:10%; right:6%; width:50px; height:50px; fill:none; stroke:rgba(56,189,248,0.15); stroke-width:1.5; pointer-events:none;" viewBox="0 0 100 100"><polygon points="50,5 61,38 95,38 68,60 79,93 50,73 21,93 32,60 5,38 39,38"/></svg>
+      <div style="position:absolute; top:2%; left:50px; font-size:14px; font-weight:700; color:rgba(248,250,252,0.3); text-transform:uppercase;">[REDACTED: LEVEL_5]</div>
+      <div style="position:absolute; bottom:2%; right:50px; font-size:14px; font-weight:700; color:rgba(56,189,248,0.3); text-transform:uppercase;">DOC_REF: NAVY_04</div>
     `,
     content_css: `
       .logo-header { display: flex; align-items: center; justify-content: space-between; z-index: 10; border-bottom: 2px solid #f8fafc; padding-bottom: 15px; }
-      .logo-header img { height: 44px; filter: grayscale(1) invert(1); }
-      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #f8fafc; }
-      
+      .logo-header img { height: 48px; filter: grayscale(1) invert(1); }
+      .logo-header span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: #f8fafc; letter-spacing: -0.5px; }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: #1e293b; border: 2px solid #f8fafc; padding: 45px; z-index: 10; width: 100%;
+        background: #1e293b; border: 2px solid #f8fafc; padding: 50px; z-index: 10; width: 100%;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.3);
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #38bdf8; }
-      
-      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 28px; font-weight: 600; color: #94a3b8; margin-bottom: 12px; }
-      .fact-title { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #cbd5e1; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f8fafc; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 600; }
+      .fact-icon-container { width: 170px; height: 170px; color: #38bdf8; filter: drop-shadow(0 0 8px rgba(56,189,248,0.3)); }
+      .fact-category { font-family: 'EB Garamond', serif; font-style: italic; font-size: 30px; font-weight: 600; color: #94a3b8; margin-bottom: 12px; }
+      .fact-title { font-family: 'Sora', sans-serif; font-size: 76px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; letter-spacing: -1px; }
+      .fact-body { font-size: 36px; line-height: 1.6; color: #cbd5e1; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f8fafc; padding-top: 20px; font-size: 24px; z-index: 10; font-weight: 700; text-transform: uppercase; }
       .society-handle { color: #38bdf8; }
       .interactive-prompt { color: #94a3b8; }
     `
@@ -1579,39 +1713,53 @@ const TECH_FACTS_REGISTRY = [
       justify-content: space-between;
       overflow: hidden;
       border: 4px solid #39ff14;
+      box-shadow: inset 0 0 40px rgba(57, 255, 20, 0.1);
     `,
     texture_css: `
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 2;
-      background-image: linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
-      background-size: 32px 32px;
+      z-index: 50;
+      opacity: 0.15;
+      background: repeating-linear-gradient(0deg, #000, #000 2px, transparent 2px, transparent 4px);
+    `,
+    particles_css: `
+      .particle { background: #39ff14 !important; box-shadow: 0 0 8px #39ff14; }
+      .particle:nth-child(1) { left: 10%; width: 4px; height: 4px; --dur: 8s; --delay: 0s; --max-opacity: 0.5; }
+      .particle:nth-child(2) { left: 35%; width: 2px; height: 2px; --dur: 11s; --delay: 1s; --max-opacity: 0.35; }
+      .particle:nth-child(3) { left: 60%; width: 3px; height: 3px; --dur: 9s; --delay: 3s; --max-opacity: 0.45; }
+      .particle:nth-child(4) { left: 82%; width: 5px; height: 5px; --dur: 12s; --delay: 2s; --max-opacity: 0.3; }
     `,
     decorations: `
-      <div style="position:absolute; top:-2px; left:-2px; w:24px; h:24px; border-t: 2px solid #39ff14; border-l: 2px solid #39ff14; box-shadow: 0 0 10px #39ff14;"></div>
-      <div style="position:absolute; bottom:-2px; right:-2px; w:24px; h:24px; border-b: 2px solid #39ff14; border-r: 2px solid #39ff14; box-shadow: 0 0 10px #39ff14;"></div>
+      <div style="position:absolute; top:2%; left:2%; width:20px; height:20px; border-top:2px solid #39ff14; border-left:2px solid #39ff14; pointer-events:none; box-shadow: 0 0 6px rgba(57,255,20,0.3);"></div>
+      <div style="position:absolute; top:2%; right:2%; width:20px; height:20px; border-top:2px solid #39ff14; border-right:2px solid #39ff14; pointer-events:none; box-shadow: 0 0 6px rgba(57,255,20,0.3);"></div>
+      <div style="position:absolute; bottom:2%; left:2%; width:20px; height:20px; border-bottom:2px solid #39ff14; border-left:2px solid #39ff14; pointer-events:none; box-shadow: 0 0 6px rgba(57,255,20,0.3);"></div>
+      <div style="position:absolute; bottom:2%; right:2%; width:20px; height:20px; border-bottom:2px solid #39ff14; border-right:2px solid #39ff14; pointer-events:none; box-shadow: 0 0 6px rgba(57,255,20,0.3);"></div>
+      <div style="position:absolute; top:2%; left:8%; font-size:14px; opacity:0.5; color:#39ff14;">[SYS_INIT: PHOSPHOR_v2]</div>
+      <div style="position:absolute; top:2%; right:8%; font-size:14px; opacity:0.5; color:#39ff14;">MEM: 640K OK</div>
+      <div style="position:absolute; bottom:2%; left:8%; font-size:14px; opacity:0.5; color:#39ff14;">[PID: 31337]</div>
+      <div style="position:absolute; bottom:2%; right:8%; font-size:14px; opacity:0.6; color:#39ff14;">[████████░░░] 75%</div>
+      <div style="position:absolute; top:8%; left:0; right:0; border-top: 1.5px dashed rgba(57, 255, 20, 0.25); pointer-events: none;"></div>
+      <div style="position:absolute; bottom:7%; left:0; right:0; border-top: 1.5px dashed rgba(57, 255, 20, 0.25); pointer-events: none;"></div>
     `,
     content_css: `
-      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #39ff14; padding-bottom: 15px; z-index: 10; }
-      .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(1.5) sepia(1) hue-rotate(100deg); }
-      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #39ff14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.6); }
-      
+      .logo-header { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #39ff14; padding-bottom: 15px; z-index: 10; opacity: 0.9; }
+      .logo-header img { height: 44px; filter: grayscale(1) invert(1) brightness(2); }
+      .logo-header span { font-weight: 700; font-size: 24px; text-transform: uppercase; color: #39ff14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.5); }
       .fact-main-block {
         flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; margin: 30px 0;
-        background: rgba(13, 13, 23, 0.95); border: 2px solid #39ff14; border-radius: 0px; padding: 45px;
-        box-shadow: 0 0 25px rgba(57, 255, 20, 0.3), inset 0 0 15px rgba(57, 255, 20, 0.15); width: 100%; z-index: 10;
+        background: rgba(0, 16, 0, 0.75); border: 2px solid #39ff14; border-radius: 0px; padding: 45px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.85), inset 0 0 20px rgba(57,255,20,0.12); width: 100%; z-index: 10;
       }
-      .fact-icon-container { width: 150px; height: 150px; color: #39ff14; }
-      
-      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #39ff14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.6); margin-bottom: 12px; }
+      .fact-icon-container { width: 170px; height: 170px; color: #39ff14; filter: drop-shadow(0 0 12px #39ff14); }
+      .fact-category { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #39ff14; opacity: 0.85; margin-bottom: 12px; letter-spacing: 2px; }
       .fact-category::before { content: "> "; }
-      .fact-title { font-size: 70px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 22px; text-transform: uppercase; }
-      .fact-body { font-size: 34px; line-height: 1.6; color: #baccb0; }
-      
-      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #39ff14; padding-top: 20px; font-size: 24px; z-index: 10; }
-      .society-handle { color: #39ff14; }
-      .interactive-prompt { color: #85967c; }
+      .fact-title { font-size: 68px; font-weight: 700; color: #ffffff; line-height: 1.2; margin-bottom: 22px; text-shadow: 0 0 10px rgba(57, 255, 20, 0.2); }
+      .fact-body { font-size: 34px; line-height: 1.6; color: #39ff14; opacity: 0.9; }
+      .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(57, 255, 20, 0.3); padding-top: 20px; font-size: 24px; z-index: 10; }
+      .society-handle { font-weight: 600; color: #39ff14; }
+      .interactive-prompt { opacity: 0.7; }
     `
   }
 ];
+

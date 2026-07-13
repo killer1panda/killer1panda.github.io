@@ -772,11 +772,9 @@ class CardRenderer {
         });
       });
 
-      // Crop mode toggle on double click (photo frame only)
+      // Crop mode toggle on single click (photo frame only)
       if (tid === 'photo') {
-        el.addEventListener('dblclick', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
+        const enterCropMode = () => {
           if (el.classList.contains('crop-mode')) return;
 
           el.classList.add('crop-mode');
@@ -823,10 +821,11 @@ class CardRenderer {
               exitCropMode();
             });
           }
-        });
+        };
 
         const exitCropMode = () => {
           el.classList.remove('crop-mode');
+          el.classList.remove('active');
           const cropBar = iframeDoc.querySelector('.photo-crop-bar');
           if (cropBar) {
             cropBar.remove();
@@ -835,6 +834,16 @@ class CardRenderer {
             window.saveState();
           }
         };
+
+        const toggleCropMode = () => {
+          if (el.classList.contains('crop-mode')) {
+            exitCropMode();
+          } else {
+            enterCropMode();
+          }
+        };
+
+        el.toggleCropMode = toggleCropMode;
 
         const onOutsideClick = (ev) => {
           const isInsideFrame = el.contains(ev.target);
@@ -853,14 +862,14 @@ class CardRenderer {
     const profileFrame = iframeDoc.querySelector('.profile-photo-frame') || iframeDoc.querySelector('.profile-frame') || iframeDoc.querySelector('#avatar-frame');
     if (profileFrame) {
       profileFrame.addEventListener('click', (e) => {
+        if (e.target.classList.contains('resize-handle')) {
+          return;
+        }
         if (appState.photoDataUrl) {
           e.stopPropagation();
-          const dblEvent = new MouseEvent('dblclick', {
-            bubbles: true,
-            cancelable: true,
-            view: iframeDoc.defaultView || window
-          });
-          profileFrame.dispatchEvent(dblEvent);
+          if (typeof profileFrame.toggleCropMode === 'function') {
+            profileFrame.toggleCropMode();
+          }
           return;
         }
         const fileInput = document.getElementById('file-upload');
