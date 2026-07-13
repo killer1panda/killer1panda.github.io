@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Neon Protocol | Tech Fact of the Day</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Space+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind Config Verbatim -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "on-tertiary": "#3c0090",
+                    "on-secondary-fixed": "#002020",
+                    "background": "#12121d",
+                    "surface-dim": "#12121d",
+                    "surface-variant": "#34343f",
+                    "tertiary-fixed-dim": "#d1bcff",
+                    "surface-container-low": "#1b1b25",
+                    "outline": "#a4899d",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#003737",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "tertiary-fixed": "#e9ddff",
+                    "on-surface": "#e4e1f0",
+                    "secondary-fixed-dim": "#00dddd",
+                    "on-primary-fixed": "#380038",
+                    "outline-variant": "#564052",
+                    "on-tertiary-container": "#350081",
+                    "on-tertiary-fixed": "#23005b",
+                    "secondary-fixed": "#00fbfb",
+                    "surface-bright": "#393844",
+                    "on-background": "#e4e1f0",
+                    "inverse-surface": "#e4e1f0",
+                    "secondary": "#ffffff",
+                    "tertiary-container": "#a179ff",
+                    "on-surface-variant": "#dcbed4",
+                    "tertiary": "#d1bcff",
+                    "surface-container-high": "#292934",
+                    "secondary-container": "#00fbfb",
+                    "on-primary-container": "#510051",
+                    "inverse-primary": "#a900a9",
+                    "on-primary": "#5b005b",
+                    "inverse-on-surface": "#302f3b",
+                    "surface-tint": "#ffabf3",
+                    "surface-container-lowest": "#0d0d17",
+                    "error-container": "#93000a",
+                    "on-primary-fixed-variant": "#810081",
+                    "surface": "#12121d",
+                    "primary": "#ffabf3",
+                    "primary-fixed": "#ffd7f5",
+                    "on-secondary-container": "#007070",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#34343f",
+                    "primary-fixed-dim": "#ffabf3",
+                    "surface-container": "#1f1f29",
+                    "on-tertiary-fixed-variant": "#5700c9",
+                    "primary-container": "#ff00ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "grid-gutter": "20px",
+                    "lg": "24px",
+                    "unit": "4px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "container-max": "1200px",
+                    "xl": "48px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Sora"],
+                    "code-label": ["Space Mono"],
+                    "button-text": ["Sora"],
+                    "body-md": ["Sora"],
+                    "headline-md": ["Sora"],
+                    "display-lg": ["Sora"],
+                    "body-lg": ["Sora"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.1", "fontWeight": "800"}],
+                    "code-label": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "400"}],
+                    "button-text": ["14px", {"lineHeight": "1.0", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #0d0d17;
+            background-image: 
+                linear-gradient(rgba(0, 251, 251, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 251, 251, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            overflow-x: hidden;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 251, 251, 0.1);
+            position: absolute;
+            animation: scanline 8s linear infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { top: -2px; }
+            100% { top: 100%; }
+        }
+
+        .glow-pink {
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.4), inset 0 0 15px rgba(255, 0, 255, 0.2);
+        }
+
+        .glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 251, 251, 0.8);
+        }
+
+        .glitch-effect {
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            1% { transform: translate(-2px, 1px); }
+            2% { transform: translate(2px, -1px); }
+            3% { transform: translate(0); }
+            100% { transform: translate(0); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-on-surface">
+    <div class="scanline"></div>
+    <!-- TopAppBar -->
+    <header class="w-full top-0 sticky bg-surface-container-lowest/70 backdrop-blur-xl border-b border-primary/30 drop-shadow-[0_0_8px_#ffabf344] z-50 flex justify-between items-center px-md py-sm">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+            <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary drop-shadow-[0_0_10px_#ffabf377] uppercase tracking-tighter">NEON PROTOCOL</h1>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col items-center justify-center px-md py-xl relative">
+        <!-- Central Fact Card -->
+        <div class="w-full max-w-sm relative z-20">
+            <!-- Decorative corner brackets -->
+            <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
+            <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
+            <div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500">
+                <!-- ID Stamp -->
+                <div class="flex justify-between items-center mb-md">
+                    <span class="font-code-label text-code-label text-secondary-fixed-dim bg-secondary-fixed/10 px-2 py-0.5 rounded border border-secondary-fixed/20">[FACT_4029]</span>
+                </div>
+                <!-- Category -->
+                <div class="flex items-center gap-xs mb-sm">
+                    <span class="w-2 h-2 bg-secondary-fixed rounded-full animate-pulse shadow-[0_0_8px_#00fbfb]"></span>
+                    <span class="font-code-label text-code-label text-secondary-fixed-dim uppercase tracking-widest glow-cyan">Cybernetics &amp; AI</span>
+                </div>
+                <!-- Headline -->
+                <h2 class="font-headline-md text-headline-md-mobile text-secondary mb-md glitch-effect tracking-tight">Neural Interfacing</h2>
+                <!-- Main Fact Image (Contextual Graphic) -->
+                <div class="relative w-full h-48 mb-lg rounded overflow-hidden border border-primary/20">
+                    <img class="w-full h-full object-cover" data-alt="A cinematic, high-contrast digital art piece of a futuristic human eye with intricate glowing neon neural circuits radiating from the iris." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_uygrrbV1RGwI1bBxR-XPf9YBoiS-s1qljOv3N3VeRbktzZWEKoG9wYtIsJLL9UcJyM2PWgSfQ_71NCAehzBA6DlBwgVEaLZCh4xu9hblwPXPB591vOgT6PwfJUiclw8Lm9gEb_lNzZaDqVcyZ86SXgqTYl2ujaBWOtdFcYbsZvuGXUV5Gij50jQEXFz2ENcOAXXicwSXcaBzp8LT6vOEwYAUHj-R_7fV9ZozfVqw7RwVQ0DqXvjuxywa2GbFTyf9dYQlGxoyls"/>
+                </div>
+                <!-- Body Text -->
+                <p class="font-body-md text-on-surface-variant leading-relaxed mb-lg">
+                    Recent breakthroughs in <span class="text-primary font-bold">biocompatible neural lace</span> allow for direct, high-bandwidth data transmission between the cerebral cortex and external AI nodes. This integration potentially increases human cognitive processing speeds by up to <span class="text-secondary-fixed font-code-label">400%</span>, effectively blurring the line between biological thought and algorithmic execution.
+                </p>
+                <!-- Interactive CTA -->
+                <button class="w-full py-md bg-primary-container text-on-primary-container font-button-text text-button-text rounded-sm uppercase tracking-tighter active:scale-95 transition-all hover:brightness-110 flex items-center justify-center gap-sm shadow-[0_4px_15px_rgba(255,0,255,0.4)]">
+                    Sync Intelligence
+                    <span class="material-symbols-outlined text-md" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                </button>
+            </div>
+        </div>
+        <!-- Secondary Info Cluster -->
+        <div class="w-full max-w-sm mt-xl grid grid-cols-2 gap-md">
+            <div class="bg-surface-container/50 border border-secondary-fixed/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md">
+                <span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase">Data Integrity</span>
+                <div class="flex items-center gap-sm">
+                    <span class="text-secondary-fixed font-code-label text-lg">99.8%</span>
+                </div>
+            </div>
+            <div class="bg-surface-container/50 border border-primary/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md">
+                <span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase">Latency Rate</span>
+                <div class="flex items-center gap-sm">
+                    <span class="text-primary font-code-label text-lg">2ms</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Spacer for Navigation -->
+    <div class="h-24"></div>
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-secondary-fixed/30 drop-shadow-[0_0_15px_#00dddd44]">
+        <div class="flex justify-around items-center h-20 px-4 pb-safe w-full">
+            <!-- Facts (Active) -->
+            <a class="flex flex-col items-center justify-center text-secondary-fixed bg-secondary-fixed/10 rounded-xl px-4 py-1 border border-secondary-fixed/50 shadow-[0_0_10px_#00fbfb66] transition-transform active:scale-90" href="#">
+                <span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                <span class="font-code-label text-code-label">Facts</span>
+            </a>
+            <!-- Archive -->
+            <a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90" href="#">
+                <span class="material-symbols-outlined" data-icon="database">database</span>
+                <span class="font-code-label text-code-label">Archive</span>
+            </a>
+            <!-- Topics -->
+            <a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90" href="#">
+                <span class="material-symbols-outlined" data-icon="category">category</span>
+                <span class="font-code-label text-code-label">Topics</span>
+            </a>
+            <!-- Settings -->
+            <a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90" href="#">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="font-code-label text-code-label">Settings</span>
+            </a>
+        </div>
+    </nav>
+    <script>
+        // Micro-interaction: Subtle parallax on mouse/touch move
+        document.addEventListener('mousemove', (e) => {
+            const card = document.querySelector('.glow-pink');
+            const x = (window.innerWidth / 2 - e.pageX) / 40;
+            const y = (window.innerHeight / 2 - e.pageY) / 40;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        // Glitch trigger on click
+        document.addEventListener('click', (e) => {
+            const headline = document.querySelector('h2');
+            headline.classList.add('glitch-effect');
+        });
+    </script>
+</body>
+</html>

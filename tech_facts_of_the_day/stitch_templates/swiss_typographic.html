@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tech Fact of the Day</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:wght@600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@100..900&display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Paper Texture Effect */
+        .paper-texture {
+            background-color: #fdf8f8;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        /* Mechanical Press Interaction */
+        .active-press:active {
+            transform: translate(4px, 4px);
+        }
+        .border-thick { border-width: 3px; }
+        .border-thin { border-width: 1px; }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#ebe7e6",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f4f0ef",
+                    "on-primary-fixed-variant": "#474746",
+                    "surface-container": "#f1edec",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#5f6161",
+                    "on-background": "#1c1b1b",
+                    "outline": "#747878",
+                    "on-primary-container": "#858383",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-surface-variant": "#444748",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#5d5f5f",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "primary-container": "#1c1b1b",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-container": "#838484",
+                    "background": "#fdf8f8",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-tint": "#5f5e5e",
+                    "inverse-primary": "#c8c6c5",
+                    "outline-variant": "#c4c7c7",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-surface": "#1c1b1b",
+                    "tertiary": "#000000",
+                    "tertiary-container": "#1a1c1c",
+                    "surface-bright": "#fdf8f8",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "primary": "#000000",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-container-low": "#f7f3f2",
+                    "surface-variant": "#e5e2e1",
+                    "secondary-container": "#dcdddd",
+                    "surface-dim": "#ddd9d8",
+                    "inverse-surface": "#313030",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#e5e2e1",
+                    "surface": "#fdf8f8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "border-thick": "3px",
+                    "margin-mobile": "24px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "border-thin": "1px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Sora"],
+                    "body-md": ["Inter"],
+                    "watermark": ["Sora"],
+                    "metadata-sm": ["Inter"],
+                    "category-label": ["EB Garamond"],
+                    "display-xl": ["Sora"],
+                    "headline-lg": ["Sora"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["36px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "watermark": ["120px", {"lineHeight": "120px", "fontWeight": "800"}],
+                    "metadata-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "category-label": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-xl": ["80px", {"lineHeight": "84px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-lg": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="paper-texture text-on-surface selection:bg-primary selection:text-on-primary">
+    <!-- TopAppBar -->
+    <header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-margin-mobile py-4">
+        <div class="flex items-center">
+            <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary">TECH FACT</h1>
+        </div>
+    </header>
+    <main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-margin-mobile py-12 relative overflow-hidden">
+        <!-- Background Decoration (Swiss Style Pipes) -->
+        <div class="absolute left-margin-mobile top-0 bottom-0 w-[1px] bg-outline-variant opacity-30"></div>
+        <div class="absolute right-margin-mobile top-0 bottom-0 w-[1px] bg-outline-variant opacity-30"></div>
+        <!-- Central Fact Card -->
+        <article class="relative w-full max-w-md bg-white border-thick border-primary z-10 flex flex-col transition-all duration-300">
+            <!-- Watermark '01' -->
+            <div class="absolute -top-4 -right-4 font-watermark text-watermark text-surface-container-highest pointer-events-none z-0 opacity-40 select-none">
+                01
+            </div>
+            <!-- Card Content Cluster -->
+            <div class="relative z-10 p-8 flex flex-col items-start h-full">
+                <!-- Database Icon -->
+                <div class="mb-8">
+                    <span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'wght' 200;">database</span>
+                </div>
+                <!-- Category Label -->
+                <span class="font-category-label text-category-label text-primary mb-2 italic">CYBERSECURITY</span>
+                <!-- Main Title -->
+                <h2 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold uppercase tracking-tighter mb-6">
+                    Decentralized<br/>Ledgers
+                </h2>
+                <!-- Description Body -->
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-12">
+                    A decentralized ledger is a consensus of replicated, shared, and synchronized digital data geographically spread across multiple sites, countries, or institutions. Unlike a central database, there is no central administrator or centralized data storage.
+                </p>
+                <!-- Footer Metadata Block -->
+                <div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="font-metadata-sm text-metadata-sm uppercase text-primary">FACT #001</span>
+                        <div class="w-[1px] h-4 bg-outline-variant"></div>
+                        <span class="font-metadata-sm text-metadata-sm uppercase text-secondary">OCT 2023</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Aesthetic Floating Element (Square Bullet) -->
+        <div class="absolute bottom-24 left-margin-mobile w-4 h-4 bg-primary"></div>
+        <div class="absolute top-24 right-margin-mobile w-12 h-1 bg-primary"></div>
+    </main>
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary">
+        <!-- FACTS (Active) -->
+        <a class="flex flex-col items-center justify-center bg-primary text-on-primary px-4 py-2 flex-1 active-press" href="#">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="font-metadata-sm text-metadata-sm uppercase mt-1">FACTS</span>
+        </a>
+        <!-- ARCHIVE -->
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-metadata-sm text-metadata-sm uppercase mt-1">ARCHIVE</span>
+        </a>
+        <!-- TOPICS -->
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+            <span class="material-symbols-outlined">grid_view</span>
+            <span class="font-metadata-sm text-metadata-sm uppercase mt-1">TOPICS</span>
+        </a>
+        <!-- SAVED -->
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+            <span class="material-symbols-outlined">bookmark</span>
+            <span class="font-metadata-sm text-metadata-sm uppercase mt-1">SAVED</span>
+        </a>
+    </nav>
+    <script>
+        // Simple micro-interaction for the card entry
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('article');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
