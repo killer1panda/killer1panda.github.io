@@ -61,7 +61,7 @@
     .style-thumb {
       background: var(--bg); border: 1px solid var(--border); padding: 10px;
       border-radius: 6px; cursor: pointer; text-align: center; font-size: 11px;
-      font-weight: 600;
+      font-weight: 600; color: inherit; font-family: inherit; width: 100%;
     }
     .style-thumb:hover, .style-thumb.active { border-color: var(--accent); color: var(--accent); }
     
@@ -96,6 +96,12 @@
       position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999;
       display: none; justify-content: center; align-items: center; flex-direction: column; color: white;
     }
+    @media (max-width: 768px) {
+      body { flex-direction: column; overflow-y: auto; height: auto; }
+      .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+      .canvas-container { min-height: 550px; padding: 20px; }
+      #scale-wrapper { position: relative; left: 0; top: 0; transform: none !important; margin: 0 auto; }
+    }
   </style>
 </head>
 <body>
@@ -111,11 +117,11 @@
       <h2>2. Fact Content</h2>
       <div class="form-group flex-row">
         <div>
-          <label>Category</label>
+          <label for="input-category">Category</label>
           <input type="text" id="input-category" value="CYBERSECURITY">
         </div>
         <div>
-          <label>Icon Theme</label>
+          <label for="input-icon">Icon Theme</label>
           <select id="input-icon">
             <option value="ai">Artificial Intelligence</option>
             <option value="cybersecurity" selected>Cybersecurity / Shield</option>
@@ -131,15 +137,15 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Fact Title</label>
+        <label for="input-title">Fact Title</label>
         <input type="text" id="input-title" value="Incognito is not invisible">
       </div>
       <div class="form-group">
-        <label>Fact Description</label>
+        <label for="input-body">Fact Description</label>
         <textarea id="input-body" rows="3">Your ISP, school, or employer can still see your active web traffic. Incognito only prevents your browser from saving history locally.</textarea>
       </div>
       <div class="form-group">
-        <label>Footer Prompt</label>
+        <label for="input-prompt">Footer Prompt</label>
         <input type="text" id="input-prompt" value="Did you know?">
       </div>
     </div>
@@ -149,11 +155,11 @@
       <h2>3. Text Properties (<span id="active-element-name" style="color:var(--accent);">None</span>)</h2>
       <div class="form-group flex-row">
         <div>
-          <label>Size (px)</label>
+          <label for="text-size">Size (px)</label>
           <input type="number" id="text-size" value="16" min="8" max="150" step="1">
         </div>
         <div>
-          <label>Weight</label>
+          <label for="text-weight">Weight</label>
           <select id="text-weight">
             <option value="300">Light</option>
             <option value="400">Regular</option>
@@ -167,11 +173,11 @@
       </div>
       <div class="form-group flex-row">
         <div>
-          <label>Text Color</label>
+          <label for="text-color">Text Color</label>
           <input type="color" id="text-color" value="#ffffff">
         </div>
         <div>
-          <label>Alignment</label>
+          <label for="text-align">Alignment</label>
           <select id="text-align">
             <option value="left">Left</option>
             <option value="center">Center</option>
@@ -182,11 +188,11 @@
       </div>
       <div class="form-group flex-row">
         <div>
-          <label>Letter Spacing</label>
+          <label for="text-spacing">Letter Spacing</label>
           <input type="number" id="text-spacing" value="0" min="-5" max="25" step="0.5">
         </div>
         <div>
-          <label>Line Height</label>
+          <label for="text-height">Line Height</label>
           <input type="number" id="text-height" value="1.2" min="0.8" max="3" step="0.1">
         </div>
       </div>
@@ -196,11 +202,11 @@
       <h2>4. Branding & Customization</h2>
       <div class="form-group flex-row">
         <div>
-          <label>Society Handle</label>
+          <label for="input-handle">Society Handle</label>
           <input type="text" id="input-handle" value="@ieee_cis_upes">
         </div>
         <div>
-          <label>Chapter Layout</label>
+          <label for="input-chapter">Chapter Layout</label>
           <select id="input-chapter">
             <option value="cis">IEEE CIS UPES</option>
             <option value="sps">IEEE SPS UPES</option>
@@ -208,7 +214,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Theme Accent Color</label>
+        <label for="input-color">Theme Accent Color</label>
         <input type="color" id="input-color" value="#39ff14">
       </div>
       <button class="btn" id="btn-upload">📷 Upload Custom Logo</button>
@@ -218,7 +224,7 @@
     <div class="panel-section">
       <h2>5. Formats & Export</h2>
       <div class="form-group">
-        <label>Format Ratio</label>
+        <label for="input-format">Format Ratio</label>
         <select id="input-format">
           <option value="9:16">Instagram Story (9:16)</option>
           <option value="1:1">Instagram Post (1:1)</option>
@@ -232,7 +238,7 @@
       <button class="btn btn-primary" id="btn-dl-jpg">Export JPG</button>
       
       <div class="form-group" style="margin-top:10px;">
-        <label>Animated Video Duration (sec)</label>
+        <label for="input-duration">Animated Video Duration (sec)</label>
         <input type="number" id="input-duration" value="5" min="1" max="30">
       </div>
       <button class="btn btn-primary" style="background:#8b5cf6;" id="btn-dl-mp4">Export MP4 Video</button>
@@ -294,8 +300,9 @@
     // Populate Sidebar Style Grid
     const grid = document.getElementById('style-grid');
     TECH_FACTS_REGISTRY.forEach(s => {
-      const el = document.createElement('div');
+      const el = document.createElement('button');
       el.className = 'style-thumb' + (s.id === appState.style ? ' active' : '');
+      el.type = 'button';
       el.innerText = s.name;
       el.onclick = () => {
         document.querySelectorAll('.style-thumb').forEach(e => e.classList.remove('active'));

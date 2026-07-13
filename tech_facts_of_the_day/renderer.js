@@ -3,6 +3,7 @@ class TechFactRenderer {
   constructor(targetId) {
     this.target = document.getElementById(targetId);
     this.iframe = document.createElement('iframe');
+    this.iframe.setAttribute('title', 'Tech Fact Card Preview');
     this.iframe.style.border = 'none';
     this.iframe.style.width = '100%';
     this.iframe.style.height = '100%';
@@ -94,17 +95,39 @@ class TechFactRenderer {
       flex-direction: column;
       justify-content: space-between;
     }
+    .fact-main-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      margin: 20px 0;
+      width: 100%;
+    }
+    .fact-text-container {
+      width: 100%;
+    }
     
     ${template.content_css || ''}
     
     /* Canva-style editing outlines and handles */
     [contenteditable="true"] {
       outline: 2px dashed rgba(255, 255, 255, 0.15);
-      cursor: text;
+      cursor: grab;
       transition: outline 0.2s;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     [contenteditable="true"]:focus {
       outline: 2px solid #3b82f6 !important;
+      cursor: text;
+    }
+    
+    .club-title, .fact-category, .fact-title, .fact-body, .society-handle, .interactive-prompt {
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
     }
     
     .draggable {
@@ -169,16 +192,18 @@ class TechFactRenderer {
         <span class="club-title draggable" data-tid="club-title">${appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES'}</span>
       </div>
       
-      <div class="fact-icon-container draggable" data-tid="icon">
-        <div class="fact-icon-wrapper" style="width:100%; height:100%;">
-          ${selectedIconSvg}
+      <div class="fact-main-block">
+        <div class="fact-icon-container draggable" data-tid="icon">
+          <div class="fact-icon-wrapper" style="width:100%; height:100%;">
+            ${selectedIconSvg}
+          </div>
         </div>
-      </div>
-      
-      <div>
-        <div class="fact-category draggable" data-tid="category">${appState.category}</div>
-        <div class="fact-title draggable" data-tid="title">${appState.title}</div>
-        <div class="fact-body draggable" data-tid="body">${appState.body}</div>
+        
+        <div class="fact-text-container">
+          <div class="fact-category draggable" data-tid="category">${appState.category}</div>
+          <div class="fact-title draggable" data-tid="title">${appState.title}</div>
+          <div class="fact-body draggable" data-tid="body">${appState.body}</div>
+        </div>
       </div>
       
       <div class="card-footer">
@@ -605,10 +630,10 @@ class TechFactRenderer {
           const originalW = existing.w || startW;
           const originalH = existing.h || startH;
 
-          // For center-based circular scaling
           const cx = rect.left + rect.width / 2;
           const cy = rect.top + rect.height / 2;
           const d0 = Math.sqrt(Math.pow(startX - cx, 2) + Math.pow(startY - cy, 2));
+          const originalFontSize = parseFloat(el.style.fontSize) || parseFloat(this.iframe.contentWindow.getComputedStyle(el).fontSize) || 16;
 
           const onResizeMove = (ev) => {
             if (!isResizing) return;
@@ -654,14 +679,25 @@ class TechFactRenderer {
               el.style.height = `${newH}px`;
               el.style.transform = `translate(${newTx}px, ${newTy}px) scale(1)`;
             } else {
-              // Proportional scaling for text
+              // Proportional scaling for text (adjust font size directly)
               const d1 = Math.sqrt(Math.pow(ev.clientX - cx, 2) + Math.pow(ev.clientY - cy, 2));
-              let newScale = originalScale * (d1 / d0);
-              if (newScale < 0.2) newScale = 0.2;
-              if (newScale > 5) newScale = 5;
+              let ratio = d1 / d0;
+              let newFontSize = Math.round(originalFontSize * ratio);
+              if (newFontSize < 8) newFontSize = 8;
+              if (newFontSize > 150) newFontSize = 150;
 
-              appState.transforms[tid] = { x: originalTx, y: originalTy, scale: newScale };
-              el.style.transform = `translate(${originalTx}px, ${originalTy}px) scale(${newScale})`;
+              if (!appState.textStyles) appState.textStyles = {};
+              if (!appState.textStyles[tid]) appState.textStyles[tid] = {};
+              appState.textStyles[tid].fontSize = newFontSize;
+
+              el.style.fontSize = `${newFontSize}px`;
+              el.style.transform = `translate(${originalTx}px, ${originalTy}px) scale(1)`;
+              appState.transforms[tid] = { x: originalTx, y: originalTy, scale: 1 };
+              
+              if (appState.activeElementTid === tid) {
+                const sizeInput = window.parent.document.getElementById('text-size') || window.document.getElementById('text-size');
+                if (sizeInput) sizeInput.value = newFontSize;
+              }
             }
           };
 
