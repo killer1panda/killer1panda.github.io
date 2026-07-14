@@ -27,117 +27,15 @@ class TechFactRenderer {
     const logoB64 = appState.logoDataUrl || '';
     const selectedIconSvg = DEFAULT_ICONS[appState.iconKey] || DEFAULT_ICONS['ai'];
 
-    if (template.html_template) {
-      // Replace safe placeholders in the template with actual values
-      let renderedHtml = template.html_template
-        .replace(/\{\{TITLE\}\}/g, appState.title)
-        .replace(/\{\{CATEGORY\}\}/g, appState.category)
-        .replace(/\{\{BODY\}\}/g, appState.body)
-        .replace(/\{\{HANDLE\}\}/g, appState.handle)
-        .replace(/\{\{PROMPT\}\}/g, appState.prompt || 'Did you know?')
-        .replace(/\{\{CLUB_TITLE\}\}/g, appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES')
-        .replace(/\{\{LOGO_SRC\}\}/g, logoB64 || '')
-        .replace(/\{\{ICON_SVG\}\}/g, '');  // Icons handled separately via data-tid
-
-      const htmlContent = `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  ${template.fonts_url ? `<link href="${template.fonts_url}" rel="stylesheet">` : ''}
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"><\/script>
-  ${template.tailwind_config ? `<script>tailwind.config = ${template.tailwind_config};<\/script>` : ''}
-  <style>
-    ${template.styles || ''}
-    
-    /* Canva-style editing outlines and handles */
-    [contenteditable="true"] {
-      outline: 2px dashed rgba(255, 255, 255, 0.15);
-      cursor: grab;
-      transition: outline 0.2s;
-      overflow-wrap: break-word;
-      word-break: break-word;
-      hyphens: auto;
-    }
-    [contenteditable="true"]:focus {
-      outline: 2px solid #3b82f6 !important;
-      cursor: text;
-    }
-    
-    .draggable {
-      cursor: grab;
-      position: relative;
-    }
-    .draggable:active {
-      cursor: grabbing;
-    }
-    .draggable:focus {
-      outline: 2px dashed #3b82f6 !important;
-      outline-offset: 4px;
-    }
-    
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-delay: -1ms !important;
-        animation-duration: 1ms !important;
-        animation-iteration-count: 1 !important;
-        background-attachment: scroll !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0s !important;
-        transition-delay: 0s !important;
-      }
-      .particle, .scanline {
-        display: none !important;
-      }
-    }
-    
-    .resize-handle {
-      position: absolute !important;
-      width: 10px !important;
-      height: 10px !important;
-      background: #3b82f6 !important;
-      border: 2px solid #ffffff !important;
-      border-radius: 50% !important;
-      z-index: 10000 !important;
-      display: none !important;
-    }
-    .resize-handle-n, .resize-handle-s {
-      width: 20px !important;
-      height: 8px !important;
-      border-radius: 4px !important;
-    }
-    .resize-handle-e, .resize-handle-w {
-      width: 8px !important;
-      height: 20px !important;
-      border-radius: 4px !important;
-    }
-    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
-    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
-    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
-    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
-    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
-    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
-    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
-    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
-    
-    .draggable:hover .resize-handle, .draggable.active .resize-handle {
-      display: block !important;
-    }
-  </style>
-</head>
-<body class="overflow-hidden select-none bg-transparent flex justify-center items-center w-full h-full">
-  ${renderedHtml}
-</body>
-</html>
-      `;
-      
+    // Full HTML templates: load the entire original Stitch HTML directly
+    if (template.full_html) {
       await new Promise(resolve => {
         this.iframe.onload = () => resolve();
-        this.iframe.srcdoc = htmlContent;
+        this.iframe.srcdoc = template.full_html;
       });
       
+      // Swap content via data-tid attributes after the page loads
+      this.updateData(appState);
       this.setupDraggables(appState);
       return;
     }

@@ -644,8 +644,19 @@ const TECH_FACTS_REGISTRY = [
   {
     id: "11",
     name: "Cyber-Ether Modernist",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Sora:wght@100..900&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - IEEE CIS UPES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -734,8 +745,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #12121d 100%);
             overflow-x: hidden;
             min-height: 100vh;
@@ -786,12 +799,36 @@ const TECH_FACTS_REGISTRY = [
         }
         body {
           min-height: max(884px, 100dvh);
-        }`,
-    html_template: `<div class="mesh-gradient"></div>
- TopAppBar 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="text-on-surface font-body-md">
+<div class="mesh-gradient"></div>
+<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 dark:bg-surface/5 backdrop-blur-xl border-b border-white/10 docked">
 <div class="flex items-center gap-xs">
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
 <main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -802,12 +839,38 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Centerpiece: Tech Fact Card -->
 <section class="w-full max-w-md relative z-10 group">
-<div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.02] draggable card-canvas" data-tid="body">{{BODY}}</div>
+<div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.02]">
+<div class="scanline"></div>
+<!-- Category Icon and Tag -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="code">code</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">CYBERSECURITY</span>
+</div>
+<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(0,251,251,0.8)]"></div>
+</div>
+<!-- Content Body -->
+<div class="flex flex-col gap-sm">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight draggable" data-tid="title">Zero Trust Architecture</h2>
+<div class="w-12 h-1 bg-primary-fixed"></div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
+                        Zero Trust is a security framework requiring all users, whether in or outside the organization's network, to be authenticated, authorized, and continuously validated for security configuration and posture before being granted or keeping access to applications and data. It assumes no entity is trustworthy by default.
+                    </p>
+</div>
+<!-- Meta/Action Area -->
+<div class="pt-sm border-t border-white/10 flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-outline draggable" data-tid="prompt">FACT #842</span>
+<button class="bg-primary text-surface-dim font-button text-button px-md py-xs rounded-none hover:bg-primary-fixed transition-all active:scale-95 flex items-center gap-xs">
+                        LEARN MORE
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
 </section>
 <!-- High-tech grid overlay decoration -->
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,251,251,0.1)]">
 <a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,251,251,0.3)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
@@ -822,11 +885,11 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
- Footer 
+<!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
-<a class="font-label-sm text-label-sm text-secondary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">{{HANDLE}}</a>
+<a class="font-label-sm text-label-sm text-secondary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
 </footer>
 <script>
@@ -844,13 +907,26 @@ const TECH_FACTS_REGISTRY = [
         document.addEventListener('mouseleave', () => {
             card.style.transform = \`rotateY(0deg) rotateX(0deg)\`;
         });
-    </script>`
+    </script>
+</body>
+</html>
+`
   },
   {
     id: "12",
     name: "Electric Neo-Brutalist",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Fact of the Day</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
@@ -938,8 +1014,10 @@ const TECH_FACTS_REGISTRY = [
                     }
                 }
             }
-        }`,
-    styles: `body {
+        }
+    </script>
+<style>
+        body {
             background-color: #facc15;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -964,12 +1042,36 @@ const TECH_FACTS_REGISTRY = [
         }
         body {
           min-height: max(884px, 100dvh);
-        }`,
-    html_template: `Top Navigation Shell 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Shell -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-primary border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-on-primary text-headline-md">terminal</span>
-<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-on-primary">TECH_DRIP</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-on-primary draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
 <button class="w-10 h-10 flex items-center justify-center bg-white border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
 <span class="material-symbols-outlined text-black">settings</span>
@@ -979,11 +1081,69 @@ const TECH_FACTS_REGISTRY = [
 <!-- Animated Background Element (Subtle grid) -->
 <div class="fixed inset-0 pointer-events-none opacity-10" style="background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px); background-size: 40px 40px;"></div>
 <!-- Main Fact Card Container -->
-<div class="relative w-full max-w-sm draggable" data-tid="body">{{BODY}}</div>
+<div class="relative w-full max-w-sm">
+<!-- The Neo-Brutalist Card -->
+<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col">
+<!-- Retro Titlebar -->
+<div class="h-10 border-b-4 border-black bg-primary-container flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56] border-2 border-black"></div>
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E] border-2 border-black"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F] border-2 border-black"></div>
+</div>
+<div class="flex-1 text-center">
+<span class="font-label-bold text-label-sm uppercase tracking-widest text-black draggable" data-tid="handle">FACT_VIEWER.EXE</span>
+</div>
+</div>
+<!-- Card Image (Decorative Tech) -->
+<div class="h-48 w-full border-b-4 border-black relative overflow-hidden">
+<img class="w-full h-full object-cover draggable" data-alt="A high-contrast Neo-Brutalist digital artwork of a quantum processor core with glowing neon purple circuits and geometric data streams. The image uses sharp black outlines, vibrant electric yellow highlights, and a clean white background in a collage style. The aesthetic is energetic, tech-focused, and reminiscent of futuristic comic book art." data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnIbpVV7x_noBVOI-8bpCB36V593Y4trmmXYQ9rBCwTDPw9zEKKtkOMaitA2TThdTjxM1_BAC61ROSE6pPjEGYzgGKwFEGArywggtECQknDmNox22aeaoT-YiU13ToQy4GzOjo-WXKw7CHEzsfFlvKE83UDarcKxyfDD0CjOlvo9HunLL-0vMkALtJyI29zJNXcpvY1Blf3QoalLj2W9gVi0cCbrJMlqNOL8KFnShRvJ6Alg0DIMpndRmhkc6EBZsJ4Z-dCLYFoYI" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnIbpVV7x_noBVOI-8bpCB36V593Y4trmmXYQ9rBCwTDPw9zEKKtkOMaitA2TThdTjxM1_BAC61ROSE6pPjEGYzgGKwFEGArywggtECQknDmNox22aeaoT-YiU13ToQy4GzOjo-WXKw7CHEzsfFlvKE83UDarcKxyfDD0CjOlvo9HunLL-0vMkALtJyI29zJNXcpvY1Blf3QoalLj2W9gVi0cCbrJMlqNOL8KFnShRvJ6Alg0DIMpndRmhkc6EBZsJ4Z-dCLYFoYI"/>
+<div class="absolute bottom-2 right-2 bg-secondary text-white border-2 border-black px-3 py-1 font-label-bold text-xs">
+                        LIVE_FEED
+                    </div>
+</div>
+<!-- Card Content -->
+<div class="p-6 flex flex-col gap-4">
+<!-- Badge Row -->
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-secondary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-white fill-icon">bolt</span>
+</div>
+<span class="bg-secondary text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase draggable" data-tid="category">QUANTUM COMPUTING</span>
+</div>
+<!-- Title -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter draggable" data-tid="title">
+                        Quantum <br/>
+<span class="bg-primary-container px-1 inline-block border-2 border-black">Supremacy</span>
+</h1>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface border-l-4 border-secondary pl-4 py-1 draggable" data-tid="body">
+                        Quantum supremacy is the goal of demonstrating that a programmable quantum computer can solve a problem that no classical computer can solve in any feasible amount of time.
+                    </p>
+<!-- Interaction Buttons -->
+<div class="mt-4 flex gap-4">
+<button class="flex-1 bg-primary-container py-4 border-4 border-black font-label-bold uppercase text-black hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none">
+                            Share Fact
+                        </button>
+<button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined text-black">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Footer stats -->
+<div class="bg-surface-container border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">calendar_today</span> Oct 24, 2023</span>
+<span class="flex items-center gap-1 font-bold">Ref: QBIT-77</span>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute -top-6 -right-6 w-12 h-12 bg-secondary border-4 border-black -z-10 rotate-12"></div>
+<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-container border-4 border-black -z-10 -rotate-6"></div>
+</div>
 <!-- Secondary Info Section (Bento style) -->
 <section class="mt-12 w-full max-w-sm grid grid-cols-2 gap-4">
-<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2 card-canvas">
-<h3 class="font-label-bold uppercase text-label-sm mb-2 text-secondary">Did you know?</h3>
+<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2">
+<h3 class="font-label-bold uppercase text-label-sm mb-2 text-secondary draggable" data-tid="prompt">Did you know?</h3>
 <p class="text-body-md font-body-md italic leading-tight">Google claimed supremacy in 2019 using their 53-qubit Sycamore processor.</p>
 </div>
 <div class="bg-secondary text-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
@@ -996,10 +1156,10 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- Bottom Navigation Shell 
+<!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
 <button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors">
-<span class="material-symbols-outlined draggable" data-tid="icon">{{ICON_SVG}}</span>
+<span class="material-symbols-outlined">bolt</span>
 </button>
 <button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container border-2 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2">
 <span class="material-symbols-outlined fill-icon">menu_book</span>
@@ -1033,13 +1193,46 @@ const TECH_FACTS_REGISTRY = [
                 }
             });
         });
-    </script>`
+    </script>
+</body>
+</html>
+`
   },
   {
     id: "13",
     name: "Swiss Typographic",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@100..900&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=EB+Garamond:wght@600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Paper Texture Effect */
+        .paper-texture {
+            background-color: #fdf8f8;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        /* Mechanical Press Interaction */
+        .active-press:active {
+            transform: translate(4px, 4px);
+        }
+        .border-thick { border-width: 3px; }
+        .border-thin { border-width: 1px; }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -1126,28 +1319,35 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `.material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        /* Custom Paper Texture Effect */
-        .paper-texture {
-            background-color: #fdf8f8;
-            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-        }
-        /* Mechanical Press Interaction */
-        .active-press:active {
-            transform: translate(4px, 4px);
-        }
-        .border-thick { border-width: 3px; }
-        .border-thin { border-width: 1px; }
-        body {
-          min-height: max(884px, 100dvh);
-        }`,
-    html_template: `TopAppBar 
+      }
+    </script>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="paper-texture text-on-surface selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
 <header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-margin-mobile py-4">
 <div class="flex items-center">
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary">TECH FACT</h1>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary draggable" data-tid="club-title">TECH FACT</h1>
 </div>
 </header>
 <main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-margin-mobile py-12 relative overflow-hidden">
@@ -1167,19 +1367,19 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'wght' 200;">database</span>
 </div>
 <!-- Category Label -->
-<span class="font-category-label text-category-label text-primary mb-2 italic">CYBERSECURITY</span>
+<span class="font-category-label text-category-label text-primary mb-2 italic draggable" data-tid="category">CYBERSECURITY</span>
 <!-- Main Title -->
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold uppercase tracking-tighter mb-6">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold uppercase tracking-tighter mb-6 draggable" data-tid="title">
                     Decentralized<br/>Ledgers
                 </h2>
 <!-- Description Body -->
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-12">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-12 draggable" data-tid="body">
                     A decentralized ledger is a consensus of replicated, shared, and synchronized digital data geographically spread across multiple sites, countries, or institutions. Unlike a central database, there is no central administrator or centralized data storage.
                 </p>
 <!-- Footer Metadata Block -->
 <div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center">
 <div class="flex items-center gap-4">
-<span class="font-metadata-sm text-metadata-sm uppercase text-primary">FACT #001</span>
+<span class="font-metadata-sm text-metadata-sm uppercase text-primary draggable" data-tid="prompt">FACT #001</span>
 <div class="w-[1px] h-4 bg-outline-variant"></div>
 <span class="font-metadata-sm text-metadata-sm uppercase text-secondary">OCT 2023</span>
 </div>
@@ -1190,7 +1390,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-24 left-margin-mobile w-4 h-4 bg-primary"></div>
 <div class="absolute top-24 right-margin-mobile w-12 h-1 bg-primary"></div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center bg-primary text-on-primary px-4 py-2 flex-1 active-press" href="#">
@@ -1226,13 +1426,28 @@ const TECH_FACTS_REGISTRY = [
                 card.style.transform = 'translateY(0)';
             }, 100);
         });
-    </script>`
+    </script>
+</body>
+</html>
+`
   },
   {
     id: "14",
     name: "Neon Synthwave",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@100..900&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neon Protocol | Tech Fact of the Day</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Space+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -1321,8 +1536,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background-color: #0d0d17;
             background-image: 
                 linear-gradient(rgba(0, 251, 251, 0.05) 1px, transparent 1px),
@@ -1371,40 +1588,64 @@ const TECH_FACTS_REGISTRY = [
         }
         body {
           min-height: max(884px, 100dvh);
-        }`,
-    html_template: `<div class="scanline"></div>
- TopAppBar 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="min-h-screen flex flex-col font-body-md text-on-surface">
+<div class="scanline"></div>
+<!-- TopAppBar -->
 <header class="w-full top-0 sticky bg-surface-container-lowest/70 backdrop-blur-xl border-b border-primary/30 drop-shadow-[0_0_8px_#ffabf344] z-50 flex justify-between items-center px-md py-sm">
 <div class="flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary drop-shadow-[0_0_10px_#ffabf377] uppercase tracking-tighter">NEON PROTOCOL</h1>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary drop-shadow-[0_0_10px_#ffabf377] uppercase tracking-tighter draggable" data-tid="club-title">NEON PROTOCOL</h1>
 </div>
 </header>
- Main Content 
+<!-- Main Content -->
 <main class="flex-1 flex flex-col items-center justify-center px-md py-xl relative">
 <!-- Central Fact Card -->
 <div class="w-full max-w-sm relative z-20">
 <!-- Decorative corner brackets -->
 <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
 <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
-<div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500 card-canvas">
+<div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500">
 <!-- ID Stamp -->
 <div class="flex justify-between items-center mb-md">
-<span class="font-code-label text-code-label text-secondary-fixed-dim bg-secondary-fixed/10 px-2 py-0.5 rounded border border-secondary-fixed/20">[FACT_4029]</span>
+<span class="font-code-label text-code-label text-secondary-fixed-dim bg-secondary-fixed/10 px-2 py-0.5 rounded border border-secondary-fixed/20 draggable" data-tid="handle">[FACT_4029]</span>
 </div>
 <!-- Category -->
 <div class="flex items-center gap-xs mb-sm">
 <span class="w-2 h-2 bg-secondary-fixed rounded-full animate-pulse shadow-[0_0_8px_#00fbfb]"></span>
-<span class="font-code-label text-code-label text-secondary-fixed-dim uppercase tracking-widest glow-cyan">Cybernetics &amp; AI</span>
+<span class="font-code-label text-code-label text-secondary-fixed-dim uppercase tracking-widest glow-cyan draggable" data-tid="category">Cybernetics &amp; AI</span>
 </div>
 <!-- Headline -->
-<h2 class="font-headline-md text-headline-md-mobile text-secondary mb-md glitch-effect tracking-tight">Neural Interfacing</h2>
+<h2 class="font-headline-md text-headline-md-mobile text-secondary mb-md glitch-effect tracking-tight draggable" data-tid="title">Neural Interfacing</h2>
 <!-- Main Fact Image (Contextual Graphic) -->
 <div class="relative w-full h-48 mb-lg rounded overflow-hidden border border-primary/20">
 <img class="w-full h-full object-cover draggable" data-alt="A cinematic, high-contrast digital art piece of a futuristic human eye with intricate glowing neon neural circuits radiating from the iris." data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_uygrrbV1RGwI1bBxR-XPf9YBoiS-s1qljOv3N3VeRbktzZWEKoG9wYtIsJLL9UcJyM2PWgSfQ_71NCAehzBA6DlBwgVEaLZCh4xu9hblwPXPB591vOgT6PwfJUiclw8Lm9gEb_lNzZaDqVcyZ86SXgqTYl2ujaBWOtdFcYbsZvuGXUV5Gij50jQEXFz2ENcOAXXicwSXcaBzp8LT6vOEwYAUHj-R_7fV9ZozfVqw7RwVQ0DqXvjuxywa2GbFTyf9dYQlGxoyls" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_uygrrbV1RGwI1bBxR-XPf9YBoiS-s1qljOv3N3VeRbktzZWEKoG9wYtIsJLL9UcJyM2PWgSfQ_71NCAehzBA6DlBwgVEaLZCh4xu9hblwPXPB591vOgT6PwfJUiclw8Lm9gEb_lNzZaDqVcyZ86SXgqTYl2ujaBWOtdFcYbsZvuGXUV5Gij50jQEXFz2ENcOAXXicwSXcaBzp8LT6vOEwYAUHj-R_7fV9ZozfVqw7RwVQ0DqXvjuxywa2GbFTyf9dYQlGxoyls"/>
 </div>
 <!-- Body Text -->
-<p class="font-body-md text-on-surface-variant leading-relaxed mb-lg">
+<p class="font-body-md text-on-surface-variant leading-relaxed mb-lg draggable" data-tid="body">
                     Recent breakthroughs in <span class="text-primary font-bold">biocompatible neural lace</span> allow for direct, high-bandwidth data transmission between the cerebral cortex and external AI nodes. This integration potentially increases human cognitive processing speeds by up to <span class="text-secondary-fixed font-code-label">400%</span>, effectively blurring the line between biological thought and algorithmic execution.
                 </p>
 <!-- Interactive CTA -->
@@ -1417,7 +1658,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Secondary Info Cluster -->
 <div class="w-full max-w-sm mt-xl grid grid-cols-2 gap-md">
 <div class="bg-surface-container/50 border border-secondary-fixed/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md">
-<span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase">Data Integrity</span>
+<span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase draggable" data-tid="prompt">Data Integrity</span>
 <div class="flex items-center gap-sm">
 <span class="text-secondary-fixed font-code-label text-lg">99.8%</span>
 </div>
@@ -1430,9 +1671,9 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </div>
 </main>
- Spacer for Navigation 
+<!-- Spacer for Navigation -->
 <div class="h-24"></div>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-secondary-fixed/30 drop-shadow-[0_0_15px_#00dddd44]">
 <div class="flex justify-around items-center h-20 px-4 pb-safe w-full">
 <!-- Facts (Active) -->
@@ -1471,13 +1712,24 @@ const TECH_FACTS_REGISTRY = [
             const headline = document.querySelector('h2');
             headline.classList.add('glitch-effect');
         });
-    </script>`
+    </script>
+</body>
+</html>
+`
   },
   {
     id: "15",
     name: "Cyber-Ether Emerald",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - IEEE CIS UPES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -1566,8 +1818,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background: radial-gradient(circle at 50% 50%, #064e3b 0%, #0a110f 100%);
             overflow-x: hidden;
             min-height: 100vh;
@@ -1616,19 +1870,43 @@ const TECH_FACTS_REGISTRY = [
             animation: scanline 8s linear infinite;
             pointer-events: none;
         }
-    
-
+    </style>
+<style>
     body {
       min-height: max(884px, 100dvh);
-    }`,
-    html_template: `<div class="mesh-gradient"></div>
- TopAppBar 
+    }
+  </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="text-on-surface font-body-md">
+<div class="mesh-gradient"></div>
+<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 backdrop-blur-xl border-b border-white/10">
 <div class="flex items-center gap-xs">
-<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden card-canvas">
-<img class="w-full h-full object-cover draggable" data-tid="logo" src="{{LOGO_SRC}}" style=""/>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
+<img class="w-full h-full object-cover draggable" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
 </div>
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
 <main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -1645,7 +1923,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="px-md pt-md pb-xs flex items-center justify-between">
 <div class="flex items-center gap-xs">
 <span class="material-symbols-outlined text-secondary text-2xl" data-icon="database">database</span>
-<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold">DISTRIBUTED SYSTEMS</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">DISTRIBUTED SYSTEMS</span>
 </div>
 <div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
 </div>
@@ -1653,16 +1931,16 @@ const TECH_FACTS_REGISTRY = [
 <div class="flex flex-col">
 <!-- Top Section: Fact Text -->
 <div class="p-md pt-xs">
-<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight mb-sm">CAP Theorem</h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight mb-sm draggable" data-tid="title">CAP Theorem</h2>
 <div class="w-12 h-1 bg-primary-fixed mb-sm"></div>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
                             Formulated by Eric Brewer, the CAP theorem states that a distributed data store can only provide two of three guarantees: Consistency, Availability, and Partition Tolerance. In the event of a network failure, a system must choose between being consistent or available.
                         </p>
 </div>
 <!-- Middle Section: Supporting Metric/Icon (Vertical Split) -->
 <div class="flex border-y border-white/10 bg-white/5">
 <div class="flex-1 p-md flex flex-col items-center justify-center border-r border-white/10">
-<span class="font-display-lg-mobile text-primary leading-none">2/3</span>
+<span class="font-display-lg-mobile text-primary leading-none draggable" data-tid="prompt">2/3</span>
 <span class="font-label-sm text-outline text-[10px] mt-xs uppercase">Guarantees Max</span>
 </div>
 <div class="flex-1 p-md flex flex-col items-center justify-center gap-xs">
@@ -1688,7 +1966,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- High-tech decorative overlay -->
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(16,185,129,0.1)]">
 <a class="flex flex-col items-center justify-center bg-primary-fixed/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(16,185,129,0.2)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
@@ -1703,11 +1981,11 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
- Footer 
+<!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
-<a class="font-label-sm text-label-sm text-secondary hover:text-primary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">{{HANDLE}}</a>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
 </footer>
 <script>
@@ -1723,13 +2001,24 @@ const TECH_FACTS_REGISTRY = [
         document.addEventListener('mouseleave', () => {
             card.style.transform = \`rotateY(0deg) rotateX(0deg)\`;
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "16",
     name: "Cyber-Ether Orange",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Sora:wght@100..900&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - IEEE CIS UPES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -1818,8 +2107,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background: radial-gradient(circle at 50% 50%, #2d1b14 0%, #12121d 100%);
             overflow-x: hidden;
             min-height: 100vh;
@@ -1880,19 +2171,43 @@ const TECH_FACTS_REGISTRY = [
             background: rgba(255, 94, 7, 0.03);
             pointer-events: none;
         }
-    
-
+    </style>
+<style>
         body {
             min-height: max(884px, 100dvh);
-        }`,
-    html_template: `<div class="mesh-gradient"></div>
- TopAppBar 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="text-on-surface font-body-md">
+<div class="mesh-gradient"></div>
+<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 dark:bg-surface/5 backdrop-blur-xl border-b border-white/10">
 <div class="flex items-center gap-xs">
-<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden card-canvas">
-<img alt="IEEE CIS UPES Logo" class="w-full h-full object-cover draggable" data-tid="logo" src="{{LOGO_SRC}}" style=""/>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
+<img alt="IEEE CIS UPES Logo" class="w-full h-full object-cover draggable" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
 </div>
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
 <main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -1913,21 +2228,21 @@ const TECH_FACTS_REGISTRY = [
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-xs">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="dns">dns</span>
-<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold">EDGE COMPUTING</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">EDGE COMPUTING</span>
 </div>
 <div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(255,94,7,0.8)]"></div>
 </div>
 <!-- Content Body -->
 <div class="flex flex-col gap-sm">
-<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface leading-tight">Proximity Processing</h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface leading-tight draggable" data-tid="title">Proximity Processing</h2>
 <div class="w-12 h-1 bg-primary"></div>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
                             Edge Computing shifts web architecture by processing data near the source rather than in a centralized cloud. This drastic reduction in latency enables real-time decisions for IoT and AR, while decentralized nodes ensure higher resilience and bandwidth efficiency across the network.
                         </p>
 </div>
 <!-- Meta/Action Area -->
 <div class="pt-sm border-t border-white/10 flex justify-between items-center">
-<span class="font-label-sm text-label-sm text-outline">FACT #1024</span>
+<span class="font-label-sm text-label-sm text-outline draggable" data-tid="prompt">FACT #1024</span>
 <button class="bg-primary text-on-primary font-button text-button px-md py-xs rounded-none hover:bg-on-secondary-container transition-all active:scale-95 flex items-center gap-xs">
                             EXPLORE
                             <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
@@ -1939,7 +2254,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- High-tech grid overlay decoration -->
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(255,94,7,0.1)]">
 <a class="flex flex-col items-center justify-center bg-primary/20 text-primary rounded-xl p-2 shadow-[0_0_15px_rgba(255,94,7,0.3)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
@@ -1954,11 +2269,11 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
- Footer 
+<!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
-<a class="font-label-sm text-label-sm text-primary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">{{HANDLE}}</a>
+<a class="font-label-sm text-label-sm text-primary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
 </footer>
 <script>
@@ -1981,13 +2296,22 @@ const TECH_FACTS_REGISTRY = [
             card.style.transform = \`rotateY(0deg) rotateX(0deg)\`;
             layeredBg.style.transform = \`translateX(0px) translateY(0px)\`;
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "17",
     name: "Cyber-Ether Violet",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact: Zero-Knowledge Proofs - IEEE CIS UPES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -2076,8 +2400,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background: #12121d;
             overflow-x: hidden;
             min-height: 100vh;
@@ -2115,15 +2441,39 @@ const TECH_FACTS_REGISTRY = [
 
         .animate-float {
             animation: float 6s ease-in-out infinite;
-        }`,
-    html_template: `<div class="mesh-gradient"></div>
- TopAppBar 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="text-on-surface font-body-md">
+<div class="mesh-gradient"></div>
+<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 backdrop-blur-md">
 <div class="flex items-center gap-xs mx-auto">
-<div class="w-6 h-6 rounded-full overflow-hidden border border-primary-fixed/30 card-canvas">
-<img alt="IEEE CIS Logo" class="w-full h-full object-cover draggable" data-tid="logo" src="{{LOGO_SRC}}" style=""/>
+<div class="w-6 h-6 rounded-full overflow-hidden border border-primary-fixed/30">
+<img alt="IEEE CIS Logo" class="w-full h-full object-cover draggable" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
 </div>
-<h1 class="font-label-sm text-label-sm text-primary-fixed tracking-widest opacity-80 uppercase draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-label-sm text-label-sm text-primary-fixed tracking-widest opacity-80 uppercase draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
 <main class="relative pt-32 pb-40 px-sm min-h-screen flex flex-col items-center justify-center text-center">
@@ -2141,17 +2491,17 @@ const TECH_FACTS_REGISTRY = [
 <!-- Content -->
 <div class="flex flex-col gap-md">
 <div class="flex flex-col gap-xs">
-<span class="font-label-sm text-label-sm text-primary-fixed/60 tracking-[0.3em] uppercase">Cryptography</span>
-<h2 class="font-display-lg-mobile text-display-lg text-primary violet-glow">Zero-Knowledge Proofs</h2>
+<span class="font-label-sm text-label-sm text-primary-fixed/60 tracking-[0.3em] uppercase draggable" data-tid="category">Cryptography</span>
+<h2 class="font-display-lg-mobile text-display-lg text-primary violet-glow draggable" data-tid="title">Zero-Knowledge Proofs</h2>
 </div>
 <div class="w-16 h-0.5 bg-primary-fixed/30 mx-auto"></div>
-<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-sm">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-sm draggable" data-tid="body">
                     A Zero-Knowledge Proof (ZKP) allows one party to prove to another that they know a specific piece of information without revealing the information itself. It is a cornerstone of modern privacy-preserving technologies.
                 </p>
 </div>
 <!-- Meta -->
 <div class="flex flex-col items-center gap-md pt-sm">
-<span class="font-label-sm text-label-sm text-outline/50">FACT #1,024</span>
+<span class="font-label-sm text-label-sm text-outline/50 draggable" data-tid="prompt">FACT #1,024</span>
 <button class="group flex flex-col items-center gap-xs">
 <div class="w-12 h-12 rounded-full border border-primary-fixed/20 flex items-center justify-center group-hover:bg-primary-fixed/10 transition-all duration-300">
 <span class="material-symbols-outlined text-primary-fixed" data-icon="expand_more">expand_more</span>
@@ -2161,7 +2511,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- Bottom Navigation 
+<!-- Bottom Navigation -->
 <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-md px-md py-sm bg-surface-container-low/40 backdrop-blur-2xl rounded-full border border-white/5 shadow-2xl">
 <a class="text-primary-fixed p-2" href="#">
 <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
@@ -2176,9 +2526,9 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
 </a>
 </nav>
- Footer 
+<!-- Footer -->
 <footer class="fixed bottom-0 left-0 w-full pb-4 flex flex-col items-center justify-center opacity-30 pointer-events-none">
-<p class="font-label-sm text-[10px]">© IEEE CIS UPES</p>
+<p class="font-label-sm text-[10px] draggable" data-tid="handle">© IEEE CIS UPES</p>
 </footer>
 <script>
         // Subtle tilt interaction for the main content
@@ -2188,13 +2538,22 @@ const TECH_FACTS_REGISTRY = [
             const yAxis = (window.innerHeight / 2 - e.pageY) / 100;
             content.style.transform = \`rotateY(\${xAxis}deg) rotateX(\${yAxis}deg)\`;
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "18",
     name: "Cyber-Ether Lime",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - IEEE CIS UPES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -2283,8 +2642,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background: radial-gradient(circle at 50% 50%, #0a192f 0%, #12121d 100%);
             overflow-x: hidden;
             min-height: 100vh;
@@ -2333,19 +2694,43 @@ const TECH_FACTS_REGISTRY = [
             animation: scanline 8s linear infinite;
             pointer-events: none;
         }
-    
-
+    </style>
+<style>
     body {
       min-height: max(884px, 100dvh);
-    }`,
-    html_template: `<div class="mesh-gradient"></div>
- TopAppBar 
+    }
+  </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="text-on-surface font-body-md">
+<div class="mesh-gradient"></div>
+<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 backdrop-blur-xl border-b border-white/10">
 <div class="flex items-center gap-xs">
-<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden card-canvas">
-<img class="w-full h-full object-cover draggable" data-alt="IEEE CIS UPES logo" data-tid="logo" src="{{LOGO_SRC}}" style=""/>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
+<img class="w-full h-full object-cover draggable" data-alt="IEEE CIS UPES logo" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
 </div>
-<h1 class="font-display-lg-mobile text-[20px] text-primary tracking-tighter uppercase font-bold draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-display-lg-mobile text-[20px] text-primary tracking-tighter uppercase font-bold draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
 <main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -2362,15 +2747,15 @@ const TECH_FACTS_REGISTRY = [
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-xs">
 <span class="material-symbols-outlined text-primary-fixed text-3xl" data-icon="hub">hub</span>
-<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold">ARCHITECTURE</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">ARCHITECTURE</span>
 </div>
 <div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(0,212,255,0.8)]"></div>
 </div>
 <div class="flex flex-col gap-xs">
-<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight">Microservices Architecture</h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight draggable" data-tid="title">Microservices Architecture</h2>
 <div class="w-12 h-1 bg-primary-fixed"></div>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">
+<p class="font-body-md text-body-md text-on-surface-variant draggable" data-tid="body">
                     An architectural style that structures an application as a collection of services that are highly maintainable, loosely coupled, and independently deployable.
                 </p>
 </div>
@@ -2380,7 +2765,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors">
 <div class="flex items-center gap-xs text-primary-fixed">
 <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
-<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest">Benefits</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest draggable" data-tid="prompt">Benefits</span>
 </div>
 <p class="text-[13px] leading-snug text-on-surface-variant">Scalability, agility, and easier tech stack diversity across teams.</p>
 </div>
@@ -2421,7 +2806,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- High-tech grid overlay decoration -->
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,212,255,0.1)]">
 <a class="flex flex-col items-center justify-center bg-primary-fixed/10 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,212,255,0.2)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
@@ -2436,11 +2821,11 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
- Footer 
+<!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
-<a class="font-label-sm text-label-sm text-primary-fixed hover:text-primary transition-colors active:opacity-70 draggable" data-tid="handle" href="#">{{HANDLE}}</a>
+<a class="font-label-sm text-label-sm text-primary-fixed hover:text-primary transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
 </footer>
 <script>
@@ -2462,13 +2847,22 @@ const TECH_FACTS_REGISTRY = [
                 card.style.transform = \`rotateY(0deg) rotateX(0deg)\`;
             });
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "19",
     name: "Cyber-Ether Cyan",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - NoSQL vs SQL - IEEE CIS UPES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -2557,8 +2951,10 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `body {
+      }
+    </script>
+<style>
+        body {
             background: #0a0a0f;
             overflow-x: hidden;
             min-height: 100vh;
@@ -2600,16 +2996,40 @@ const TECH_FACTS_REGISTRY = [
 
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }`,
-    html_template: `Background Pattern 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="text-on-surface font-body-md">
+<!-- Background Pattern -->
 <div class="full-bleed-graphic"></div>
- TopAppBar 
+<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-background/20 backdrop-blur-md border-b border-white/5">
 <div class="flex items-center gap-xs">
-<div class="w-8 h-8 rounded-full bg-primary-fixed/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden card-canvas">
-<img class="w-full h-full object-cover draggable" data-alt="IEEE CIS UPES Logo" data-tid="logo" src="{{LOGO_SRC}}" style=""/>
+<div class="w-8 h-8 rounded-full bg-primary-fixed/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
+<img class="w-full h-full object-cover draggable" data-alt="IEEE CIS UPES Logo" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
 </div>
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
 <main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center">
@@ -2626,17 +3046,17 @@ const TECH_FACTS_REGISTRY = [
 <!-- Category & ID -->
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-primary-fixed draggable" data-icon="database" data-tid="icon">{{ICON_SVG}}</span>
-<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold">DATABASE SYSTEMS</span>
+<span class="material-symbols-outlined text-primary-fixed" data-icon="database">database</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">DATABASE SYSTEMS</span>
 </div>
-<span class="font-label-sm text-label-sm text-outline">#052</span>
+<span class="font-label-sm text-label-sm text-outline draggable" data-tid="prompt">#052</span>
 </div>
 <!-- Title & Body -->
 <div class="flex flex-col gap-sm">
-<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight">Horizontal vs. Vertical Scaling</h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight draggable" data-tid="title">Horizontal vs. Vertical Scaling</h2>
 <div class="w-16 h-1 bg-primary-fixed"></div>
 <div class="space-y-md mt-sm">
-<p class="font-body-md text-on-surface-variant leading-relaxed">
+<p class="font-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
 <strong class="text-primary">SQL</strong> databases are typically <strong class="text-primary-fixed">vertically scalable</strong>, meaning you can increase the load on a single server by increasing components like RAM or CPU. 
                     </p>
 <div class="p-sm bg-white/5 border border-white/10 rounded-sm">
@@ -2657,7 +3077,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-background/50 backdrop-blur-xl border-t border-white/5">
 <a class="flex flex-col items-center justify-center text-primary-fixed p-2" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
@@ -2672,10 +3092,10 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
- Footer 
+<!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-4 mb-20 relative z-10">
 <p class="font-label-sm text-label-sm text-outline/50">© IEEE CIS UPES Student Branch</p>
-<a class="font-label-sm text-label-sm text-primary-fixed hover:underline transition-colors draggable" data-tid="handle" href="#">{{HANDLE}}</a>
+<a class="font-label-sm text-label-sm text-primary-fixed hover:underline transition-colors draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </footer>
 <script>
     // Subtle parallax effect on the graphic background
@@ -2684,13 +3104,23 @@ const TECH_FACTS_REGISTRY = [
         const y = (window.innerHeight / 2 - e.pageY) / 100;
         document.querySelector('.full-bleed-graphic').style.transform = \`translate(\${x}px, \${y}px)\`;
     });
-</script>`
+</script>
+</body></html>`
   },
   {
     id: "20",
     name: "Electric Brutalist Magenta",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Zero-Knowledge Proofs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
@@ -2739,8 +3169,10 @@ const TECH_FACTS_REGISTRY = [
                     }
                 }
             }
-        }`,
-    styles: `body {
+        }
+    </script>
+<style>
+        body {
             background-color: #ff00ff;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -2778,12 +3210,36 @@ const TECH_FACTS_REGISTRY = [
         }
         .pixel-fill {
             background: #ff00ff;
-        }`,
-    html_template: `Top Navigation 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-black text-headline-md">terminal</span>
-<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-black">TECH_DRIP</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-black draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
 <button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
 <span class="material-symbols-outlined text-black">settings</span>
@@ -2792,7 +3248,7 @@ const TECH_FACTS_REGISTRY = [
 <main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center">
 <!-- Pixel Art Icon Grid at top -->
 <div class="mb-8 relative">
-<div class="pixel-grid neo-shadow card-canvas">
+<div class="pixel-grid neo-shadow">
 <!-- 8x8 simplistic key icon in pixel art -->
 <div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
 <div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
@@ -2816,7 +3272,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
 </div>
 <div class="flex-1 text-center">
-<span class="font-label-bold text-label-sm uppercase tracking-widest text-white">ZKP_FACT.EXE</span>
+<span class="font-label-bold text-label-sm uppercase tracking-widest text-white draggable" data-tid="handle">ZKP_FACT.EXE</span>
 </div>
 </div>
 <!-- Content -->
@@ -2825,17 +3281,17 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-10 h-10 bg-primary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
 <span class="material-symbols-outlined text-black fill-icon">vpn_key</span>
 </div>
-<span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase">Cryptography</span>
+<span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase draggable" data-tid="category">Cryptography</span>
 </div>
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter draggable" data-tid="title">
                         Zero-Knowledge <br/>
 <span class="bg-primary px-1 inline-block border-2 border-black">Proofs</span>
 </h1>
-<p class="font-body-md text-body-md text-on-surface border-l-4 border-primary pl-4 py-1">
+<p class="font-body-md text-body-md text-on-surface border-l-4 border-primary pl-4 py-1 draggable" data-tid="body">
                         A cryptographic method by which one party can prove to another party that a given statement is true while avoiding conveying any additional information.
                     </p>
 <div class="flex gap-4">
-<button class="flex-1 bg-primary py-4 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="flex-1 bg-primary py-4 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="prompt">
                             Decrypt Info
                         </button>
 <button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
@@ -2868,7 +3324,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- Bottom Navigation 
+<!-- Bottom Navigation -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
 <button class="flex flex-col items-center justify-center p-2">
 <span class="material-symbols-outlined text-black">home</span>
@@ -2904,13 +3360,23 @@ const TECH_FACTS_REGISTRY = [
                 }
             });
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "21",
     name: "Electric Brutalist Cyan",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Edge Computing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
@@ -2998,8 +3464,10 @@ const TECH_FACTS_REGISTRY = [
                     }
                 }
             }
-        }`,
-    styles: `body {
+        }
+    </script>
+<style>
+        body {
             background-color: #00ffff;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -3025,12 +3493,36 @@ const TECH_FACTS_REGISTRY = [
         .grid-pattern {
             background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px);
             background-size: 20px 20px;
-        }`,
-    html_template: `Top Navigation Shell 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Shell -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black text-white">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
-<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold">TECH_DRIP</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
 <button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
 <span class="material-symbols-outlined text-black">settings</span>
@@ -3041,7 +3533,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="fixed inset-0 pointer-events-none opacity-10 grid-pattern"></div>
 <!-- Main Content Card (Split Layout) -->
 <div class="relative w-full max-w-sm">
-<div class="bg-white border-4 border-black neo-shadow flex flex-col overflow-hidden card-canvas">
+<div class="bg-white border-4 border-black neo-shadow flex flex-col overflow-hidden">
 <!-- Retro Window Header -->
 <div class="h-10 border-b-4 border-black bg-secondary-container flex items-center px-4 gap-2">
 <div class="flex gap-1.5">
@@ -3050,7 +3542,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-3 h-3 rounded-full bg-black border-2 border-black"></div>
 </div>
 <div class="flex-1 text-center">
-<span class="font-label-bold text-[10px] uppercase tracking-widest text-white">PROXIMITY_PROC.SYS</span>
+<span class="font-label-bold text-[10px] uppercase tracking-widest text-white draggable" data-tid="handle">PROXIMITY_PROC.SYS</span>
 </div>
 </div>
 <!-- Top/Left Split Section (Technical Visual) -->
@@ -3071,17 +3563,17 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,255,255,1)]">
 <span class="material-symbols-outlined text-primary text-sm fill-icon">router</span>
 </div>
-<span class="bg-black text-primary font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase">Infrastructure</span>
+<span class="bg-black text-primary font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase draggable" data-tid="category">Infrastructure</span>
 </div>
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter draggable" data-tid="title">
                         Edge <br/>
 <span class="bg-primary px-1 inline-block border-2 border-black">Computing</span>
 </h1>
-<p class="font-body-md text-body-md text-on-surface border-l-4 border-secondary-container pl-4 py-1">
+<p class="font-body-md text-body-md text-on-surface border-l-4 border-secondary-container pl-4 py-1 draggable" data-tid="body">
                         Edge computing brings data storage and Proximity Processing closer to the devices where it's being gathered, rather than relying on a central location that can be thousands of miles away.
                     </p>
 <div class="mt-2 grid grid-cols-2 gap-3">
-<button class="bg-primary py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="bg-primary py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="prompt">
                             Details
                         </button>
 <button class="bg-white py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
@@ -3112,7 +3604,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- Bottom Navigation Shell 
+<!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe">
 <button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
 <span class="material-symbols-outlined">bolt</span>
@@ -3148,13 +3640,23 @@ const TECH_FACTS_REGISTRY = [
                 }
             });
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "22",
     name: "Electric Brutalist White",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | NeRFs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
@@ -3191,8 +3693,10 @@ const TECH_FACTS_REGISTRY = [
                     }
                 }
             }
-        }`,
-    styles: `body {
+        }
+    </script>
+<style>
+        body {
             background-color: #ffffff;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -3213,12 +3717,36 @@ const TECH_FACTS_REGISTRY = [
         }
         .fill-icon {
             font-variation-settings: 'FILL' 1;
-        }`,
-    html_template: `Top Navigation 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-8 border-black">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-black text-headline-md">terminal</span>
-<span class="font-headline-md text-2xl uppercase tracking-tighter font-extrabold text-black">TECH_DRIP</span>
+<span class="font-headline-md text-2xl uppercase tracking-tighter font-extrabold text-black draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
 <button class="w-12 h-12 flex items-center justify-center bg-white border-4 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
 <span class="material-symbols-outlined text-black">settings</span>
@@ -3227,12 +3755,12 @@ const TECH_FACTS_REGISTRY = [
 <main class="min-h-screen pt-32 pb-32 px-4 flex flex-col items-center">
 <!-- Massive Headline Section -->
 <div class="w-full max-w-sm mb-16 text-center">
-<span class="inline-block bg-accent text-white font-label-bold text-xs px-3 py-1 neo-border-medium mb-6 uppercase tracking-widest">Tech Insight #402</span>
-<h1 class="font-display-xl text-[64px] leading-[0.9] uppercase tracking-tighter text-black break-words mb-8">
+<span class="inline-block bg-accent text-white font-label-bold text-xs px-3 py-1 neo-border-medium mb-6 uppercase tracking-widest draggable" data-tid="category">Tech Insight #402</span>
+<h1 class="font-display-xl text-[64px] leading-[0.9] uppercase tracking-tighter text-black break-words mb-8 draggable" data-tid="title">
             NEURAL <br/> RADIANCE <br/> FIELDS
         </h1>
 <div class="neo-border-thick bg-white p-6 text-left">
-<p class="font-body-lg text-xl font-bold leading-tight uppercase mb-4">
+<p class="font-body-lg text-xl font-bold leading-tight uppercase mb-4 draggable" data-tid="body">
                 NeRFs use deep learning to generate complex 3D scenes from a sparse set of 2D images.
             </p>
 <p class="font-body-md text-on-surface opacity-80">
@@ -3251,7 +3779,7 @@ const TECH_FACTS_REGISTRY = [
                 NVIDIA's "Instant NeRF" can train a 3D scene in seconds, a task that previously took hours or even days.
             </p>
 <div class="mt-8 flex gap-4">
-<button class="flex-1 bg-black text-white py-4 neo-border-medium font-label-bold uppercase hover:translate-x-1 hover:translate-y-1 transition-all active:translate-x-2 active:translate-y-2">
+<button class="flex-1 bg-black text-white py-4 neo-border-medium font-label-bold uppercase hover:translate-x-1 hover:translate-y-1 transition-all active:translate-x-2 active:translate-y-2 draggable" data-tid="prompt">
                     Share Insight
                 </button>
 <button class="w-16 bg-white neo-border-medium flex items-center justify-center hover:translate-x-1 hover:translate-y-1 transition-all">
@@ -3266,7 +3794,7 @@ const TECH_FACTS_REGISTRY = [
 <section class="mt-16 w-full max-w-sm grid grid-cols-2 gap-6">
 <div class="bg-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
 <span class="font-display-xl text-4xl font-extrabold mb-1">5s</span>
-<span class="font-label-bold text-[10px] uppercase opacity-60">Training Speed</span>
+<span class="font-label-bold text-[10px] uppercase opacity-60 draggable" data-tid="handle">Training Speed</span>
 </div>
 <div class="bg-black text-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
 <span class="material-symbols-outlined text-4xl mb-1 text-accent">view_in_ar</span>
@@ -3274,7 +3802,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- Bottom Navigation 
+<!-- Bottom Navigation -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-24 bg-white border-t-8 border-black px-4 pb-safe">
 <button class="flex flex-col items-center justify-center text-black p-2">
 <span class="material-symbols-outlined text-3xl">bolt</span>
@@ -3288,13 +3816,24 @@ const TECH_FACTS_REGISTRY = [
 <button class="flex flex-col items-center justify-center text-black p-2">
 <span class="material-symbols-outlined text-3xl">person</span>
 </button>
-</nav>`
+</nav>
+</body></html>`
   },
   {
     id: "23",
     name: "Electric Brutalist Lime",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Fact of the Day</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
@@ -3334,8 +3873,10 @@ const TECH_FACTS_REGISTRY = [
                     }
                 }
             }
-        }`,
-    styles: `body {
+        }
+    </script>
+<style>
+        body {
             background-color: #39ff14;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -3366,16 +3907,40 @@ const TECH_FACTS_REGISTRY = [
             0% { bottom: 100%; }
             100% { bottom: -100px; }
         }
-    
-
+    </style>
+<style>
         body {
             min-height: max(884px, 100dvh);
-        }`,
-    html_template: `Top Navigation Shell 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="font-mono text-on-surface">
+<!-- Top Navigation Shell -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(57,255,20,1)]">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-2xl">terminal</span>
-<span class="font-bold text-xl uppercase tracking-tighter text-primary">TECH_DRIP</span>
+<span class="font-bold text-xl uppercase tracking-tighter text-primary draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
 <button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
 <span class="material-symbols-outlined text-black">settings</span>
@@ -3393,7 +3958,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Main Fact Card Container -->
 <div class="relative w-full max-w-sm">
-<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col card-canvas">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col">
 <!-- Terminal Header -->
 <div class="h-8 border-b-4 border-black bg-black flex items-center px-4 gap-2">
 <div class="flex gap-1">
@@ -3411,13 +3976,13 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black">
 <span class="material-symbols-outlined text-primary text-sm">hub</span>
 </div>
-<span class="bg-primary text-black font-bold text-[10px] px-2 py-0.5 border-2 border-black uppercase italic">Web3 Protocols</span>
+<span class="bg-primary text-black font-bold text-[10px] px-2 py-0.5 border-2 border-black uppercase italic draggable" data-tid="category">Web3 Protocols</span>
 </div>
-<h1 class="text-3xl font-black leading-none uppercase tracking-tighter">
+<h1 class="text-3xl font-black leading-none uppercase tracking-tighter draggable" data-tid="title">
 <span class="bg-black text-primary px-1">Decentralized</span><br/>
                         Applications
                     </h1>
-<p class="text-sm font-bold leading-snug border-l-4 border-black pl-3 py-1 bg-gray-50">
+<p class="text-sm font-bold leading-snug border-l-4 border-black pl-3 py-1 bg-gray-50 draggable" data-tid="body">
                         dApps are digital applications that run on a blockchain or peer-to-peer (P2P) network of computers instead of a single computer, remaining outside the control of a single authority.
                     </p>
 <!-- Dense Grid Data Modules -->
@@ -3433,7 +3998,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Interaction -->
 <div class="mt-2 flex gap-3">
-<button class="flex-1 bg-primary py-3 border-4 border-black font-bold uppercase text-xs text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="flex-1 bg-primary py-3 border-4 border-black font-bold uppercase text-xs text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="prompt">
                             Propagate Data
                         </button>
 <button class="w-12 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
@@ -3443,7 +4008,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Bottom Stats -->
 <div class="bg-black text-primary border-t-4 border-black p-2 flex justify-between items-center text-[10px] font-bold">
-<span>NODE_REF: eth-0x4e2</span>
+<span class="draggable" data-tid="handle">NODE_REF: eth-0x4e2</span>
 <span class="bg-primary text-black px-1">ACTIVE</span>
 </div>
 </div>
@@ -3476,7 +4041,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="flex-1 h-[2px] bg-black"></div>
 </div>
 </main>
- Bottom Navigation Shell 
+<!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe">
 <button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors">
 <span class="material-symbols-outlined">bolt</span>
@@ -3512,13 +4077,23 @@ const TECH_FACTS_REGISTRY = [
                 }
             });
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "24",
     name: "Electric Brutalist Orange",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>TECH_DRIP | Quantum Decoherence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
@@ -3570,8 +4145,10 @@ const TECH_FACTS_REGISTRY = [
                     }
                 }
             }
-        }`,
-    styles: `body {
+        }
+    </script>
+<style>
+        body {
             background-color: #ff6600;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -3601,16 +4178,40 @@ const TECH_FACTS_REGISTRY = [
         .rotate-neg-2 { transform: rotate(-2deg); }
         .rotate-pos-1 { transform: rotate(1.5deg); }
         .rotate-pos-3 { transform: rotate(3deg); }
-    
-
+    </style>
+<style>
         body {
             min-height: max(884px, 100dvh);
-        }`,
-    html_template: `Top Navigation Shell 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Shell -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
-<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-white">TECH_DRIP</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-white draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
 <button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
 <span class="material-symbols-outlined text-white">settings</span>
@@ -3622,7 +4223,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Main Fact Card Container -->
 <div class="relative w-full max-w-sm mt-4 rotate-neg-2">
 <!-- The Neo-Brutalist Card -->
-<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col card-canvas">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col">
 <!-- Retro Titlebar -->
 <div class="h-10 border-b-4 border-black bg-primary flex items-center px-4 gap-2">
 <div class="flex gap-1.5">
@@ -3631,7 +4232,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-3 h-3 rounded-full bg-black border-2 border-white"></div>
 </div>
 <div class="flex-1 text-center">
-<span class="font-label-bold text-label-sm uppercase tracking-widest text-white">DECOHERENCE_LOG.SYS</span>
+<span class="font-label-bold text-label-sm uppercase tracking-widest text-white draggable" data-tid="handle">DECOHERENCE_LOG.SYS</span>
 </div>
 </div>
 <!-- Card Image -->
@@ -3651,9 +4252,12 @@ const TECH_FACTS_REGISTRY = [
 <span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase tracking-tight">System Fragility</span>
 </div>
 <!-- Title -->
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-[0.9] uppercase tracking-tighter draggable" data-tid="title">{{TITLE}}</h1>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-[0.9] uppercase tracking-tighter draggable" data-tid="category">
+                        Quantum <br/>
+<span class="bg-primary text-white px-1 inline-block border-4 border-black rotate-pos-1">Decoherence</span>
+</h1>
 <!-- Description -->
-<p class="font-body-md text-body-md text-on-surface border-l-4 border-black pl-4 py-1 mt-2">
+<p class="font-body-md text-body-md text-on-surface border-l-4 border-black pl-4 py-1 mt-2 draggable" data-tid="body">
                         The process where a quantum system loses its quantum properties, like superposition, as it interacts with the environment. It's the "noise" that breaks quantum computers.
                     </p>
 <!-- Interaction Buttons -->
@@ -3676,7 +4280,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Secondary Info Section (Pasted blocks at angles) -->
 <section class="mt-10 w-full max-w-sm flex flex-col gap-6 relative">
 <div class="bg-accent-yellow border-4 border-black p-4 neo-shadow-sm rotate-pos-3 relative z-20">
-<h3 class="font-label-bold uppercase text-label-sm mb-1 text-black underline">The Problem</h3>
+<h3 class="font-label-bold uppercase text-label-sm mb-1 text-black underline draggable" data-tid="prompt">The Problem</h3>
 <p class="text-body-md font-body-md leading-tight">Decoherence happens in microseconds. Keeping qubits "quiet" requires temperatures colder than outer space.</p>
 </div>
 <div class="grid grid-cols-2 gap-4">
@@ -3695,7 +4299,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 </main>
- Bottom Navigation Shell 
+<!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
 <button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors">
 <span class="material-symbols-outlined">bolt</span>
@@ -3732,32 +4336,22 @@ const TECH_FACTS_REGISTRY = [
                 }
             });
         });
-    </script>`
+    </script>
+</body></html>`
   },
   {
     id: "25",
     name: "Swiss Variant Light Gray",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@0,600;1,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary": "#1c1b1b", /* Deep charcoal */
-                    "background": "#F4F1EA", /* Eggshell */
-                    "on-surface-variant": "#444748",
-                    "surface-container-highest": "#E6E2D8",
-                    "outline-variant": "#1c1b1b"
-            },
-            "spacing": {
-                    "margin-mobile": "24px",
-                    "unit": "8px",
-                    "border-thick": "2px"
-            }
-          },
-        },
-      }`,
-    styles: `.material-symbols-outlined {
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Serverless Architecture - Tech Fact</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=EB+Garamond:ital,wght@0,600;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         /* Eggshell Paper Texture Effect */
@@ -3776,32 +4370,77 @@ const TECH_FACTS_REGISTRY = [
 
         .active-press:active {
             transform: translate(2px, 2px);
-        }`,
-    html_template: `TopAppBar 
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#1c1b1b", /* Deep charcoal */
+                    "background": "#F4F1EA", /* Eggshell */
+                    "on-surface-variant": "#444748",
+                    "surface-container-highest": "#E6E2D8",
+                    "outline-variant": "#1c1b1b"
+            },
+            "spacing": {
+                    "margin-mobile": "24px",
+                    "unit": "8px",
+                    "border-thick": "2px"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="paper-texture text-primary selection:bg-primary selection:text-white">
+<!-- TopAppBar -->
 <header class="w-full top-0 sticky z-50 border-b border-primary bg-background flex justify-between items-center px-6 py-4">
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
-<h1 class="font-swiss-meta text-xs uppercase tracking-[0.2em] draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<h1 class="font-swiss-meta text-xs uppercase tracking-[0.2em] draggable" data-tid="club-title">Tech Fact No. 042</h1>
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer">search</span>
 </header>
 <main class="min-h-[calc(100vh-128px)] relative grid grid-cols-3">
 <!-- Vertical Rules (The 3-Column Grid) -->
 <div class="absolute inset-0 grid grid-cols-3 pointer-events-none">
-<div class="border-r border-primary opacity-20 card-canvas"></div>
+<div class="border-r border-primary opacity-20"></div>
 <div class="border-r border-primary opacity-20"></div>
 <div></div>
 </div>
 <!-- Layout: Staggered Content Across Grid -->
 <!-- Section 1: Top Header Stagger -->
 <section class="col-span-3 pt-12 px-6 border-b border-primary">
-<div class="grid grid-cols-3 gap-0 draggable" data-tid="category">
+<div class="grid grid-cols-3 gap-0">
 <div class="col-span-2 pb-8">
-<span class="font-swiss-meta text-[10px] uppercase block mb-4">{{CATEGORY}}</span>
-<h2 class="font-swiss-display text-[56px] tracking-tighter draggable" data-tid="title">{{TITLE}}</h2>
+<span class="font-swiss-meta text-[10px] uppercase block mb-4 draggable" data-tid="category">Architecture / Cloud</span>
+<h2 class="font-swiss-display text-[56px] tracking-tighter draggable" data-tid="title">Server<br/>-less</h2>
 </div>
 <div class="col-span-1 border-l border-primary p-4 flex flex-col justify-end">
-<span class="font-swiss-meta text-[10px] uppercase leading-none opacity-60 draggable" data-tid="prompt">{{PROMPT}}</span>
+<span class="font-swiss-meta text-[10px] uppercase leading-none opacity-60 draggable" data-tid="prompt">Vol. 01<br/>Ed. 2024</span>
 </div>
 </div>
 </section>
@@ -3809,10 +4448,20 @@ const TECH_FACTS_REGISTRY = [
 <section class="col-span-3 grid grid-cols-3 border-b border-primary">
 <!-- Col 1: Icon/Visual -->
 <div class="col-span-1 border-r border-primary p-6 flex items-start justify-center">
-<span class="material-symbols-outlined text-[40px] draggable" data-tid="icon" style="font-variation-settings: 'wght' 200;">{{ICON_SVG}}</span>
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'wght' 200;">cloud_off</span>
 </div>
 <!-- Col 2-3: Secondary Headline and Content -->
-<div class="col-span-2 p-8 draggable" data-tid="body">{{BODY}}</div>
+<div class="col-span-2 p-8">
+<h3 class="font-swiss-display text-[42px] tracking-tighter mb-12">Architecture</h3>
+<div class="max-w-xs">
+<p class="font-swiss-body text-xl italic leading-tight text-primary mb-6 draggable" data-tid="body">
+                    "Function as a Service" (FaaS) allows developers to build, run, and manage application packages without maintaining their own infrastructure.
+                </p>
+<p class="font-swiss-body text-base leading-relaxed text-on-surface-variant">
+                    Serverless does not mean servers are not involved. It means the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity.
+                </p>
+</div>
+</div>
 </section>
 <!-- Section 3: The '01' Watermark and Quote -->
 <section class="col-span-3 grid grid-cols-3 min-h-[160px]">
@@ -3827,12 +4476,12 @@ const TECH_FACTS_REGISTRY = [
 </button>
 </div>
 <div class="mt-8 pt-4 border-t border-primary/20">
-<span class="font-swiss-meta text-[9px] uppercase tracking-widest opacity-50">Reference: Microservices Design Patterns</span>
+<span class="font-swiss-meta text-[9px] uppercase tracking-widest opacity-50 draggable" data-tid="handle">Reference: Microservices Design Patterns</span>
 </div>
 </div>
 </section>
 </main>
- BottomNavBar (Swiss Grid Alignment) 
+<!-- BottomNavBar (Swiss Grid Alignment) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t border-primary">
 <!-- Each nav item takes exactly 25% but adheres to grid feel -->
 <a class="flex flex-col items-center justify-center bg-primary text-background flex-1 active-press" href="#">
@@ -3865,39 +4514,22 @@ const TECH_FACTS_REGISTRY = [
             }, 100 * (index + 1));
         });
     });
-</script>`
+</script>
+</body></html>`
   },
   {
     id: "26",
     name: "Swiss Monochrome Solid",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600;800&family=EB+Garamond:wght@600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary": "#000000",
-                    "secondary": "#5d5f5f",
-                    "background": "#FCF9F2",
-                    "accent": "#FF4D00",
-                    "surface": "#FCF9F2",
-                    "on-surface": "#000000",
-                    "outline": "#000000"
-            },
-            "spacing": {
-                    "margin-desktop": "64px",
-                    "border-thick": "4px",
-                    "margin-mobile": "20px",
-                    "unit": "8px"
-            },
-            "fontFamily": {
-                    "headline": ["Sora", "sans-serif"],
-                    "body": ["Inter", "sans-serif"]
-            }
-          },
-        },
-      }`,
-    styles: `.material-symbols-outlined {
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact: Zero-Day Exploits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600;800&amp;family=EB+Garamond:wght@600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         /* Custom Paper Texture Effect */
@@ -3925,12 +4557,64 @@ const TECH_FACTS_REGISTRY = [
         }
         .ivory-bg {
             background-color: #FCF9F2;
-        }`,
-    html_template: `TopAppBar 
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#000000",
+                    "secondary": "#5d5f5f",
+                    "background": "#FCF9F2",
+                    "accent": "#FF4D00",
+                    "surface": "#FCF9F2",
+                    "on-surface": "#000000",
+                    "outline": "#000000"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "border-thick": "4px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline": ["Sora", "sans-serif"],
+                    "body": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="paper-texture text-on-surface selection:bg-accent selection:text-white">
+<!-- TopAppBar -->
 <header class="w-full top-0 sticky z-50 border-b-thick border-primary bg-background flex justify-between items-center px-margin-mobile h-16">
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
-<h1 class="font-headline font-bold text-xl tracking-tighter uppercase">Fact System</h1>
+<h1 class="font-headline font-bold text-xl tracking-tighter uppercase draggable" data-tid="club-title">Fact System</h1>
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer">search</span>
 </header>
@@ -3938,24 +4622,24 @@ const TECH_FACTS_REGISTRY = [
 <!-- Central Fact Card: The Reductive Block -->
 <article class="relative w-full max-w-sm bg-background border-thick border-primary shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col transition-all duration-300">
 <!-- Header Block: Safety Orange Accent -->
-<div class="orange-accent p-6 border-b-thick border-primary card-canvas">
+<div class="orange-accent p-6 border-b-thick border-primary">
 <div class="flex justify-between items-start">
-<span class="font-body font-extrabold text-xs tracking-widest-xl uppercase text-white">Warning: Vulnerability</span>
+<span class="font-body font-extrabold text-xs tracking-widest-xl uppercase text-white draggable" data-tid="category">Warning: Vulnerability</span>
 <span class="material-symbols-outlined text-white text-3xl">priority_high</span>
 </div>
 </div>
 <!-- Content Block -->
 <div class="p-8 flex flex-col">
 <!-- Category with Wide Tracking -->
-<span class="font-body font-bold text-[10px] tracking-[0.3em] uppercase mb-4 text-primary opacity-60">Security Analysis // 012</span>
+<span class="font-body font-bold text-[10px] tracking-[0.3em] uppercase mb-4 text-primary opacity-60 draggable" data-tid="handle">Security Analysis // 012</span>
 <!-- Condensed Title -->
-<h2 class="font-headline font-extrabold text-5xl leading-[0.9] uppercase mb-8 break-words scale-y-110 origin-left">
+<h2 class="font-headline font-extrabold text-5xl leading-[0.9] uppercase mb-8 break-words scale-y-110 origin-left draggable" data-tid="title">
                 Zero-Day<br/>Exploits
             </h2>
 <!-- Separator Line -->
 <div class="w-full h-1 bg-primary mb-8"></div>
 <!-- Description Body -->
-<p class="font-body text-base font-medium leading-tight mb-8">
+<p class="font-body text-base font-medium leading-tight mb-8 draggable" data-tid="body">
                 A "Zero-Day" vulnerability is a software security flaw known only to the attacker. It is called "Zero-Day" because the developer has had zero days to fix the vulnerability before it is exploited in the wild.
             </p>
 <!-- Bottom Data Grid -->
@@ -3966,7 +4650,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <div class="flex flex-col items-end">
 <span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50">Status</span>
-<span class="font-headline font-bold text-lg text-accent">CRITICAL</span>
+<span class="font-headline font-bold text-lg text-accent draggable" data-tid="prompt">CRITICAL</span>
 </div>
 </div>
 </div>
@@ -3979,7 +4663,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </article>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t-thick border-primary">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center orange-accent text-white flex-1 border-r-thick border-primary active-press" href="#">
@@ -4015,13 +4699,44 @@ const TECH_FACTS_REGISTRY = [
             card.style.transform = 'scale(1) translateY(0)';
         }, 50);
     });
-</script>`
+</script>
+</body></html>`
   },
   {
     id: "27",
     name: "Swiss Warm Cream",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@0,600;1,600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=JetBrains+Mono:wght@400;600&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact - Neural Networks</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=EB+Garamond:ital,wght@0,600;1,600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Recycled Paper Texture */
+        .paper-texture {
+            background-color: #E5E5E5;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .active-press:active {
+            transform: translate(2px, 2px);
+        }
+        .border-thick { border-width: 2px; }
+        .font-mono-meta { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Swiss Grid Influence */
+        .swiss-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 8px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -4044,32 +4759,36 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `.material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        /* Recycled Paper Texture */
-        .paper-texture {
-            background-color: #E5E5E5;
-            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-        }
-        .active-press:active {
-            transform: translate(2px, 2px);
-        }
-        .border-thick { border-width: 2px; }
-        .font-mono-meta { font-family: 'JetBrains Mono', monospace; }
-        
-        /* Swiss Grid Influence */
-        .swiss-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 8px;
-        }`,
-    html_template: `Minimal TopBar 
+      }
+    </script>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="paper-texture text-on-surface selection:bg-accent-blue selection:text-white">
+<!-- Minimal TopBar -->
 <header class="w-full top-0 sticky z-50 border-b border-black bg-surface-paper/80 backdrop-blur-sm flex justify-between items-center px-margin-mobile py-6">
 <div class="flex items-center gap-6">
 <span class="material-symbols-outlined text-primary cursor-pointer hover:text-accent-blue transition-colors">menu</span>
-<h1 class="font-mono-meta text-[14px] font-bold tracking-widest text-primary uppercase">Information / Journal</h1>
+<h1 class="font-mono-meta text-[14px] font-bold tracking-widest text-primary uppercase draggable" data-tid="club-title">Information / Journal</h1>
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer hover:text-accent-blue transition-colors">search</span>
 </header>
@@ -4078,17 +4797,17 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-full flex flex-col md:max-w-xl">
 <!-- Large Asymmetric Margin Area for Metadata -->
 <div class="mb-12 flex items-baseline gap-4">
-<span class="font-mono-meta text-[12px] text-accent-blue font-bold">VOL. 024</span>
+<span class="font-mono-meta text-[12px] text-accent-blue font-bold draggable" data-tid="prompt">VOL. 024</span>
 <div class="h-[1px] w-12 bg-accent-blue"></div>
-<span class="font-mono-meta text-[12px] text-on-surface-variant uppercase">Scientific Review</span>
+<span class="font-mono-meta text-[12px] text-on-surface-variant uppercase draggable" data-tid="category">Scientific Review</span>
 </div>
 <!-- Serif Headline: High Contrast & Elegant -->
-<h2 class="font-serif-headline text-[56px] leading-[1.05] italic font-semibold text-primary mb-12 tracking-tight">
+<h2 class="font-serif-headline text-[56px] leading-[1.05] italic font-semibold text-primary mb-12 tracking-tight draggable" data-tid="title">
             Neural <br/>Networks
         </h2>
 <!-- Circular Graphic Element (Neural Node) -->
 <div class="relative mb-12 self-end mr-8">
-<div class="w-24 h-24 rounded-full border-[1.5px] border-primary flex items-center justify-center card-canvas">
+<div class="w-24 h-24 rounded-full border-[1.5px] border-primary flex items-center justify-center">
 <div class="w-3 h-3 bg-accent-blue rounded-full"></div>
 </div>
 <!-- Asymmetric labeling -->
@@ -4096,7 +4815,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Description: Clean Scientific Aesthetic -->
 <div class="border-l border-primary pl-8 mb-16 max-w-[90%]">
-<p class="font-body-md text-[18px] leading-[1.6] text-on-surface">
+<p class="font-body-md text-[18px] leading-[1.6] text-on-surface draggable" data-tid="body">
                 Modern artificial intelligence relies on <span class="font-bold">backpropagation</span>—a method used to calculate the gradient of the loss function with respect to the weights in a neural network. Through iterative optimization, the system "learns" by minimizing error across millions of parameters.
             </p>
 </div>
@@ -4104,7 +4823,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="flex flex-col gap-2 border-t border-black pt-6">
 <div class="flex justify-between items-end">
 <div class="font-mono-meta text-[12px]">
-<p class="text-primary font-bold">REF: BP_ALGO_1986</p>
+<p class="text-primary font-bold draggable" data-tid="handle">REF: BP_ALGO_1986</p>
 <p class="text-on-surface-variant">SUBJECT: WEIGHT OPTIMIZATION</p>
 </div>
 <button class="active-press w-10 h-10 flex items-center justify-center border border-primary hover:bg-accent-blue hover:border-accent-blue hover:text-white transition-all">
@@ -4117,7 +4836,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="fixed top-0 right-12 bottom-0 w-[0.5px] bg-black/10 -z-10"></div>
 <div class="fixed top-1/2 left-0 right-0 h-[0.5px] bg-black/5 -z-10"></div>
 </main>
- Bottom Nav: Swiss Tab Style 
+<!-- Bottom Nav: Swiss Tab Style -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex h-20 bg-surface-paper border-t-2 border-black">
 <a class="flex-1 flex flex-col items-center justify-center bg-black text-white active-press" href="#">
 <span class="material-symbols-outlined text-[20px]">layers</span>
@@ -4149,36 +4868,22 @@ const TECH_FACTS_REGISTRY = [
             }, 100 + (index * 150));
         });
     });
-</script>`
+</script>
+</body></html>`
   },
   {
     id: "28",
     name: "Swiss Minimalist Gray",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=EB+Garamond:ital,wght@0,600;1,600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary": "#1B4332", /* Forest Green */
-                    "background": "#F2EFE9", /* Sand */
-                    "surface": "#F2EFE9",
-                    "on-surface": "#1B4332",
-                    "outline": "#1B4332"
-            },
-            "fontFamily": {
-                    "headline-caps": ["Sora", "sans-serif"],
-                    "body-serif": ["EB Garamond", "serif"],
-                    "metadata": ["Inter", "sans-serif"]
-            },
-            "spacing": {
-                    "margin-mobile": "24px",
-                    "border-thin": "1px"
-            }
-          },
-        },
-      }`,
-    styles: `.material-symbols-outlined {
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact - Modular Data</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=EB+Garamond:ital,wght@0,600;1,600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
         /* Swiss Modernist Color Palette & Texture */
@@ -4202,12 +4907,61 @@ const TECH_FACTS_REGISTRY = [
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto;
-        }`,
-    html_template: `TopAppBar 
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#1B4332", /* Forest Green */
+                    "background": "#F2EFE9", /* Sand */
+                    "surface": "#F2EFE9",
+                    "on-surface": "#1B4332",
+                    "outline": "#1B4332"
+            },
+            "fontFamily": {
+                    "headline-caps": ["Sora", "sans-serif"],
+                    "body-serif": ["EB Garamond", "serif"],
+                    "metadata": ["Inter", "sans-serif"]
+            },
+            "spacing": {
+                    "margin-mobile": "24px",
+                    "border-thin": "1px"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="selection:bg-primary selection:text-white">
+<!-- TopAppBar -->
 <header class="w-full top-0 sticky z-50 border-b border-thin border-forest bg-background flex justify-between items-center px-margin-mobile py-4">
 <div class="flex items-center">
 <span class="material-symbols-outlined text-forest mr-4 cursor-pointer">menu</span>
-<h1 class="font-headline-caps text-xl font-extrabold tracking-tight uppercase">Tech<span class="font-light">Archive</span></h1>
+<h1 class="font-headline-caps text-xl font-extrabold tracking-tight uppercase draggable" data-tid="club-title">Tech<span class="font-light">Archive</span></h1>
 </div>
 <span class="material-symbols-outlined text-forest cursor-pointer">filter_list</span>
 </header>
@@ -4216,15 +4970,15 @@ const TECH_FACTS_REGISTRY = [
 <div class="w-full max-w-md flex flex-col">
 <!-- Section Header -->
 <div class="mb-6 flex justify-between items-end border-b border-forest pb-2">
-<span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase">Bulletin No. 042</span>
-<span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase">Series: Infrastructure</span>
+<span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase draggable" data-tid="prompt">Bulletin No. 042</span>
+<span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase draggable" data-tid="category">Series: Infrastructure</span>
 </div>
 <!-- 2x2 Modular Grid -->
 <div class="grid grid-cols-2 border-t border-l border-forest">
 <!-- Block 1: Topic Title -->
 <div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square">
 <span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Topic</span>
-<h2 class="font-headline-caps text-2xl font-bold leading-none uppercase break-words">Network<br/>Latency</h2>
+<h2 class="font-headline-caps text-2xl font-bold leading-none uppercase break-words draggable" data-tid="title">Network<br/>Latency</h2>
 </div>
 <!-- Block 2: Quantitative Data / Icon -->
 <div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square bg-forest text-[#F2EFE9]">
@@ -4237,14 +4991,14 @@ const TECH_FACTS_REGISTRY = [
 <!-- Block 3: The Main Fact (High-readability Serif) -->
 <div class="col-span-2 border-r border-b border-forest p-6 bg-white bg-opacity-50">
 <span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 mb-4 block">Definition &amp; Insight</span>
-<p class="font-body-serif text-[22px] leading-[1.3] text-forest">
+<p class="font-body-serif text-[22px] leading-[1.3] text-forest draggable" data-tid="body">
                     Edge computing reduces <span class="italic">latency</span> by moving processing closer to the source. Even in fiber optics, data is limited by the speed of light—roughly 200,000 km/s—meaning physical distance remains the ultimate bottleneck.
                 </p>
 </div>
 <!-- Block 4: Context / Detail -->
 <div class="border-r border-b border-forest p-4 flex flex-col justify-between">
 <span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Source</span>
-<p class="font-metadata text-[11px] leading-tight font-medium uppercase">Bell Labs / <br/>Photonics Research</p>
+<p class="font-metadata text-[11px] leading-tight font-medium uppercase draggable" data-tid="handle">Bell Labs / <br/>Photonics Research</p>
 </div>
 <!-- Block 5: Interaction / Share -->
 <div class="border-r border-b border-forest p-4 flex items-center justify-center group cursor-pointer hover:bg-forest transition-colors duration-200">
@@ -4263,7 +5017,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-forest">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center bg-forest text-white px-4 py-2 flex-1 active-press" href="#">
@@ -4299,13 +5053,54 @@ const TECH_FACTS_REGISTRY = [
             }, 50 * index);
         });
     });
-</script>`
+</script>
+</body></html>`
   },
   {
     id: "29",
     name: "Swiss Typographic Blue",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;600&family=EB+Garamond:ital,wght@0,600;1,600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Fact of the Day - Architecture Scalability</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=EB+Garamond:ital,wght@0,600;1,600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Overlapping Planes Styles */
+        .limestone-bg {
+            background-color: #E8E8E8;
+        }
+        .burgundy-accent {
+            color: #800020;
+        }
+        .burgundy-bg {
+            background-color: #800020;
+        }
+        .border-burgundy {
+            border-color: #800020;
+        }
+        .active-press:active {
+            transform: translate(2px, 2px);
+        }
+        .border-thick { border-width: 3px; }
+        .border-thin { border-width: 1px; }
+        
+        /* Layering Utility */
+        .layer-shadow {
+            box-shadow: 10px 10px 0px rgba(128, 0, 32, 0.1);
+        }
+
+        .text-overlap {
+            mix-blend-mode: multiply;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -4338,47 +5133,41 @@ const TECH_FACTS_REGISTRY = [
             }
           },
         },
-      }`,
-    styles: `.material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        /* Overlapping Planes Styles */
-        .limestone-bg {
-            background-color: #E8E8E8;
-        }
-        .burgundy-accent {
-            color: #800020;
-        }
-        .burgundy-bg {
-            background-color: #800020;
-        }
-        .border-burgundy {
-            border-color: #800020;
-        }
-        .active-press:active {
-            transform: translate(2px, 2px);
-        }
-        .border-thick { border-width: 3px; }
-        .border-thin { border-width: 1px; }
-        
-        /* Layering Utility */
-        .layer-shadow {
-            box-shadow: 10px 10px 0px rgba(128, 0, 32, 0.1);
-        }
-
-        .text-overlap {
-            mix-blend-mode: multiply;
-        }
-    
-
+      }
+    </script>
+<style>
         body {
             min-height: max(884px, 100dvh);
-        }`,
-    html_template: `TopAppBar 
+        }
+    </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="limestone-bg text-on-surface selection:bg-burgundy-bg selection:text-white">
+<!-- TopAppBar -->
 <header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-6 py-4">
 <div class="flex items-center">
 <span class="material-symbols-outlined text-primary mr-4 cursor-pointer">menu</span>
-<h1 class="font-headline-lg-mobile text-[24px] font-bold tracking-tight text-primary">TECH FACT</h1>
+<h1 class="font-headline-lg-mobile text-[24px] font-bold tracking-tight text-primary draggable" data-tid="club-title">TECH FACT</h1>
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer">search</span>
 </header>
@@ -4398,11 +5187,11 @@ const TECH_FACTS_REGISTRY = [
 <!-- Category Label & Icon Overlap -->
 <div class="relative w-full mb-8 flex items-baseline gap-2">
 <span class="material-symbols-outlined text-[32px] burgundy-accent" style="font-variation-settings: 'wght' 600;">layers</span>
-<span class="font-category-label text-category-label burgundy-accent italic tracking-tight">ARCHITECTURE</span>
+<span class="font-category-label text-category-label burgundy-accent italic tracking-tight draggable" data-tid="category">ARCHITECTURE</span>
 </div>
 <!-- Main Title - Overlapping and Mixed Typography -->
 <div class="relative mb-8">
-<h2 class="font-headline-lg-mobile text-[40px] font-extrabold uppercase leading-[0.9] tracking-tighter text-primary">
+<h2 class="font-headline-lg-mobile text-[40px] font-extrabold uppercase leading-[0.9] tracking-tighter text-primary draggable" data-tid="title">
                     Horizontal<br/>
 <span class="burgundy-accent">vs</span><br/>
                     Vertical
@@ -4410,14 +5199,14 @@ const TECH_FACTS_REGISTRY = [
 <span class="absolute -bottom-4 right-0 font-category-label text-[32px] text-primary/20 italic select-none">Scaling</span>
 </div>
 <!-- Description Body -->
-<p class="font-body-md text-body-md text-on-surface-variant leading-snug mb-12 border-l-2 border-burgundy pl-4">
+<p class="font-body-md text-body-md text-on-surface-variant leading-snug mb-12 border-l-2 border-burgundy pl-4 draggable" data-tid="body">
                 Vertical scaling means adding more power (CPU, RAM) to an existing machine, whereas horizontal scaling means adding more machines to your network, distributing the load across multiple nodes.
             </p>
 <!-- Footer Metadata Block -->
 <div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center">
 <div class="flex flex-col">
-<span class="font-metadata-sm text-[10px] uppercase text-primary font-bold">FACT #005</span>
-<span class="font-metadata-sm text-[10px] uppercase text-secondary">SYSTEM DESIGN</span>
+<span class="font-metadata-sm text-[10px] uppercase text-primary font-bold draggable" data-tid="prompt">FACT #005</span>
+<span class="font-metadata-sm text-[10px] uppercase text-secondary draggable" data-tid="handle">SYSTEM DESIGN</span>
 </div>
 <button class="active-press p-3 burgundy-bg text-white hover:opacity-90 transition-all duration-150">
 <span class="material-symbols-outlined text-[20px]">north_east</span>
@@ -4431,7 +5220,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute top-[10%] right-10 w-2 h-32 bg-primary"></div>
 <div class="absolute bottom-[15%] left-10 w-16 h-[2px] bg-burgundy-bg"></div>
 </main>
- BottomNavBar 
+<!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center bg-primary text-white px-4 py-2 flex-1 active-press" href="#">
@@ -4466,13 +5255,66 @@ const TECH_FACTS_REGISTRY = [
             card.style.transform = 'scale(1) translateY(0)';
         }, 200);
     });
-</script>`
+</script>
+</body></html>`
   },
   {
     id: "30",
     name: "Phosphor Green Terminal",
-    fonts_url: "https://fonts.googleapis.com/css2?family=Space+Mono:wght@100..900&display=swap",
-    tailwind_config: `{
+    full_html: `<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DISTRIBUTED_CONSENSUS_PROTOCOL</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        
+        /* Terminal Cursor Animation */
+        .cursor-block {
+            display: inline-block;
+            width: 1ch;
+            height: 1.2em;
+            background-color: #efffe3;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Matrix/Grid Background */
+        .matrix-bg {
+            background-image: 
+                linear-gradient(to right, rgba(42, 229, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(42, 229, 0, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* CRT Scanline Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
@@ -4535,59 +5377,43 @@ const TECH_FACTS_REGISTRY = [
             },
           }
         }
-      }`,
-    styles: `.material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            line-height: 1;
-        }
-        
-        /* Terminal Cursor Animation */
-        .cursor-block {
-            display: inline-block;
-            width: 1ch;
-            height: 1.2em;
-            background-color: #efffe3;
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-        }
-        
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* Matrix/Grid Background */
-        .matrix-bg {
-            background-image: 
-                linear-gradient(to right, rgba(42, 229, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(42, 229, 0, 0.05) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
-
-        /* CRT Scanline Effect */
-        .crt-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-    
-
+      }
+    </script>
+<style>
     body {
       min-height: max(884px, 100dvh);
-    }`,
-    html_template: `<div class="crt-overlay"></div>
+    }
+  </style>
+<style>
+    /* Editor interaction styles */
+    .draggable { cursor: grab; position: relative; }
+    .draggable:active { cursor: grabbing; }
+    .draggable:focus { outline: 2px dashed #3b82f6 !important; outline-offset: 4px; }
+    [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.15); cursor: grab; transition: outline 0.2s; }
+    [contenteditable="true"]:focus { outline: 2px solid #3b82f6 !important; cursor: text; }
+    .resize-handle { position: absolute !important; width: 10px !important; height: 10px !important; background: #3b82f6 !important; border: 2px solid #fff !important; border-radius: 50% !important; z-index: 10000 !important; display: none !important; }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; width: 20px !important; height: 8px !important; border-radius: 4px !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; width: 8px !important; height: 20px !important; border-radius: 4px !important; }
+    .draggable:hover .resize-handle, .draggable.active .resize-handle { display: block !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 1ms !important; transition-duration: 0s !important; }
+      .particle, .scanline { display: none !important; }
+    }
+    </style></head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<div class="crt-overlay"></div>
 <div class="matrix-bg fixed inset-0 z-0"></div>
- Top AppBar (from Shared Components) 
+<!-- Top AppBar (from Shared Components) -->
 <header class="fixed top-0 w-full z-50 bg-background border-b border-primary flex justify-between items-center px-gutter h-14 transition-colors duration-75">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary draggable" data-tid="icon">{{ICON_SVG}}</span>
-<h1 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter draggable" data-tid="club-title">{{CLUB_TITLE}}</h1>
+<span class="material-symbols-outlined text-primary">terminal</span>
+<h1 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter draggable" data-tid="prompt">&gt;SYS_SHELL_v1.0</h1>
 </div>
 <div class="flex items-center gap-4">
 <button class="text-primary hover:bg-primary hover:text-on-primary p-2 transition-colors active:border-2 border-primary">
@@ -4595,12 +5421,81 @@ const TECH_FACTS_REGISTRY = [
 </button>
 </div>
 </header>
- Main Content Canvas 
+<!-- Main Content Canvas -->
 <main class="relative z-10 pt-20 pb-20 px-4 md:px-gutter max-w-container-max mx-auto min-h-screen flex items-center justify-center">
 <!-- Central Card Container -->
-<div class="w-full max-w-4xl border border-primary bg-background/90 p-6 md:p-12 relative draggable card-canvas" data-tid="body">{{BODY}}</div>
+<div class="w-full max-w-4xl border border-primary bg-background/90 p-6 md:p-12 relative">
+<!-- Corner Accents -->
+<div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
+<div class="flex flex-col gap-8">
+<!-- Header Section -->
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-primary font-bold text-headline-md">&gt;</span>
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest opacity-80 draggable" data-tid="category">SYSTEM METRIC</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase border-b border-primary pb-4 draggable" data-tid="title">
+                        Distributed Consensuses
+                    </h2>
+</div>
+<!-- Technical Visualization Section (Bento-ish Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Text Description -->
+<div class="md:col-span-7 flex flex-col gap-4">
+<p class="text-primary font-body-lg text-body-lg leading-relaxed draggable" data-tid="body">
+                            Paxos and Raft algorithms ensure data consistency across distributed nodes by achieving majority agreement on system state. In the absence of a central authority, consensus protocols enable a collection of machines to work as a coherent group that can survive the failures of some of its members.
+                        </p>
+<div class="bg-surface-container p-4 border-l-4 border-primary">
+<span class="text-primary font-code text-code block mb-2 draggable" data-tid="handle">ROOT@NODE_01:~$ tail -n 3 /var/log/consensus.log</span>
+<code class="text-on-surface-variant font-code text-code block">
+                                [INFO] Quorum reached (3/5 nodes).<br/>
+                                [INFO] Log index 8422 committed.<br/>
+                                [INFO] State Machine Updated.
+                                <span class="cursor-block"></span>
+</code>
+</div>
+</div>
+<!-- Diagram Placeholder -->
+<div class="md:col-span-5 border border-primary flex items-center justify-center p-4 bg-surface-container-lowest">
+<!-- Simple ASCII/Line-art representation of nodes -->
+<div class="relative w-full aspect-square flex items-center justify-center">
+<svg class="w-full h-full stroke-primary fill-none" viewbox="0 0 100 100">
+<!-- Nodes -->
+<circle cx="50" cy="20" r="8"></circle>
+<circle cx="80" cy="45" r="8"></circle>
+<circle cx="65" cy="85" r="8"></circle>
+<circle cx="35" cy="85" r="8"></circle>
+<circle cx="20" cy="45" r="8"></circle>
+<!-- Connections -->
+<path d="M50 28 L50 85 M50 20 L80 45 M80 45 L65 85 M65 85 L35 85 M35 85 L20 45 M20 45 L50 20" stroke-dasharray="2 2"></path>
+<path d="M50 20 L65 85 M80 45 L35 85 M20 45 L65 85" stroke-opacity="0.3"></path>
+<!-- Consensus Core -->
+<circle class="animate-pulse" cx="50" cy="50" r="15" stroke-opacity="0.5" stroke-width="0.5"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-code text-[10px] text-primary uppercase text-center">Protocol<br/>Active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-primary/30">
+<button class="px-6 py-3 border border-primary text-primary font-code text-body-md hover:bg-primary hover:text-on-primary transition-all active:border-2 uppercase tracking-tight flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                        EXECUTE_QUERY
+                    </button>
+<button class="px-6 py-3 border border-primary text-primary font-code text-body-md hover:bg-primary hover:text-on-primary transition-all active:border-2 uppercase tracking-tight flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+                        VIEW_LOGS
+                    </button>
+</div>
+</div>
+</div>
 </main>
- Bottom Navigation Bar (from Shared Components) 
+<!-- Bottom Navigation Bar (from Shared Components) -->
 <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-background border-t border-primary z-50">
 <a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95" href="#">
 <span class="material-symbols-outlined" data-icon="database">database</span>
@@ -4619,7 +5514,7 @@ const TECH_FACTS_REGISTRY = [
 <span class="font-label-sm text-label-sm uppercase mt-1">Shell</span>
 </a>
 </nav>
- Background Atmospheric Script 
+<!-- Background Atmospheric Script -->
 <script>
         // Simple glitch effect on mouse move
         document.addEventListener('mousemove', (e) => {
@@ -4643,6 +5538,7 @@ const TECH_FACTS_REGISTRY = [
             console.log(\`%c \${codes[i % codes.length]}\`, "color: #efffe3; background: #131313; font-family: monospace;");
             i++;
         }, 5000);
-    </script>`
+    </script>
+</body></html>`
   }
 ];
