@@ -831,36 +831,36 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
-<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden draggable" data-tid="card-container">
 <!-- Background Atmospheric Element -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none">
-<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full"></div>
-<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none draggable" data-tid="container-1">
+<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full draggable" data-tid="container-2"></div>
+<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full draggable" data-tid="container-3"></div>
 </div>
 <!-- Centerpiece: Tech Fact Card -->
-<section class="w-full max-w-md relative z-10 group draggable" data-tid="card-container">
-<div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.02]">
+<section class="w-full max-w-md relative z-10 group">
+<div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.02] draggable" data-tid="container-4">
 <div class="scanline"></div>
 <!-- Category Icon and Tag -->
 <div class="flex items-center justify-between">
-<div class="flex items-center gap-xs">
+<div class="flex items-center gap-xs draggable" data-tid="container-5">
 <span class="material-symbols-outlined text-secondary text-3xl" data-icon="code">code</span>
 <span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">CYBERSECURITY</span>
 </div>
-<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(0,251,251,0.8)]"></div>
+<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(0,251,251,0.8)] draggable" data-tid="container-6"></div>
 </div>
 <!-- Content Body -->
-<div class="flex flex-col gap-sm">
+<div class="flex flex-col gap-sm draggable" data-tid="container-7">
 <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight draggable" data-tid="title">Zero Trust Architecture</h2>
-<div class="w-12 h-1 bg-primary-fixed"></div>
+<div class="w-12 h-1 bg-primary-fixed draggable" data-tid="container-8"></div>
 <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
                         Zero Trust is a security framework requiring all users, whether in or outside the organization's network, to be authenticated, authorized, and continuously validated for security configuration and posture before being granted or keeping access to applications and data. It assumes no entity is trustworthy by default.
                     </p>
 </div>
 <!-- Meta/Action Area -->
-<div class="pt-sm border-t border-white/10 flex justify-between items-center">
+<div class="pt-sm border-t border-white/10 flex justify-between items-center draggable" data-tid="container-9">
 <span class="font-label-sm text-label-sm text-outline draggable" data-tid="prompt">FACT #842</span>
-<button class="bg-primary text-surface-dim font-button text-button px-md py-xs rounded-none hover:bg-primary-fixed transition-all active:scale-95 flex items-center gap-xs">
+<button class="bg-primary text-surface-dim font-button text-button px-md py-xs rounded-none hover:bg-primary-fixed transition-all active:scale-95 flex items-center gap-xs draggable" data-tid="text-1">
                         LEARN MORE
                         <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
 </button>
@@ -868,26 +868,26 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 <!-- High-tech grid overlay decoration -->
-<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0 draggable" data-tid="container-10"></div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,251,251,0.1)] draggable" data-tid="bottom-bar">
-<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,251,251,0.3)] scale-90 duration-200" href="#">
+<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,251,251,0.3)] scale-90 duration-200 draggable" data-tid="text-2" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-3" href="#">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-4" href="#">
 <span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-5" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
 <!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
-<p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
+<p class="font-label-sm text-label-sm text-outline draggable" data-tid="text-6">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-secondary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
@@ -1073,40 +1073,40 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-on-primary text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-on-primary draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
-<button class="w-10 h-10 flex items-center justify-center bg-white border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-10 h-10 flex items-center justify-center bg-white border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-1">
 <span class="material-symbols-outlined text-black">settings</span>
 </button>
 </header>
-<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center justify-center">
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center justify-center draggable" data-tid="card-container">
 <!-- Animated Background Element (Subtle grid) -->
 <div class="fixed inset-0 pointer-events-none opacity-10" style="background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px); background-size: 40px 40px;"></div>
 <!-- Main Fact Card Container -->
 <div class="relative w-full max-w-sm">
 <!-- The Neo-Brutalist Card -->
-<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col draggable" data-tid="container-1">
 <!-- Retro Titlebar -->
-<div class="h-10 border-b-4 border-black bg-primary-container flex items-center px-4 gap-2">
-<div class="flex gap-1.5">
-<div class="w-3 h-3 rounded-full bg-[#FF5F56] border-2 border-black"></div>
-<div class="w-3 h-3 rounded-full bg-[#FFBD2E] border-2 border-black"></div>
-<div class="w-3 h-3 rounded-full bg-[#27C93F] border-2 border-black"></div>
+<div class="h-10 border-b-4 border-black bg-primary-container flex items-center px-4 gap-2 draggable" data-tid="container-2">
+<div class="flex gap-1.5 draggable" data-tid="container-3">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56] border-2 border-black draggable" data-tid="container-4"></div>
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E] border-2 border-black draggable" data-tid="container-5"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F] border-2 border-black draggable" data-tid="container-6"></div>
 </div>
 <div class="flex-1 text-center">
 <span class="font-label-bold text-label-sm uppercase tracking-widest text-black draggable" data-tid="handle">FACT_VIEWER.EXE</span>
 </div>
 </div>
 <!-- Card Image (Decorative Tech) -->
-<div class="h-48 w-full border-b-4 border-black relative overflow-hidden">
+<div class="h-48 w-full border-b-4 border-black relative overflow-hidden draggable" data-tid="container-7">
 <img class="w-full h-full object-cover draggable" data-alt="A high-contrast Neo-Brutalist digital artwork of a quantum processor core with glowing neon purple circuits and geometric data streams. The image uses sharp black outlines, vibrant electric yellow highlights, and a clean white background in a collage style. The aesthetic is energetic, tech-focused, and reminiscent of futuristic comic book art." data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnIbpVV7x_noBVOI-8bpCB36V593Y4trmmXYQ9rBCwTDPw9zEKKtkOMaitA2TThdTjxM1_BAC61ROSE6pPjEGYzgGKwFEGArywggtECQknDmNox22aeaoT-YiU13ToQy4GzOjo-WXKw7CHEzsfFlvKE83UDarcKxyfDD0CjOlvo9HunLL-0vMkALtJyI29zJNXcpvY1Blf3QoalLj2W9gVi0cCbrJMlqNOL8KFnShRvJ6Alg0DIMpndRmhkc6EBZsJ4Z-dCLYFoYI" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnIbpVV7x_noBVOI-8bpCB36V593Y4trmmXYQ9rBCwTDPw9zEKKtkOMaitA2TThdTjxM1_BAC61ROSE6pPjEGYzgGKwFEGArywggtECQknDmNox22aeaoT-YiU13ToQy4GzOjo-WXKw7CHEzsfFlvKE83UDarcKxyfDD0CjOlvo9HunLL-0vMkALtJyI29zJNXcpvY1Blf3QoalLj2W9gVi0cCbrJMlqNOL8KFnShRvJ6Alg0DIMpndRmhkc6EBZsJ4Z-dCLYFoYI"/>
-<div class="absolute bottom-2 right-2 bg-secondary text-white border-2 border-black px-3 py-1 font-label-bold text-xs">
+<div class="absolute bottom-2 right-2 bg-secondary text-white border-2 border-black px-3 py-1 font-label-bold text-xs draggable" data-tid="container-8">
                         LIVE_FEED
                     </div>
 </div>
 <!-- Card Content -->
-<div class="p-6 flex flex-col gap-4">
+<div class="p-6 flex flex-col gap-4 draggable" data-tid="container-9">
 <!-- Badge Row -->
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-secondary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-2 draggable" data-tid="container-10">
+<div class="w-10 h-10 bg-secondary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="container-11">
 <span class="material-symbols-outlined text-white fill-icon">bolt</span>
 </div>
 <span class="bg-secondary text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase draggable" data-tid="category">QUANTUM COMPUTING</span>
@@ -1114,60 +1114,60 @@ const TECH_FACTS_REGISTRY = [
 <!-- Title -->
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter draggable" data-tid="title">
                         Quantum <br/>
-<span class="bg-primary-container px-1 inline-block border-2 border-black">Supremacy</span>
+<span class="bg-primary-container px-1 inline-block border-2 border-black draggable" data-tid="text-2">Supremacy</span>
 </h1>
 <!-- Description -->
 <p class="font-body-md text-body-md text-on-surface border-l-4 border-secondary pl-4 py-1 draggable" data-tid="body">
                         Quantum supremacy is the goal of demonstrating that a programmable quantum computer can solve a problem that no classical computer can solve in any feasible amount of time.
                     </p>
 <!-- Interaction Buttons -->
-<div class="mt-4 flex gap-4">
-<button class="flex-1 bg-primary-container py-4 border-4 border-black font-label-bold uppercase text-black hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none">
+<div class="mt-4 flex gap-4 draggable" data-tid="container-12">
+<button class="flex-1 bg-primary-container py-4 border-4 border-black font-label-bold uppercase text-black hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none draggable" data-tid="text-3">
                             Share Fact
                         </button>
-<button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-4">
 <span class="material-symbols-outlined text-black">bookmark</span>
 </button>
 </div>
 </div>
 <!-- Footer stats -->
-<div class="bg-surface-container border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">calendar_today</span> Oct 24, 2023</span>
-<span class="flex items-center gap-1 font-bold">Ref: QBIT-77</span>
+<div class="bg-surface-container border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase draggable" data-tid="container-13">
+<span class="flex items-center gap-1 draggable" data-tid="text-5"><span class="material-symbols-outlined text-xs">calendar_today</span> Oct 24, 2023</span>
+<span class="flex items-center gap-1 font-bold draggable" data-tid="text-6">Ref: QBIT-77</span>
 </div>
 </div>
 <!-- Decorative background elements -->
-<div class="absolute -top-6 -right-6 w-12 h-12 bg-secondary border-4 border-black -z-10 rotate-12"></div>
-<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-container border-4 border-black -z-10 -rotate-6"></div>
+<div class="absolute -top-6 -right-6 w-12 h-12 bg-secondary border-4 border-black -z-10 rotate-12 draggable" data-tid="container-14"></div>
+<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-container border-4 border-black -z-10 -rotate-6 draggable" data-tid="container-15"></div>
 </div>
 <!-- Secondary Info Section (Bento style) -->
-<section class="mt-12 w-full max-w-sm grid grid-cols-2 gap-4 draggable" data-tid="card-container">
-<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2">
+<section class="mt-12 w-full max-w-sm grid grid-cols-2 gap-4">
+<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2 draggable" data-tid="container-16">
 <h3 class="font-label-bold uppercase text-label-sm mb-2 text-secondary draggable" data-tid="prompt">Did you know?</h3>
-<p class="text-body-md font-body-md italic leading-tight">Google claimed supremacy in 2019 using their 53-qubit Sycamore processor.</p>
+<p class="text-body-md font-body-md italic leading-tight draggable" data-tid="text-7">Google claimed supremacy in 2019 using their 53-qubit Sycamore processor.</p>
 </div>
-<div class="bg-secondary text-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
-<span class="font-display-xl text-[48px] leading-none mb-1">53</span>
-<span class="font-label-bold text-[10px] uppercase">Qubits Tracked</span>
+<div class="bg-secondary text-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center draggable" data-tid="container-17">
+<span class="font-display-xl text-[48px] leading-none mb-1 draggable" data-tid="text-8">53</span>
+<span class="font-label-bold text-[10px] uppercase draggable" data-tid="text-9">Qubits Tracked</span>
 </div>
-<div class="bg-primary-container border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<div class="bg-primary-container border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center draggable" data-tid="container-18">
 <span class="material-symbols-outlined text-4xl mb-1">speed</span>
-<span class="font-label-bold text-[10px] uppercase">Processing Limit</span>
+<span class="font-label-bold text-[10px] uppercase draggable" data-tid="text-10">Processing Limit</span>
 </div>
 </section>
 </main>
 <!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="bottom-bar">
-<button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors draggable" data-tid="text-11">
 <span class="material-symbols-outlined">bolt</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container border-2 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2">
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container border-2 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2 draggable" data-tid="text-12">
 <span class="material-symbols-outlined fill-icon">menu_book</span>
 </button>
-<button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors draggable" data-tid="text-13">
 <span class="material-symbols-outlined">emoji_events</span>
 </button>
-<button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors draggable" data-tid="text-14">
 <span class="material-symbols-outlined">person</span>
 </button>
 </nav>
@@ -1350,18 +1350,18 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary draggable" data-tid="club-title">TECH FACT</h1>
 </div>
 </header>
-<main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-margin-mobile py-12 relative overflow-hidden">
+<main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-margin-mobile py-12 relative overflow-hidden draggable" data-tid="card-container">
 <!-- Background Decoration (Swiss Style Pipes) -->
-<div class="absolute left-margin-mobile top-0 bottom-0 w-[1px] bg-outline-variant opacity-30"></div>
-<div class="absolute right-margin-mobile top-0 bottom-0 w-[1px] bg-outline-variant opacity-30"></div>
+<div class="absolute left-margin-mobile top-0 bottom-0 w-[1px] bg-outline-variant opacity-30 draggable" data-tid="container-1"></div>
+<div class="absolute right-margin-mobile top-0 bottom-0 w-[1px] bg-outline-variant opacity-30 draggable" data-tid="container-2"></div>
 <!-- Central Fact Card -->
 <article class="relative w-full max-w-md bg-white border-thick border-primary z-10 flex flex-col transition-all duration-300">
 <!-- Watermark '01' -->
-<div class="absolute -top-4 -right-4 font-watermark text-watermark text-surface-container-highest pointer-events-none z-0 opacity-40 select-none">
+<div class="absolute -top-4 -right-4 font-watermark text-watermark text-surface-container-highest pointer-events-none z-0 opacity-40 select-none draggable" data-tid="container-3">
                 01
             </div>
 <!-- Card Content Cluster -->
-<div class="relative z-10 p-8 flex flex-col items-start h-full">
+<div class="relative z-10 p-8 flex flex-col items-start h-full draggable" data-tid="container-4">
 <!-- Database Icon -->
 <div class="mb-8">
 <span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'wght' 200;">database</span>
@@ -1377,40 +1377,40 @@ const TECH_FACTS_REGISTRY = [
                     A decentralized ledger is a consensus of replicated, shared, and synchronized digital data geographically spread across multiple sites, countries, or institutions. Unlike a central database, there is no central administrator or centralized data storage.
                 </p>
 <!-- Footer Metadata Block -->
-<div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center">
-<div class="flex items-center gap-4">
+<div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center draggable" data-tid="container-5">
+<div class="flex items-center gap-4 draggable" data-tid="container-6">
 <span class="font-metadata-sm text-metadata-sm uppercase text-primary draggable" data-tid="prompt">FACT #001</span>
-<div class="w-[1px] h-4 bg-outline-variant"></div>
-<span class="font-metadata-sm text-metadata-sm uppercase text-secondary">OCT 2023</span>
+<div class="w-[1px] h-4 bg-outline-variant draggable" data-tid="container-7"></div>
+<span class="font-metadata-sm text-metadata-sm uppercase text-secondary draggable" data-tid="text-1">OCT 2023</span>
 </div>
 </div>
 </div>
 </article>
 <!-- Aesthetic Floating Element (Square Bullet) -->
-<div class="absolute bottom-24 left-margin-mobile w-4 h-4 bg-primary"></div>
-<div class="absolute top-24 right-margin-mobile w-12 h-1 bg-primary"></div>
+<div class="absolute bottom-24 left-margin-mobile w-4 h-4 bg-primary draggable" data-tid="container-8"></div>
+<div class="absolute top-24 right-margin-mobile w-12 h-1 bg-primary draggable" data-tid="container-9"></div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
-<a class="flex flex-col items-center justify-center bg-primary text-on-primary px-4 py-2 flex-1 active-press" href="#">
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary px-4 py-2 flex-1 active-press draggable" data-tid="text-2" href="#">
 <span class="material-symbols-outlined">analytics</span>
-<span class="font-metadata-sm text-metadata-sm uppercase mt-1">FACTS</span>
+<span class="font-metadata-sm text-metadata-sm uppercase mt-1 draggable" data-tid="text-3">FACTS</span>
 </a>
 <!-- ARCHIVE -->
-<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-4" href="#">
 <span class="material-symbols-outlined">calendar_today</span>
-<span class="font-metadata-sm text-metadata-sm uppercase mt-1">ARCHIVE</span>
+<span class="font-metadata-sm text-metadata-sm uppercase mt-1 draggable" data-tid="text-5">ARCHIVE</span>
 </a>
 <!-- TOPICS -->
-<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined">grid_view</span>
-<span class="font-metadata-sm text-metadata-sm uppercase mt-1">TOPICS</span>
+<span class="font-metadata-sm text-metadata-sm uppercase mt-1 draggable" data-tid="text-7">TOPICS</span>
 </a>
 <!-- SAVED -->
-<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined">bookmark</span>
-<span class="font-metadata-sm text-metadata-sm uppercase mt-1">SAVED</span>
+<span class="font-metadata-sm text-metadata-sm uppercase mt-1 draggable" data-tid="text-9">SAVED</span>
 </a>
 </nav>
 <script>
@@ -1622,51 +1622,51 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </header>
 <!-- Main Content -->
-<main class="flex-1 flex flex-col items-center justify-center px-md py-xl relative">
+<main class="flex-1 flex flex-col items-center justify-center px-md py-xl relative draggable" data-tid="card-container">
 <!-- Central Fact Card -->
 <div class="w-full max-w-sm relative z-20">
 <!-- Decorative corner brackets -->
-<div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
-<div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
-<div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500 draggable" data-tid="card-container">
+<div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb] draggable" data-tid="container-1"></div>
+<div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb] draggable" data-tid="container-2"></div>
+<div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500 draggable" data-tid="container-3">
 <!-- ID Stamp -->
 <div class="flex justify-between items-center mb-md">
 <span class="font-code-label text-code-label text-secondary-fixed-dim bg-secondary-fixed/10 px-2 py-0.5 rounded border border-secondary-fixed/20 draggable" data-tid="handle">[FACT_4029]</span>
 </div>
 <!-- Category -->
-<div class="flex items-center gap-xs mb-sm">
+<div class="flex items-center gap-xs mb-sm draggable" data-tid="container-4">
 <span class="w-2 h-2 bg-secondary-fixed rounded-full animate-pulse shadow-[0_0_8px_#00fbfb]"></span>
 <span class="font-code-label text-code-label text-secondary-fixed-dim uppercase tracking-widest glow-cyan draggable" data-tid="category">Cybernetics &amp; AI</span>
 </div>
 <!-- Headline -->
 <h2 class="font-headline-md text-headline-md-mobile text-secondary mb-md glitch-effect tracking-tight draggable" data-tid="title">Neural Interfacing</h2>
 <!-- Main Fact Image (Contextual Graphic) -->
-<div class="relative w-full h-48 mb-lg rounded overflow-hidden border border-primary/20">
+<div class="relative w-full h-48 mb-lg rounded overflow-hidden border border-primary/20 draggable" data-tid="container-5">
 <img class="w-full h-full object-cover draggable" data-alt="A cinematic, high-contrast digital art piece of a futuristic human eye with intricate glowing neon neural circuits radiating from the iris." data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_uygrrbV1RGwI1bBxR-XPf9YBoiS-s1qljOv3N3VeRbktzZWEKoG9wYtIsJLL9UcJyM2PWgSfQ_71NCAehzBA6DlBwgVEaLZCh4xu9hblwPXPB591vOgT6PwfJUiclw8Lm9gEb_lNzZaDqVcyZ86SXgqTYl2ujaBWOtdFcYbsZvuGXUV5Gij50jQEXFz2ENcOAXXicwSXcaBzp8LT6vOEwYAUHj-R_7fV9ZozfVqw7RwVQ0DqXvjuxywa2GbFTyf9dYQlGxoyls" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_uygrrbV1RGwI1bBxR-XPf9YBoiS-s1qljOv3N3VeRbktzZWEKoG9wYtIsJLL9UcJyM2PWgSfQ_71NCAehzBA6DlBwgVEaLZCh4xu9hblwPXPB591vOgT6PwfJUiclw8Lm9gEb_lNzZaDqVcyZ86SXgqTYl2ujaBWOtdFcYbsZvuGXUV5Gij50jQEXFz2ENcOAXXicwSXcaBzp8LT6vOEwYAUHj-R_7fV9ZozfVqw7RwVQ0DqXvjuxywa2GbFTyf9dYQlGxoyls"/>
 </div>
 <!-- Body Text -->
 <p class="font-body-md text-on-surface-variant leading-relaxed mb-lg draggable" data-tid="body">
-                    Recent breakthroughs in <span class="text-primary font-bold">biocompatible neural lace</span> allow for direct, high-bandwidth data transmission between the cerebral cortex and external AI nodes. This integration potentially increases human cognitive processing speeds by up to <span class="text-secondary-fixed font-code-label">400%</span>, effectively blurring the line between biological thought and algorithmic execution.
+                    Recent breakthroughs in <span class="text-primary font-bold draggable" data-tid="text-1">biocompatible neural lace</span> allow for direct, high-bandwidth data transmission between the cerebral cortex and external AI nodes. This integration potentially increases human cognitive processing speeds by up to <span class="text-secondary-fixed font-code-label draggable" data-tid="text-2">400%</span>, effectively blurring the line between biological thought and algorithmic execution.
                 </p>
 <!-- Interactive CTA -->
-<button class="w-full py-md bg-primary-container text-on-primary-container font-button-text text-button-text rounded-sm uppercase tracking-tighter active:scale-95 transition-all hover:brightness-110 flex items-center justify-center gap-sm shadow-[0_4px_15px_rgba(255,0,255,0.4)]">
+<button class="w-full py-md bg-primary-container text-on-primary-container font-button-text text-button-text rounded-sm uppercase tracking-tighter active:scale-95 transition-all hover:brightness-110 flex items-center justify-center gap-sm shadow-[0_4px_15px_rgba(255,0,255,0.4)] draggable" data-tid="text-3">
                     Sync Intelligence
                     <span class="material-symbols-outlined text-md" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
 </button>
 </div>
 </div>
 <!-- Secondary Info Cluster -->
-<div class="w-full max-w-sm mt-xl grid grid-cols-2 gap-md">
-<div class="bg-surface-container/50 border border-secondary-fixed/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md">
+<div class="w-full max-w-sm mt-xl grid grid-cols-2 gap-md draggable" data-tid="container-6">
+<div class="bg-surface-container/50 border border-secondary-fixed/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md draggable" data-tid="container-7">
 <span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase draggable" data-tid="prompt">Data Integrity</span>
-<div class="flex items-center gap-sm">
-<span class="text-secondary-fixed font-code-label text-lg">99.8%</span>
+<div class="flex items-center gap-sm draggable" data-tid="container-8">
+<span class="text-secondary-fixed font-code-label text-lg draggable" data-tid="text-4">99.8%</span>
 </div>
 </div>
-<div class="bg-surface-container/50 border border-primary/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md">
-<span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase">Latency Rate</span>
-<div class="flex items-center gap-sm">
-<span class="text-primary font-code-label text-lg">2ms</span>
+<div class="bg-surface-container/50 border border-primary/20 p-md rounded-lg flex flex-col gap-xs backdrop-blur-md draggable" data-tid="container-9">
+<span class="font-code-label text-[10px] text-on-surface-variant/60 uppercase draggable" data-tid="text-5">Latency Rate</span>
+<div class="flex items-center gap-sm draggable" data-tid="container-10">
+<span class="text-primary font-code-label text-lg draggable" data-tid="text-6">2ms</span>
 </div>
 </div>
 </div>
@@ -1677,24 +1677,24 @@ const TECH_FACTS_REGISTRY = [
 <nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-secondary-fixed/30 drop-shadow-[0_0_15px_#00dddd44] draggable" data-tid="bottom-bar">
 <div class="flex justify-around items-center h-20 px-4 pb-safe w-full">
 <!-- Facts (Active) -->
-<a class="flex flex-col items-center justify-center text-secondary-fixed bg-secondary-fixed/10 rounded-xl px-4 py-1 border border-secondary-fixed/50 shadow-[0_0_10px_#00fbfb66] transition-transform active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-secondary-fixed bg-secondary-fixed/10 rounded-xl px-4 py-1 border border-secondary-fixed/50 shadow-[0_0_10px_#00fbfb66] transition-transform active:scale-90 draggable" data-tid="text-7" href="#">
 <span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
-<span class="font-code-label text-code-label">Facts</span>
+<span class="font-code-label text-code-label draggable" data-tid="text-8">Facts</span>
 </a>
 <!-- Archive -->
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90 draggable" data-tid="text-9" href="#">
 <span class="material-symbols-outlined" data-icon="database">database</span>
-<span class="font-code-label text-code-label">Archive</span>
+<span class="font-code-label text-code-label draggable" data-tid="text-10">Archive</span>
 </a>
 <!-- Topics -->
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90 draggable" data-tid="text-11" href="#">
 <span class="material-symbols-outlined" data-icon="category">category</span>
-<span class="font-code-label text-code-label">Topics</span>
+<span class="font-code-label text-code-label draggable" data-tid="text-12">Topics</span>
 </a>
 <!-- Settings -->
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 grayscale hover:text-secondary-fixed transition-all active:scale-90 draggable" data-tid="text-13" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-code-label text-code-label">Settings</span>
+<span class="font-code-label text-code-label draggable" data-tid="text-14">Settings</span>
 </a>
 </div>
 </nav>
@@ -1909,54 +1909,54 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
-<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden draggable" data-tid="card-container">
 <!-- Background Atmospheric Element -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none">
-<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full"></div>
-<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none draggable" data-tid="container-1">
+<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full draggable" data-tid="container-2"></div>
+<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full draggable" data-tid="container-3"></div>
 </div>
 <!-- Centerpiece: Tech Fact Card with Split Layout -->
-<section class="w-full max-w-md relative z-10 group draggable" data-tid="card-container">
-<div class="glass-card neon-border-glow flex flex-col relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.01]">
+<section class="w-full max-w-md relative z-10 group">
+<div class="glass-card neon-border-glow flex flex-col relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.01] draggable" data-tid="container-4">
 <div class="scanline"></div>
 <!-- Category Tag Header -->
 <div class="px-md pt-md pb-xs flex items-center justify-between">
-<div class="flex items-center gap-xs">
+<div class="flex items-center gap-xs draggable" data-tid="container-5">
 <span class="material-symbols-outlined text-secondary text-2xl" data-icon="database">database</span>
 <span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">DISTRIBUTED SYSTEMS</span>
 </div>
-<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
+<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)] draggable" data-tid="container-6"></div>
 </div>
 <!-- Content Split Layout -->
 <div class="flex flex-col">
 <!-- Top Section: Fact Text -->
-<div class="p-md pt-xs">
+<div class="p-md pt-xs draggable" data-tid="container-7">
 <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight mb-sm draggable" data-tid="title">CAP Theorem</h2>
-<div class="w-12 h-1 bg-primary-fixed mb-sm"></div>
+<div class="w-12 h-1 bg-primary-fixed mb-sm draggable" data-tid="container-8"></div>
 <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
                             Formulated by Eric Brewer, the CAP theorem states that a distributed data store can only provide two of three guarantees: Consistency, Availability, and Partition Tolerance. In the event of a network failure, a system must choose between being consistent or available.
                         </p>
 </div>
 <!-- Middle Section: Supporting Metric/Icon (Vertical Split) -->
-<div class="flex border-y border-white/10 bg-white/5">
-<div class="flex-1 p-md flex flex-col items-center justify-center border-r border-white/10">
+<div class="flex border-y border-white/10 bg-white/5 draggable" data-tid="container-9">
+<div class="flex-1 p-md flex flex-col items-center justify-center border-r border-white/10 draggable" data-tid="container-10">
 <span class="font-display-lg-mobile text-primary leading-none draggable" data-tid="prompt">2/3</span>
-<span class="font-label-sm text-outline text-[10px] mt-xs uppercase">Guarantees Max</span>
+<span class="font-label-sm text-outline text-[10px] mt-xs uppercase draggable" data-tid="text-1">Guarantees Max</span>
 </div>
-<div class="flex-1 p-md flex flex-col items-center justify-center gap-xs">
-<div class="flex gap-1">
-<div class="w-2 h-2 rounded-full bg-primary-fixed"></div>
-<div class="w-2 h-2 rounded-full bg-primary-fixed"></div>
-<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="flex-1 p-md flex flex-col items-center justify-center gap-xs draggable" data-tid="container-11">
+<div class="flex gap-1 draggable" data-tid="container-12">
+<div class="w-2 h-2 rounded-full bg-primary-fixed draggable" data-tid="container-13"></div>
+<div class="w-2 h-2 rounded-full bg-primary-fixed draggable" data-tid="container-14"></div>
+<div class="w-2 h-2 rounded-full bg-white/20 draggable" data-tid="container-15"></div>
 </div>
-<span class="font-label-sm text-primary-fixed text-[10px] uppercase font-bold tracking-widest">Trade-off Ratio</span>
+<span class="font-label-sm text-primary-fixed text-[10px] uppercase font-bold tracking-widest draggable" data-tid="text-2">Trade-off Ratio</span>
 </div>
 </div>
 </div>
 <!-- Footer Meta Area -->
-<div class="p-md py-sm flex justify-between items-center bg-black/20">
-<span class="font-label-sm text-label-sm text-outline">FACT #1024</span>
-<button class="bg-primary-fixed text-on-primary font-button text-button px-md py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-xs uppercase">
+<div class="p-md py-sm flex justify-between items-center bg-black/20 draggable" data-tid="container-16">
+<span class="font-label-sm text-label-sm text-outline draggable" data-tid="text-3">FACT #1024</span>
+<button class="bg-primary-fixed text-on-primary font-button text-button px-md py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-xs uppercase draggable" data-tid="text-4">
                         Deep Dive
                         <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
 </button>
@@ -1964,26 +1964,26 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </section>
 <!-- High-tech decorative overlay -->
-<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0 draggable" data-tid="container-17"></div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(16,185,129,0.1)] draggable" data-tid="bottom-bar">
-<a class="flex flex-col items-center justify-center bg-primary-fixed/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(16,185,129,0.2)] scale-90 duration-200" href="#">
+<a class="flex flex-col items-center justify-center bg-primary-fixed/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(16,185,129,0.2)] scale-90 duration-200 draggable" data-tid="text-5" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-7" href="#">
 <span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
 <!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
-<p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
+<p class="font-label-sm text-label-sm text-outline draggable" data-tid="text-9">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-secondary hover:text-primary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
@@ -2210,40 +2210,40 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
-<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden draggable" data-tid="card-container">
 <!-- Background Atmospheric Element -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none">
-<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full"></div>
-<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none draggable" data-tid="container-1">
+<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full draggable" data-tid="container-2"></div>
+<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full draggable" data-tid="container-3"></div>
 </div>
 <!-- Centerpiece: Layered Tech Fact Card -->
 <div class="w-full max-w-md relative z-10">
-<section class="relative group draggable" data-tid="card-container">
+<section class="relative group">
 <!-- Secondary Layer -->
-<div class="layered-bg-element"></div>
+<div class="layered-bg-element draggable" data-tid="container-4"></div>
 <!-- Main Fact Card -->
-<div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+<div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 draggable" data-tid="container-5">
 <div class="scanline"></div>
 <!-- Category Icon and Tag -->
 <div class="flex items-center justify-between">
-<div class="flex items-center gap-xs">
+<div class="flex items-center gap-xs draggable" data-tid="container-6">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="dns">dns</span>
 <span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">EDGE COMPUTING</span>
 </div>
-<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(255,94,7,0.8)]"></div>
+<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(255,94,7,0.8)] draggable" data-tid="container-7"></div>
 </div>
 <!-- Content Body -->
-<div class="flex flex-col gap-sm">
+<div class="flex flex-col gap-sm draggable" data-tid="container-8">
 <h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface leading-tight draggable" data-tid="title">Proximity Processing</h2>
-<div class="w-12 h-1 bg-primary"></div>
+<div class="w-12 h-1 bg-primary draggable" data-tid="container-9"></div>
 <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
                             Edge Computing shifts web architecture by processing data near the source rather than in a centralized cloud. This drastic reduction in latency enables real-time decisions for IoT and AR, while decentralized nodes ensure higher resilience and bandwidth efficiency across the network.
                         </p>
 </div>
 <!-- Meta/Action Area -->
-<div class="pt-sm border-t border-white/10 flex justify-between items-center">
+<div class="pt-sm border-t border-white/10 flex justify-between items-center draggable" data-tid="container-10">
 <span class="font-label-sm text-label-sm text-outline draggable" data-tid="prompt">FACT #1024</span>
-<button class="bg-primary text-on-primary font-button text-button px-md py-xs rounded-none hover:bg-on-secondary-container transition-all active:scale-95 flex items-center gap-xs">
+<button class="bg-primary text-on-primary font-button text-button px-md py-xs rounded-none hover:bg-on-secondary-container transition-all active:scale-95 flex items-center gap-xs draggable" data-tid="text-1">
                             EXPLORE
                             <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
 </button>
@@ -2252,26 +2252,26 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </div>
 <!-- High-tech grid overlay decoration -->
-<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0 draggable" data-tid="container-11"></div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(255,94,7,0.1)] draggable" data-tid="bottom-bar">
-<a class="flex flex-col items-center justify-center bg-primary/20 text-primary rounded-xl p-2 shadow-[0_0_15px_rgba(255,94,7,0.3)] scale-90 duration-200" href="#">
+<a class="flex flex-col items-center justify-center bg-primary/20 text-primary rounded-xl p-2 shadow-[0_0_15px_rgba(255,94,7,0.3)] scale-90 duration-200 draggable" data-tid="text-2" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors draggable" data-tid="text-3" href="#">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors draggable" data-tid="text-4" href="#">
 <span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors draggable" data-tid="text-5" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
 <!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
-<p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
+<p class="font-label-sm text-label-sm text-outline draggable" data-tid="text-6">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-primary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
@@ -2476,53 +2476,53 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-label-sm text-label-sm text-primary-fixed tracking-widest opacity-80 uppercase draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
-<main class="relative pt-32 pb-40 px-sm min-h-screen flex flex-col items-center justify-center text-center">
+<main class="relative pt-32 pb-40 px-sm min-h-screen flex flex-col items-center justify-center text-center draggable" data-tid="card-container">
 <!-- Atmospheric Glow -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none -z-10">
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-on-tertiary-container/20 blur-[140px] rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none -z-10 draggable" data-tid="container-1">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-on-tertiary-container/20 blur-[140px] rounded-full draggable" data-tid="container-2"></div>
 </div>
 <!-- Minimalist Centered Layout -->
-<section class="max-w-md flex flex-col items-center gap-lg draggable" data-tid="card-container">
+<section class="max-w-md flex flex-col items-center gap-lg">
 <!-- Symbolic Icon -->
 <div class="relative">
-<div class="absolute inset-0 bg-primary-fixed/20 blur-2xl rounded-full scale-150"></div>
+<div class="absolute inset-0 bg-primary-fixed/20 blur-2xl rounded-full scale-150 draggable" data-tid="container-3"></div>
 <span class="material-symbols-outlined text-[80px] text-primary-fixed violet-glow animate-float relative z-10" data-icon="enhanced_encryption">enhanced_encryption</span>
 </div>
 <!-- Content -->
-<div class="flex flex-col gap-md">
-<div class="flex flex-col gap-xs">
+<div class="flex flex-col gap-md draggable" data-tid="container-4">
+<div class="flex flex-col gap-xs draggable" data-tid="container-5">
 <span class="font-label-sm text-label-sm text-primary-fixed/60 tracking-[0.3em] uppercase draggable" data-tid="category">Cryptography</span>
 <h2 class="font-display-lg-mobile text-display-lg text-primary violet-glow draggable" data-tid="title">Zero-Knowledge Proofs</h2>
 </div>
-<div class="w-16 h-0.5 bg-primary-fixed/30 mx-auto"></div>
+<div class="w-16 h-0.5 bg-primary-fixed/30 mx-auto draggable" data-tid="container-6"></div>
 <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-sm draggable" data-tid="body">
                     A Zero-Knowledge Proof (ZKP) allows one party to prove to another that they know a specific piece of information without revealing the information itself. It is a cornerstone of modern privacy-preserving technologies.
                 </p>
 </div>
 <!-- Meta -->
-<div class="flex flex-col items-center gap-md pt-sm">
+<div class="flex flex-col items-center gap-md pt-sm draggable" data-tid="container-7">
 <span class="font-label-sm text-label-sm text-outline/50 draggable" data-tid="prompt">FACT #1,024</span>
-<button class="group flex flex-col items-center gap-xs">
-<div class="w-12 h-12 rounded-full border border-primary-fixed/20 flex items-center justify-center group-hover:bg-primary-fixed/10 transition-all duration-300">
+<button class="group flex flex-col items-center gap-xs draggable" data-tid="text-1">
+<div class="w-12 h-12 rounded-full border border-primary-fixed/20 flex items-center justify-center group-hover:bg-primary-fixed/10 transition-all duration-300 draggable" data-tid="container-8">
 <span class="material-symbols-outlined text-primary-fixed" data-icon="expand_more">expand_more</span>
 </div>
-<span class="font-label-sm text-[10px] text-primary-fixed tracking-widest opacity-60">DETAILS</span>
+<span class="font-label-sm text-[10px] text-primary-fixed tracking-widest opacity-60 draggable" data-tid="text-2">DETAILS</span>
 </button>
 </div>
 </section>
 </main>
 <!-- Bottom Navigation -->
 <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-md px-md py-sm bg-surface-container-low/40 backdrop-blur-2xl rounded-full border border-white/5 shadow-2xl draggable" data-tid="bottom-bar">
-<a class="text-primary-fixed p-2" href="#">
+<a class="text-primary-fixed p-2 draggable" data-tid="text-3" href="#">
 <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
 </a>
-<a class="text-outline/40 hover:text-primary-fixed transition-colors p-2" href="#">
+<a class="text-outline/40 hover:text-primary-fixed transition-colors p-2 draggable" data-tid="text-4" href="#">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </a>
-<a class="text-outline/40 hover:text-primary-fixed transition-colors p-2" href="#">
+<a class="text-outline/40 hover:text-primary-fixed transition-colors p-2 draggable" data-tid="text-5" href="#">
 <span class="material-symbols-outlined" data-icon="bookmark_heart">bookmark_heart</span>
 </a>
-<a class="text-outline/40 hover:text-primary-fixed transition-colors p-2" href="#">
+<a class="text-outline/40 hover:text-primary-fixed transition-colors p-2 draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
 </a>
 </nav>
@@ -2733,97 +2733,97 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-display-lg-mobile text-[20px] text-primary tracking-tighter uppercase font-bold draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
-<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center overflow-hidden draggable" data-tid="card-container">
 <!-- Background Atmospheric Element -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-20 pointer-events-none">
-<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full"></div>
-<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-20 pointer-events-none draggable" data-tid="container-1">
+<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-fixed blur-[120px] rounded-full draggable" data-tid="container-2"></div>
+<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full draggable" data-tid="container-3"></div>
 </div>
 <!-- Centerpiece: Grid Info Layout -->
-<section class="w-full max-w-md relative z-10 flex flex-col gap-sm draggable" data-tid="card-container">
+<section class="w-full max-w-md relative z-10 flex flex-col gap-sm">
 <!-- Main Header Card -->
-<div class="glass-card neon-border-glow p-md flex flex-col gap-sm relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500">
+<div class="glass-card neon-border-glow p-md flex flex-col gap-sm relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 draggable" data-tid="container-4">
 <div class="scanline"></div>
 <div class="flex items-center justify-between">
-<div class="flex items-center gap-xs">
+<div class="flex items-center gap-xs draggable" data-tid="container-5">
 <span class="material-symbols-outlined text-primary-fixed text-3xl" data-icon="hub">hub</span>
 <span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">ARCHITECTURE</span>
 </div>
-<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(0,212,255,0.8)]"></div>
+<div class="w-2 h-2 bg-primary-fixed animate-pulse shadow-[0_0_8px_rgba(0,212,255,0.8)] draggable" data-tid="container-6"></div>
 </div>
-<div class="flex flex-col gap-xs">
+<div class="flex flex-col gap-xs draggable" data-tid="container-7">
 <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight draggable" data-tid="title">Microservices Architecture</h2>
-<div class="w-12 h-1 bg-primary-fixed"></div>
+<div class="w-12 h-1 bg-primary-fixed draggable" data-tid="container-8"></div>
 </div>
 <p class="font-body-md text-body-md text-on-surface-variant draggable" data-tid="body">
                     An architectural style that structures an application as a collection of services that are highly maintainable, loosely coupled, and independently deployable.
                 </p>
 </div>
 <!-- Grid of Info Modules -->
-<div class="grid grid-cols-2 gap-sm">
+<div class="grid grid-cols-2 gap-sm draggable" data-tid="container-9">
 <!-- Module: Pros -->
-<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors">
-<div class="flex items-center gap-xs text-primary-fixed">
+<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors draggable" data-tid="container-10">
+<div class="flex items-center gap-xs text-primary-fixed draggable" data-tid="container-11">
 <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
 <span class="font-label-sm text-[10px] uppercase font-bold tracking-widest draggable" data-tid="prompt">Benefits</span>
 </div>
-<p class="text-[13px] leading-snug text-on-surface-variant">Scalability, agility, and easier tech stack diversity across teams.</p>
+<p class="text-[13px] leading-snug text-on-surface-variant draggable" data-tid="text-1">Scalability, agility, and easier tech stack diversity across teams.</p>
 </div>
 <!-- Module: Cons -->
-<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors">
-<div class="flex items-center gap-xs text-primary-fixed">
+<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors draggable" data-tid="container-12">
+<div class="flex items-center gap-xs text-primary-fixed draggable" data-tid="container-13">
 <span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
-<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest">Challenges</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest draggable" data-tid="text-2">Challenges</span>
 </div>
-<p class="text-[13px] leading-snug text-on-surface-variant">Operational complexity, distributed logging, and network latency.</p>
+<p class="text-[13px] leading-snug text-on-surface-variant draggable" data-tid="text-3">Operational complexity, distributed logging, and network latency.</p>
 </div>
 <!-- Module: Core Rule -->
-<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors">
-<div class="flex items-center gap-xs text-primary-fixed">
+<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors draggable" data-tid="container-14">
+<div class="flex items-center gap-xs text-primary-fixed draggable" data-tid="container-15">
 <span class="material-symbols-outlined text-sm" data-icon="rule">rule</span>
-<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest">Isolation</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest draggable" data-tid="text-4">Isolation</span>
 </div>
-<p class="text-[13px] leading-snug text-on-surface-variant">Each service owns its own database for true decoupling.</p>
+<p class="text-[13px] leading-snug text-on-surface-variant draggable" data-tid="text-5">Each service owns its own database for true decoupling.</p>
 </div>
 <!-- Module: Stat -->
-<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors">
-<div class="flex items-center gap-xs text-primary-fixed">
+<div class="glass-card p-sm flex flex-col gap-xs border-white/10 hover:border-primary-fixed/50 transition-colors draggable" data-tid="container-16">
+<div class="flex items-center gap-xs text-primary-fixed draggable" data-tid="container-17">
 <span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
-<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest">Impact</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-widest draggable" data-tid="text-6">Impact</span>
 </div>
-<p class="text-[13px] leading-snug text-on-surface-variant">Reduces average deployment time by up to 60% in large teams.</p>
+<p class="text-[13px] leading-snug text-on-surface-variant draggable" data-tid="text-7">Reduces average deployment time by up to 60% in large teams.</p>
 </div>
 </div>
 <!-- Meta/Action Area -->
-<div class="glass-card p-sm flex justify-between items-center border-white/10">
-<span class="font-label-sm text-label-sm text-outline">FACT #1024</span>
-<button class="bg-primary-fixed text-surface-dim font-button text-[12px] px-sm py-xs rounded-none hover:brightness-110 transition-all active:scale-95 flex items-center gap-xs">
+<div class="glass-card p-sm flex justify-between items-center border-white/10 draggable" data-tid="container-18">
+<span class="font-label-sm text-label-sm text-outline draggable" data-tid="text-8">FACT #1024</span>
+<button class="bg-primary-fixed text-surface-dim font-button text-[12px] px-sm py-xs rounded-none hover:brightness-110 transition-all active:scale-95 flex items-center gap-xs draggable" data-tid="text-9">
                     DOCUMENTATION
                     <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
 </section>
 <!-- High-tech grid overlay decoration -->
-<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0 draggable" data-tid="container-19"></div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,212,255,0.1)] draggable" data-tid="bottom-bar">
-<a class="flex flex-col items-center justify-center bg-primary-fixed/10 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,212,255,0.2)] scale-90 duration-200" href="#">
+<a class="flex flex-col items-center justify-center bg-primary-fixed/10 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,212,255,0.2)] scale-90 duration-200 draggable" data-tid="text-10" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-11" href="#">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-12" href="#">
 <span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-13" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
 <!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
-<p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
+<p class="font-label-sm text-label-sm text-outline draggable" data-tid="text-14">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-primary-fixed hover:text-primary transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </div>
@@ -3032,44 +3032,44 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
 </header>
-<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center">
+<main class="relative pt-24 pb-32 px-sm min-h-screen flex flex-col items-center justify-center draggable" data-tid="card-container">
 <!-- Large Background Text Graphic for Full-Bleed look -->
 <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none z-0">
-<span class="text-[20vw] font-black tracking-tighter leading-none">SCALING</span>
+<span class="text-[20vw] font-black tracking-tighter leading-none draggable" data-tid="text-1">SCALING</span>
 </div>
 <!-- Floating Graphic Elements -->
-<div class="absolute top-1/3 right-0 w-64 h-64 bg-primary-fixed/10 blur-[100px] rounded-full floating-accent"></div>
-<div class="absolute bottom-1/4 left-0 w-48 h-48 bg-secondary/5 blur-[80px] rounded-full" style="animation-delay: -2s;"></div>
+<div class="absolute top-1/3 right-0 w-64 h-64 bg-primary-fixed/10 blur-[100px] rounded-full floating-accent draggable" data-tid="container-1"></div>
+<div class="absolute bottom-1/4 left-0 w-48 h-48 bg-secondary/5 blur-[80px] rounded-full draggable" data-tid="container-2" style="animation-delay: -2s;"></div>
 <!-- Content Card -->
-<section class="w-full max-w-md relative z-10 draggable" data-tid="card-container">
-<div class="glass-panel p-md flex flex-col gap-md">
+<section class="w-full max-w-md relative z-10">
+<div class="glass-panel p-md flex flex-col gap-md draggable" data-tid="container-3">
 <!-- Category & ID -->
 <div class="flex items-center justify-between">
-<div class="flex items-center gap-xs">
+<div class="flex items-center gap-xs draggable" data-tid="container-4">
 <span class="material-symbols-outlined text-primary-fixed" data-icon="database">database</span>
 <span class="font-label-sm text-label-sm text-primary-fixed tracking-[0.2em] font-bold draggable" data-tid="category">DATABASE SYSTEMS</span>
 </div>
 <span class="font-label-sm text-label-sm text-outline draggable" data-tid="prompt">#052</span>
 </div>
 <!-- Title & Body -->
-<div class="flex flex-col gap-sm">
+<div class="flex flex-col gap-sm draggable" data-tid="container-5">
 <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary leading-tight draggable" data-tid="title">Horizontal vs. Vertical Scaling</h2>
-<div class="w-16 h-1 bg-primary-fixed"></div>
+<div class="w-16 h-1 bg-primary-fixed draggable" data-tid="container-6"></div>
 <div class="space-y-md mt-sm">
 <p class="font-body-md text-on-surface-variant leading-relaxed draggable" data-tid="body">
 <strong class="text-primary">SQL</strong> databases are typically <strong class="text-primary-fixed">vertically scalable</strong>, meaning you can increase the load on a single server by increasing components like RAM or CPU. 
                     </p>
-<div class="p-sm bg-white/5 border border-white/10 rounded-sm">
-<p class="font-body-md text-on-surface leading-relaxed">
+<div class="p-sm bg-white/5 border border-white/10 rounded-sm draggable" data-tid="container-7">
+<p class="font-body-md text-on-surface leading-relaxed draggable" data-tid="text-2">
 <strong class="text-primary">NoSQL</strong> databases are <strong class="text-primary-fixed">horizontally scalable</strong>. They handle more traffic by sharding or adding more servers in your database cluster.
                         </p>
 </div>
 </div>
 </div>
 <!-- Action -->
-<div class="pt-sm mt-sm border-t border-white/5 flex flex-col gap-md">
-<p class="font-label-sm text-label-sm text-outline/80 italic">NoSQL is often preferred for large or ever-evolving data sets.</p>
-<button class="w-full bg-primary-fixed text-white font-button text-button px-md py-md rounded-sm hover:brightness-110 transition-all active:scale-[0.98] flex items-center justify-center gap-xs crimson-glow">
+<div class="pt-sm mt-sm border-t border-white/5 flex flex-col gap-md draggable" data-tid="container-8">
+<p class="font-label-sm text-label-sm text-outline/80 italic draggable" data-tid="text-3">NoSQL is often preferred for large or ever-evolving data sets.</p>
+<button class="w-full bg-primary-fixed text-white font-button text-button px-md py-md rounded-sm hover:brightness-110 transition-all active:scale-[0.98] flex items-center justify-center gap-xs crimson-glow draggable" data-tid="text-4">
                     EXPLORE SHARDING
                     <span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
 </button>
@@ -3079,22 +3079,22 @@ const TECH_FACTS_REGISTRY = [
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-background/50 backdrop-blur-xl border-t border-white/5 draggable" data-tid="bottom-bar">
-<a class="flex flex-col items-center justify-center text-primary-fixed p-2" href="#">
+<a class="flex flex-col items-center justify-center text-primary-fixed p-2 draggable" data-tid="text-5" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-7" href="#">
 <span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
 </a>
-<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors" href="#">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary-fixed transition-colors draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 </a>
 </nav>
 <!-- Footer -->
 <footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-4 mb-20 relative z-10 draggable" data-tid="footer">
-<p class="font-label-sm text-label-sm text-outline/50">© IEEE CIS UPES Student Branch</p>
+<p class="font-label-sm text-label-sm text-outline/50 draggable" data-tid="text-9">© IEEE CIS UPES Student Branch</p>
 <a class="font-label-sm text-label-sm text-primary-fixed hover:underline transition-colors draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </footer>
 <script>
@@ -3241,11 +3241,11 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-black text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-black draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
-<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-1">
 <span class="material-symbols-outlined text-black">settings</span>
 </button>
 </header>
-<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center">
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center draggable" data-tid="card-container">
 <!-- Pixel Art Icon Grid at top -->
 <div class="mb-8 relative">
 <div class="pixel-grid neo-shadow">
@@ -3259,83 +3259,83 @@ const TECH_FACTS_REGISTRY = [
 <div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
 <div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-fill"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div><div class="pixel-cell"></div>
 </div>
-<div class="absolute -top-4 -left-4 bg-black text-white px-2 py-1 font-label-bold text-[10px] uppercase border-2 border-white">CRYPT_KEY.BMP</div>
+<div class="absolute -top-4 -left-4 bg-black text-white px-2 py-1 font-label-bold text-[10px] uppercase border-2 border-white draggable" data-tid="container-1">CRYPT_KEY.BMP</div>
 </div>
 <!-- Main Fact Card -->
 <div class="relative w-full max-w-sm">
-<div class="bg-white border-4 border-black neo-shadow relative z-10 flex flex-col">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 flex flex-col draggable" data-tid="container-2">
 <!-- Retro Titlebar -->
-<div class="h-10 border-b-4 border-black bg-black flex items-center px-4 gap-2">
-<div class="flex gap-1.5">
-<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
-<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
-<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
+<div class="h-10 border-b-4 border-black bg-black flex items-center px-4 gap-2 draggable" data-tid="container-3">
+<div class="flex gap-1.5 draggable" data-tid="container-4">
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black draggable" data-tid="container-5"></div>
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black draggable" data-tid="container-6"></div>
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black draggable" data-tid="container-7"></div>
 </div>
 <div class="flex-1 text-center">
 <span class="font-label-bold text-label-sm uppercase tracking-widest text-white draggable" data-tid="handle">ZKP_FACT.EXE</span>
 </div>
 </div>
 <!-- Content -->
-<div class="p-6 flex flex-col gap-6">
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-primary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<div class="p-6 flex flex-col gap-6 draggable" data-tid="container-8">
+<div class="flex items-center gap-2 draggable" data-tid="container-9">
+<div class="w-10 h-10 bg-primary flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="container-10">
 <span class="material-symbols-outlined text-black fill-icon">vpn_key</span>
 </div>
 <span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase draggable" data-tid="category">Cryptography</span>
 </div>
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter draggable" data-tid="title">
                         Zero-Knowledge <br/>
-<span class="bg-primary px-1 inline-block border-2 border-black">Proofs</span>
+<span class="bg-primary px-1 inline-block border-2 border-black draggable" data-tid="text-2">Proofs</span>
 </h1>
 <p class="font-body-md text-body-md text-on-surface border-l-4 border-primary pl-4 py-1 draggable" data-tid="body">
                         A cryptographic method by which one party can prove to another party that a given statement is true while avoiding conveying any additional information.
                     </p>
-<div class="flex gap-4">
+<div class="flex gap-4 draggable" data-tid="container-11">
 <button class="flex-1 bg-primary py-4 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="prompt">
                             Decrypt Info
                         </button>
-<button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-16 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-3">
 <span class="material-symbols-outlined text-black">favorite</span>
 </button>
 </div>
 </div>
-<div class="bg-black text-white border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">history</span> JAN 12, 1985</span>
-<span class="font-bold">ID: ZK-99x</span>
+<div class="bg-black text-white border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase draggable" data-tid="container-12">
+<span class="flex items-center gap-1 draggable" data-tid="text-4"><span class="material-symbols-outlined text-xs">history</span> JAN 12, 1985</span>
+<span class="font-bold draggable" data-tid="text-5">ID: ZK-99x</span>
 </div>
 </div>
 <!-- Decorative background elements -->
-<div class="absolute -top-6 -right-6 w-12 h-12 bg-black border-4 border-white -z-10 rotate-12"></div>
-<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white border-4 border-black -z-10 -rotate-6"></div>
+<div class="absolute -top-6 -right-6 w-12 h-12 bg-black border-4 border-white -z-10 rotate-12 draggable" data-tid="container-13"></div>
+<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white border-4 border-black -z-10 -rotate-6 draggable" data-tid="container-14"></div>
 </div>
 <!-- Secondary Info -->
-<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4 draggable" data-tid="card-container">
-<div class="bg-black text-white border-4 border-black p-4 neo-shadow-sm col-span-2">
-<h3 class="font-label-bold uppercase text-label-sm mb-1 text-primary">History</h3>
-<p class="text-body-md font-body-md italic leading-tight">ZKP was first conceived in 1985 by Shafi Goldwasser, Silvio Micali, and Charles Rackoff.</p>
+<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4">
+<div class="bg-black text-white border-4 border-black p-4 neo-shadow-sm col-span-2 draggable" data-tid="container-15">
+<h3 class="font-label-bold uppercase text-label-sm mb-1 text-primary draggable" data-tid="text-6">History</h3>
+<p class="text-body-md font-body-md italic leading-tight draggable" data-tid="text-7">ZKP was first conceived in 1985 by Shafi Goldwasser, Silvio Micali, and Charles Rackoff.</p>
 </div>
-<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
-<span class="font-display-xl text-[48px] leading-none mb-1 text-black">100</span>
-<span class="font-label-bold text-[10px] uppercase text-black">Privacy Score</span>
+<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center draggable" data-tid="container-16">
+<span class="font-display-xl text-[48px] leading-none mb-1 text-black draggable" data-tid="text-8">100</span>
+<span class="font-label-bold text-[10px] uppercase text-black draggable" data-tid="text-9">Privacy Score</span>
 </div>
-<div class="bg-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<div class="bg-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center draggable" data-tid="container-17">
 <span class="material-symbols-outlined text-4xl mb-1 text-black">lock</span>
-<span class="font-label-bold text-[10px] uppercase text-black">Secure Link</span>
+<span class="font-label-bold text-[10px] uppercase text-black draggable" data-tid="text-10">Secure Link</span>
 </div>
 </section>
 </main>
 <!-- Bottom Navigation -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="bottom-bar">
-<button class="flex flex-col items-center justify-center p-2">
+<button class="flex flex-col items-center justify-center p-2 draggable" data-tid="text-11">
 <span class="material-symbols-outlined text-black">home</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-primary text-black border-4 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2">
+<button class="flex flex-col items-center justify-center bg-primary text-black border-4 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2 draggable" data-tid="text-12">
 <span class="material-symbols-outlined fill-icon">terminal</span>
 </button>
-<button class="flex flex-col items-center justify-center p-2">
+<button class="flex flex-col items-center justify-center p-2 draggable" data-tid="text-13">
 <span class="material-symbols-outlined text-black">shield</span>
 </button>
-<button class="flex flex-col items-center justify-center p-2">
+<button class="flex flex-col items-center justify-center p-2 draggable" data-tid="text-14">
 <span class="material-symbols-outlined text-black">account_circle</span>
 </button>
 </nav>
@@ -3524,98 +3524,98 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
-<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-1">
 <span class="material-symbols-outlined text-black">settings</span>
 </button>
 </header>
-<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center">
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center draggable" data-tid="card-container">
 <!-- Animated Background Element -->
 <div class="fixed inset-0 pointer-events-none opacity-10 grid-pattern"></div>
 <!-- Main Content Card (Split Layout) -->
 <div class="relative w-full max-w-sm">
-<div class="bg-white border-4 border-black neo-shadow flex flex-col overflow-hidden">
+<div class="bg-white border-4 border-black neo-shadow flex flex-col overflow-hidden draggable" data-tid="container-1">
 <!-- Retro Window Header -->
-<div class="h-10 border-b-4 border-black bg-secondary-container flex items-center px-4 gap-2">
-<div class="flex gap-1.5">
-<div class="w-3 h-3 rounded-full bg-primary border-2 border-black"></div>
-<div class="w-3 h-3 rounded-full bg-white border-2 border-black"></div>
-<div class="w-3 h-3 rounded-full bg-black border-2 border-black"></div>
+<div class="h-10 border-b-4 border-black bg-secondary-container flex items-center px-4 gap-2 draggable" data-tid="container-2">
+<div class="flex gap-1.5 draggable" data-tid="container-3">
+<div class="w-3 h-3 rounded-full bg-primary border-2 border-black draggable" data-tid="container-4"></div>
+<div class="w-3 h-3 rounded-full bg-white border-2 border-black draggable" data-tid="container-5"></div>
+<div class="w-3 h-3 rounded-full bg-black border-2 border-black draggable" data-tid="container-6"></div>
 </div>
 <div class="flex-1 text-center">
 <span class="font-label-bold text-[10px] uppercase tracking-widest text-white draggable" data-tid="handle">PROXIMITY_PROC.SYS</span>
 </div>
 </div>
 <!-- Top/Left Split Section (Technical Visual) -->
-<div class="h-56 bg-primary border-b-4 border-black relative overflow-hidden flex items-center justify-center">
+<div class="h-56 bg-primary border-b-4 border-black relative overflow-hidden flex items-center justify-center draggable" data-tid="container-7">
 <div class="absolute inset-0 grid-pattern opacity-20"></div>
 <!-- Technical Icon/Diagram Representation -->
-<div class="relative z-10 p-8 border-4 border-black bg-white neo-shadow-sm rotate-3">
+<div class="relative z-10 p-8 border-4 border-black bg-white neo-shadow-sm rotate-3 draggable" data-tid="container-8">
 <span class="material-symbols-outlined text-[80px] text-secondary-container">sensors</span>
-<div class="absolute -top-4 -right-4 bg-black text-primary px-2 py-1 text-[10px] font-bold">EDGE_NODE_01</div>
+<div class="absolute -top-4 -right-4 bg-black text-primary px-2 py-1 text-[10px] font-bold draggable" data-tid="container-9">EDGE_NODE_01</div>
 </div>
-<div class="absolute bottom-4 left-4 bg-black text-white px-2 py-1 font-label-bold text-[10px] uppercase tracking-tighter">
+<div class="absolute bottom-4 left-4 bg-black text-white px-2 py-1 font-label-bold text-[10px] uppercase tracking-tighter draggable" data-tid="container-10">
                         Signal: Latency_Low
                     </div>
 </div>
 <!-- Bottom/Right Split Section (Content) -->
-<div class="p-6 flex flex-col gap-4 bg-white">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,255,255,1)]">
+<div class="p-6 flex flex-col gap-4 bg-white draggable" data-tid="container-11">
+<div class="flex items-center gap-2 draggable" data-tid="container-12">
+<div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,255,255,1)] draggable" data-tid="container-13">
 <span class="material-symbols-outlined text-primary text-sm fill-icon">router</span>
 </div>
 <span class="bg-black text-primary font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase draggable" data-tid="category">Infrastructure</span>
 </div>
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none uppercase tracking-tighter draggable" data-tid="title">
                         Edge <br/>
-<span class="bg-primary px-1 inline-block border-2 border-black">Computing</span>
+<span class="bg-primary px-1 inline-block border-2 border-black draggable" data-tid="text-2">Computing</span>
 </h1>
 <p class="font-body-md text-body-md text-on-surface border-l-4 border-secondary-container pl-4 py-1 draggable" data-tid="body">
                         Edge computing brings data storage and Proximity Processing closer to the devices where it's being gathered, rather than relying on a central location that can be thousands of miles away.
                     </p>
-<div class="mt-2 grid grid-cols-2 gap-3">
+<div class="mt-2 grid grid-cols-2 gap-3 draggable" data-tid="container-14">
 <button class="bg-primary py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="prompt">
                             Details
                         </button>
-<button class="bg-white py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="bg-white py-3 border-4 border-black font-label-bold uppercase text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-3">
                             Share
                         </button>
 </div>
 </div>
 <!-- Card Footer -->
-<div class="bg-secondary-container border-t-4 border-black p-3 flex justify-between items-center text-white font-label-sm uppercase">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">update</span> SYNCED 04:20</span>
-<span class="flex items-center gap-1 font-bold">PROTO: EDGE-99</span>
+<div class="bg-secondary-container border-t-4 border-black p-3 flex justify-between items-center text-white font-label-sm uppercase draggable" data-tid="container-15">
+<span class="flex items-center gap-1 draggable" data-tid="text-4"><span class="material-symbols-outlined text-xs">update</span> SYNCED 04:20</span>
+<span class="flex items-center gap-1 font-bold draggable" data-tid="text-5">PROTO: EDGE-99</span>
 </div>
 </div>
 </div>
 <!-- Bento Grid Info Section -->
-<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4 draggable" data-tid="card-container">
-<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2">
-<h3 class="font-label-bold uppercase text-label-sm mb-1 text-secondary-container">Proximity Processing</h3>
-<p class="text-body-md font-body-md italic leading-tight">By processing data at the edge, organizations can reduce latency and bandwidth use, improving real-time response times.</p>
+<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4">
+<div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2 draggable" data-tid="container-16">
+<h3 class="font-label-bold uppercase text-label-sm mb-1 text-secondary-container draggable" data-tid="text-6">Proximity Processing</h3>
+<p class="text-body-md font-body-md italic leading-tight draggable" data-tid="text-7">By processing data at the edge, organizations can reduce latency and bandwidth use, improving real-time response times.</p>
 </div>
-<div class="bg-black border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
-<span class="font-display-xl text-[40px] text-primary leading-none mb-1">0.1</span>
-<span class="font-label-bold text-[8px] text-white uppercase">ms Latency Goal</span>
+<div class="bg-black border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center draggable" data-tid="container-17">
+<span class="font-display-xl text-[40px] text-primary leading-none mb-1 draggable" data-tid="text-8">0.1</span>
+<span class="font-label-bold text-[8px] text-white uppercase draggable" data-tid="text-9">ms Latency Goal</span>
 </div>
-<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center">
+<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center draggable" data-tid="container-18">
 <span class="material-symbols-outlined text-4xl mb-1 text-black">hub</span>
-<span class="font-label-bold text-[8px] uppercase text-black">Distributed Nodes</span>
+<span class="font-label-bold text-[8px] uppercase text-black draggable" data-tid="text-10">Distributed Nodes</span>
 </div>
 </section>
 </main>
 <!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe draggable" data-tid="bottom-bar">
-<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
+<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors draggable" data-tid="text-11">
 <span class="material-symbols-outlined">bolt</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-primary text-black border-2 border-black scale-110 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-2">
+<button class="flex flex-col items-center justify-center bg-primary text-black border-2 border-black scale-110 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-2 draggable" data-tid="text-12">
 <span class="material-symbols-outlined fill-icon">memory</span>
 </button>
-<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
+<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors draggable" data-tid="text-13">
 <span class="material-symbols-outlined">insights</span>
 </button>
-<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
+<button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors draggable" data-tid="text-14">
 <span class="material-symbols-outlined">person</span>
 </button>
 </nav>
@@ -3748,72 +3748,72 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-black text-headline-md">terminal</span>
 <span class="font-headline-md text-2xl uppercase tracking-tighter font-extrabold text-black draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
-<button class="w-12 h-12 flex items-center justify-center bg-white border-4 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
+<button class="w-12 h-12 flex items-center justify-center bg-white border-4 border-black hover:translate-x-1 hover:translate-y-1 transition-all draggable" data-tid="text-1">
 <span class="material-symbols-outlined text-black">settings</span>
 </button>
 </header>
-<main class="min-h-screen pt-32 pb-32 px-4 flex flex-col items-center">
+<main class="min-h-screen pt-32 pb-32 px-4 flex flex-col items-center draggable" data-tid="card-container">
 <!-- Massive Headline Section -->
 <div class="w-full max-w-sm mb-16 text-center">
 <span class="inline-block bg-accent text-white font-label-bold text-xs px-3 py-1 neo-border-medium mb-6 uppercase tracking-widest draggable" data-tid="category">Tech Insight #402</span>
 <h1 class="font-display-xl text-[64px] leading-[0.9] uppercase tracking-tighter text-black break-words mb-8 draggable" data-tid="title">
             NEURAL <br/> RADIANCE <br/> FIELDS
         </h1>
-<div class="neo-border-thick bg-white p-6 text-left">
+<div class="neo-border-thick bg-white p-6 text-left draggable" data-tid="container-1">
 <p class="font-body-lg text-xl font-bold leading-tight uppercase mb-4 draggable" data-tid="body">
                 NeRFs use deep learning to generate complex 3D scenes from a sparse set of 2D images.
             </p>
-<p class="font-body-md text-on-surface opacity-80">
+<p class="font-body-md text-on-surface opacity-80 draggable" data-tid="text-2">
                 By optimizing a continuous volumetric scene function, AI can synthesize photorealistic novel views with incredible detail and lighting.
             </p>
 </div>
 </div>
 <!-- Floating Did You Know Card -->
 <div class="relative w-full max-w-sm">
-<div class="bg-white neo-border-thick mega-shadow p-6 relative z-10">
-<div class="flex items-center gap-2 mb-4">
+<div class="bg-white neo-border-thick mega-shadow p-6 relative z-10 draggable" data-tid="container-2">
+<div class="flex items-center gap-2 mb-4 draggable" data-tid="container-3">
 <span class="material-symbols-outlined text-accent fill-icon">lightbulb</span>
-<h3 class="font-label-bold uppercase text-lg text-black">Did you know?</h3>
+<h3 class="font-label-bold uppercase text-lg text-black draggable" data-tid="text-3">Did you know?</h3>
 </div>
-<p class="text-body-lg font-medium italic leading-snug">
+<p class="text-body-lg font-medium italic leading-snug draggable" data-tid="text-4">
                 NVIDIA's "Instant NeRF" can train a 3D scene in seconds, a task that previously took hours or even days.
             </p>
-<div class="mt-8 flex gap-4">
+<div class="mt-8 flex gap-4 draggable" data-tid="container-4">
 <button class="flex-1 bg-black text-white py-4 neo-border-medium font-label-bold uppercase hover:translate-x-1 hover:translate-y-1 transition-all active:translate-x-2 active:translate-y-2 draggable" data-tid="prompt">
                     Share Insight
                 </button>
-<button class="w-16 bg-white neo-border-medium flex items-center justify-center hover:translate-x-1 hover:translate-y-1 transition-all">
+<button class="w-16 bg-white neo-border-medium flex items-center justify-center hover:translate-x-1 hover:translate-y-1 transition-all draggable" data-tid="text-5">
 <span class="material-symbols-outlined text-black">bookmark</span>
 </button>
 </div>
 </div>
 <!-- Decorative accents -->
-<div class="absolute -top-4 -right-4 w-20 h-20 bg-accent -z-10 neo-border-medium"></div>
+<div class="absolute -top-4 -right-4 w-20 h-20 bg-accent -z-10 neo-border-medium draggable" data-tid="container-5"></div>
 </div>
 <!-- Secondary Info Grid -->
-<section class="mt-16 w-full max-w-sm grid grid-cols-2 gap-6 draggable" data-tid="card-container">
-<div class="bg-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
-<span class="font-display-xl text-4xl font-extrabold mb-1">5s</span>
+<section class="mt-16 w-full max-w-sm grid grid-cols-2 gap-6">
+<div class="bg-white neo-border-medium p-4 flex flex-col items-center justify-center text-center draggable" data-tid="container-6">
+<span class="font-display-xl text-4xl font-extrabold mb-1 draggable" data-tid="text-6">5s</span>
 <span class="font-label-bold text-[10px] uppercase opacity-60 draggable" data-tid="handle">Training Speed</span>
 </div>
-<div class="bg-black text-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
+<div class="bg-black text-white neo-border-medium p-4 flex flex-col items-center justify-center text-center draggable" data-tid="container-7">
 <span class="material-symbols-outlined text-4xl mb-1 text-accent">view_in_ar</span>
-<span class="font-label-bold text-[10px] uppercase">3D Rendered</span>
+<span class="font-label-bold text-[10px] uppercase draggable" data-tid="text-7">3D Rendered</span>
 </div>
 </section>
 </main>
 <!-- Bottom Navigation -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-24 bg-white border-t-8 border-black px-4 pb-safe draggable" data-tid="bottom-bar">
-<button class="flex flex-col items-center justify-center text-black p-2">
+<button class="flex flex-col items-center justify-center text-black p-2 draggable" data-tid="text-8">
 <span class="material-symbols-outlined text-3xl">bolt</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-black text-white neo-border-medium w-16 h-16 shadow-[4px_4px_0px_0px_#2563eb]">
+<button class="flex flex-col items-center justify-center bg-black text-white neo-border-medium w-16 h-16 shadow-[4px_4px_0px_0px_#2563eb] draggable" data-tid="text-9">
 <span class="material-symbols-outlined text-3xl fill-icon">menu_book</span>
 </button>
-<button class="flex flex-col items-center justify-center text-black p-2">
+<button class="flex flex-col items-center justify-center text-black p-2 draggable" data-tid="text-10">
 <span class="material-symbols-outlined text-3xl">emoji_events</span>
 </button>
-<button class="flex flex-col items-center justify-center text-black p-2">
+<button class="flex flex-col items-center justify-center text-black p-2 draggable" data-tid="text-11">
 <span class="material-symbols-outlined text-3xl">person</span>
 </button>
 </nav>
@@ -3942,117 +3942,117 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-primary text-2xl">terminal</span>
 <span class="font-bold text-xl uppercase tracking-tighter text-primary draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
-<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-1">
 <span class="material-symbols-outlined text-black">settings</span>
 </button>
 </header>
-<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center">
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center draggable" data-tid="card-container">
 <!-- Grid Background Overlay -->
 <div class="fixed inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
 <div class="scanline"></div>
 <!-- System Status Bar -->
-<div class="w-full max-w-sm mb-4 flex justify-between items-center bg-black text-primary px-3 py-1 border-2 border-black text-[10px] font-bold">
-<span>SYS_READY: 100%</span>
-<span class="animate-pulse">● LIVE_FEED</span>
-<span>Uptime: 432:12:09</span>
+<div class="w-full max-w-sm mb-4 flex justify-between items-center bg-black text-primary px-3 py-1 border-2 border-black text-[10px] font-bold draggable" data-tid="container-1">
+<span class="draggable" data-tid="text-2">SYS_READY: 100%</span>
+<span class="animate-pulse draggable" data-tid="text-3">● LIVE_FEED</span>
+<span class="draggable" data-tid="text-4">Uptime: 432:12:09</span>
 </div>
 <!-- Main Fact Card Container -->
 <div class="relative w-full max-w-sm">
-<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col draggable" data-tid="container-2">
 <!-- Terminal Header -->
-<div class="h-8 border-b-4 border-black bg-black flex items-center px-4 gap-2">
-<div class="flex gap-1">
-<div class="w-2 h-2 bg-primary"></div>
-<div class="w-2 h-2 bg-primary opacity-50"></div>
+<div class="h-8 border-b-4 border-black bg-black flex items-center px-4 gap-2 draggable" data-tid="container-3">
+<div class="flex gap-1 draggable" data-tid="container-4">
+<div class="w-2 h-2 bg-primary draggable" data-tid="container-5"></div>
+<div class="w-2 h-2 bg-primary opacity-50 draggable" data-tid="container-6"></div>
 </div>
 <div class="flex-1">
-<span class="text-[10px] uppercase font-bold text-primary">DAPP_CORE_MODULE.SH</span>
+<span class="text-[10px] uppercase font-bold text-primary draggable" data-tid="text-5">DAPP_CORE_MODULE.SH</span>
 </div>
-<span class="text-primary text-[10px]">v2.4.0</span>
+<span class="text-primary text-[10px] draggable" data-tid="text-6">v2.4.0</span>
 </div>
 <!-- Content Area -->
-<div class="p-5 flex flex-col gap-4">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black">
+<div class="p-5 flex flex-col gap-4 draggable" data-tid="container-7">
+<div class="flex items-center gap-2 draggable" data-tid="container-8">
+<div class="w-8 h-8 bg-black flex items-center justify-center border-2 border-black draggable" data-tid="container-9">
 <span class="material-symbols-outlined text-primary text-sm">hub</span>
 </div>
 <span class="bg-primary text-black font-bold text-[10px] px-2 py-0.5 border-2 border-black uppercase italic draggable" data-tid="category">Web3 Protocols</span>
 </div>
 <h1 class="text-3xl font-black leading-none uppercase tracking-tighter draggable" data-tid="title">
-<span class="bg-black text-primary px-1">Decentralized</span><br/>
+<span class="bg-black text-primary px-1 draggable" data-tid="text-7">Decentralized</span><br/>
                         Applications
                     </h1>
 <p class="text-sm font-bold leading-snug border-l-4 border-black pl-3 py-1 bg-gray-50 draggable" data-tid="body">
                         dApps are digital applications that run on a blockchain or peer-to-peer (P2P) network of computers instead of a single computer, remaining outside the control of a single authority.
                     </p>
 <!-- Dense Grid Data Modules -->
-<div class="grid grid-cols-2 gap-2 mt-2">
-<div class="border-2 border-black p-2 bg-primary/10">
-<span class="text-[9px] font-bold uppercase block text-black/60">Execution</span>
-<span class="text-xs font-black">SMART_CONTRACTS</span>
+<div class="grid grid-cols-2 gap-2 mt-2 draggable" data-tid="container-10">
+<div class="border-2 border-black p-2 bg-primary/10 draggable" data-tid="container-11">
+<span class="text-[9px] font-bold uppercase block text-black/60 draggable" data-tid="text-8">Execution</span>
+<span class="text-xs font-black draggable" data-tid="text-9">SMART_CONTRACTS</span>
 </div>
-<div class="border-2 border-black p-2 bg-black text-primary">
-<span class="text-[9px] font-bold uppercase block text-primary/60">Consensus</span>
-<span class="text-xs font-black">P2P_NETWORK</span>
+<div class="border-2 border-black p-2 bg-black text-primary draggable" data-tid="container-12">
+<span class="text-[9px] font-bold uppercase block text-primary/60 draggable" data-tid="text-10">Consensus</span>
+<span class="text-xs font-black draggable" data-tid="text-11">P2P_NETWORK</span>
 </div>
 </div>
 <!-- Interaction -->
-<div class="mt-2 flex gap-3">
+<div class="mt-2 flex gap-3 draggable" data-tid="container-13">
 <button class="flex-1 bg-primary py-3 border-4 border-black font-bold uppercase text-xs text-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="prompt">
                             Propagate Data
                         </button>
-<button class="w-12 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-12 bg-white border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-12">
 <span class="material-symbols-outlined text-black">save</span>
 </button>
 </div>
 </div>
 <!-- Bottom Stats -->
-<div class="bg-black text-primary border-t-4 border-black p-2 flex justify-between items-center text-[10px] font-bold">
+<div class="bg-black text-primary border-t-4 border-black p-2 flex justify-between items-center text-[10px] font-bold draggable" data-tid="container-14">
 <span class="draggable" data-tid="handle">NODE_REF: eth-0x4e2</span>
-<span class="bg-primary text-black px-1">ACTIVE</span>
+<span class="bg-primary text-black px-1 draggable" data-tid="text-13">ACTIVE</span>
 </div>
 </div>
 <!-- Decorative Offset -->
-<div class="absolute -bottom-2 -right-2 w-full h-full border-4 border-black -z-10"></div>
+<div class="absolute -bottom-2 -right-2 w-full h-full border-4 border-black -z-10 draggable" data-tid="container-15"></div>
 </div>
 <!-- Bento Grid Info -->
-<section class="mt-8 w-full max-w-sm grid grid-cols-6 gap-3 draggable" data-tid="card-container">
-<div class="bg-black text-primary border-4 border-black p-3 col-span-4 flex flex-col justify-between">
-<h3 class="text-[10px] font-bold uppercase border-b border-primary/30 pb-1 mb-2">Network Stat</h3>
-<p class="text-xs font-bold leading-tight">Ethereum hosts over 3,000 dApps, processing millions of transactions daily.</p>
+<section class="mt-8 w-full max-w-sm grid grid-cols-6 gap-3">
+<div class="bg-black text-primary border-4 border-black p-3 col-span-4 flex flex-col justify-between draggable" data-tid="container-16">
+<h3 class="text-[10px] font-bold uppercase border-b border-primary/30 pb-1 mb-2 draggable" data-tid="text-14">Network Stat</h3>
+<p class="text-xs font-bold leading-tight draggable" data-tid="text-15">Ethereum hosts over 3,000 dApps, processing millions of transactions daily.</p>
 </div>
-<div class="bg-white border-4 border-black p-2 col-span-2 flex flex-col items-center justify-center text-center">
-<span class="text-2xl font-black leading-none">3k+</span>
-<span class="text-[8px] font-bold uppercase">Nodes</span>
+<div class="bg-white border-4 border-black p-2 col-span-2 flex flex-col items-center justify-center text-center draggable" data-tid="container-17">
+<span class="text-2xl font-black leading-none draggable" data-tid="text-16">3k+</span>
+<span class="text-[8px] font-bold uppercase draggable" data-tid="text-17">Nodes</span>
 </div>
-<div class="bg-primary border-4 border-black p-2 col-span-3 flex items-center gap-2">
+<div class="bg-primary border-4 border-black p-2 col-span-3 flex items-center gap-2 draggable" data-tid="container-18">
 <span class="material-symbols-outlined text-xl">security</span>
-<span class="text-[9px] font-bold leading-none uppercase">Trustless<br/>Architecture</span>
+<span class="text-[9px] font-bold leading-none uppercase draggable" data-tid="text-18">Trustless<br/>Architecture</span>
 </div>
-<div class="bg-white border-4 border-black p-2 col-span-3 flex items-center gap-2">
+<div class="bg-white border-4 border-black p-2 col-span-3 flex items-center gap-2 draggable" data-tid="container-19">
 <span class="material-symbols-outlined text-xl">public</span>
-<span class="text-[9px] font-bold leading-none uppercase">Censorship<br/>Resistant</span>
+<span class="text-[9px] font-bold leading-none uppercase draggable" data-tid="text-19">Censorship<br/>Resistant</span>
 </div>
 </section>
 <!-- Status Indicator Footer (Terminal Style) -->
-<div class="mt-8 w-full max-w-sm flex items-center gap-2 opacity-60">
-<div class="flex-1 h-[2px] bg-black"></div>
-<span class="text-[10px] font-bold uppercase tracking-widest">End_Transmission</span>
-<div class="flex-1 h-[2px] bg-black"></div>
+<div class="mt-8 w-full max-w-sm flex items-center gap-2 opacity-60 draggable" data-tid="container-20">
+<div class="flex-1 h-[2px] bg-black draggable" data-tid="container-21"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest draggable" data-tid="text-20">End_Transmission</span>
+<div class="flex-1 h-[2px] bg-black draggable" data-tid="container-22"></div>
 </div>
 </main>
 <!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe draggable" data-tid="bottom-bar">
-<button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors">
+<button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors draggable" data-tid="text-21">
 <span class="material-symbols-outlined">bolt</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-primary text-black border-2 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] p-2">
+<button class="flex flex-col items-center justify-center bg-primary text-black border-2 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] p-2 draggable" data-tid="text-22">
 <span class="material-symbols-outlined font-black">data_object</span>
 </button>
-<button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors">
+<button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors draggable" data-tid="text-23">
 <span class="material-symbols-outlined">terminal</span>
 </button>
-<button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors">
+<button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors draggable" data-tid="text-24">
 <span class="material-symbols-outlined">account_tree</span>
 </button>
 </nav>
@@ -4213,104 +4213,104 @@ const TECH_FACTS_REGISTRY = [
 <span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-white draggable" data-tid="club-title">TECH_DRIP</span>
 </div>
-<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-10 h-10 flex items-center justify-center bg-primary border-2 border-black neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-1">
 <span class="material-symbols-outlined text-white">settings</span>
 </button>
 </header>
-<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center relative overflow-hidden">
+<main class="min-h-screen pt-24 pb-32 px-4 flex flex-col items-center relative overflow-hidden draggable" data-tid="card-container">
 <!-- Pale Yellow Grid Background -->
-<div class="fixed inset-0 grid-bg -z-20"></div>
+<div class="fixed inset-0 grid-bg -z-20 draggable" data-tid="container-1"></div>
 <!-- Main Fact Card Container -->
 <div class="relative w-full max-w-sm mt-4 rotate-neg-2">
 <!-- The Neo-Brutalist Card -->
-<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col">
+<div class="bg-white border-4 border-black neo-shadow relative z-10 overflow-hidden flex flex-col draggable" data-tid="container-2">
 <!-- Retro Titlebar -->
-<div class="h-10 border-b-4 border-black bg-primary flex items-center px-4 gap-2">
-<div class="flex gap-1.5">
-<div class="w-3 h-3 rounded-full bg-black border-2 border-white"></div>
-<div class="w-3 h-3 rounded-full bg-black border-2 border-white"></div>
-<div class="w-3 h-3 rounded-full bg-black border-2 border-white"></div>
+<div class="h-10 border-b-4 border-black bg-primary flex items-center px-4 gap-2 draggable" data-tid="container-3">
+<div class="flex gap-1.5 draggable" data-tid="container-4">
+<div class="w-3 h-3 rounded-full bg-black border-2 border-white draggable" data-tid="container-5"></div>
+<div class="w-3 h-3 rounded-full bg-black border-2 border-white draggable" data-tid="container-6"></div>
+<div class="w-3 h-3 rounded-full bg-black border-2 border-white draggable" data-tid="container-7"></div>
 </div>
 <div class="flex-1 text-center">
 <span class="font-label-bold text-label-sm uppercase tracking-widest text-white draggable" data-tid="handle">DECOHERENCE_LOG.SYS</span>
 </div>
 </div>
 <!-- Card Image -->
-<div class="h-48 w-full border-b-4 border-black relative overflow-hidden bg-black">
+<div class="h-48 w-full border-b-4 border-black relative overflow-hidden bg-black draggable" data-tid="container-8">
 <img class="w-full h-full object-cover mix-blend-screen opacity-90 draggable" data-alt="High-contrast digital art of fading particles and dissolving geometric shapes in neon orange and white against a black background, symbolizing quantum decoherence. Sharp lines, pop-art halftones, and sticker-style thick outlines." data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhsuLNflizHr9tOGlTPPCDDYJ5caFNtF2xL5IONxfvKRcG0qX-96eWw64PRgAw6O0koBzFHDN7lpgQKM1pFnFGFZi9YnRy5dnUYCcxOy68A483g0s4IYcysl5696nGnw4XzUzTZ5RVyIBV1WT3hJlwINz7efVC56jlmGK06tfSlfmvPVCKbAMEUNq7-6MccbKElNsedlyx8K3GPPUZ5XqakYzCkNu0q6FRPdQHngc7srYdu-hwyLpHPy_yyK6jLblbF3YyfZICoAo" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhsuLNflizHr9tOGlTPPCDDYJ5caFNtF2xL5IONxfvKRcG0qX-96eWw64PRgAw6O0koBzFHDN7lpgQKM1pFnFGFZi9YnRy5dnUYCcxOy68A483g0s4IYcysl5696nGnw4XzUzTZ5RVyIBV1WT3hJlwINz7efVC56jlmGK06tfSlfmvPVCKbAMEUNq7-6MccbKElNsedlyx8K3GPPUZ5XqakYzCkNu0q6FRPdQHngc7srYdu-hwyLpHPy_yyK6jLblbF3YyfZICoAo"/>
-<div class="absolute top-2 left-2 bg-primary text-white border-2 border-black px-2 py-0.5 font-label-bold text-[10px] rotate-[-5deg] sticker-shadow">
+<div class="absolute top-2 left-2 bg-primary text-white border-2 border-black px-2 py-0.5 font-label-bold text-[10px] rotate-[-5deg] sticker-shadow draggable" data-tid="container-9">
                         STABILITY_ZERO
                     </div>
 </div>
 <!-- Card Content -->
-<div class="p-6 flex flex-col gap-4">
+<div class="p-6 flex flex-col gap-4 draggable" data-tid="container-10">
 <!-- Badge Row -->
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-black flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(255,102,0,1)]">
+<div class="flex items-center gap-2 draggable" data-tid="container-11">
+<div class="w-10 h-10 bg-black flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(255,102,0,1)] draggable" data-tid="container-12">
 <span class="material-symbols-outlined text-primary fill-icon">waves</span>
 </div>
-<span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase tracking-tight">System Fragility</span>
+<span class="bg-black text-white font-label-bold text-label-sm px-3 py-1 border-2 border-black uppercase tracking-tight draggable" data-tid="text-2">System Fragility</span>
 </div>
 <!-- Title -->
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-[0.9] uppercase tracking-tighter draggable" data-tid="category">
                         Quantum <br/>
-<span class="bg-primary text-white px-1 inline-block border-4 border-black rotate-pos-1">Decoherence</span>
+<span class="bg-primary text-white px-1 inline-block border-4 border-black rotate-pos-1 draggable" data-tid="text-3">Decoherence</span>
 </h1>
 <!-- Description -->
 <p class="font-body-md text-body-md text-on-surface border-l-4 border-black pl-4 py-1 mt-2 draggable" data-tid="body">
                         The process where a quantum system loses its quantum properties, like superposition, as it interacts with the environment. It's the "noise" that breaks quantum computers.
                     </p>
 <!-- Interaction Buttons -->
-<div class="mt-4 flex gap-4">
-<button class="flex-1 bg-primary py-4 border-4 border-black font-label-bold uppercase text-white neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<div class="mt-4 flex gap-4 draggable" data-tid="container-13">
+<button class="flex-1 bg-primary py-4 border-4 border-black font-label-bold uppercase text-white neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-4">
                             Save State
                         </button>
-<button class="w-16 bg-accent-yellow border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+<button class="w-16 bg-accent-yellow border-4 border-black flex items-center justify-center neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all draggable" data-tid="text-5">
 <span class="material-symbols-outlined text-black">share</span>
 </button>
 </div>
 </div>
 <!-- Footer stats -->
-<div class="bg-black text-white border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">timer</span> ERR_404_TIME</span>
-<span class="flex items-center gap-1 font-bold text-primary">ID: NOISE-01</span>
+<div class="bg-black text-white border-t-4 border-black p-3 flex justify-between items-center font-label-sm uppercase draggable" data-tid="container-14">
+<span class="flex items-center gap-1 draggable" data-tid="text-6"><span class="material-symbols-outlined text-xs">timer</span> ERR_404_TIME</span>
+<span class="flex items-center gap-1 font-bold text-primary draggable" data-tid="text-7">ID: NOISE-01</span>
 </div>
 </div>
 </div>
 <!-- Secondary Info Section (Pasted blocks at angles) -->
-<section class="mt-10 w-full max-w-sm flex flex-col gap-6 relative draggable" data-tid="card-container">
-<div class="bg-accent-yellow border-4 border-black p-4 neo-shadow-sm rotate-pos-3 relative z-20">
+<section class="mt-10 w-full max-w-sm flex flex-col gap-6 relative">
+<div class="bg-accent-yellow border-4 border-black p-4 neo-shadow-sm rotate-pos-3 relative z-20 draggable" data-tid="container-15">
 <h3 class="font-label-bold uppercase text-label-sm mb-1 text-black underline draggable" data-tid="prompt">The Problem</h3>
-<p class="text-body-md font-body-md leading-tight">Decoherence happens in microseconds. Keeping qubits "quiet" requires temperatures colder than outer space.</p>
+<p class="text-body-md font-body-md leading-tight draggable" data-tid="text-8">Decoherence happens in microseconds. Keeping qubits "quiet" requires temperatures colder than outer space.</p>
 </div>
-<div class="grid grid-cols-2 gap-4">
-<div class="bg-black text-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center rotate-neg-2 sticker-shadow">
-<span class="font-display-xl text-[44px] leading-none mb-1 text-primary">0.01K</span>
-<span class="font-label-bold text-[10px] uppercase">Target Temp</span>
+<div class="grid grid-cols-2 gap-4 draggable" data-tid="container-16">
+<div class="bg-black text-white border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center rotate-neg-2 sticker-shadow draggable" data-tid="container-17">
+<span class="font-display-xl text-[44px] leading-none mb-1 text-primary draggable" data-tid="text-9">0.01K</span>
+<span class="font-label-bold text-[10px] uppercase draggable" data-tid="text-10">Target Temp</span>
 </div>
-<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center rotate-pos-1">
+<div class="bg-primary border-4 border-black p-4 neo-shadow-sm flex flex-col items-center justify-center text-center rotate-pos-1 draggable" data-tid="container-18">
 <span class="material-symbols-outlined text-4xl mb-1 text-white">ac_unit</span>
-<span class="font-label-bold text-[10px] uppercase text-white">Cryo-Status</span>
+<span class="font-label-bold text-[10px] uppercase text-white draggable" data-tid="text-11">Cryo-Status</span>
 </div>
 </div>
 <!-- Floating sticker element -->
-<div class="absolute -bottom-10 right-0 w-24 h-24 bg-white border-4 border-black rounded-full flex items-center justify-center rotate-12 z-30 sticker-shadow p-2 text-center leading-none">
-<span class="font-label-bold text-[12px] uppercase">NOISE REDUCTION</span>
+<div class="absolute -bottom-10 right-0 w-24 h-24 bg-white border-4 border-black rounded-full flex items-center justify-center rotate-12 z-30 sticker-shadow p-2 text-center leading-none draggable" data-tid="container-19">
+<span class="font-label-bold text-[12px] uppercase draggable" data-tid="text-12">NOISE REDUCTION</span>
 </div>
 </section>
 </main>
 <!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="bottom-bar">
-<button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors">
+<button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors draggable" data-tid="text-13">
 <span class="material-symbols-outlined">bolt</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-primary text-white border-4 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2 -translate-y-2">
+<button class="flex flex-col items-center justify-center bg-primary text-white border-4 border-black scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-2 -translate-y-2 draggable" data-tid="text-14">
 <span class="material-symbols-outlined fill-icon">menu_book</span>
 </button>
-<button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors">
+<button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors draggable" data-tid="text-15">
 <span class="material-symbols-outlined">emoji_events</span>
 </button>
-<button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors">
+<button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors draggable" data-tid="text-16">
 <span class="material-symbols-outlined">person</span>
 </button>
 </nav>
@@ -4424,22 +4424,22 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer">search</span>
 </header>
-<main class="min-h-[calc(100vh-128px)] relative grid grid-cols-3">
+<main class="min-h-[calc(100vh-128px)] relative grid grid-cols-3 draggable" data-tid="card-container">
 <!-- Vertical Rules (The 3-Column Grid) -->
 <div class="absolute inset-0 grid grid-cols-3 pointer-events-none">
-<div class="border-r border-primary opacity-20"></div>
-<div class="border-r border-primary opacity-20"></div>
+<div class="border-r border-primary opacity-20 draggable" data-tid="container-1"></div>
+<div class="border-r border-primary opacity-20 draggable" data-tid="container-2"></div>
 <div></div>
 </div>
 <!-- Layout: Staggered Content Across Grid -->
 <!-- Section 1: Top Header Stagger -->
-<section class="col-span-3 pt-12 px-6 border-b border-primary draggable" data-tid="card-container">
-<div class="grid grid-cols-3 gap-0">
-<div class="col-span-2 pb-8">
+<section class="col-span-3 pt-12 px-6 border-b border-primary">
+<div class="grid grid-cols-3 gap-0 draggable" data-tid="container-3">
+<div class="col-span-2 pb-8 draggable" data-tid="container-4">
 <span class="font-swiss-meta text-[10px] uppercase block mb-4 draggable" data-tid="category">Architecture / Cloud</span>
 <h2 class="font-swiss-display text-[56px] tracking-tighter draggable" data-tid="title">Server<br/>-less</h2>
 </div>
-<div class="col-span-1 border-l border-primary p-4 flex flex-col justify-end">
+<div class="col-span-1 border-l border-primary p-4 flex flex-col justify-end draggable" data-tid="container-5">
 <span class="font-swiss-meta text-[10px] uppercase leading-none opacity-60 draggable" data-tid="prompt">Vol. 01<br/>Ed. 2024</span>
 </div>
 </div>
@@ -4447,17 +4447,17 @@ const TECH_FACTS_REGISTRY = [
 <!-- Section 2: Headline Continuation & Body -->
 <section class="col-span-3 grid grid-cols-3 border-b border-primary">
 <!-- Col 1: Icon/Visual -->
-<div class="col-span-1 border-r border-primary p-6 flex items-start justify-center">
+<div class="col-span-1 border-r border-primary p-6 flex items-start justify-center draggable" data-tid="container-6">
 <span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'wght' 200;">cloud_off</span>
 </div>
 <!-- Col 2-3: Secondary Headline and Content -->
-<div class="col-span-2 p-8">
-<h3 class="font-swiss-display text-[42px] tracking-tighter mb-12">Architecture</h3>
+<div class="col-span-2 p-8 draggable" data-tid="container-7">
+<h3 class="font-swiss-display text-[42px] tracking-tighter mb-12 draggable" data-tid="text-1">Architecture</h3>
 <div class="max-w-xs">
 <p class="font-swiss-body text-xl italic leading-tight text-primary mb-6 draggable" data-tid="body">
                     "Function as a Service" (FaaS) allows developers to build, run, and manage application packages without maintaining their own infrastructure.
                 </p>
-<p class="font-swiss-body text-base leading-relaxed text-on-surface-variant">
+<p class="font-swiss-body text-base leading-relaxed text-on-surface-variant draggable" data-tid="text-2">
                     Serverless does not mean servers are not involved. It means the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity.
                 </p>
 </div>
@@ -4465,17 +4465,17 @@ const TECH_FACTS_REGISTRY = [
 </section>
 <!-- Section 3: The '01' Watermark and Quote -->
 <section class="col-span-3 grid grid-cols-3 min-h-[160px]">
-<div class="col-span-1 border-r border-primary flex items-center justify-center relative overflow-hidden">
-<span class="font-swiss-display text-[120px] opacity-10 absolute -bottom-8">01</span>
+<div class="col-span-1 border-r border-primary flex items-center justify-center relative overflow-hidden draggable" data-tid="container-8">
+<span class="font-swiss-display text-[120px] opacity-10 absolute -bottom-8 draggable" data-tid="text-3">01</span>
 </div>
-<div class="col-span-2 p-8 flex flex-col justify-between">
+<div class="col-span-2 p-8 flex flex-col justify-between draggable" data-tid="container-9">
 <div class="flex justify-between items-start">
-<span class="font-swiss-meta text-[10px] uppercase">Distributed Execution</span>
-<button class="active-press p-1 border border-primary hover:bg-primary hover:text-background transition-colors">
+<span class="font-swiss-meta text-[10px] uppercase draggable" data-tid="text-4">Distributed Execution</span>
+<button class="active-press p-1 border border-primary hover:bg-primary hover:text-background transition-colors draggable" data-tid="text-5">
 <span class="material-symbols-outlined text-sm">north_east</span>
 </button>
 </div>
-<div class="mt-8 pt-4 border-t border-primary/20">
+<div class="mt-8 pt-4 border-t border-primary/20 draggable" data-tid="container-10">
 <span class="font-swiss-meta text-[9px] uppercase tracking-widest opacity-50 draggable" data-tid="handle">Reference: Microservices Design Patterns</span>
 </div>
 </div>
@@ -4484,21 +4484,21 @@ const TECH_FACTS_REGISTRY = [
 <!-- BottomNavBar (Swiss Grid Alignment) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t border-primary draggable" data-tid="bottom-bar">
 <!-- Each nav item takes exactly 25% but adheres to grid feel -->
-<a class="flex flex-col items-center justify-center bg-primary text-background flex-1 active-press" href="#">
+<a class="flex flex-col items-center justify-center bg-primary text-background flex-1 active-press draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined text-xl">analytics</span>
-<span class="font-swiss-meta text-[9px] uppercase mt-1">Facts</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1 draggable" data-tid="text-7">Facts</span>
 </a>
-<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined text-xl">calendar_today</span>
-<span class="font-swiss-meta text-[9px] uppercase mt-1">Archive</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1 draggable" data-tid="text-9">Archive</span>
 </a>
-<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-10" href="#">
 <span class="material-symbols-outlined text-xl">grid_view</span>
-<span class="font-swiss-meta text-[9px] uppercase mt-1">Topics</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1 draggable" data-tid="text-11">Topics</span>
 </a>
-<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-l border-primary hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-12" href="#">
 <span class="material-symbols-outlined text-xl">bookmark</span>
-<span class="font-swiss-meta text-[9px] uppercase mt-1">Saved</span>
+<span class="font-swiss-meta text-[9px] uppercase mt-1 draggable" data-tid="text-13">Saved</span>
 </a>
 </nav>
 <script>
@@ -4618,18 +4618,18 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer">search</span>
 </header>
-<main class="min-h-[calc(100vh-128px)] flex items-center justify-center p-margin-mobile">
+<main class="min-h-[calc(100vh-128px)] flex items-center justify-center p-margin-mobile draggable" data-tid="card-container">
 <!-- Central Fact Card: The Reductive Block -->
 <article class="relative w-full max-w-sm bg-background border-thick border-primary shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col transition-all duration-300">
 <!-- Header Block: Safety Orange Accent -->
-<div class="orange-accent p-6 border-b-thick border-primary draggable" data-tid="card-container">
+<div class="orange-accent p-6 border-b-thick border-primary draggable" data-tid="container-1">
 <div class="flex justify-between items-start">
 <span class="font-body font-extrabold text-xs tracking-widest-xl uppercase text-white draggable" data-tid="category">Warning: Vulnerability</span>
 <span class="material-symbols-outlined text-white text-3xl">priority_high</span>
 </div>
 </div>
 <!-- Content Block -->
-<div class="p-8 flex flex-col">
+<div class="p-8 flex flex-col draggable" data-tid="container-2">
 <!-- Category with Wide Tracking -->
 <span class="font-body font-bold text-[10px] tracking-[0.3em] uppercase mb-4 text-primary opacity-60 draggable" data-tid="handle">Security Analysis // 012</span>
 <!-- Condensed Title -->
@@ -4637,27 +4637,27 @@ const TECH_FACTS_REGISTRY = [
                 Zero-Day<br/>Exploits
             </h2>
 <!-- Separator Line -->
-<div class="w-full h-1 bg-primary mb-8"></div>
+<div class="w-full h-1 bg-primary mb-8 draggable" data-tid="container-3"></div>
 <!-- Description Body -->
 <p class="font-body text-base font-medium leading-tight mb-8 draggable" data-tid="body">
                 A "Zero-Day" vulnerability is a software security flaw known only to the attacker. It is called "Zero-Day" because the developer has had zero days to fix the vulnerability before it is exploited in the wild.
             </p>
 <!-- Bottom Data Grid -->
-<div class="grid grid-cols-2 border-t-thick border-primary pt-6 gap-4">
+<div class="grid grid-cols-2 border-t-thick border-primary pt-6 gap-4 draggable" data-tid="container-4">
 <div class="flex flex-col">
-<span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50">Log ID</span>
-<span class="font-headline font-bold text-lg">X-7742</span>
+<span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50 draggable" data-tid="text-1">Log ID</span>
+<span class="font-headline font-bold text-lg draggable" data-tid="text-2">X-7742</span>
 </div>
 <div class="flex flex-col items-end">
-<span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50">Status</span>
+<span class="font-body text-[10px] font-bold uppercase tracking-widest text-primary opacity-50 draggable" data-tid="text-3">Status</span>
 <span class="font-headline font-bold text-lg text-accent draggable" data-tid="prompt">CRITICAL</span>
 </div>
 </div>
 </div>
 <!-- Footer Action Block: High Contrast Solid Fill -->
-<div class="bg-primary text-white p-4 flex justify-between items-center">
-<span class="font-body font-bold text-xs tracking-widest uppercase">Archive Record 2024</span>
-<button class="active-press bg-white text-primary px-4 py-2 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+<div class="bg-primary text-white p-4 flex justify-between items-center draggable" data-tid="container-5">
+<span class="font-body font-bold text-xs tracking-widest uppercase draggable" data-tid="text-4">Archive Record 2024</span>
+<button class="active-press bg-white text-primary px-4 py-2 font-bold text-xs uppercase tracking-widest flex items-center gap-2 draggable" data-tid="text-5">
                 Share <span class="material-symbols-outlined text-sm">open_in_new</span>
 </button>
 </div>
@@ -4666,24 +4666,24 @@ const TECH_FACTS_REGISTRY = [
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t-thick border-primary draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
-<a class="flex flex-col items-center justify-center orange-accent text-white flex-1 border-r-thick border-primary active-press" href="#">
+<a class="flex flex-col items-center justify-center orange-accent text-white flex-1 border-r-thick border-primary active-press draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined">dataset</span>
-<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Facts</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1 draggable" data-tid="text-7">Facts</span>
 </a>
 <!-- ARCHIVE -->
-<a class="flex flex-col items-center justify-center text-primary flex-1 border-r-thick border-primary hover:bg-black hover:text-white transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-r-thick border-primary hover:bg-black hover:text-white transition-colors active-press draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined">inventory_2</span>
-<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Archive</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1 draggable" data-tid="text-9">Archive</span>
 </a>
 <!-- TOPICS -->
-<a class="flex flex-col items-center justify-center text-primary flex-1 border-r-thick border-primary hover:bg-black hover:text-white transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary flex-1 border-r-thick border-primary hover:bg-black hover:text-white transition-colors active-press draggable" data-tid="text-10" href="#">
 <span class="material-symbols-outlined">hub</span>
-<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Index</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1 draggable" data-tid="text-11">Index</span>
 </a>
 <!-- SAVED -->
-<a class="flex flex-col items-center justify-center text-primary flex-1 hover:bg-black hover:text-white transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary flex-1 hover:bg-black hover:text-white transition-colors active-press draggable" data-tid="text-12" href="#">
 <span class="material-symbols-outlined">stars</span>
-<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1">Saved</span>
+<span class="font-body font-extrabold text-[10px] tracking-widest uppercase mt-1 draggable" data-tid="text-13">Saved</span>
 </a>
 </nav>
 <script>
@@ -4792,13 +4792,13 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer hover:text-accent-blue transition-colors">search</span>
 </header>
-<main class="min-h-[calc(100vh-140px)] flex flex-col px-margin-mobile pt-12 pb-24 relative">
+<main class="min-h-[calc(100vh-140px)] flex flex-col px-margin-mobile pt-12 pb-24 relative draggable" data-tid="card-container">
 <!-- Asymmetric Layout Container -->
 <div class="w-full flex flex-col md:max-w-xl">
 <!-- Large Asymmetric Margin Area for Metadata -->
-<div class="mb-12 flex items-baseline gap-4">
+<div class="mb-12 flex items-baseline gap-4 draggable" data-tid="container-1">
 <span class="font-mono-meta text-[12px] text-accent-blue font-bold draggable" data-tid="prompt">VOL. 024</span>
-<div class="h-[1px] w-12 bg-accent-blue"></div>
+<div class="h-[1px] w-12 bg-accent-blue draggable" data-tid="container-2"></div>
 <span class="font-mono-meta text-[12px] text-on-surface-variant uppercase draggable" data-tid="category">Scientific Review</span>
 </div>
 <!-- Serif Headline: High Contrast & Elegant -->
@@ -4807,52 +4807,52 @@ const TECH_FACTS_REGISTRY = [
         </h2>
 <!-- Circular Graphic Element (Neural Node) -->
 <div class="relative mb-12 self-end mr-8">
-<div class="w-24 h-24 rounded-full border-[1.5px] border-primary flex items-center justify-center draggable" data-tid="card-container">
-<div class="w-3 h-3 bg-accent-blue rounded-full"></div>
+<div class="w-24 h-24 rounded-full border-[1.5px] border-primary flex items-center justify-center draggable" data-tid="container-3">
+<div class="w-3 h-3 bg-accent-blue rounded-full draggable" data-tid="container-4"></div>
 </div>
 <!-- Asymmetric labeling -->
-<span class="absolute -right-4 top-0 font-mono-meta text-[10px] uppercase rotate-90 origin-left tracking-tighter">Node_Alpha_01</span>
+<span class="absolute -right-4 top-0 font-mono-meta text-[10px] uppercase rotate-90 origin-left tracking-tighter draggable" data-tid="text-1">Node_Alpha_01</span>
 </div>
 <!-- Description: Clean Scientific Aesthetic -->
-<div class="border-l border-primary pl-8 mb-16 max-w-[90%]">
+<div class="border-l border-primary pl-8 mb-16 max-w-[90%] draggable" data-tid="container-5">
 <p class="font-body-md text-[18px] leading-[1.6] text-on-surface draggable" data-tid="body">
-                Modern artificial intelligence relies on <span class="font-bold">backpropagation</span>—a method used to calculate the gradient of the loss function with respect to the weights in a neural network. Through iterative optimization, the system "learns" by minimizing error across millions of parameters.
+                Modern artificial intelligence relies on <span class="font-bold draggable" data-tid="text-2">backpropagation</span>—a method used to calculate the gradient of the loss function with respect to the weights in a neural network. Through iterative optimization, the system "learns" by minimizing error across millions of parameters.
             </p>
 </div>
 <!-- Footer Metadata Asymmetry -->
-<div class="flex flex-col gap-2 border-t border-black pt-6">
+<div class="flex flex-col gap-2 border-t border-black pt-6 draggable" data-tid="container-6">
 <div class="flex justify-between items-end">
 <div class="font-mono-meta text-[12px]">
 <p class="text-primary font-bold draggable" data-tid="handle">REF: BP_ALGO_1986</p>
-<p class="text-on-surface-variant">SUBJECT: WEIGHT OPTIMIZATION</p>
+<p class="text-on-surface-variant draggable" data-tid="text-3">SUBJECT: WEIGHT OPTIMIZATION</p>
 </div>
-<button class="active-press w-10 h-10 flex items-center justify-center border border-primary hover:bg-accent-blue hover:border-accent-blue hover:text-white transition-all">
+<button class="active-press w-10 h-10 flex items-center justify-center border border-primary hover:bg-accent-blue hover:border-accent-blue hover:text-white transition-all draggable" data-tid="text-4">
 <span class="material-symbols-outlined text-[18px]">north_east</span>
 </button>
 </div>
 </div>
 </div>
 <!-- Background Accents (Swiss Lines) -->
-<div class="fixed top-0 right-12 bottom-0 w-[0.5px] bg-black/10 -z-10"></div>
-<div class="fixed top-1/2 left-0 right-0 h-[0.5px] bg-black/5 -z-10"></div>
+<div class="fixed top-0 right-12 bottom-0 w-[0.5px] bg-black/10 -z-10 draggable" data-tid="container-7"></div>
+<div class="fixed top-1/2 left-0 right-0 h-[0.5px] bg-black/5 -z-10 draggable" data-tid="container-8"></div>
 </main>
 <!-- Bottom Nav: Swiss Tab Style -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex h-20 bg-surface-paper border-t-2 border-black draggable" data-tid="bottom-bar">
-<a class="flex-1 flex flex-col items-center justify-center bg-black text-white active-press" href="#">
+<a class="flex-1 flex flex-col items-center justify-center bg-black text-white active-press draggable" data-tid="text-5" href="#">
 <span class="material-symbols-outlined text-[20px]">layers</span>
-<span class="font-mono-meta text-[10px] mt-1 font-bold">FACTS</span>
+<span class="font-mono-meta text-[10px] mt-1 font-bold draggable" data-tid="text-6">FACTS</span>
 </a>
-<a class="flex-1 flex flex-col items-center justify-center text-primary hover:text-accent-blue transition-colors active-press" href="#">
+<a class="flex-1 flex flex-col items-center justify-center text-primary hover:text-accent-blue transition-colors active-press draggable" data-tid="text-7" href="#">
 <span class="material-symbols-outlined text-[20px]">inventory_2</span>
-<span class="font-mono-meta text-[10px] mt-1 font-bold">ARCHIVE</span>
+<span class="font-mono-meta text-[10px] mt-1 font-bold draggable" data-tid="text-8">ARCHIVE</span>
 </a>
-<a class="flex-1 flex flex-col items-center justify-center text-primary hover:text-accent-blue transition-colors active-press" href="#">
+<a class="flex-1 flex flex-col items-center justify-center text-primary hover:text-accent-blue transition-colors active-press draggable" data-tid="text-9" href="#">
 <span class="material-symbols-outlined text-[20px]">account_tree</span>
-<span class="font-mono-meta text-[10px] mt-1 font-bold">TOPICS</span>
+<span class="font-mono-meta text-[10px] mt-1 font-bold draggable" data-tid="text-10">TOPICS</span>
 </a>
-<a class="flex-1 flex flex-col items-center justify-center text-primary hover:text-accent-blue transition-colors active-press" href="#">
+<a class="flex-1 flex flex-col items-center justify-center text-primary hover:text-accent-blue transition-colors active-press draggable" data-tid="text-11" href="#">
 <span class="material-symbols-outlined text-[20px]">star</span>
-<span class="font-mono-meta text-[10px] mt-1 font-bold">SAVED</span>
+<span class="font-mono-meta text-[10px] mt-1 font-bold draggable" data-tid="text-12">SAVED</span>
 </a>
 </nav>
 <script>
@@ -4961,57 +4961,57 @@ const TECH_FACTS_REGISTRY = [
 <header class="w-full top-0 sticky z-50 border-b border-thin border-forest bg-background flex justify-between items-center px-margin-mobile py-4 draggable" data-tid="top-bar">
 <div class="flex items-center">
 <span class="material-symbols-outlined text-forest mr-4 cursor-pointer">menu</span>
-<h1 class="font-headline-caps text-xl font-extrabold tracking-tight uppercase draggable" data-tid="club-title">Tech<span class="font-light">Archive</span></h1>
+<h1 class="font-headline-caps text-xl font-extrabold tracking-tight uppercase draggable" data-tid="club-title">Tech<span class="font-light draggable" data-tid="text-1">Archive</span></h1>
 </div>
 <span class="material-symbols-outlined text-forest cursor-pointer">filter_list</span>
 </header>
-<main class="min-h-[calc(100vh-128px)] flex flex-col items-center justify-start px-margin-mobile py-8">
+<main class="min-h-[calc(100vh-128px)] flex flex-col items-center justify-start px-margin-mobile py-8 draggable" data-tid="card-container">
 <!-- Modular Data Container -->
-<div class="w-full max-w-md flex flex-col draggable" data-tid="card-container">
+<div class="w-full max-w-md flex flex-col">
 <!-- Section Header -->
-<div class="mb-6 flex justify-between items-end border-b border-forest pb-2">
+<div class="mb-6 flex justify-between items-end border-b border-forest pb-2 draggable" data-tid="container-1">
 <span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase draggable" data-tid="prompt">Bulletin No. 042</span>
 <span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase draggable" data-tid="category">Series: Infrastructure</span>
 </div>
 <!-- 2x2 Modular Grid -->
-<div class="grid grid-cols-2 border-t border-l border-forest">
+<div class="grid grid-cols-2 border-t border-l border-forest draggable" data-tid="container-2">
 <!-- Block 1: Topic Title -->
-<div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square">
-<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Topic</span>
+<div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square draggable" data-tid="container-3">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 draggable" data-tid="text-2">Topic</span>
 <h2 class="font-headline-caps text-2xl font-bold leading-none uppercase break-words draggable" data-tid="title">Network<br/>Latency</h2>
 </div>
 <!-- Block 2: Quantitative Data / Icon -->
-<div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square bg-forest text-[#F2EFE9]">
-<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Metric</span>
+<div class="border-r border-b border-forest p-4 flex flex-col justify-between aspect-square bg-forest text-[#F2EFE9] draggable" data-tid="container-4">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 draggable" data-tid="text-3">Metric</span>
 <div class="flex flex-col">
-<span class="text-4xl font-headline-caps font-extrabold leading-none">200k</span>
-<span class="font-metadata text-[10px] uppercase mt-1">KM/S (Fiber)</span>
+<span class="text-4xl font-headline-caps font-extrabold leading-none draggable" data-tid="text-4">200k</span>
+<span class="font-metadata text-[10px] uppercase mt-1 draggable" data-tid="text-5">KM/S (Fiber)</span>
 </div>
 </div>
 <!-- Block 3: The Main Fact (High-readability Serif) -->
-<div class="col-span-2 border-r border-b border-forest p-6 bg-white bg-opacity-50">
-<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 mb-4 block">Definition &amp; Insight</span>
+<div class="col-span-2 border-r border-b border-forest p-6 bg-white bg-opacity-50 draggable" data-tid="container-5">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 mb-4 block draggable" data-tid="text-6">Definition &amp; Insight</span>
 <p class="font-body-serif text-[22px] leading-[1.3] text-forest draggable" data-tid="body">
-                    Edge computing reduces <span class="italic">latency</span> by moving processing closer to the source. Even in fiber optics, data is limited by the speed of light—roughly 200,000 km/s—meaning physical distance remains the ultimate bottleneck.
+                    Edge computing reduces <span class="italic draggable" data-tid="text-7">latency</span> by moving processing closer to the source. Even in fiber optics, data is limited by the speed of light—roughly 200,000 km/s—meaning physical distance remains the ultimate bottleneck.
                 </p>
 </div>
 <!-- Block 4: Context / Detail -->
-<div class="border-r border-b border-forest p-4 flex flex-col justify-between">
-<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60">Source</span>
+<div class="border-r border-b border-forest p-4 flex flex-col justify-between draggable" data-tid="container-6">
+<span class="font-metadata text-[10px] font-extrabold uppercase tracking-widest opacity-60 draggable" data-tid="text-8">Source</span>
 <p class="font-metadata text-[11px] leading-tight font-medium uppercase draggable" data-tid="handle">Bell Labs / <br/>Photonics Research</p>
 </div>
 <!-- Block 5: Interaction / Share -->
-<div class="border-r border-b border-forest p-4 flex items-center justify-center group cursor-pointer hover:bg-forest transition-colors duration-200">
+<div class="border-r border-b border-forest p-4 flex items-center justify-center group cursor-pointer hover:bg-forest transition-colors duration-200 draggable" data-tid="container-7">
 <span class="material-symbols-outlined text-forest group-hover:text-white text-3xl">share_reviews</span>
 </div>
 </div>
 <!-- Footer Exhibition Style -->
-<div class="mt-8 flex flex-col gap-2">
+<div class="mt-8 flex flex-col gap-2 draggable" data-tid="container-8">
 <div class="flex justify-between items-baseline">
-<span class="font-headline-caps text-[40px] font-extrabold leading-none opacity-10">042</span>
+<span class="font-headline-caps text-[40px] font-extrabold leading-none opacity-10 draggable" data-tid="text-9">042</span>
 <div class="text-right">
-<span class="font-metadata text-[10px] font-bold block uppercase tracking-tighter">Exhibition: The Digital Physics</span>
-<span class="font-metadata text-[10px] block opacity-60 uppercase">Room 404 — Edge Systems</span>
+<span class="font-metadata text-[10px] font-bold block uppercase tracking-tighter draggable" data-tid="text-10">Exhibition: The Digital Physics</span>
+<span class="font-metadata text-[10px] block opacity-60 uppercase draggable" data-tid="text-11">Room 404 — Edge Systems</span>
 </div>
 </div>
 </div>
@@ -5020,24 +5020,24 @@ const TECH_FACTS_REGISTRY = [
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-forest draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
-<a class="flex flex-col items-center justify-center bg-forest text-white px-4 py-2 flex-1 active-press" href="#">
+<a class="flex flex-col items-center justify-center bg-forest text-white px-4 py-2 flex-1 active-press draggable" data-tid="text-12" href="#">
 <span class="material-symbols-outlined">dataset</span>
-<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Data</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1 draggable" data-tid="text-13">Data</span>
 </a>
 <!-- ARCHIVE -->
-<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest" href="#">
+<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest draggable" data-tid="text-14" href="#">
 <span class="material-symbols-outlined">inventory_2</span>
-<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Index</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1 draggable" data-tid="text-15">Index</span>
 </a>
 <!-- TOPICS -->
-<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest" href="#">
+<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest draggable" data-tid="text-16" href="#">
 <span class="material-symbols-outlined">account_tree</span>
-<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Nodes</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1 draggable" data-tid="text-17">Nodes</span>
 </a>
 <!-- SAVED -->
-<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest" href="#">
+<a class="flex flex-col items-center justify-center text-forest px-4 py-2 flex-1 hover:bg-white/50 transition-colors active-press border-l border-forest draggable" data-tid="text-18" href="#">
 <span class="material-symbols-outlined">star</span>
-<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1">Logs</span>
+<span class="font-metadata text-[9px] font-bold tracking-widest uppercase mt-1 draggable" data-tid="text-19">Logs</span>
 </a>
 </nav>
 <script>
@@ -5171,21 +5171,21 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <span class="material-symbols-outlined text-primary cursor-pointer">search</span>
 </header>
-<main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-6 py-12 relative overflow-hidden">
+<main class="min-h-[calc(100vh-128px)] flex items-center justify-center px-6 py-12 relative overflow-hidden draggable" data-tid="card-container">
 <!-- Background Large Numeral '05' -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-watermark text-watermark text-white/40 pointer-events-none z-0 select-none tracking-tighter opacity-80">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-watermark text-watermark text-white/40 pointer-events-none z-0 select-none tracking-tighter opacity-80 draggable" data-tid="container-1">
         05
     </div>
 <!-- Geometric Plane 1: Burgundy Bar -->
-<div class="absolute top-[20%] left-0 w-3/4 h-16 burgundy-bg opacity-10 -rotate-2"></div>
+<div class="absolute top-[20%] left-0 w-3/4 h-16 burgundy-bg opacity-10 -rotate-2 draggable" data-tid="container-2"></div>
 <!-- Central Fact Card - Multi-layered -->
 <article class="relative w-full max-w-sm bg-white border-thick border-primary z-10 flex flex-col layer-shadow transition-all duration-300">
 <!-- Decorative Red Square Plane -->
-<div class="absolute -top-3 -left-3 w-12 h-12 burgundy-bg z-20"></div>
+<div class="absolute -top-3 -left-3 w-12 h-12 burgundy-bg z-20 draggable" data-tid="container-3"></div>
 <!-- Card Content Cluster -->
-<div class="relative z-30 p-8 flex flex-col items-start h-full bg-white">
+<div class="relative z-30 p-8 flex flex-col items-start h-full bg-white draggable" data-tid="container-4">
 <!-- Category Label & Icon Overlap -->
-<div class="relative w-full mb-8 flex items-baseline gap-2">
+<div class="relative w-full mb-8 flex items-baseline gap-2 draggable" data-tid="container-5">
 <span class="material-symbols-outlined text-[32px] burgundy-accent" style="font-variation-settings: 'wght' 600;">layers</span>
 <span class="font-category-label text-category-label burgundy-accent italic tracking-tight draggable" data-tid="category">ARCHITECTURE</span>
 </div>
@@ -5193,54 +5193,54 @@ const TECH_FACTS_REGISTRY = [
 <div class="relative mb-8">
 <h2 class="font-headline-lg-mobile text-[40px] font-extrabold uppercase leading-[0.9] tracking-tighter text-primary draggable" data-tid="title">
                     Horizontal<br/>
-<span class="burgundy-accent">vs</span><br/>
+<span class="burgundy-accent draggable" data-tid="text-1">vs</span><br/>
                     Vertical
                 </h2>
-<span class="absolute -bottom-4 right-0 font-category-label text-[32px] text-primary/20 italic select-none">Scaling</span>
+<span class="absolute -bottom-4 right-0 font-category-label text-[32px] text-primary/20 italic select-none draggable" data-tid="text-2">Scaling</span>
 </div>
 <!-- Description Body -->
 <p class="font-body-md text-body-md text-on-surface-variant leading-snug mb-12 border-l-2 border-burgundy pl-4 draggable" data-tid="body">
                 Vertical scaling means adding more power (CPU, RAM) to an existing machine, whereas horizontal scaling means adding more machines to your network, distributing the load across multiple nodes.
             </p>
 <!-- Footer Metadata Block -->
-<div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center">
+<div class="mt-auto w-full pt-6 border-t border-thin border-outline-variant flex justify-between items-center draggable" data-tid="container-6">
 <div class="flex flex-col">
 <span class="font-metadata-sm text-[10px] uppercase text-primary font-bold draggable" data-tid="prompt">FACT #005</span>
 <span class="font-metadata-sm text-[10px] uppercase text-secondary draggable" data-tid="handle">SYSTEM DESIGN</span>
 </div>
-<button class="active-press p-3 burgundy-bg text-white hover:opacity-90 transition-all duration-150">
+<button class="active-press p-3 burgundy-bg text-white hover:opacity-90 transition-all duration-150 draggable" data-tid="text-3">
 <span class="material-symbols-outlined text-[20px]">north_east</span>
 </button>
 </div>
 </div>
 <!-- Secondary Plane: Overlapping Bottom Shape -->
-<div class="absolute -bottom-4 -right-4 w-24 h-8 border-thick border-burgundy z-0"></div>
+<div class="absolute -bottom-4 -right-4 w-24 h-8 border-thick border-burgundy z-0 draggable" data-tid="container-7"></div>
 </article>
 <!-- Aesthetic Floating Elements -->
-<div class="absolute top-[10%] right-10 w-2 h-32 bg-primary"></div>
-<div class="absolute bottom-[15%] left-10 w-16 h-[2px] bg-burgundy-bg"></div>
+<div class="absolute top-[10%] right-10 w-2 h-32 bg-primary draggable" data-tid="container-8"></div>
+<div class="absolute bottom-[15%] left-10 w-16 h-[2px] bg-burgundy-bg draggable" data-tid="container-9"></div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
-<a class="flex flex-col items-center justify-center bg-primary text-white px-4 py-2 flex-1 active-press" href="#">
+<a class="flex flex-col items-center justify-center bg-primary text-white px-4 py-2 flex-1 active-press draggable" data-tid="text-4" href="#">
 <span class="material-symbols-outlined">analytics</span>
-<span class="font-metadata-sm text-[10px] uppercase mt-1">FACTS</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1 draggable" data-tid="text-5">FACTS</span>
 </a>
 <!-- ARCHIVE -->
-<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined">calendar_today</span>
-<span class="font-metadata-sm text-[10px] uppercase mt-1">ARCHIVE</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1 draggable" data-tid="text-7">ARCHIVE</span>
 </a>
 <!-- TOPICS -->
-<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined">grid_view</span>
-<span class="font-metadata-sm text-[10px] uppercase mt-1">TOPICS</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1 draggable" data-tid="text-9">TOPICS</span>
 </a>
 <!-- SAVED -->
-<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press" href="#">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-2 flex-1 hover:bg-surface-container-highest transition-colors active-press draggable" data-tid="text-10" href="#">
 <span class="material-symbols-outlined">bookmark</span>
-<span class="font-metadata-sm text-[10px] uppercase mt-1">SAVED</span>
+<span class="font-metadata-sm text-[10px] uppercase mt-1 draggable" data-tid="text-11">SAVED</span>
 </a>
 </nav>
 <script>
@@ -5416,24 +5416,24 @@ const TECH_FACTS_REGISTRY = [
 <h1 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter draggable" data-tid="prompt">&gt;SYS_SHELL_v1.0</h1>
 </div>
 <div class="flex items-center gap-4">
-<button class="text-primary hover:bg-primary hover:text-on-primary p-2 transition-colors active:border-2 border-primary">
+<button class="text-primary hover:bg-primary hover:text-on-primary p-2 transition-colors active:border-2 border-primary draggable" data-tid="text-1">
 <span class="material-symbols-outlined">settings_input_component</span>
 </button>
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="relative z-10 pt-20 pb-20 px-4 md:px-gutter max-w-container-max mx-auto min-h-screen flex items-center justify-center">
+<main class="relative z-10 pt-20 pb-20 px-4 md:px-gutter max-w-container-max mx-auto min-h-screen flex items-center justify-center draggable" data-tid="card-container">
 <!-- Central Card Container -->
-<div class="w-full max-w-4xl border border-primary bg-background/90 p-6 md:p-12 relative draggable" data-tid="card-container">
+<div class="w-full max-w-4xl border border-primary bg-background/90 p-6 md:p-12 relative draggable" data-tid="container-1">
 <!-- Corner Accents -->
-<div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
-<div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
-<div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-primary"></div>
-<div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
-<div class="flex flex-col gap-8">
+<div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-primary draggable" data-tid="container-2"></div>
+<div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-primary draggable" data-tid="container-3"></div>
+<div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-primary draggable" data-tid="container-4"></div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-primary draggable" data-tid="container-5"></div>
+<div class="flex flex-col gap-8 draggable" data-tid="container-6">
 <!-- Header Section -->
 <div>
-<div class="flex items-center gap-2 mb-2">
+<div class="flex items-center gap-2 mb-2 draggable" data-tid="container-7">
 <span class="text-primary font-bold text-headline-md">&gt;</span>
 <span class="text-primary font-label-sm text-label-sm uppercase tracking-widest opacity-80 draggable" data-tid="category">SYSTEM METRIC</span>
 </div>
@@ -5442,15 +5442,15 @@ const TECH_FACTS_REGISTRY = [
                     </h2>
 </div>
 <!-- Technical Visualization Section (Bento-ish Layout) -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 draggable" data-tid="container-8">
 <!-- Text Description -->
-<div class="md:col-span-7 flex flex-col gap-4">
+<div class="md:col-span-7 flex flex-col gap-4 draggable" data-tid="container-9">
 <p class="text-primary font-body-lg text-body-lg leading-relaxed draggable" data-tid="body">
                             Paxos and Raft algorithms ensure data consistency across distributed nodes by achieving majority agreement on system state. In the absence of a central authority, consensus protocols enable a collection of machines to work as a coherent group that can survive the failures of some of its members.
                         </p>
-<div class="bg-surface-container p-4 border-l-4 border-primary">
+<div class="bg-surface-container p-4 border-l-4 border-primary draggable" data-tid="container-10">
 <span class="text-primary font-code text-code block mb-2 draggable" data-tid="handle">ROOT@NODE_01:~$ tail -n 3 /var/log/consensus.log</span>
-<code class="text-on-surface-variant font-code text-code block">
+<code class="text-on-surface-variant font-code text-code block draggable" data-tid="text-2">
                                 [INFO] Quorum reached (3/5 nodes).<br/>
                                 [INFO] Log index 8422 committed.<br/>
                                 [INFO] State Machine Updated.
@@ -5459,7 +5459,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </div>
 <!-- Diagram Placeholder -->
-<div class="md:col-span-5 border border-primary flex items-center justify-center p-4 bg-surface-container-lowest">
+<div class="md:col-span-5 border border-primary flex items-center justify-center p-4 bg-surface-container-lowest draggable" data-tid="container-11">
 <!-- Simple ASCII/Line-art representation of nodes -->
 <div class="relative w-full aspect-square flex items-center justify-center">
 <svg class="w-full h-full stroke-primary fill-none" viewbox="0 0 100 100">
@@ -5476,18 +5476,18 @@ const TECH_FACTS_REGISTRY = [
 <circle class="animate-pulse" cx="50" cy="50" r="15" stroke-opacity="0.5" stroke-width="0.5"></circle>
 </svg>
 <div class="absolute inset-0 flex items-center justify-center">
-<span class="font-code text-[10px] text-primary uppercase text-center">Protocol<br/>Active</span>
+<span class="font-code text-[10px] text-primary uppercase text-center draggable" data-tid="text-3">Protocol<br/>Active</span>
 </div>
 </div>
 </div>
 </div>
 <!-- Action Buttons -->
-<div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-primary/30">
-<button class="px-6 py-3 border border-primary text-primary font-code text-body-md hover:bg-primary hover:text-on-primary transition-all active:border-2 uppercase tracking-tight flex items-center justify-center gap-2">
+<div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-primary/30 draggable" data-tid="container-12">
+<button class="px-6 py-3 border border-primary text-primary font-code text-body-md hover:bg-primary hover:text-on-primary transition-all active:border-2 uppercase tracking-tight flex items-center justify-center gap-2 draggable" data-tid="text-4">
 <span class="material-symbols-outlined text-[18px]">play_arrow</span>
                         EXECUTE_QUERY
                     </button>
-<button class="px-6 py-3 border border-primary text-primary font-code text-body-md hover:bg-primary hover:text-on-primary transition-all active:border-2 uppercase tracking-tight flex items-center justify-center gap-2">
+<button class="px-6 py-3 border border-primary text-primary font-code text-body-md hover:bg-primary hover:text-on-primary transition-all active:border-2 uppercase tracking-tight flex items-center justify-center gap-2 draggable" data-tid="text-5">
 <span class="material-symbols-outlined text-[18px]">history_edu</span>
                         VIEW_LOGS
                     </button>
@@ -5497,21 +5497,21 @@ const TECH_FACTS_REGISTRY = [
 </main>
 <!-- Bottom Navigation Bar (from Shared Components) -->
 <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-background border-t border-primary z-50 draggable" data-tid="bottom-bar">
-<a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95" href="#">
+<a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95 draggable" data-tid="text-6" href="#">
 <span class="material-symbols-outlined" data-icon="database">database</span>
-<span class="font-label-sm text-label-sm uppercase mt-1">Data</span>
+<span class="font-label-sm text-label-sm uppercase mt-1 draggable" data-tid="text-7">Data</span>
 </a>
-<a class="flex flex-col items-center justify-center bg-primary text-on-primary p-2 transition-transform active:scale-95" href="#">
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary p-2 transition-transform active:scale-95 draggable" data-tid="text-8" href="#">
 <span class="material-symbols-outlined" data-icon="code" style="font-variation-settings: 'FILL' 1;">code</span>
-<span class="font-label-sm text-label-sm uppercase mt-1">Logic</span>
+<span class="font-label-sm text-label-sm uppercase mt-1 draggable" data-tid="text-9">Logic</span>
 </a>
-<a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95" href="#">
+<a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95 draggable" data-tid="text-10" href="#">
 <span class="material-symbols-outlined" data-icon="memory">memory</span>
-<span class="font-label-sm text-label-sm uppercase mt-1">Nodes</span>
+<span class="font-label-sm text-label-sm uppercase mt-1 draggable" data-tid="text-11">Nodes</span>
 </a>
-<a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95" href="#">
+<a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95 draggable" data-tid="text-12" href="#">
 <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
-<span class="font-label-sm text-label-sm uppercase mt-1">Shell</span>
+<span class="font-label-sm text-label-sm uppercase mt-1 draggable" data-tid="text-13">Shell</span>
 </a>
 </nav>
 <!-- Background Atmospheric Script -->

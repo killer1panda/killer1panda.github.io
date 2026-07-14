@@ -260,6 +260,14 @@ class TechFactRenderer {
     const iframeDoc = this.iframe.contentDocument || this.iframe.contentWindow.document;
     if (!iframeDoc) return;
 
+    // Restore all dynamically edited text fields
+    if (appState.editedTexts) {
+      for (const [tid, val] of Object.entries(appState.editedTexts)) {
+        const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
+        if (el) el.innerText = val;
+      }
+    }
+
     const clubTitle = iframeDoc.querySelector('[data-tid="club-title"]');
     if (clubTitle) {
       clubTitle.innerText = appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES';
@@ -353,8 +361,15 @@ class TechFactRenderer {
       return el.getAttribute('data-tid');
     };
 
-    // Make elements editable
-    const editables = iframeDoc.querySelectorAll('.fact-category, .fact-title, .fact-body, .society-handle, .club-title, .interactive-prompt, [data-tid="title"], [data-tid="category"], [data-tid="body"], [data-tid="handle"], [data-tid="prompt"], [data-tid="club-title"]');
+    // Make all text elements editable
+    const editables = Array.from(iframeDoc.querySelectorAll('.fact-category, .fact-title, .fact-body, .society-handle, .club-title, .interactive-prompt, [data-tid]'))
+      .filter(el => {
+        const tid = el.getAttribute('data-tid') || '';
+        const isContainer = ['top-bar', 'bottom-bar', 'footer', 'card-container', 'logo', 'illustration'].includes(tid) || tid.startsWith('container-') || tid.startsWith('illustration-');
+        const isImg = el.tagName.toLowerCase() === 'img';
+        return !isContainer && !isImg;
+      });
+
     editables.forEach(el => {
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
@@ -362,6 +377,10 @@ class TechFactRenderer {
         const tid = getTid(el);
         let val = el.innerText.replace(/\u00a0/g, ' ');
 
+        if (!appState.editedTexts) appState.editedTexts = {};
+        appState.editedTexts[tid] = val;
+
+        // Legacy compatibility sync
         if (tid === 'category') appState.category = val;
         if (tid === 'title') appState.title = val;
         if (tid === 'body') appState.body = val;
