@@ -401,12 +401,20 @@ class TechFactRenderer {
       });
       el.addEventListener('mousedown', (e) => e.stopPropagation());
     });
+    this.selectedTids = this.selectedTids || new Set();
 
     const draggables = Array.from(iframeDoc.querySelectorAll('.draggable'));
 
     draggables.forEach(el => {
       const tid = getTid(el);
       el.setAttribute('tabindex', '0');
+
+      // Sync active state from selection
+      if (this.selectedTids.has(tid)) {
+        el.classList.add('active');
+      } else {
+        el.classList.remove('active');
+      }
 
       const style = window.getComputedStyle(el);
       if (style.position === 'static') {
@@ -433,6 +441,7 @@ class TechFactRenderer {
       let isDragging = false;
       let startX, startY;
       let originalTx = 0, originalTy = 0;
+      let dragInitialStates = [];
 
       el.addEventListener('mousedown', (e) => {
         e.stopPropagation(); // Prevent dragging parent container
@@ -445,9 +454,25 @@ class TechFactRenderer {
           window.selectElement(tid);
         }
 
-        // Highlight active element border
-        draggables.forEach(d => d.classList.remove('active'));
-        el.classList.add('active');
+        // Photoshop Selection Logic
+        if (e.shiftKey) {
+          if (this.selectedTids.has(tid)) {
+            this.selectedTids.delete(tid);
+            el.classList.remove('active');
+          } else {
+            this.selectedTids.add(tid);
+            el.classList.add('active');
+          }
+        } else {
+          // Normal click
+          if (!this.selectedTids.has(tid)) {
+            // Clicked a non-selected element: clear previous and select this
+            this.selectedTids.clear();
+            draggables.forEach(d => d.classList.remove('active'));
+            this.selectedTids.add(tid);
+            el.classList.add('active');
+          }
+        }
 
         // Compute scaling from parent wrapper
         const scaleWrapper = document.getElementById('scale-wrapper');
@@ -469,6 +494,24 @@ class TechFactRenderer {
         const existing = appState.transforms[tid] || { x: 0, y: 0, scale: 1 };
         originalTx = existing.x || 0;
         originalTy = existing.y || 0;
+
+        // Record initial drag states for all selected elements
+        dragInitialStates = [];
+        this.selectedTids.forEach(selTid => {
+          const selEl = iframeDoc.querySelector(`[data-tid="${selTid}"]`);
+          if (selEl) {
+            const trans = appState.transforms[selTid] || { x: 0, y: 0, scale: 1 };
+            dragInitialStates.push({
+              tid: selTid,
+              el: selEl,
+              originalTx: trans.x || 0,
+              originalTy: trans.y || 0,
+              scale: trans.scale !== undefined ? trans.scale : 1,
+              w: trans.w,
+              h: trans.h
+            });
+          }
+        });
 
         const onMouseMove = (ev) => {
           if (!isDragging) return;
@@ -501,7 +544,10 @@ class TechFactRenderer {
             const localCanvasCenterX = localCanvasWidth / 2;
             const localCanvasCenterY = localCanvasHeight / 2;
             
-            const otherElements = Array.from(canvas.querySelectorAll('.draggable')).filter(other => other !== el);
+            const otherElements = Array.from(canvas.querySelectorAll('.draggable')).filter(other => {
+              const otherTid = getTid(other);
+              return other !== el && !this.selectedTids.has(otherTid);
+            });
             
             let snappedX = false;
             let guideLinesX = [];
@@ -601,10 +647,10 @@ class TechFactRenderer {
                   snappedY = true;
                   break;
                 }
-                const diffCenter = localElCenterY - localOtherCenterY;
-                if (Math.abs(diffCenter) < localThreshold) {
-                  newTy -= diffCenter;
-                  localElTop -= diffCenter;
+                const diffCenterY = localElCenterY - localOtherCenterY;
+                if (Math.abs(diffCenterY) < localThreshold) {
+                  newTy -= diffCenterY;
+                  localElTop -= diffCenterY;
                   localElCenterY = localOtherCenterY;
                   guideLinesY.push({ y: localOtherCenterY });
                   snappedY = true;
@@ -651,8 +697,18 @@ class TechFactRenderer {
             });
           }
 
-          appState.transforms[tid] = { x: newTx, y: newTy, scale: currentScale, w: existing.w, h: existing.h };
-          el.style.transform = `translate(${newTx}px, ${newTy}px) scale(${currentScale})`;
+          // Calculate locked translation offsets (including snaps)
+          const snappedDx = newTx - originalTx;
+          const snappedDy = newTy - originalTy;
+
+          // Drag all selected elements in sync
+          dragInitialStates.forEach(state => {
+            let itemTx = state.originalTx + snappedDx;
+            let itemTy = state.originalTy + snappedDy;
+
+            appState.transforms[state.tid] = { x: itemTx, y: itemTy, scale: state.scale, w: state.w, h: state.h };
+            state.el.style.transform = `translate(${itemTx}px, ${itemTy}px) scale(${state.scale})`;
+          });
         };
 
         const onMouseUp = () => {
@@ -789,6 +845,120 @@ class TechFactRenderer {
           document.addEventListener('mouseup', onResizeUp);
         });
       });
+    });
+
+    // --- Photoshop Selection Marquee ---
+    let marqueeDragging = false;
+    let mStartX, mStartY;
+    let marqueeDiv = null;
+
+    canvas.addEventListener('mousedown', (e) => {
+      // Only trigger marquee selection if the click target is the canvas itself or background elements (not on a draggable, editable, or resize handle)
+      const isDragElement = e.target.closest('.draggable') || e.target.closest('[contenteditable="true"]') || e.target.closest('.resize-handle');
+      if (isDragElement) return;
+
+      // Clear selection if Shift is not held
+      if (!e.shiftKey) {
+        this.selectedTids.clear();
+        draggables.forEach(d => d.classList.remove('active'));
+      }
+
+      // Compute scaling from parent wrapper
+      const scaleWrapper = document.getElementById('scale-wrapper');
+      let scale = 1;
+      if (scaleWrapper) {
+        const scaleStr = scaleWrapper.style.transform;
+        const scaleMatch = scaleStr.match(/scale\(([^)]+)\)/);
+        if (scaleMatch) {
+          scale = parseFloat(scaleMatch[1]);
+        }
+      }
+
+      marqueeDragging = true;
+      const canvasRect = canvas.getBoundingClientRect();
+      mStartX = (e.clientX - canvasRect.left) / scale;
+      mStartY = (e.clientY - canvasRect.top) / scale;
+
+      marqueeDiv = iframeDoc.createElement('div');
+      marqueeDiv.className = 'selection-marquee';
+      marqueeDiv.style.position = 'absolute';
+      marqueeDiv.style.border = '1px dashed #3b82f6';
+      marqueeDiv.style.background = 'rgba(59, 130, 246, 0.1)';
+      marqueeDiv.style.pointerEvents = 'none';
+      marqueeDiv.style.zIndex = '10000';
+      marqueeDiv.style.left = `${mStartX}px`;
+      marqueeDiv.style.top = `${mStartY}px`;
+      marqueeDiv.style.width = '0px';
+      marqueeDiv.style.height = '0px';
+      canvas.appendChild(marqueeDiv);
+
+      const getCanvasCoords = (element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          left: (rect.left - canvasRect.left) / scale,
+          top: (rect.top - canvasRect.top) / scale,
+          right: (rect.right - canvasRect.left) / scale,
+          bottom: (rect.bottom - canvasRect.top) / scale
+        };
+      };
+
+      const onMarqueeMove = (ev) => {
+        if (!marqueeDragging || !marqueeDiv) return;
+        ev.preventDefault();
+
+        const currentX = (ev.clientX - canvasRect.left) / scale;
+        const currentY = (ev.clientY - canvasRect.top) / scale;
+
+        const x = Math.min(mStartX, currentX);
+        const y = Math.min(mStartY, currentY);
+        const w = Math.abs(mStartX - currentX);
+        const h = Math.abs(mStartY - currentY);
+
+        marqueeDiv.style.left = `${x}px`;
+        marqueeDiv.style.top = `${y}px`;
+        marqueeDiv.style.width = `${w}px`;
+        marqueeDiv.style.height = `${h}px`;
+
+        const mRight = x + w;
+        const mBottom = y + h;
+
+        draggables.forEach(d => {
+          const dTid = getTid(d);
+          if (!dTid) return;
+          const dRect = getCanvasCoords(d);
+          const overlaps = !(dRect.left > mRight || 
+                             dRect.right < x || 
+                             dRect.top > mBottom || 
+                             dRect.bottom < y);
+
+          if (overlaps) {
+            this.selectedTids.add(dTid);
+            d.classList.add('active');
+          } else {
+            if (!e.shiftKey) {
+              this.selectedTids.delete(dTid);
+              d.classList.remove('active');
+            }
+          }
+        });
+      };
+
+      const onMarqueeUp = () => {
+        marqueeDragging = false;
+        if (marqueeDiv) {
+          marqueeDiv.remove();
+          marqueeDiv = null;
+        }
+        iframeDoc.removeEventListener('mousemove', onMarqueeMove);
+        iframeDoc.removeEventListener('mouseup', onMarqueeUp);
+        document.removeEventListener('mousemove', onMarqueeMove);
+        document.removeEventListener('mouseup', onMarqueeUp);
+      };
+
+      iframeDoc.addEventListener('mousemove', onMarqueeMove);
+      iframeDoc.addEventListener('mouseup', onMarqueeUp);
+      document.addEventListener('mousemove', onMarqueeMove);
+      document.addEventListener('mouseup', onMarqueeUp);
     });
 
     // Keyboard navigation for active draggable element
