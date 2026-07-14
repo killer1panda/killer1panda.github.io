@@ -7,122 +7,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.8/dist/ffmpeg.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#09090b',
+            panel: '#18181b',
+            border: '#52525b',
+            text: '#fafafa',
+            'text-muted': '#a1a1aa',
+            accent: '#3b82f6',
+            'accent-hover': '#2563eb',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar for style grid */
+    .style-grid::-webkit-scrollbar { width: 6px; }
+    .style-grid::-webkit-scrollbar-track { background: #18181b; }
+    .style-grid::-webkit-scrollbar-thumb { background: #52525b; border-radius: 3px; }
+    .style-grid::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+    /* Active style-thumb */
+    .style-thumb.active { border-color: #3b82f6 !important; color: #3b82f6 !important; }
+  </style>
   <script src="registry.js"></script>
   <script src="renderer.js"></script>
-  <style>
-    :root {
-      --bg: #09090b; --panel: #18181b; --border: #27272a;
-      --text: #fafafa; --text-muted: #a1a1aa;
-      --accent: #3b82f6; --accent-hover: #2563eb;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg); color: var(--text);
-      display: flex; height: 100vh; overflow: hidden;
-    }
-    
-    /* ─── SIDEBAR ─── */
-    .sidebar {
-      width: 360px; background: var(--panel); border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .panel-section { padding: 20px; border-bottom: 1px solid var(--border); }
-    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 12px; }
-    
-    .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 11px; margin-bottom: 6px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    input[type="text"], input[type="number"], textarea, select, input[type="color"] {
-      width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 6px; color: var(--text); font-family: inherit; font-size: 14px;
-    }
-    input[type="color"] {
-      height: 40px; padding: 2px; cursor: pointer;
-    }
-    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
-    
-    .btn {
-      width: 100%; padding: 10px; background: var(--border); color: var(--text);
-      border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-bottom: 8px;
-      font-size: 13px;
-    }
-    .btn:hover { background: #3f3f46; }
-    .btn-primary { background: var(--accent); }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-danger { background: #e11d48; }
-    
-    .flex-row { display: flex; gap: 8px; }
-    .flex-row > div { flex: 1; }
-    .flex-row .btn { flex: 1; }
-    
-    /* ─── GALLERY ─── */
-    .style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 200px; overflow-y: auto; }
-    .style-thumb {
-      background: var(--bg); border: 1px solid var(--border); padding: 10px;
-      border-radius: 6px; cursor: pointer; text-align: center; font-size: 11px;
-      font-weight: 600; color: inherit; font-family: inherit; width: 100%;
-    }
-    .style-thumb:hover, .style-thumb.active { border-color: var(--accent); color: var(--accent); }
-    
-    /* ─── WORKSPACE ─── */
-    .workspace {
-      flex: 1; display: flex; flex-direction: column; position: relative;
-    }
-    .topbar {
-      height: 60px; border-bottom: 1px solid var(--border); background: var(--panel);
-      display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
-    }
-    .canvas-container {
-      flex: 1; display: flex; justify-content: center; align-items: center;
-      overflow: hidden; padding: 40px; background: #000;
-      position: relative;
-    }
-    
-    #scale-wrapper {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform-origin: center center;
-      transition: transform 0.2s;
-    }
-    #renderer-target, #renderer-target iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    
-    #overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999;
-      display: none; justify-content: center; align-items: center; flex-direction: column; color: white;
-    }
-    @media (max-width: 768px) {
-      body { flex-direction: column; overflow-y: auto; height: auto; }
-      .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
-      .canvas-container { min-height: 550px; padding: 20px; }
-      #scale-wrapper { position: relative; left: 0; top: 0; transform: none !important; margin: 0 auto; }
-    }
-  </style>
 </head>
-<body>
+<body class="bg-bg text-text font-sans flex flex-col md:flex-row h-screen overflow-hidden">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="panel-section">
-      <h2>1. Fact Styles</h2>
-      <div class="style-grid" id="style-grid"></div>
+  <aside class="sidebar w-full md:w-[360px] bg-panel border-b md:border-b-0 md:border-r border-border flex flex-col overflow-y-auto shrink-0 order-2 md:order-none">
+    
+    <div class="panel-section p-5 border-b border-border">
+      <h2 class="text-[13px] uppercase tracking-wider text-text-muted mb-3 font-semibold">1. Fact Styles</h2>
+      <div class="style-grid grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto pr-1" id="style-grid"></div>
     </div>
     
-    <div class="panel-section">
-      <h2>2. Fact Content</h2>
-      <div class="form-group flex-row">
-        <div>
-          <label for="input-category">Category</label>
-          <input type="text" id="input-category" value="CYBERSECURITY">
+    <div class="panel-section p-5 border-b border-border">
+      <h2 class="text-[13px] uppercase tracking-wider text-text-muted mb-3 font-semibold">2. Fact Content</h2>
+      <div class="mb-4 flex gap-2">
+        <div class="flex-1">
+          <label for="input-category" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Category</label>
+          <input type="text" id="input-category" value="CYBERSECURITY" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
         </div>
-        <div>
-          <label for="input-icon">Icon Theme</label>
-          <select id="input-icon">
+        <div class="flex-1">
+          <label for="input-icon" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Icon Theme</label>
+          <select id="input-icon" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
             <option value="ai">Artificial Intelligence</option>
             <option value="cybersecurity" selected>Cybersecurity / Shield</option>
             <option value="code">Code / Development</option>
@@ -136,31 +70,31 @@
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label for="input-title">Fact Title</label>
-        <input type="text" id="input-title" value="Incognito is not invisible">
+      <div class="mb-4">
+        <label for="input-title" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Fact Title</label>
+        <input type="text" id="input-title" value="Incognito is not invisible" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
       </div>
-      <div class="form-group">
-        <label for="input-body">Fact Description</label>
-        <textarea id="input-body" rows="3">Your ISP, school, or employer can still see your active web traffic. Incognito only prevents your browser from saving history locally.</textarea>
+      <div class="mb-4">
+        <label for="input-body" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Fact Description</label>
+        <textarea id="input-body" rows="3" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">Your ISP, school, or employer can still see your active web traffic. Incognito only prevents your browser from saving history locally.</textarea>
       </div>
-      <div class="form-group">
-        <label for="input-prompt">Footer Prompt</label>
-        <input type="text" id="input-prompt" value="Did you know?">
+      <div class="mb-4">
+        <label for="input-prompt" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Footer Prompt</label>
+        <input type="text" id="input-prompt" value="Did you know?" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
       </div>
     </div>
 
     <!-- DYNAMIC TEXT PROPERTIES CUSTOMIZER -->
-    <div class="panel-section" id="section-text-properties" style="display: none; background: rgba(59,130,246,0.03);">
-      <h2>3. Text Properties (<span id="active-element-name" style="color:var(--accent);">None</span>)</h2>
-      <div class="form-group flex-row">
-        <div>
-          <label for="text-size">Size (px)</label>
-          <input type="number" id="text-size" value="16" min="8" max="150" step="1">
+    <div class="panel-section p-5 border-b border-border bg-blue-500/5" id="section-text-properties" style="display: none;">
+      <h2 class="text-[13px] uppercase tracking-wider text-text-muted mb-3 font-semibold">3. Text Properties (<span id="active-element-name" class="text-accent">None</span>)</h2>
+      <div class="mb-4 flex gap-2">
+        <div class="flex-1">
+          <label for="text-size" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Size (px)</label>
+          <input type="number" id="text-size" value="16" min="8" max="150" step="1" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
         </div>
-        <div>
-          <label for="text-weight">Weight</label>
-          <select id="text-weight">
+        <div class="flex-1">
+          <label for="text-weight" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Weight</label>
+          <select id="text-weight" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
             <option value="300">Light</option>
             <option value="400">Regular</option>
             <option value="500">Medium</option>
@@ -171,14 +105,19 @@
           </select>
         </div>
       </div>
-      <div class="form-group flex-row">
-        <div>
-          <label for="text-color">Text Color</label>
-          <input type="color" id="text-color" value="#ffffff">
+      <div class="mb-4 flex gap-2">
+        <div class="flex-1">
+          <label for="text-color" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Text Color</label>
+          <div class="flex items-center gap-2.5 bg-[#0c0c0e] border border-border p-1.5 px-2.5 rounded-md mt-1">
+            <div class="w-5 h-5 rounded-sm border border-neutral-300 relative overflow-hidden bg-white" id="text-color-preview">
+              <input type="color" id="text-color" value="#ffffff" class="absolute -top-1 -left-1 w-[30px] h-[30px] border-none cursor-pointer bg-transparent opacity-0">
+            </div>
+            <span id="text-color-value" class="font-mono text-xs text-text-muted">#FFFFFF</span>
+          </div>
         </div>
-        <div>
-          <label for="text-align">Alignment</label>
-          <select id="text-align">
+        <div class="flex-1">
+          <label for="text-align" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Alignment</label>
+          <select id="text-align" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
             <option value="left">Left</option>
             <option value="center">Center</option>
             <option value="right">Right</option>
@@ -186,86 +125,95 @@
           </select>
         </div>
       </div>
-      <div class="form-group flex-row">
-        <div>
-          <label for="text-spacing">Letter Spacing</label>
-          <input type="number" id="text-spacing" value="0" min="-5" max="25" step="0.5">
+      <div class="mb-4 flex gap-2">
+        <div class="flex-1">
+          <label for="text-spacing" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Letter Spacing</label>
+          <input type="number" id="text-spacing" value="0" min="-5" max="25" step="0.5" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
         </div>
-        <div>
-          <label for="text-height">Line Height</label>
-          <input type="number" id="text-height" value="1.2" min="0.8" max="3" step="0.1">
+        <div class="flex-1">
+          <label for="text-height" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Line Height</label>
+          <input type="number" id="text-height" value="1.2" min="0.8" max="3" step="0.1" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
         </div>
       </div>
     </div>
 
-    <div class="panel-section">
-      <h2>4. Branding & Customization</h2>
-      <div class="form-group flex-row">
-        <div>
-          <label for="input-handle">Society Handle</label>
-          <input type="text" id="input-handle" value="@ieee_cis_upes">
+    <div class="panel-section p-5 border-b border-border">
+      <h2 class="text-[13px] uppercase tracking-wider text-text-muted mb-3 font-semibold">4. Branding & Customization</h2>
+      <div class="mb-4 flex gap-2">
+        <div class="flex-1">
+          <label for="input-handle" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Society Handle</label>
+          <input type="text" id="input-handle" value="@ieee_cis_upes" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
         </div>
-        <div>
-          <label for="input-chapter">Chapter Layout</label>
-          <select id="input-chapter">
+        <div class="flex-1">
+          <label for="input-chapter" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Chapter Layout</label>
+          <select id="input-chapter" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
             <option value="cis">IEEE CIS UPES</option>
             <option value="sps">IEEE SPS UPES</option>
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label for="input-color">Theme Accent Color</label>
-        <input type="color" id="input-color" value="#39ff14">
+      <div class="mb-4">
+        <label for="input-color" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Theme Accent Color</label>
+        <div class="flex items-center gap-2.5 bg-[#0c0c0e] border border-border p-1.5 px-2.5 rounded-md mt-1">
+          <div class="w-5 h-5 rounded-sm border border-neutral-300 relative overflow-hidden bg-[#39ff14]" id="input-color-preview">
+            <input type="color" id="input-color" value="#39ff14" class="absolute -top-1 -left-1 w-[30px] h-[30px] border-none cursor-pointer bg-transparent opacity-0">
+          </div>
+          <span id="input-color-value" class="font-mono text-xs text-text-muted">#39FF14</span>
+        </div>
       </div>
-      <button class="btn" id="btn-upload">📷 Upload Custom Logo</button>
-      <input type="file" id="file-upload" accept="image/*" style="display:none;">
+      <button class="w-full p-2.5 bg-border text-text rounded-md cursor-pointer font-semibold mb-2 text-[13px] hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="btn-upload">📷 Upload Custom Logo</button>
+      <input type="file" id="file-upload" accept="image/*" class="hidden">
+      <button class="w-full p-2.5 bg-border text-text rounded-md cursor-pointer font-semibold mb-2 text-[13px] hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="btn-upload-illustration">📷 Upload Custom Illustration</button>
+      <input type="file" id="file-upload-illustration" accept="image/*" class="hidden">
     </div>
     
-    <div class="panel-section">
-      <h2>5. Formats & Export</h2>
-      <div class="form-group">
-        <label for="input-format">Format Ratio</label>
-        <select id="input-format">
+    <div class="panel-section p-5 border-b border-border">
+      <h2 class="text-[13px] uppercase tracking-wider text-text-muted mb-3 font-semibold">5. Formats & Export</h2>
+      <div class="mb-4">
+        <label for="input-format" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Format Ratio</label>
+        <select id="input-format" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
           <option value="9:16">Instagram Story (9:16)</option>
           <option value="1:1">Instagram Post (1:1)</option>
           <option value="4:5">Instagram Portrait (4:5)</option>
           <option value="16:9">Landscape Banner (16:9)</option>
         </select>
       </div>
-      <button class="btn btn-danger" id="btn-reset">↺ Reset Transform & Style States</button>
-      <br><br>
-      <button class="btn btn-primary" id="btn-dl-png">Export PNG</button>
-      <button class="btn btn-primary" id="btn-dl-jpg">Export JPG</button>
-      
-      <div class="form-group" style="margin-top:10px;">
-        <label for="input-duration">Animated Video Duration (sec)</label>
-        <input type="number" id="input-duration" value="5" min="1" max="30">
+      <button class="w-full p-2.5 bg-rose-600 hover:bg-rose-700 text-text rounded-md cursor-pointer font-semibold mb-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="btn-reset">↺ Reset Transform & Style States</button>
+      <div class="mt-4 flex gap-2">
+        <button class="flex-1 p-2.5 bg-accent hover:bg-accent-hover text-text rounded-md cursor-pointer font-semibold text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="btn-dl-png">Export PNG</button>
+        <button class="flex-1 p-2.5 bg-accent hover:bg-accent-hover text-text rounded-md cursor-pointer font-semibold text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="btn-dl-jpg">Export JPG</button>
       </div>
-      <button class="btn btn-primary" style="background:#8b5cf6;" id="btn-dl-mp4">Export MP4 Video</button>
+      
+      <div class="mb-4 mt-4">
+        <label for="input-duration" class="block text-[11px] mb-1.5 text-text-muted uppercase tracking-wider font-semibold">Animated Video Duration (sec)</label>
+        <input type="number" id="input-duration" value="5" min="1" max="30" class="w-full p-2.5 bg-bg border border-border rounded-md text-text text-sm focus:outline-none focus:border-accent transition-colors">
+      </div>
+      <button class="w-full p-2.5 bg-violet-600 hover:bg-violet-700 text-text rounded-md cursor-pointer font-semibold mb-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="btn-dl-mp4">Export MP4 Video</button>
     </div>
   </aside>
 
   <!-- WORKSPACE -->
-  <main class="workspace">
-    <div class="topbar">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <a href="../index.html" style="color: var(--text-muted); text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 5px; background: var(--border); padding: 5px 10px; border-radius: 4px; font-weight: 500;">
+  <main class="workspace flex-1 flex flex-col relative order-1 md:order-none">
+    <div class="topbar h-[60px] border-b border-border bg-panel flex justify-between items-center px-5">
+      <div class="flex items-center gap-3.5">
+        <a href="../index.html" class="text-text-muted no-underline text-xs inline-flex items-center gap-1.5 bg-border hover:bg-zinc-700 px-2.5 py-1.5 rounded font-medium transition-colors">
           ← Dashboard
         </a>
-        <div style="font-weight: 600;">Tech Facts Creator</div>
+        <div class="font-semibold">Tech Facts Creator</div>
       </div>
-      <div style="color: var(--text-muted); font-size: 12px;">Automated Canvas alignment lines active</div>
+      <div class="text-text-muted text-xs">Automated Canvas alignment lines active</div>
     </div>
-    <div class="canvas-container" id="canvas-container">
-      <div id="scale-wrapper">
-        <div id="renderer-target"></div>
+    <div class="canvas-container flex-1 flex justify-center items-center overflow-hidden p-10 bg-black relative min-h-[600px] md:min-h-0" id="canvas-container">
+      <div id="scale-wrapper" class="absolute left-1/2 top-1/2 origin-center transition-transform duration-200">
+        <div id="renderer-target" class="w-full h-full block"></div>
       </div>
     </div>
   </main>
 
-  <div id="overlay">
-    <h2 id="overlay-text">Generating Video...</h2>
-    <p style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">Please wait, rendering frames in client browser sandbox.</p>
+  <!-- OVERLAY -->
+  <div id="overlay" class="fixed inset-0 bg-black/80 z-[9999] hidden flex-col justify-center items-center text-white">
+    <h2 id="overlay-text" class="text-xl font-bold uppercase tracking-wider">Generating Video...</h2>
+    <p class="mt-2 text-[13px] text-text-muted">Please wait, rendering frames in client browser sandbox.</p>
   </div>
 
   <script>
@@ -304,9 +252,14 @@
       el.className = 'style-thumb' + (s.id === appState.style ? ' active' : '');
       el.type = 'button';
       el.innerText = s.name;
+      el.setAttribute('aria-pressed', s.id === appState.style ? 'true' : 'false');
       el.onclick = () => {
-        document.querySelectorAll('.style-thumb').forEach(e => e.classList.remove('active'));
+        document.querySelectorAll('.style-thumb').forEach(e => {
+          e.classList.remove('active');
+          e.setAttribute('aria-pressed', 'false');
+        });
         el.classList.add('active');
+        el.setAttribute('aria-pressed', 'true');
         appState.style = s.id;
         
         // Auto-assign default theme accent color
@@ -344,7 +297,7 @@
         };
         appState.accentColor = themeAccents[s.id] || "#39ff14";
         document.getElementById('input-color').value = appState.accentColor;
-        
+        updateColorPreviews();
         renderApp();
       };
       grid.appendChild(el);
@@ -369,7 +322,11 @@
     document.getElementById('input-icon').onchange = (e) => { appState.iconKey = e.target.value; updateData(); };
     document.getElementById('input-handle').oninput = (e) => { appState.handle = e.target.value; updateData(); };
     document.getElementById('input-chapter').onchange = (e) => { appState.chapter = e.target.value; updateData(); };
-    document.getElementById('input-color').onchange = (e) => { appState.accentColor = e.target.value; renderApp(); };
+    document.getElementById('input-color').onchange = (e) => {
+      appState.accentColor = e.target.value;
+      updateColorPreviews();
+      renderApp();
+    };
     document.getElementById('input-format').onchange = (e) => { appState.format = e.target.value; renderApp(); };
 
     // Logo upload
@@ -385,10 +342,24 @@
       reader.readAsDataURL(file);
     };
 
+    // Illustration upload
+    document.getElementById('btn-upload-illustration').onclick = () => document.getElementById('file-upload-illustration').click();
+    document.getElementById('file-upload-illustration').onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        appState.illustrationDataUrl = ev.target.result;
+        updateData();
+      };
+      reader.readAsDataURL(file);
+    };
+
     // Reset Layout and styles
     document.getElementById('btn-reset').onclick = () => {
       appState.transforms = {};
       appState.textStyles = {};
+      appState.illustrationDataUrl = null;
       document.getElementById('section-text-properties').style.display = 'none';
       renderApp();
     };
@@ -404,7 +375,7 @@
     // Dynamic Text Properties listeners
     document.getElementById('text-size').oninput = updateActiveElementStyle;
     document.getElementById('text-weight').onchange = updateActiveElementStyle;
-    document.getElementById('text-color').oninput = updateActiveElementStyle;
+    document.getElementById('text-color').oninput = () => { updateActiveElementStyle(); updateColorPreviews(); };
     document.getElementById('text-align').onchange = updateActiveElementStyle;
     document.getElementById('text-spacing').oninput = updateActiveElementStyle;
     document.getElementById('text-height').oninput = updateActiveElementStyle;
@@ -461,6 +432,7 @@
         document.getElementById('text-align').value = textAlign;
         document.getElementById('text-spacing').value = letterSpacing;
         document.getElementById('text-height').value = lineHeight;
+        updateColorPreviews();
       }
     };
 
@@ -499,6 +471,24 @@
       saveState();
     }
 
+    function updateColorPreviews() {
+      const inputColor = document.getElementById('input-color');
+      const inputColorVal = document.getElementById('input-color-value');
+      const inputColorPreview = document.getElementById('input-color-preview');
+      if (inputColor && inputColorVal && inputColorPreview) {
+        inputColorVal.innerText = inputColor.value.toUpperCase();
+        inputColorPreview.style.backgroundColor = inputColor.value;
+      }
+      
+      const textColor = document.getElementById('text-color');
+      const textColorVal = document.getElementById('text-color-value');
+      const textColorPreview = document.getElementById('text-color-preview');
+      if (textColor && textColorVal && textColorPreview) {
+        textColorVal.innerText = textColor.value.toUpperCase();
+        textColorPreview.style.backgroundColor = textColor.value;
+      }
+    }
+
     // Core Scaling and Rendering
     async function renderApp() {
       await renderer.loadTemplate(appState.style, appState);
@@ -529,6 +519,7 @@
     }
 
     window.addEventListener('resize', applyWorkspaceScaling);
+    updateColorPreviews();
     renderApp();
   </script>
 </body>

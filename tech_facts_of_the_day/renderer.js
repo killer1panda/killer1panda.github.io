@@ -27,6 +27,121 @@ class TechFactRenderer {
     const logoB64 = appState.logoDataUrl || '';
     const selectedIconSvg = DEFAULT_ICONS[appState.iconKey] || DEFAULT_ICONS['ai'];
 
+    if (template.html_template) {
+      // Replace safe placeholders in the template with actual values
+      let renderedHtml = template.html_template
+        .replace(/\{\{TITLE\}\}/g, appState.title)
+        .replace(/\{\{CATEGORY\}\}/g, appState.category)
+        .replace(/\{\{BODY\}\}/g, appState.body)
+        .replace(/\{\{HANDLE\}\}/g, appState.handle)
+        .replace(/\{\{PROMPT\}\}/g, appState.prompt || 'Did you know?')
+        .replace(/\{\{CLUB_TITLE\}\}/g, appState.chapter === 'cis' ? 'IEEE CIS UPES' : 'IEEE SPS UPES')
+        .replace(/\{\{LOGO_SRC\}\}/g, logoB64 || '')
+        .replace(/\{\{ICON_SVG\}\}/g, '');  // Icons handled separately via data-tid
+
+      const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  ${template.fonts_url ? `<link href="${template.fonts_url}" rel="stylesheet">` : ''}
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"><\/script>
+  ${template.tailwind_config ? `<script>tailwind.config = ${template.tailwind_config};<\/script>` : ''}
+  <style>
+    ${template.styles || ''}
+    
+    /* Canva-style editing outlines and handles */
+    [contenteditable="true"] {
+      outline: 2px dashed rgba(255, 255, 255, 0.15);
+      cursor: grab;
+      transition: outline 0.2s;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+    }
+    [contenteditable="true"]:focus {
+      outline: 2px solid #3b82f6 !important;
+      cursor: text;
+    }
+    
+    .draggable {
+      cursor: grab;
+      position: relative;
+    }
+    .draggable:active {
+      cursor: grabbing;
+    }
+    .draggable:focus {
+      outline: 2px dashed #3b82f6 !important;
+      outline-offset: 4px;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: scroll !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+      }
+      .particle, .scanline {
+        display: none !important;
+      }
+    }
+    
+    .resize-handle {
+      position: absolute !important;
+      width: 10px !important;
+      height: 10px !important;
+      background: #3b82f6 !important;
+      border: 2px solid #ffffff !important;
+      border-radius: 50% !important;
+      z-index: 10000 !important;
+      display: none !important;
+    }
+    .resize-handle-n, .resize-handle-s {
+      width: 20px !important;
+      height: 8px !important;
+      border-radius: 4px !important;
+    }
+    .resize-handle-e, .resize-handle-w {
+      width: 8px !important;
+      height: 20px !important;
+      border-radius: 4px !important;
+    }
+    .resize-handle-nw { top: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-ne { top: -5px !important; right: -5px !important; cursor: nesw-resize !important; }
+    .resize-handle-se { bottom: -5px !important; right: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-sw { bottom: -5px !important; left: -5px !important; cursor: nwse-resize !important; }
+    .resize-handle-n { top: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
+    .resize-handle-s { bottom: -4px !important; left: 50% !important; transform: translateX(-50%) !important; cursor: ns-resize !important; }
+    .resize-handle-e { top: 50% !important; right: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
+    .resize-handle-w { top: 50% !important; left: -4px !important; transform: translateY(-50%) !important; cursor: ew-resize !important; }
+    
+    .draggable:hover .resize-handle, .draggable.active .resize-handle {
+      display: block !important;
+    }
+  </style>
+</head>
+<body class="overflow-hidden select-none bg-transparent flex justify-center items-center w-full h-full">
+  ${renderedHtml}
+</body>
+</html>
+      `;
+      
+      await new Promise(resolve => {
+        this.iframe.onload = () => resolve();
+        this.iframe.srcdoc = htmlContent;
+      });
+      
+      this.setupDraggables(appState);
+      return;
+    }
+
     const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
@@ -136,6 +251,25 @@ class TechFactRenderer {
     }
     .draggable:active {
       cursor: grabbing;
+    }
+    .draggable:focus {
+      outline: 2px dashed #3b82f6 !important;
+      outline-offset: 4px;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: scroll !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+      }
+      .particle, .scanline {
+        display: none !important;
+      }
     }
     
     .resize-handle {
@@ -262,9 +396,19 @@ class TechFactRenderer {
       }
     }
 
-    const iconWrapper = iframeDoc.querySelector('.fact-icon-wrapper');
-    if (iconWrapper && DEFAULT_ICONS[appState.iconKey]) {
-      iconWrapper.innerHTML = DEFAULT_ICONS[appState.iconKey];
+    const illustration = iframeDoc.querySelector('[data-tid="illustration"]');
+    if (illustration) {
+      if (!illustration.hasAttribute('data-orig-src')) {
+        illustration.setAttribute('data-orig-src', illustration.src);
+      }
+      illustration.src = appState.illustrationDataUrl || illustration.getAttribute('data-orig-src') || '';
+    }
+
+    const iconWrapper = iframeDoc.querySelector('.fact-icon-wrapper') || iframeDoc.querySelector('[data-tid="icon"]');
+    if (iconWrapper) {
+      if (DEFAULT_ICONS[appState.iconKey]) {
+        iconWrapper.innerHTML = DEFAULT_ICONS[appState.iconKey];
+      }
     }
   }
 
@@ -344,14 +488,15 @@ class TechFactRenderer {
 
     draggables.forEach(el => {
       const tid = getTid(el);
+      el.setAttribute('tabindex', '0');
 
       const style = window.getComputedStyle(el);
       if (style.position === 'static') {
         el.style.position = 'relative';
       }
 
-      // Add 8-way resize handles to the icon and logo containers, single handle to text
-      if (tid === 'icon' || tid === 'logo') {
+      // Add 8-way resize handles to the icon, logo, and illustration containers, single handle to text
+      if (tid === 'icon' || tid === 'logo' || tid === 'illustration') {
         const directions = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
         directions.forEach(dir => {
           const h = iframeDoc.createElement('div');
@@ -721,12 +866,71 @@ class TechFactRenderer {
       });
     });
 
+    // Keyboard navigation for active draggable element
+    if (window._handleDraggableKeyDown) {
+      iframeDoc.removeEventListener('keydown', window._handleDraggableKeyDown);
+    }
+    window._handleDraggableKeyDown = (e) => {
+      const activeEl = iframeDoc.querySelector('.draggable.active') || iframeDoc.activeElement;
+      if (!activeEl || !activeEl.classList.contains('draggable')) return;
+      
+      // If we are actively typing inside contenteditable, don't move the element with arrows
+      if (iframeDoc.activeElement === activeEl && activeEl.getAttribute('contenteditable') === 'true') {
+        return;
+      }
+      
+      const step = e.shiftKey ? 10 : 2;
+      let moved = false;
+      const tid = activeEl.getAttribute('data-tid');
+      if (!tid) return;
+      
+      if (!appState.transforms) appState.transforms = {};
+      if (!appState.transforms[tid]) appState.transforms[tid] = { x: 0, y: 0, scale: 1 };
+      const trans = appState.transforms[tid];
+      
+      if (e.key === 'ArrowUp') {
+        trans.y -= step;
+        moved = true;
+      } else if (e.key === 'ArrowDown') {
+        trans.y += step;
+        moved = true;
+      } else if (e.key === 'ArrowLeft') {
+        trans.x -= step;
+        moved = true;
+      } else if (e.key === 'ArrowRight') {
+        trans.x += step;
+        moved = true;
+      }
+      
+      if (moved) {
+        e.preventDefault();
+        const scaleVal = trans.scale !== undefined ? trans.scale : 1;
+        activeEl.style.transform = `translate(${trans.x}px, ${trans.y}px) scale(${scaleVal})`;
+        
+        // Sync custom text properties panel position labels if open
+        if (typeof window.saveState === 'function') window.saveState();
+      }
+    };
+    iframeDoc.addEventListener('keydown', window._handleDraggableKeyDown);
+
+    // Focus listener to show active border outline when tabbed
+    draggables.forEach(d => {
+      d.addEventListener('focus', () => {
+        draggables.forEach(item => item.classList.remove('active'));
+        d.classList.add('active');
+        if (typeof window.selectElement === 'function') {
+          const tid = d.getAttribute('data-tid');
+          window.selectElement(tid);
+        }
+      });
+    });
+
     // Restore positions
     if (appState.transforms) {
       for (const [tid, pos] of Object.entries(appState.transforms)) {
         const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
         if (el) {
-          if ((tid === 'icon' || tid === 'logo') && pos.w && pos.h) {
+          if ((tid === 'icon' || tid === 'logo' || tid === 'illustration') && pos.w && pos.h) {
             el.style.width = `${pos.w}px`;
             el.style.height = `${pos.h}px`;
           }
