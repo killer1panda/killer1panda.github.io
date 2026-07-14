@@ -826,7 +826,7 @@ const TECH_FACTS_REGISTRY = [
 <body class="text-on-surface font-body-md">
 <div class="mesh-gradient"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 dark:bg-surface/5 backdrop-blur-xl border-b border-white/10 docked">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 dark:bg-surface/5 backdrop-blur-xl border-b border-white/10 docked draggable" data-tid="top-bar">
 <div class="flex items-center gap-xs">
 <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter draggable" data-tid="club-title">IEEE CIS UPES</h1>
 </div>
@@ -838,7 +838,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
 </div>
 <!-- Centerpiece: Tech Fact Card -->
-<section class="w-full max-w-md relative z-10 group">
+<section class="w-full max-w-md relative z-10 group draggable" data-tid="card-container">
 <div class="glass-card neon-border-glow p-md flex flex-col gap-md relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.02]">
 <div class="scanline"></div>
 <!-- Category Icon and Tag -->
@@ -871,7 +871,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,251,251,0.1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,251,251,0.1)] draggable" data-tid="bottom-bar">
 <a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,251,251,0.3)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
@@ -886,7 +886,7 @@ const TECH_FACTS_REGISTRY = [
 </a>
 </nav>
 <!-- Footer -->
-<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
+<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-secondary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
@@ -1068,7 +1068,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="font-body-md text-on-surface">
 <!-- Top Navigation Shell -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-primary border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-primary border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="top-bar">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-on-primary text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-on-primary draggable" data-tid="club-title">TECH_DRIP</span>
@@ -1141,7 +1141,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-container border-4 border-black -z-10 -rotate-6"></div>
 </div>
 <!-- Secondary Info Section (Bento style) -->
-<section class="mt-12 w-full max-w-sm grid grid-cols-2 gap-4">
+<section class="mt-12 w-full max-w-sm grid grid-cols-2 gap-4 draggable" data-tid="card-container">
 <div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2">
 <h3 class="font-label-bold uppercase text-label-sm mb-2 text-secondary draggable" data-tid="prompt">Did you know?</h3>
 <p class="text-body-md font-body-md italic leading-tight">Google claimed supremacy in 2019 using their 53-qubit Sycamore processor.</p>
@@ -1157,7 +1157,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- Bottom Navigation Shell -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="bottom-bar">
 <button class="flex flex-col items-center justify-center text-on-surface p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors">
 <span class="material-symbols-outlined">bolt</span>
 </button>
@@ -1345,7 +1345,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="paper-texture text-on-surface selection:bg-primary selection:text-on-primary">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-margin-mobile py-4">
+<header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-margin-mobile py-4 draggable" data-tid="top-bar">
 <div class="flex items-center">
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary draggable" data-tid="club-title">TECH FACT</h1>
 </div>
@@ -1391,7 +1391,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute top-24 right-margin-mobile w-12 h-1 bg-primary"></div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center bg-primary text-on-primary px-4 py-2 flex-1 active-press" href="#">
 <span class="material-symbols-outlined">analytics</span>
@@ -1615,7 +1615,7 @@ const TECH_FACTS_REGISTRY = [
 <body class="min-h-screen flex flex-col font-body-md text-on-surface">
 <div class="scanline"></div>
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky bg-surface-container-lowest/70 backdrop-blur-xl border-b border-primary/30 drop-shadow-[0_0_8px_#ffabf344] z-50 flex justify-between items-center px-md py-sm">
+<header class="w-full top-0 sticky bg-surface-container-lowest/70 backdrop-blur-xl border-b border-primary/30 drop-shadow-[0_0_8px_#ffabf344] z-50 flex justify-between items-center px-md py-sm draggable" data-tid="top-bar">
 <div class="flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
 <h1 class="font-display-lg-mobile text-display-lg-mobile text-primary drop-shadow-[0_0_10px_#ffabf377] uppercase tracking-tighter draggable" data-tid="club-title">NEON PROTOCOL</h1>
@@ -1628,7 +1628,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Decorative corner brackets -->
 <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
 <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary-fixed shadow-[0_0_10px_#00fbfb]"></div>
-<div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500">
+<div class="bg-surface-container-lowest/80 border border-primary/50 rounded-lg p-lg backdrop-blur-xl glow-pink overflow-hidden group hover:scale-[1.02] transition-transform duration-500 draggable" data-tid="card-container">
 <!-- ID Stamp -->
 <div class="flex justify-between items-center mb-md">
 <span class="font-code-label text-code-label text-secondary-fixed-dim bg-secondary-fixed/10 px-2 py-0.5 rounded border border-secondary-fixed/20 draggable" data-tid="handle">[FACT_4029]</span>
@@ -1674,7 +1674,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Spacer for Navigation -->
 <div class="h-24"></div>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-secondary-fixed/30 drop-shadow-[0_0_15px_#00dddd44]">
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-secondary-fixed/30 drop-shadow-[0_0_15px_#00dddd44] draggable" data-tid="bottom-bar">
 <div class="flex justify-around items-center h-20 px-4 pb-safe w-full">
 <!-- Facts (Active) -->
 <a class="flex flex-col items-center justify-center text-secondary-fixed bg-secondary-fixed/10 rounded-xl px-4 py-1 border border-secondary-fixed/50 shadow-[0_0_10px_#00fbfb66] transition-transform active:scale-90" href="#">
@@ -1901,7 +1901,7 @@ const TECH_FACTS_REGISTRY = [
 <body class="text-on-surface font-body-md">
 <div class="mesh-gradient"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 backdrop-blur-xl border-b border-white/10">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 backdrop-blur-xl border-b border-white/10 draggable" data-tid="top-bar">
 <div class="flex items-center gap-xs">
 <div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
 <img class="w-full h-full object-cover draggable" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
@@ -1916,7 +1916,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
 </div>
 <!-- Centerpiece: Tech Fact Card with Split Layout -->
-<section class="w-full max-w-md relative z-10 group">
+<section class="w-full max-w-md relative z-10 group draggable" data-tid="card-container">
 <div class="glass-card neon-border-glow flex flex-col relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500 group-hover:scale-[1.01]">
 <div class="scanline"></div>
 <!-- Category Tag Header -->
@@ -1967,7 +1967,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(16,185,129,0.1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(16,185,129,0.1)] draggable" data-tid="bottom-bar">
 <a class="flex flex-col items-center justify-center bg-primary-fixed/20 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(16,185,129,0.2)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
@@ -1982,7 +1982,7 @@ const TECH_FACTS_REGISTRY = [
 </a>
 </nav>
 <!-- Footer -->
-<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
+<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-secondary hover:text-primary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
@@ -2202,7 +2202,7 @@ const TECH_FACTS_REGISTRY = [
 <body class="text-on-surface font-body-md">
 <div class="mesh-gradient"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 dark:bg-surface/5 backdrop-blur-xl border-b border-white/10">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 dark:bg-surface/5 backdrop-blur-xl border-b border-white/10 draggable" data-tid="top-bar">
 <div class="flex items-center gap-xs">
 <div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
 <img alt="IEEE CIS UPES Logo" class="w-full h-full object-cover draggable" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
@@ -2218,7 +2218,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Centerpiece: Layered Tech Fact Card -->
 <div class="w-full max-w-md relative z-10">
-<section class="relative group">
+<section class="relative group draggable" data-tid="card-container">
 <!-- Secondary Layer -->
 <div class="layered-bg-element"></div>
 <!-- Main Fact Card -->
@@ -2255,7 +2255,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(255,94,7,0.1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/10 dark:bg-surface-container/10 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(255,94,7,0.1)] draggable" data-tid="bottom-bar">
 <a class="flex flex-col items-center justify-center bg-primary/20 text-primary rounded-xl p-2 shadow-[0_0_15px_rgba(255,94,7,0.3)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
@@ -2270,7 +2270,7 @@ const TECH_FACTS_REGISTRY = [
 </a>
 </nav>
 <!-- Footer -->
-<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
+<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-primary hover:text-secondary-fixed transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
@@ -2468,7 +2468,7 @@ const TECH_FACTS_REGISTRY = [
 <body class="text-on-surface font-body-md">
 <div class="mesh-gradient"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 backdrop-blur-md">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 backdrop-blur-md draggable" data-tid="top-bar">
 <div class="flex items-center gap-xs mx-auto">
 <div class="w-6 h-6 rounded-full overflow-hidden border border-primary-fixed/30">
 <img alt="IEEE CIS Logo" class="w-full h-full object-cover draggable" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
@@ -2482,7 +2482,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-on-tertiary-container/20 blur-[140px] rounded-full"></div>
 </div>
 <!-- Minimalist Centered Layout -->
-<section class="max-w-md flex flex-col items-center gap-lg">
+<section class="max-w-md flex flex-col items-center gap-lg draggable" data-tid="card-container">
 <!-- Symbolic Icon -->
 <div class="relative">
 <div class="absolute inset-0 bg-primary-fixed/20 blur-2xl rounded-full scale-150"></div>
@@ -2512,7 +2512,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- Bottom Navigation -->
-<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-md px-md py-sm bg-surface-container-low/40 backdrop-blur-2xl rounded-full border border-white/5 shadow-2xl">
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-md px-md py-sm bg-surface-container-low/40 backdrop-blur-2xl rounded-full border border-white/5 shadow-2xl draggable" data-tid="bottom-bar">
 <a class="text-primary-fixed p-2" href="#">
 <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
 </a>
@@ -2527,7 +2527,7 @@ const TECH_FACTS_REGISTRY = [
 </a>
 </nav>
 <!-- Footer -->
-<footer class="fixed bottom-0 left-0 w-full pb-4 flex flex-col items-center justify-center opacity-30 pointer-events-none">
+<footer class="fixed bottom-0 left-0 w-full pb-4 flex flex-col items-center justify-center opacity-30 pointer-events-none draggable" data-tid="footer">
 <p class="font-label-sm text-[10px] draggable" data-tid="handle">© IEEE CIS UPES</p>
 </footer>
 <script>
@@ -2725,7 +2725,7 @@ const TECH_FACTS_REGISTRY = [
 <body class="text-on-surface font-body-md">
 <div class="mesh-gradient"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 backdrop-blur-xl border-b border-white/10">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-surface/5 backdrop-blur-xl border-b border-white/10 draggable" data-tid="top-bar">
 <div class="flex items-center gap-xs">
 <div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
 <img class="w-full h-full object-cover draggable" data-alt="IEEE CIS UPES logo" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
@@ -2740,7 +2740,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container blur-[120px] rounded-full"></div>
 </div>
 <!-- Centerpiece: Grid Info Layout -->
-<section class="w-full max-w-md relative z-10 flex flex-col gap-sm">
+<section class="w-full max-w-md relative z-10 flex flex-col gap-sm draggable" data-tid="card-container">
 <!-- Main Header Card -->
 <div class="glass-card neon-border-glow p-md flex flex-col gap-sm relative overflow-hidden rounded-none border-primary-fixed transition-all duration-500">
 <div class="scanline"></div>
@@ -2807,7 +2807,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-dim to-transparent pointer-events-none z-0"></div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,212,255,0.1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface-container/20 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,212,255,0.1)] draggable" data-tid="bottom-bar">
 <a class="flex flex-col items-center justify-center bg-primary-fixed/10 text-primary-fixed rounded-xl p-2 shadow-[0_0_15px_rgba(0,212,255,0.2)] scale-90 duration-200" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
@@ -2822,7 +2822,7 @@ const TECH_FACTS_REGISTRY = [
 </a>
 </nav>
 <!-- Footer -->
-<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10">
+<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-12 mb-20 relative z-10 draggable" data-tid="footer">
 <p class="font-label-sm text-label-sm text-outline">© IEEE CIS UPES Student Branch</p>
 <div class="flex gap-md">
 <a class="font-label-sm text-label-sm text-primary-fixed hover:text-primary transition-colors active:opacity-70 draggable" data-tid="handle" href="#">@ieeecisupes</a>
@@ -3024,7 +3024,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Background Pattern -->
 <div class="full-bleed-graphic"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-background/20 backdrop-blur-md border-b border-white/5">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-sm h-16 bg-background/20 backdrop-blur-md border-b border-white/5 draggable" data-tid="top-bar">
 <div class="flex items-center gap-xs">
 <div class="w-8 h-8 rounded-full bg-primary-fixed/20 flex items-center justify-center border border-primary-fixed/30 overflow-hidden">
 <img class="w-full h-full object-cover draggable" data-alt="IEEE CIS UPES Logo" data-orig-src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ" data-tid="illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1kL37hUgKubDBUqx_72dWp_BsMKUw25lZzifdgo0Rs8FCOZDATsXht2LfnC3ZZxbM3HNP4hjtmVrLh_94FVg-QGLoEmgTG3Oor_UUINGovo1RLG_5QYww6ScDmrSvz1yRfVx_bJC8tk05QRSsqCztBp_dnR4uH1WhingvBSZYJXDDHjWppEVcu1I2VUaG9zgNkPWQ9bDdfEalqE7gjJA1GajAwRkxSXmg7Pf-iragwPduPY472NgtopO0lX2UnbdkyI3Dw7uUWQ"/>
@@ -3041,7 +3041,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute top-1/3 right-0 w-64 h-64 bg-primary-fixed/10 blur-[100px] rounded-full floating-accent"></div>
 <div class="absolute bottom-1/4 left-0 w-48 h-48 bg-secondary/5 blur-[80px] rounded-full" style="animation-delay: -2s;"></div>
 <!-- Content Card -->
-<section class="w-full max-w-md relative z-10">
+<section class="w-full max-w-md relative z-10 draggable" data-tid="card-container">
 <div class="glass-panel p-md flex flex-col gap-md">
 <!-- Category & ID -->
 <div class="flex items-center justify-between">
@@ -3078,7 +3078,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-background/50 backdrop-blur-xl border-t border-white/5">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-background/50 backdrop-blur-xl border-t border-white/5 draggable" data-tid="bottom-bar">
 <a class="flex flex-col items-center justify-center text-primary-fixed p-2" href="#">
 <span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
 </a>
@@ -3093,7 +3093,7 @@ const TECH_FACTS_REGISTRY = [
 </a>
 </nav>
 <!-- Footer -->
-<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-4 mb-20 relative z-10">
+<footer class="flex flex-col items-center justify-center w-full gap-base pb-xl mt-4 mb-20 relative z-10 draggable" data-tid="footer">
 <p class="font-label-sm text-label-sm text-outline/50">© IEEE CIS UPES Student Branch</p>
 <a class="font-label-sm text-label-sm text-primary-fixed hover:underline transition-colors draggable" data-tid="handle" href="#">@ieeecisupes</a>
 </footer>
@@ -3236,7 +3236,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="font-body-md text-on-surface">
 <!-- Top Navigation -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="top-bar">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-black text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-black draggable" data-tid="club-title">TECH_DRIP</span>
@@ -3309,7 +3309,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white border-4 border-black -z-10 -rotate-6"></div>
 </div>
 <!-- Secondary Info -->
-<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4">
+<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4 draggable" data-tid="card-container">
 <div class="bg-black text-white border-4 border-black p-4 neo-shadow-sm col-span-2">
 <h3 class="font-label-bold uppercase text-label-sm mb-1 text-primary">History</h3>
 <p class="text-body-md font-body-md italic leading-tight">ZKP was first conceived in 1985 by Shafi Goldwasser, Silvio Micali, and Charles Rackoff.</p>
@@ -3325,7 +3325,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- Bottom Navigation -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="bottom-bar">
 <button class="flex flex-col items-center justify-center p-2">
 <span class="material-symbols-outlined text-black">home</span>
 </button>
@@ -3519,7 +3519,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="font-body-md text-on-surface">
 <!-- Top Navigation Shell -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black text-white">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black text-white draggable" data-tid="top-bar">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold draggable" data-tid="club-title">TECH_DRIP</span>
@@ -3589,7 +3589,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </div>
 <!-- Bento Grid Info Section -->
-<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4">
+<section class="mt-8 w-full max-w-sm grid grid-cols-2 gap-4 draggable" data-tid="card-container">
 <div class="bg-white border-4 border-black p-4 neo-shadow-sm col-span-2">
 <h3 class="font-label-bold uppercase text-label-sm mb-1 text-secondary-container">Proximity Processing</h3>
 <p class="text-body-md font-body-md italic leading-tight">By processing data at the edge, organizations can reduce latency and bandwidth use, improving real-time response times.</p>
@@ -3605,7 +3605,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- Bottom Navigation Shell -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe draggable" data-tid="bottom-bar">
 <button class="flex flex-col items-center justify-center text-white p-2 hover:bg-primary hover:text-black transition-colors">
 <span class="material-symbols-outlined">bolt</span>
 </button>
@@ -3743,7 +3743,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="font-body-md text-on-surface">
 <!-- Top Navigation -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-8 border-black">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-white border-b-8 border-black draggable" data-tid="top-bar">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-black text-headline-md">terminal</span>
 <span class="font-headline-md text-2xl uppercase tracking-tighter font-extrabold text-black draggable" data-tid="club-title">TECH_DRIP</span>
@@ -3791,7 +3791,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute -top-4 -right-4 w-20 h-20 bg-accent -z-10 neo-border-medium"></div>
 </div>
 <!-- Secondary Info Grid -->
-<section class="mt-16 w-full max-w-sm grid grid-cols-2 gap-6">
+<section class="mt-16 w-full max-w-sm grid grid-cols-2 gap-6 draggable" data-tid="card-container">
 <div class="bg-white neo-border-medium p-4 flex flex-col items-center justify-center text-center">
 <span class="font-display-xl text-4xl font-extrabold mb-1">5s</span>
 <span class="font-label-bold text-[10px] uppercase opacity-60 draggable" data-tid="handle">Training Speed</span>
@@ -3803,7 +3803,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- Bottom Navigation -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-24 bg-white border-t-8 border-black px-4 pb-safe">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-24 bg-white border-t-8 border-black px-4 pb-safe draggable" data-tid="bottom-bar">
 <button class="flex flex-col items-center justify-center text-black p-2">
 <span class="material-symbols-outlined text-3xl">bolt</span>
 </button>
@@ -3937,7 +3937,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="font-mono text-on-surface">
 <!-- Top Navigation Shell -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(57,255,20,1)]">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(57,255,20,1)] draggable" data-tid="top-bar">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-2xl">terminal</span>
 <span class="font-bold text-xl uppercase tracking-tighter text-primary draggable" data-tid="club-title">TECH_DRIP</span>
@@ -4016,7 +4016,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute -bottom-2 -right-2 w-full h-full border-4 border-black -z-10"></div>
 </div>
 <!-- Bento Grid Info -->
-<section class="mt-8 w-full max-w-sm grid grid-cols-6 gap-3">
+<section class="mt-8 w-full max-w-sm grid grid-cols-6 gap-3 draggable" data-tid="card-container">
 <div class="bg-black text-primary border-4 border-black p-3 col-span-4 flex flex-col justify-between">
 <h3 class="text-[10px] font-bold uppercase border-b border-primary/30 pb-1 mb-2">Network Stat</h3>
 <p class="text-xs font-bold leading-tight">Ethereum hosts over 3,000 dApps, processing millions of transactions daily.</p>
@@ -4042,7 +4042,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </main>
 <!-- Bottom Navigation Shell -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-black border-t-4 border-black px-4 pb-safe draggable" data-tid="bottom-bar">
 <button class="flex flex-col items-center justify-center text-primary/50 p-2 hover:text-primary transition-colors">
 <span class="material-symbols-outlined">bolt</span>
 </button>
@@ -4208,7 +4208,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="font-body-md text-on-surface">
 <!-- Top Navigation Shell -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 bg-black border-b-4 border-black draggable" data-tid="top-bar">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
 <span class="font-headline-md text-headline-md uppercase tracking-tighter font-extrabold text-white draggable" data-tid="club-title">TECH_DRIP</span>
@@ -4278,7 +4278,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </div>
 <!-- Secondary Info Section (Pasted blocks at angles) -->
-<section class="mt-10 w-full max-w-sm flex flex-col gap-6 relative">
+<section class="mt-10 w-full max-w-sm flex flex-col gap-6 relative draggable" data-tid="card-container">
 <div class="bg-accent-yellow border-4 border-black p-4 neo-shadow-sm rotate-pos-3 relative z-20">
 <h3 class="font-label-bold uppercase text-label-sm mb-1 text-black underline draggable" data-tid="prompt">The Problem</h3>
 <p class="text-body-md font-body-md leading-tight">Decoherence happens in microseconds. Keeping qubits "quiet" requires temperatures colder than outer space.</p>
@@ -4300,7 +4300,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- Bottom Navigation Shell -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-white border-t-4 border-black px-4 pb-safe shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] draggable" data-tid="bottom-bar">
 <button class="flex flex-col items-center justify-center text-black p-2 hover:bg-primary transition-colors">
 <span class="material-symbols-outlined">bolt</span>
 </button>
@@ -4417,7 +4417,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="paper-texture text-primary selection:bg-primary selection:text-white">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-50 border-b border-primary bg-background flex justify-between items-center px-6 py-4">
+<header class="w-full top-0 sticky z-50 border-b border-primary bg-background flex justify-between items-center px-6 py-4 draggable" data-tid="top-bar">
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
 <h1 class="font-swiss-meta text-xs uppercase tracking-[0.2em] draggable" data-tid="club-title">Tech Fact No. 042</h1>
@@ -4433,7 +4433,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 <!-- Layout: Staggered Content Across Grid -->
 <!-- Section 1: Top Header Stagger -->
-<section class="col-span-3 pt-12 px-6 border-b border-primary">
+<section class="col-span-3 pt-12 px-6 border-b border-primary draggable" data-tid="card-container">
 <div class="grid grid-cols-3 gap-0">
 <div class="col-span-2 pb-8">
 <span class="font-swiss-meta text-[10px] uppercase block mb-4 draggable" data-tid="category">Architecture / Cloud</span>
@@ -4482,7 +4482,7 @@ const TECH_FACTS_REGISTRY = [
 </section>
 </main>
 <!-- BottomNavBar (Swiss Grid Alignment) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t border-primary">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t border-primary draggable" data-tid="bottom-bar">
 <!-- Each nav item takes exactly 25% but adheres to grid feel -->
 <a class="flex flex-col items-center justify-center bg-primary text-background flex-1 active-press" href="#">
 <span class="material-symbols-outlined text-xl">analytics</span>
@@ -4611,7 +4611,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="paper-texture text-on-surface selection:bg-accent selection:text-white">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-50 border-b-thick border-primary bg-background flex justify-between items-center px-margin-mobile h-16">
+<header class="w-full top-0 sticky z-50 border-b-thick border-primary bg-background flex justify-between items-center px-margin-mobile h-16 draggable" data-tid="top-bar">
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
 <h1 class="font-headline font-bold text-xl tracking-tighter uppercase draggable" data-tid="club-title">Fact System</h1>
@@ -4622,7 +4622,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Central Fact Card: The Reductive Block -->
 <article class="relative w-full max-w-sm bg-background border-thick border-primary shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col transition-all duration-300">
 <!-- Header Block: Safety Orange Accent -->
-<div class="orange-accent p-6 border-b-thick border-primary">
+<div class="orange-accent p-6 border-b-thick border-primary draggable" data-tid="card-container">
 <div class="flex justify-between items-start">
 <span class="font-body font-extrabold text-xs tracking-widest-xl uppercase text-white draggable" data-tid="category">Warning: Vulnerability</span>
 <span class="material-symbols-outlined text-white text-3xl">priority_high</span>
@@ -4664,7 +4664,7 @@ const TECH_FACTS_REGISTRY = [
 </article>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t-thick border-primary">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex h-16 bg-background border-t-thick border-primary draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center orange-accent text-white flex-1 border-r-thick border-primary active-press" href="#">
 <span class="material-symbols-outlined">dataset</span>
@@ -4785,7 +4785,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="paper-texture text-on-surface selection:bg-accent-blue selection:text-white">
 <!-- Minimal TopBar -->
-<header class="w-full top-0 sticky z-50 border-b border-black bg-surface-paper/80 backdrop-blur-sm flex justify-between items-center px-margin-mobile py-6">
+<header class="w-full top-0 sticky z-50 border-b border-black bg-surface-paper/80 backdrop-blur-sm flex justify-between items-center px-margin-mobile py-6 draggable" data-tid="top-bar">
 <div class="flex items-center gap-6">
 <span class="material-symbols-outlined text-primary cursor-pointer hover:text-accent-blue transition-colors">menu</span>
 <h1 class="font-mono-meta text-[14px] font-bold tracking-widest text-primary uppercase draggable" data-tid="club-title">Information / Journal</h1>
@@ -4807,7 +4807,7 @@ const TECH_FACTS_REGISTRY = [
         </h2>
 <!-- Circular Graphic Element (Neural Node) -->
 <div class="relative mb-12 self-end mr-8">
-<div class="w-24 h-24 rounded-full border-[1.5px] border-primary flex items-center justify-center">
+<div class="w-24 h-24 rounded-full border-[1.5px] border-primary flex items-center justify-center draggable" data-tid="card-container">
 <div class="w-3 h-3 bg-accent-blue rounded-full"></div>
 </div>
 <!-- Asymmetric labeling -->
@@ -4837,7 +4837,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="fixed top-1/2 left-0 right-0 h-[0.5px] bg-black/5 -z-10"></div>
 </main>
 <!-- Bottom Nav: Swiss Tab Style -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex h-20 bg-surface-paper border-t-2 border-black">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex h-20 bg-surface-paper border-t-2 border-black draggable" data-tid="bottom-bar">
 <a class="flex-1 flex flex-col items-center justify-center bg-black text-white active-press" href="#">
 <span class="material-symbols-outlined text-[20px]">layers</span>
 <span class="font-mono-meta text-[10px] mt-1 font-bold">FACTS</span>
@@ -4958,7 +4958,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="selection:bg-primary selection:text-white">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-50 border-b border-thin border-forest bg-background flex justify-between items-center px-margin-mobile py-4">
+<header class="w-full top-0 sticky z-50 border-b border-thin border-forest bg-background flex justify-between items-center px-margin-mobile py-4 draggable" data-tid="top-bar">
 <div class="flex items-center">
 <span class="material-symbols-outlined text-forest mr-4 cursor-pointer">menu</span>
 <h1 class="font-headline-caps text-xl font-extrabold tracking-tight uppercase draggable" data-tid="club-title">Tech<span class="font-light">Archive</span></h1>
@@ -4967,7 +4967,7 @@ const TECH_FACTS_REGISTRY = [
 </header>
 <main class="min-h-[calc(100vh-128px)] flex flex-col items-center justify-start px-margin-mobile py-8">
 <!-- Modular Data Container -->
-<div class="w-full max-w-md flex flex-col">
+<div class="w-full max-w-md flex flex-col draggable" data-tid="card-container">
 <!-- Section Header -->
 <div class="mb-6 flex justify-between items-end border-b border-forest pb-2">
 <span class="font-metadata text-[10px] font-bold tracking-[0.2em] uppercase draggable" data-tid="prompt">Bulletin No. 042</span>
@@ -5018,7 +5018,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-forest">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-forest draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center bg-forest text-white px-4 py-2 flex-1 active-press" href="#">
 <span class="material-symbols-outlined">dataset</span>
@@ -5164,7 +5164,7 @@ const TECH_FACTS_REGISTRY = [
     </style></head>
 <body class="limestone-bg text-on-surface selection:bg-burgundy-bg selection:text-white">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-6 py-4">
+<header class="w-full top-0 sticky z-50 border-b border-thin border-primary bg-background flex justify-between items-center px-6 py-4 draggable" data-tid="top-bar">
 <div class="flex items-center">
 <span class="material-symbols-outlined text-primary mr-4 cursor-pointer">menu</span>
 <h1 class="font-headline-lg-mobile text-[24px] font-bold tracking-tight text-primary draggable" data-tid="club-title">TECH FACT</h1>
@@ -5221,7 +5221,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="absolute bottom-[15%] left-10 w-16 h-[2px] bg-burgundy-bg"></div>
 </main>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-16 bg-background border-t border-thick border-primary draggable" data-tid="bottom-bar">
 <!-- FACTS (Active) -->
 <a class="flex flex-col items-center justify-center bg-primary text-white px-4 py-2 flex-1 active-press" href="#">
 <span class="material-symbols-outlined">analytics</span>
@@ -5410,7 +5410,7 @@ const TECH_FACTS_REGISTRY = [
 <div class="crt-overlay"></div>
 <div class="matrix-bg fixed inset-0 z-0"></div>
 <!-- Top AppBar (from Shared Components) -->
-<header class="fixed top-0 w-full z-50 bg-background border-b border-primary flex justify-between items-center px-gutter h-14 transition-colors duration-75">
+<header class="fixed top-0 w-full z-50 bg-background border-b border-primary flex justify-between items-center px-gutter h-14 transition-colors duration-75 draggable" data-tid="top-bar">
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-primary">terminal</span>
 <h1 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter draggable" data-tid="prompt">&gt;SYS_SHELL_v1.0</h1>
@@ -5424,7 +5424,7 @@ const TECH_FACTS_REGISTRY = [
 <!-- Main Content Canvas -->
 <main class="relative z-10 pt-20 pb-20 px-4 md:px-gutter max-w-container-max mx-auto min-h-screen flex items-center justify-center">
 <!-- Central Card Container -->
-<div class="w-full max-w-4xl border border-primary bg-background/90 p-6 md:p-12 relative">
+<div class="w-full max-w-4xl border border-primary bg-background/90 p-6 md:p-12 relative draggable" data-tid="card-container">
 <!-- Corner Accents -->
 <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
 <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
@@ -5496,7 +5496,7 @@ const TECH_FACTS_REGISTRY = [
 </div>
 </main>
 <!-- Bottom Navigation Bar (from Shared Components) -->
-<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-background border-t border-primary z-50">
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-background border-t border-primary z-50 draggable" data-tid="bottom-bar">
 <a class="flex flex-col items-center justify-center text-primary p-2 hover:bg-secondary-container transition-transform active:scale-95" href="#">
 <span class="material-symbols-outlined" data-icon="database">database</span>
 <span class="font-label-sm text-label-sm uppercase mt-1">Data</span>

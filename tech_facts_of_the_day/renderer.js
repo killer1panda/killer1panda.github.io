@@ -312,7 +312,7 @@ class TechFactRenderer {
 
   setupDraggables(appState) {
     const iframeDoc = this.iframe.contentDocument || this.iframe.contentWindow.document;
-    const canvas = iframeDoc.querySelector('.card-canvas');
+    const canvas = iframeDoc.querySelector('.card-canvas') || iframeDoc.querySelector('[data-tid="card-container"]') || iframeDoc.body;
     if (!canvas) return;
 
     // Apply inline font color pickers and accent variables
@@ -354,7 +354,7 @@ class TechFactRenderer {
     };
 
     // Make elements editable
-    const editables = iframeDoc.querySelectorAll('.fact-category, .fact-title, .fact-body, .society-handle, .club-title, .interactive-prompt');
+    const editables = iframeDoc.querySelectorAll('.fact-category, .fact-title, .fact-body, .society-handle, .club-title, .interactive-prompt, [data-tid="title"], [data-tid="category"], [data-tid="body"], [data-tid="handle"], [data-tid="prompt"], [data-tid="club-title"]');
     editables.forEach(el => {
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
@@ -367,6 +367,7 @@ class TechFactRenderer {
         if (tid === 'body') appState.body = val;
         if (tid === 'handle') appState.handle = val;
         if (tid === 'prompt') appState.prompt = val;
+        if (tid === 'club-title') appState.clubTitle = val;
         
         // Sync text field to parent input
         const inputId = tid === 'category' ? 'input-category' : 
@@ -393,8 +394,9 @@ class TechFactRenderer {
         el.style.position = 'relative';
       }
 
-      // Add 8-way resize handles to the icon, logo, and illustration containers, single handle to text
-      if (tid === 'icon' || tid === 'logo' || tid === 'illustration') {
+      // Add 8-way resize handles to layout containers, icons, logos, and illustration containers, single handle to text
+      const isContainer = ['icon', 'logo', 'illustration', 'top-bar', 'bottom-bar', 'footer', 'card-container'].includes(tid);
+      if (isContainer) {
         const directions = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
         directions.forEach(dir => {
           const h = iframeDoc.createElement('div');
@@ -414,6 +416,7 @@ class TechFactRenderer {
       let originalTx = 0, originalTy = 0;
 
       el.addEventListener('mousedown', (e) => {
+        e.stopPropagation(); // Prevent dragging parent container
         if (e.target.getAttribute('contenteditable') === 'true' && e.target === iframeDoc.activeElement) {
           return;
         }
@@ -684,7 +687,8 @@ class TechFactRenderer {
             if (!isResizing) return;
             ev.preventDefault();
 
-            if (tid === 'icon' || tid === 'logo') {
+            const isBoxStretch = ['icon', 'logo', 'illustration', 'top-bar', 'bottom-bar', 'footer', 'card-container'].includes(tid);
+            if (isBoxStretch) {
               // 8-way box stretching
               const dx = ev.clientX - startX;
               const dy = ev.clientY - startY;
@@ -708,18 +712,22 @@ class TechFactRenderer {
                 newTy = originalTy + dy;
               }
 
-              if (newW < 40) {
-                const diff = 40 - newW;
-                newW = 40;
+              if (newW < 20) {
+                const diff = 20 - newW;
+                newW = 20;
                 if (dir.includes('w')) newTx -= diff;
               }
-              if (newH < 40) {
-                const diff = 40 - newH;
-                newH = 40;
+              if (newH < 20) {
+                const diff = 20 - newH;
+                newH = 20;
                 if (dir.includes('n')) newTy -= diff;
               }
 
               appState.transforms[tid] = { x: newTx, y: newTy, w: newW, h: newH, scale: 1 };
+              el.style.maxWidth = 'none';
+              el.style.maxHeight = 'none';
+              el.style.minWidth = '0';
+              el.style.minHeight = '0';
               el.style.width = `${newW}px`;
               el.style.height = `${newH}px`;
               el.style.transform = `translate(${newTx}px, ${newTy}px) scale(1)`;
@@ -828,7 +836,12 @@ class TechFactRenderer {
       for (const [tid, pos] of Object.entries(appState.transforms)) {
         const el = iframeDoc.querySelector(`[data-tid="${tid}"]`);
         if (el) {
-          if ((tid === 'icon' || tid === 'logo' || tid === 'illustration') && pos.w && pos.h) {
+          const isBoxStretch = ['icon', 'logo', 'illustration', 'top-bar', 'bottom-bar', 'footer', 'card-container'].includes(tid);
+          if (isBoxStretch && pos.w && pos.h) {
+            el.style.maxWidth = 'none';
+            el.style.maxHeight = 'none';
+            el.style.minWidth = '0';
+            el.style.minHeight = '0';
             el.style.width = `${pos.w}px`;
             el.style.height = `${pos.h}px`;
           }
